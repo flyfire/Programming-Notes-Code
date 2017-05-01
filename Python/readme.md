@@ -1,1 +1,1 @@
-Python basic note
+Python basic code

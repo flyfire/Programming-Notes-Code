@@ -1,3 +1,0 @@
-include ':app', ':LibraryA'
-
-project(':LibraryA').projectDir = new File("Third/LibraryA")//指定LibraryA的位置
