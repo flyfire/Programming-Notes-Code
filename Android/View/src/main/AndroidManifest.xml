@@ -21,6 +21,7 @@
         <activity android:name=".draw.color.MaskFilterActivity"/>
         <activity android:name=".draw.path.ABezierActivity"/>
         <activity android:name=".draw.pathmeasure.PathMeasureActivity"/>
+        <activity android:name=".custom.activity.CustomViewActivity"/>
     </application>
 
 </manifest>

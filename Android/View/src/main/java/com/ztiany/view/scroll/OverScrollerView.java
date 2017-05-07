@@ -15,18 +15,17 @@ import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
 /**
- * Author Ztiany                   <br/>
- * Email ztiany3@gmail.com      <br/>
- * Date 2016-04-18 21:05      <br/>
- * Description：可以自动拖动内容，支持overscroll
+ * 可以滑动的布局，支持OverScroll
  */
 public class OverScrollerView extends LinearLayout {
 
     private static final String TAG = OverScrollerView.class.getSimpleName();
+
     private OverScroller mOverScroller;
     private int mScaledTouchSlop;
     private int mScaledMaximumFlingVelocity;
     private int mScaledMinimumFlingVelocity;
+    private int mOverScrollDistance;
 
     private VelocityTracker mVelocityTracker;
 
@@ -34,9 +33,7 @@ public class OverScrollerView extends LinearLayout {
 
     private int mActivePointerId;
 
-    private int mDownX, mDownY;
     private int mLastX, mLastY;
-    private int mOverscrollDistance = 200;
 
 
     public OverScrollerView(Context context) {
@@ -60,10 +57,12 @@ public class OverScrollerView extends LinearLayout {
         mScaledTouchSlop = viewConfiguration.getScaledTouchSlop();
         mScaledMinimumFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
         mScaledMaximumFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
-        mOverscrollDistance = viewConfiguration.getScaledOverscrollDistance();
         mVelocityTracker = VelocityTracker.obtain();
-        mOverscrollDistance = 300;
-        Log.d(TAG, "mOverscrollDistance:" + mOverscrollDistance);
+
+        mOverScrollDistance = viewConfiguration.getScaledOverscrollDistance();
+        Log.d(TAG, "mOverScrollDistance:" + mOverScrollDistance);
+        mOverScrollDistance = 300;
+
     }
 
     @Override
@@ -71,7 +70,6 @@ public class OverScrollerView extends LinearLayout {
         super.draw(canvas);
         Log.d(TAG, "draw() called with: " + "canvas = [" + canvas + "]");
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -121,15 +119,13 @@ public class OverScrollerView extends LinearLayout {
     }
 
     @Override
-    public boolean onInterceptHoverEvent(MotionEvent event) {
+    public boolean onInterceptTouchEvent(MotionEvent event) {
 
         int actionMasked = MotionEventCompat.getActionMasked(event);
 
         if ((actionMasked == MotionEvent.ACTION_MOVE) && (mIsBeginDrag)) {
             return true;
         }
-
-
 
         switch (actionMasked) {
             case MotionEvent.ACTION_DOWN: {
@@ -141,10 +137,10 @@ public class OverScrollerView extends LinearLayout {
                 }
                 int index = event.getActionIndex();
                 mActivePointerId = event.getPointerId(index);
-                mDownX = (int) MotionEventCompat.getX(event, index);
-                mDownY = (int) MotionEventCompat.getY(event, index);
-                mLastX = mDownX;
-                mLastY = mDownY;
+                int downX = (int) MotionEventCompat.getX(event, index);
+                int downY = (int) MotionEventCompat.getY(event, index);
+                mLastX = downX;
+                mLastY = downY;
                 break;
             }
             case MotionEventCompat.ACTION_POINTER_DOWN: {
@@ -185,7 +181,6 @@ public class OverScrollerView extends LinearLayout {
             }
         }
 
-
         return mIsBeginDrag;
     }
 
@@ -196,6 +191,7 @@ public class OverScrollerView extends LinearLayout {
         mVelocityTracker.addMovement(event);
 
         switch (actionMasked) {
+
             case MotionEvent.ACTION_DOWN: {
                 if ((mIsBeginDrag = !mOverScroller.isFinished())) {
                     mOverScroller.abortAnimation();
@@ -222,6 +218,8 @@ public class OverScrollerView extends LinearLayout {
                 int currentY = (int) MotionEventCompat.getY(event, pointerIndex);
                 int dx = mLastX - currentX;
                 int dy = mLastY - currentY;
+
+                //如果子view不处理滑动事件，就自己处理
                 if (!mIsBeginDrag && Math.abs(dx) > mScaledTouchSlop || Math.abs(dy) > mScaledTouchSlop) {
                     mIsBeginDrag = true;
                     if (dy > 0) {
@@ -229,7 +227,6 @@ public class OverScrollerView extends LinearLayout {
                     } else {
                         dy += mScaledTouchSlop;
                     }
-
                     if (dx > 0) {
                         dx -= mScaledTouchSlop;
                     } else {
@@ -238,7 +235,7 @@ public class OverScrollerView extends LinearLayout {
                 }
 
                 if (mIsBeginDrag) {
-                    boolean b = overScrollBy(dx, dy, getScrollX(), getScrollY(), 0, getScrollRange(), 0, mOverscrollDistance, true);
+                    boolean b = overScrollBy(dx, dy, getScrollX(), getScrollY(), 0, getScrollRange(), 0, mOverScrollDistance, true);
                     mLastX = currentX;
                     mLastY = currentY;
                 }
@@ -279,7 +276,7 @@ public class OverScrollerView extends LinearLayout {
                 0, (int) v,
                 0, 0,
                 0, getScrollRange(),
-                0, mOverscrollDistance
+                0, mOverScrollDistance
         );
         ViewCompat.postInvalidateOnAnimation(this);
     }
@@ -327,7 +324,7 @@ public class OverScrollerView extends LinearLayout {
                 int dx = x - oldX;
                 int dy = y - oldY;
                 overScrollBy(dx, dy, oldX, oldY, 0, range,
-                        0, mOverscrollDistance, false);
+                        0, mOverScrollDistance, false);
                 onScrollChanged(getScrollX(), getScrollY(), oldX, oldY);
             }
 

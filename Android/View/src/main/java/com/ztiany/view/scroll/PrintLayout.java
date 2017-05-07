@@ -7,27 +7,20 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
-/**
- * Author Ztiany                   <br/>
- * Email ztiany3@gmail.com      <br/>
- * Date 2016-05-14 0014 10:23      <br/>
- * Description：
- */
 public class PrintLayout extends FrameLayout {
 
     private static final String TAG = PrintLayout.class.getSimpleName();
+
     public PrintLayout(Context context) {
-        this(context , null);
+        this(context, null);
     }
 
     public PrintLayout(Context context, AttributeSet attrs) {
-        this(context, attrs , 0);
+        this(context, attrs, 0);
     }
 
     public PrintLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-
     }
 
 
@@ -57,19 +50,19 @@ public class PrintLayout extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d(TAG + " "  , "onDraw() called with: " + "canvas = [" + canvas + "]");
+        Log.d(TAG + " ", "onDraw() called with: " + "canvas = [" + canvas + "]");
         super.onDraw(canvas);
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        Log.d(TAG + " "  , "onLayout() called with: " + "changed = [" + changed + "], left = [" + left + "], top = [" + top + "], right = [" + right + "], bottom = [" + bottom + "]");
+        Log.d(TAG + " ", "onLayout() called with: " + "changed = [" + changed + "], left = [" + left + "], top = [" + top + "], right = [" + right + "], bottom = [" + bottom + "]");
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Log.d(TAG + " " , "onMeasure() called with: " + "widthMeasureSpec = [" + widthMeasureSpec + "], heightMeasureSpec = [" + heightMeasureSpec + "]");
+        Log.d(TAG + " ", "onMeasure() called with: " + "widthMeasureSpec = [" + widthMeasureSpec + "], heightMeasureSpec = [" + heightMeasureSpec + "]");
     }
 }

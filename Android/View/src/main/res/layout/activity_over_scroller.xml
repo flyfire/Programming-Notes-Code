@@ -12,36 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <com.ztiany.view.scroll.PrintLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_margin="10dp"
             android:background="@color/colorPrimary"/>
 
         <com.ztiany.view.scroll.PrintLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:layout_margin="10dp"
             android:background="@color/red"/>
 
         <com.ztiany.view.scroll.PrintLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:layout_margin="10dp"
             android:background="@color/colorAccent"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@color/gold"/>
+            android:layout_margin="10dp"
+            android:background="@color/gold"
+            android:clickable="true"/>
 
-        <TextView
+        <Button
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@color/colorPrimaryDark"/>
+            android:layout_margin="10dp"
+            android:clickable="true"/>
 
-        <TextView
+        <Button
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@color/green"/>
+            android:layout_margin="10dp"
+            android:clickable="true"/>
 
     </com.ztiany.view.scroll.OverScrollerView>
 

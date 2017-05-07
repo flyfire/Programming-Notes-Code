@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.ztiany.view.custom.activity.CustomViewActivity;
 import com.ztiany.view.draw.canvas.ADrawingActivity;
 import com.ztiany.view.draw.color.ColorMatrixFilterActivity;
 import com.ztiany.view.draw.color.MaskFilterActivity;
@@ -46,5 +47,6 @@ public class MainActivity extends AppCompatActivity {
         LIST.add(new Item("MaskFilter", MaskFilterActivity.class));
         LIST.add(new Item("Bezier", ABezierActivity.class));
         LIST.add(new Item("PathMeasure", PathMeasureActivity.class));
+        LIST.add(new Item("自定义View", CustomViewActivity.class));
     }
 }

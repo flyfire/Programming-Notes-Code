@@ -9,18 +9,10 @@ import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.OverScroller;
 
-/**
- * author Ztiany                                                                        <br/>
- * email 1169654504@qq.com & ztiany3@gmail.com           <br/>
- * date 2016-04-18 11:47                                                       <br/>
- * description                                                                             <br/>
- * version
- */
+
 public class ScrollerView extends FrameLayout {
 
-
     private static final String TAG = ScrollerView.class.getSimpleName();
-
 
     private int mDownX;
     private int mDownY;
@@ -29,14 +21,9 @@ public class ScrollerView extends FrameLayout {
     private int mScaledTouchSlop;
     private boolean isBeginDrag;
 
-
-    private boolean mBackOnUp = false;
-
-
     private OverScroller mScroller;
     private VelocityTracker mVelocityTracker;
     private int mScaledMinimumFlingVelocity;
-
 
     public ScrollerView(Context context) {
         this(context, null);
@@ -58,27 +45,12 @@ public class ScrollerView extends FrameLayout {
         mScroller = new OverScroller(getContext());
     }
 
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-
-    }
-
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int x = (int) ev.getX();
         int y = (int) ev.getY();
 
-
         int actionMask = ev.getAction();
-
 
         switch (actionMask) {
             case MotionEvent.ACTION_DOWN: {
@@ -126,7 +98,6 @@ public class ScrollerView extends FrameLayout {
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
-                int dx = mLastX - x;
                 int dy = mLastY - y;
                 scrollBy(0, dy);
                 mLastX = x;
@@ -136,18 +107,13 @@ public class ScrollerView extends FrameLayout {
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP: {
                 isBeginDrag = false;
-                if (mBackOnUp) {
-                    scrollBack();
-                } else {
-                    mVelocityTracker.computeCurrentVelocity(1000);
-                    float yVelocity = mVelocityTracker.getYVelocity();
-                    mVelocityTracker.clear();
-                    if (Math.abs(yVelocity) > mScaledMinimumFlingVelocity) {
-                        fling(-yVelocity);
-                    }
+                mVelocityTracker.computeCurrentVelocity(1000);
+                float yVelocity = mVelocityTracker.getYVelocity();
+                mVelocityTracker.clear();
+                if (Math.abs(yVelocity) > mScaledMinimumFlingVelocity) {
+                    fling(-yVelocity);
                 }
                 break;
-
             }
         }
         return true;
@@ -163,26 +129,13 @@ public class ScrollerView extends FrameLayout {
                 getScrollY(),
                 0, (int) v,
                 0, 0,
-                0, 1500 , 0,300);
+                0, 1500, 0, 300);
         invalidate();
     }
-
-    private void scrollBack() {
-        mScroller.startScroll(
-                0,
-                getScrollY(),
-                0,
-                0 - getScrollY(),
-                300
-        );
-        invalidate();
-    }
-
 
     @Override
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
-            int currX = mScroller.getCurrX();
             int currY = mScroller.getCurrY();
             Log.d(TAG, "currY:" + currY);
             scrollTo(0, currY);
