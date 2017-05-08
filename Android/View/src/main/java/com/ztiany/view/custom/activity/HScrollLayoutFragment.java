@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.ztiany.view.custom.HScrollLayout;
 
+
 public class HScrollLayoutFragment extends Fragment {
 
     private HScrollLayout mHScrollLayout;

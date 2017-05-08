@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 
+/**
+ * 可收缩放大的ImageView
+ */
 public class ZoomImageView extends AppCompatImageView implements
         ViewTreeObserver.OnGlobalLayoutListener,
         ScaleGestureDetector.OnScaleGestureListener,
@@ -45,12 +48,12 @@ public class ZoomImageView extends AppCompatImageView implements
                 float x = e.getX();
                 float y = e.getY();
 
-                if (getMatrixScale() < mMiddScale) {
+                if (getMatrixScale() < mMiddleScale) {
 
-                    post(new AutoScaleRunnable(mMaxSacle, x, y));
+                    post(new AutoScaleRunnable(mMaxScale, x, y));
 
                 } else {
-                    post(new AutoScaleRunnable(mInitSacle, x, y));
+                    post(new AutoScaleRunnable(mInitScale, x, y));
                 }
                 return super.onDoubleTap(e);
 
@@ -60,16 +63,16 @@ public class ZoomImageView extends AppCompatImageView implements
         mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
 
-    private int mWith;
+    private int mWidth;
     private int mHeight;
     private boolean mOnce;
     private Matrix mMatrix;
     private ScaleGestureDetector mScaleGestureDetector;
 
-    private float mInitSacle;
-    private float mMiddScale;
+    private float mInitScale;
+    private float mMiddleScale;
     private float mTouchSlop;
-    private float mMaxSacle;
+    private float mMaxScale;
 
 
     private int mLastPointerCount;//上一个多点触控的位置
@@ -145,7 +148,7 @@ public class ZoomImageView extends AppCompatImageView implements
         if (mOnce) {
             return;
         }
-        mWith = getWidth();
+        mWidth = getWidth();
         mHeight = getHeight();
 
         Drawable drawable = getDrawable();
@@ -157,31 +160,31 @@ public class ZoomImageView extends AppCompatImageView implements
 
         Log.d("ZoomImageView", "dw:" + dw);
         Log.d("ZoomImageView", "dh:" + dh);
-        Log.d("ZoomImageView", "mWith:" + mWith);
+        Log.d("ZoomImageView", "mWidth:" + mWidth);
         Log.d("ZoomImageView", "mHeight:" + mHeight);
 
         float scale = 0;
-        if (dw > mWith && dh < mHeight) {
-            scale = (mWith * 1f / (dw));
+        if (dw > mWidth && dh < mHeight) {
+            scale = (mWidth * 1f / (dw));
         }
 
-        if (dw < mWith && dh > mHeight) {
+        if (dw < mWidth && dh > mHeight) {
             scale = mHeight * 1f / (dh);
         }
 
-        if ((dw < mWith && dh < mHeight) || (dw > mWith && dh > mHeight)) {
-            scale = Math.min(mWith * 1f / dw, mHeight * 1f / dh);
+        if ((dw < mWidth && dh < mHeight) || (dw > mWidth && dh > mHeight)) {
+            scale = Math.min(mWidth * 1f / dw, mHeight * 1f / dh);
         }
-        mInitSacle = scale;
-        mMaxSacle = mInitSacle * 4;
-        mMiddScale = mInitSacle * 2;
-        Log.d("ZoomImageView", "mInitSacle:" + mInitSacle);
+        mInitScale = scale;
+        mMaxScale = mInitScale * 4;
+        mMiddleScale = mInitScale * 2;
+        Log.d("ZoomImageView", "mInitScale:" + mInitScale);
 
-        int dx = mWith / 2 - dw / 2;
+        int dx = mWidth / 2 - dw / 2;
         int dy = mHeight / 2 - dh / 2;
 
         mMatrix.postTranslate(dx, dy);
-        mMatrix.postScale(mInitSacle, mInitSacle, mWith / 2, mHeight / 2);
+        mMatrix.postScale(mInitScale, mInitScale, mWidth / 2, mHeight / 2);
         setImageMatrix(mMatrix);
         mOnce = true;
     }
@@ -195,13 +198,13 @@ public class ZoomImageView extends AppCompatImageView implements
         Drawable drawable = getDrawable();
         if (drawable != null) {
             //缩放范围控制
-            if ((scale < mMaxSacle && scaleFactor > 1.0f) || (scale > mInitSacle && scaleFactor < 1.0f)) {
+            if ((scale < mMaxScale && scaleFactor > 1.0f) || (scale > mInitScale && scaleFactor < 1.0f)) {
 
-                if (scale * scaleFactor > mMaxSacle) {
-                    scaleFactor = mMaxSacle / scale;
+                if (scale * scaleFactor > mMaxScale) {
+                    scaleFactor = mMaxScale / scale;
                 }
-                if (scale * scaleFactor < mInitSacle) {
-                    scaleFactor = mInitSacle / scale;
+                if (scale * scaleFactor < mInitScale) {
+                    scaleFactor = mInitScale / scale;
                 }
 
 

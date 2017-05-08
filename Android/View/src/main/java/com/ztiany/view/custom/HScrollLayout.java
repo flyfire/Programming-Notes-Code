@@ -11,7 +11,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Scroller;
 
 /**
- * 演示：事件重冲突的解决方式(外部拦截法  )
+ * 练习滑动冲突的解决方式(外部拦截法)
  */
 public class HScrollLayout extends ViewGroup {
 

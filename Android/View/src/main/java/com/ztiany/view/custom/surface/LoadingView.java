@@ -10,6 +10,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
+/**
+ * Surface的使用
+ */
 public class LoadingView extends SurfaceView implements Callback, Runnable {
 
     private SurfaceHolder holder;
@@ -25,7 +28,7 @@ public class LoadingView extends SurfaceView implements Callback, Runnable {
     private Paint rightPaint;
     private int mSpeed;
     private int[] range;
-    private int mode = 1;//
+    private int mode = 1;
 
     public LoadingView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);

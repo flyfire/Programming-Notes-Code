@@ -18,8 +18,11 @@ import static com.ztiany.view.custom.LockPatternView.Point.STATE_COMPLETE;
 import static com.ztiany.view.custom.LockPatternView.Point.STATE_ERROR;
 import static com.ztiany.view.custom.LockPatternView.Point.STATE_NORMAL;
 
-
+/**
+ * 手势锁
+ */
 public class LockPatternView extends View {
+
     public LockPatternView(Context context) {
         this(context, null);
     }

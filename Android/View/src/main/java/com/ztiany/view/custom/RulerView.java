@@ -18,7 +18,9 @@ import android.widget.OverScroller;
 
 import com.ztiany.view.R;
 
-
+/**
+ * 尺子
+ */
 public class RulerView extends View {
 
 

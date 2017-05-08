@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import com.ztiany.view.R;
 
 /**
- * 练习：联系onMeasure的写法
+ * 练习onMeasure的写法
+ *
  * 需求：实现一个自定义布局：里面所有的子view按照正方形的样式排列，允许定义多行多列
  */
 public class SquareEnhanceLayout extends ViewGroup {

@@ -9,15 +9,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-/**
- * <pre>
- *
- * </pre>
- *
- * @author Ztiany
- *         Email:    ztiany@gmail.com
- *         Date :    2017-02-19 23:29
- */
+
 public class ItemAdapter extends RecyclerView.Adapter {
 
     private final Context mContext;
