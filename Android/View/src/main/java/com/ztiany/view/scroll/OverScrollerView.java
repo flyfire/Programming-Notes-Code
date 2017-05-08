@@ -15,13 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
 /**
- * 可以滑动的布局，支持OverScroll
+ * 演示如何实现OverScroll
  */
 public class OverScrollerView extends LinearLayout {
 
     private static final String TAG = OverScrollerView.class.getSimpleName();
 
     private OverScroller mOverScroller;
+
     private int mScaledTouchSlop;
     private int mScaledMaximumFlingVelocity;
     private int mScaledMinimumFlingVelocity;
@@ -34,7 +35,6 @@ public class OverScrollerView extends LinearLayout {
     private int mActivePointerId;
 
     private int mLastX, mLastY;
-
 
     public OverScrollerView(Context context) {
         this(context, null);
@@ -59,7 +59,7 @@ public class OverScrollerView extends LinearLayout {
         mScaledMaximumFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
         mVelocityTracker = VelocityTracker.obtain();
 
-        mOverScrollDistance = viewConfiguration.getScaledOverscrollDistance();
+        mOverScrollDistance = viewConfiguration.getScaledOverscrollDistance();//默认为0
         Log.d(TAG, "mOverScrollDistance:" + mOverScrollDistance);
         mOverScrollDistance = 300;
 
@@ -252,12 +252,14 @@ public class OverScrollerView extends LinearLayout {
                 int index = MotionEventCompat.findPointerIndex(event, mActivePointerId);
                 mVelocityTracker.computeCurrentVelocity(1000, mScaledMaximumFlingVelocity);
                 float yVelocity = mVelocityTracker.getYVelocity(index);
-                if (Math.abs(yVelocity) > mScaledMinimumFlingVelocity) {
+                if (Math.abs(yVelocity) > mScaledMinimumFlingVelocity && canFling()) {
                     Log.d(TAG, "onTouchEvent() called with: " + "doFling");
                     doFling(-yVelocity);
-                } else if (mOverScroller.springBack(getScrollX(), getScrollY(), 0, 0, 0, getScrollRange())) {
-                    Log.d(TAG, "onTouchEvent() called with: " + "springBack");
-                    ViewCompat.postInvalidateOnAnimation(this);
+                } else {
+                    if (mOverScroller.springBack(getScrollX(), getScrollY(), 0, 0, 0, getScrollRange())) {
+                        Log.d(TAG, "onTouchEvent() called with: " + "springBack");
+                        ViewCompat.postInvalidateOnAnimation(this);
+                    }
                 }
                 mVelocityTracker.clear();
                 mActivePointerId = MotionEvent.INVALID_POINTER_ID;
@@ -266,6 +268,15 @@ public class OverScrollerView extends LinearLayout {
         }
 
         return true;
+    }
+
+    private boolean canFling() {
+        if (getScrollY() < 0) {
+            return (Math.abs(getScrollY())) < mOverScrollDistance;
+        } else if (getScrollY() > 0) {
+            return getScrollY() < getScrollRange() + mOverScrollDistance;
+        }
+        return mOverScrollDistance > 0;
     }
 
     private void doFling(float v) {
@@ -319,15 +330,14 @@ public class OverScrollerView extends LinearLayout {
             int oldY = getScrollY();
             int x = mOverScroller.getCurrX();
             int y = mOverScroller.getCurrY();
+            Log.d(TAG, "oldY:" + oldY + " oldX:" + oldX + " x:" + x + " y:" + y);
             if (oldX != x || oldY != y) {
                 final int range = getScrollRange();
                 int dx = x - oldX;
                 int dy = y - oldY;
-                overScrollBy(dx, dy, oldX, oldY, 0, range,
-                        0, mOverScrollDistance, false);
+                overScrollBy(dx, dy, oldX, oldY, 0, range, 0, mOverScrollDistance, false);
                 onScrollChanged(getScrollX(), getScrollY(), oldX, oldY);
             }
-
             ViewCompat.postInvalidateOnAnimation(this);
         }
     }
