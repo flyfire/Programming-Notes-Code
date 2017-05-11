@@ -22,6 +22,12 @@
         <activity android:name=".draw.path.ABezierActivity"/>
         <activity android:name=".draw.pathmeasure.PathMeasureActivity"/>
         <activity android:name=".custom.activity.CustomViewActivity"/>
+        <activity android:name=".nestedscrolling.NestedScrollingActivity"/>
+        <activity
+            android:name=".coordinator.sample.CoordinatorSampleActivity"
+            android:label="@string/title_activity_coordinator_sample"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
