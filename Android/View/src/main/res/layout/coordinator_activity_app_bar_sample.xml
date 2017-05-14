@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.ztiany.view.coordinator.sample.CoordinatorSampleActivity">
+    tools:context="com.ztiany.view.coordinator.appbarlayout.AppBarLayoutSampleActivity">
 
-    <com.ztiany.view.coordinator.sample.LogAppBarLayout
+    <com.ztiany.view.coordinator.appbarlayout.LogAppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
@@ -32,9 +32,25 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-    </com.ztiany.view.coordinator.sample.LogAppBarLayout>
+    </com.ztiany.view.coordinator.appbarlayout.LogAppBarLayout>
 
-    <include layout="@layout/content_coordinator_sample"/>
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.ztiany.view.coordinator.sample.LogScrollingViewBehavior"
+        tools:context="com.ztiany.view.coordinator.appbarlayout.AppBarLayoutSampleActivity"
+        tools:showIn="@layout/coordinator_activity_app_bar_sample">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/large_text"/>
+
+    </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

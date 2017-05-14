@@ -1,4 +1,4 @@
-package com.ztiany.view.coordinator.sample;
+package com.ztiany.view.coordinator.appbarlayout;
 
 import android.content.Context;
 import android.graphics.Rect;

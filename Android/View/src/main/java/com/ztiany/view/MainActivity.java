@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.ztiany.view.coordinator.sample.CoordinatorSampleActivity;
+import com.ztiany.view.coordinator.appbarlayout.AppBarLayoutSampleActivity;
+import com.ztiany.view.coordinator.behavior.ScrollAwareFABActivity;
 import com.ztiany.view.custom.activity.CustomViewActivity;
 import com.ztiany.view.draw.canvas.ADrawingActivity;
 import com.ztiany.view.draw.color.ColorMatrixFilterActivity;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         LIST.add(new Item("PathMeasure", PathMeasureActivity.class));
         LIST.add(new Item("自定义View", CustomViewActivity.class));
         LIST.add(new Item("NestedScrolling", NestedScrollingActivity.class));
-        LIST.add(new Item("CoordinatorSample", CoordinatorSampleActivity.class));
+        LIST.add(new Item("AppBarLayout", AppBarLayoutSampleActivity.class));
+        LIST.add(new Item("ScrollAwareBehavior", ScrollAwareFABActivity.class));
     }
 }

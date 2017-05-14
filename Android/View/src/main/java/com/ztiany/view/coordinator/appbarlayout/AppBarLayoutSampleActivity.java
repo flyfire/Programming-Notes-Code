@@ -1,4 +1,4 @@
-package com.ztiany.view.coordinator.sample;
+package com.ztiany.view.coordinator.appbarlayout;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,12 +9,12 @@ import android.view.View;
 
 import com.ztiany.view.R;
 
-public class CoordinatorSampleActivity extends AppCompatActivity {
+public class AppBarLayoutSampleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.coordinator_activity_sample);
+        setContentView(R.layout.coordinator_activity_app_bar_sample);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

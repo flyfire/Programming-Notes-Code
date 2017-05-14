@@ -24,10 +24,16 @@
         <activity android:name=".custom.activity.CustomViewActivity"/>
         <activity android:name=".nestedscrolling.NestedScrollingActivity"/>
         <activity
-            android:name=".coordinator.sample.CoordinatorSampleActivity"
+            android:name=".coordinator.appbarlayout.AppBarLayoutSampleActivity"
             android:label="@string/title_activity_coordinator_sample"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".coordinator.behavior.ScrollAwareFABActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
     </application>
 
 </manifest>
