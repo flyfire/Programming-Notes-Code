@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="view"
+            type="com.ztiany.module_a.feature2.ModuleA_2Activity"/>
+
+        <variable
+            name="viewmodel"
+            type="com.ztiany.module_a.feature2.ModuleA_2ViewModel"/>
+
+    </data>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.message}"
+            android:textColor="#00FF00"/>
+
+        <Button
+            android:onClick="@{()->viewmodel.getData()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="start"/>
+
+    </LinearLayout>
+
+</layout>

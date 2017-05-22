@@ -12,7 +12,7 @@ public class MainPresenter {
     private MainView mMainView;
 
     @Inject
-    MainPresenter(MainActivity mainView) {
+    MainPresenter(MainView mainView) {
         mMainView = mainView;
     }
 

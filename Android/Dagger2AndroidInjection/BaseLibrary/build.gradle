@@ -11,10 +11,8 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,5 +28,12 @@ dependencies {
     })
 
     compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:25.3.1'
+
+    def daggerVersion = "2.11-rc2"
+    compile "com.google.dagger:dagger:$daggerVersion"
+    compile "com.google.dagger:dagger-android:$daggerVersion"
+    compile "com.google.dagger:dagger-android-support:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 }

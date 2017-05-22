@@ -31,6 +31,4 @@ public abstract class BuildersModule {
      */
     @ContributesAndroidInjector(modules = SplashModule.class)
     abstract SplashActivity bindSplashActivity();
-
-
 }

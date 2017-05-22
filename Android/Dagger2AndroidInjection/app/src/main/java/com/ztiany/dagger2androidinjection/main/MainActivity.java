@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Inject
     MainPresenter mMainPresenter;
 
-
     private TextView mMessageTv;
 
     @Override
