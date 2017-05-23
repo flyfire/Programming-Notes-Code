@@ -1,6 +1,12 @@
 package com.ztiany.base;
 
+import com.ztiany.module_a.ABuildersModule;
+
+import javax.inject.Singleton;
+
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * @author Ztiany
@@ -10,8 +16,12 @@ import dagger.Component;
 @Component(
         modules = {
                 BaseModule.class,
-
+                AndroidInjectionModule.class,
+                AndroidSupportInjectionModule.class,
+                ABuildersModule.class
         }
 )
-public class AppComponent {
+@Singleton
+public interface AppComponent {
+        void inject(AAppContext aAppContext);
 }

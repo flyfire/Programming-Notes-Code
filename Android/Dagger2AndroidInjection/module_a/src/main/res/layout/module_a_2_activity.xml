@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,19 +17,22 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
+                  android:gravity="center_horizontal"
                   android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="40dp"
             android:text="@{viewmodel.message}"
             android:textColor="#00FF00"/>
 
         <Button
-            android:onClick="@{()->viewmodel.getData()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="start"/>
+            android:onClick="@{()->viewmodel.getData()}"
+            android:text="start"
+            tools:ignore="HardcodedText"/>
 
     </LinearLayout>
 
