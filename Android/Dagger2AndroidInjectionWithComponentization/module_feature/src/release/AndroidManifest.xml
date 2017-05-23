@@ -1,0 +1,12 @@
+<manifest package="com.ztiany.module_a"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <application>
+
+        <activity android:name=".feature1.ModuleA_1Activity"/>
+        <activity android:name=".feature2.ModuleA_2Activity"/>
+
+    </application>
+
+</manifest>
