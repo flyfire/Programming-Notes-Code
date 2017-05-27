@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId 'com.ztiany.home'
@@ -47,7 +47,7 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
     if (!isMultiApp.toBoolean()) {
-        compile project(':module_a')
+        compile project(':module_feature')
         compile project(':module_main')
     }
 
