@@ -9,6 +9,7 @@ package class_object
 
 /**
  * 继承：
+ *
  * 1，在 Kotlin 中所有类都有一个共同的超类 Any，这对于没有超类型声明的类是默认超类
  * 2，Any 不是 java.lang.Object；尤其是，它除了 equals()、hashCode()和toString()外没有任何成员
  * 3，要声明一个显式的超类型，我们把类型放到类头的冒号之后：
@@ -22,19 +23,24 @@ package class_object
 open class Base//Base继承与Any
 
 class Derived(p: Int) : Base() {
+
     constructor(p: Int, name: String) : this(p)
+
 }
 
-//没有柱构造函数，用super
+//没有主构造函数，用super
 class Derived2 : Base {
+
     constructor(p: Int, name: String) : super() {
         println(name)
     }
+
 }
 
 
 /**
  * 覆盖方法和属性 ：
+ *
  *1，    Kotlin 需要显式 标注可覆盖的成员（我们称之为开放）和覆盖后的成员
  *2，  子类的函数上必须加上 override标注。如果没写，编译器将会报错
  *3，  如果函数没有标注 open，则子类中不允许定义相同签名的函数， 不论加不加 override。
@@ -74,6 +80,7 @@ fun testOverride(args: Array<String>) {
 
 /**
  * 覆盖规则：
+ *
  * 在 Kotlin 中，实现继承由下述规则规定：如果一个类从它的直接超类继承相同成员的多个实现，
  * 它必须覆盖这个成员并提供其自己的实现（也许用继承来的其中之一）。
  * 为了表示采用从哪个超类型继承的实现，

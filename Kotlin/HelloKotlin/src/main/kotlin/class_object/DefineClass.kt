@@ -1,5 +1,11 @@
 package class_object
 
+import java.awt.Frame
+import java.awt.Window
+import java.awt.event.ActionListener
+import java.awt.event.MouseAdapter
+import java.awt.event.MouseEvent
+
 /**
  *定义类
  * @author Ztiany
@@ -13,9 +19,15 @@ package class_object
  * 1，类声明由类名、类头（指定其类型参数、主 构造函数等）和由大括号包围的类体构成。
  * 2，类头和类体都是可选的； 如果一个类没有类体，可以省略花括号。
  */
-class Person constructor(name: String) {
+class Person constructor(name: String, var age: Int) {
 
 }
+
+fun testPerson() {
+    val person = Person("abc", 21)
+    person.age = 12//构造函数参数加上var或者val，则为属性
+}
+
 
 /**
  * 构造函数：
@@ -56,10 +68,53 @@ class Woman(val name: String) {
 创建类的实例：要创建一个类的实例，我们就像普通函数一样调用构造函数， Kotlin 并没有 new 关键字。
 
 类可以包含：
-    构造函数和初始化块
-    函数
-    属性
-    嵌套类和内部类
-    对象声明
+构造函数和初始化块
+函数
+属性
+嵌套类和内部类
+对象声明
  */
-var person = Person("Ztiany")
+var person = Person("Ztiany", 21)
+
+/**
+ * 嵌套类：类可以嵌套在其他类中
+ *
+ *1，类可以标记为 inner 以便能够访问外部类的成员。内部类会带有一个对外部类的对象的引用
+ * */
+
+class Outer {
+    private val bar: Int = 1
+
+    class Nested {
+        fun foo() = 2
+    }
+}
+
+val demo = Outer.Nested().foo() // == 2
+
+/**
+ * 匿名内部类：使用对象表达式创建匿名内部类实例：
+ * */
+
+private fun testAnonymity() {
+    val window: Window = Window(Frame())
+
+    window.addMouseListener(object : MouseAdapter() {
+
+        override fun mouseClicked(e: MouseEvent) {
+            // ……
+        }
+
+        override fun mouseEntered(e: MouseEvent) {
+            // ……
+        }
+    })
+
+    //如果对象是函数式 Java 接口（即具有单个抽象方法的 Java 接口）的实例， 你可以使用带接口类型前缀的lambda表达式创建它：
+    val listener = ActionListener { println("clicked") }
+
+}
+
+/**
+ * 枚举类：枚举类的最基本的用法是实现类型安全的枚举
+ */
