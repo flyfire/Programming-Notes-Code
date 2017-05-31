@@ -17,7 +17,6 @@ public class SubscriberMain {
 
         ResourceSubscriber
 
-
      */
     public static void main(String... args){
         Flowable.just(1, 3, 6, 8, 0, 1)

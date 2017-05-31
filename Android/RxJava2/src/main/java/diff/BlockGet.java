@@ -4,6 +4,8 @@ import io.reactivex.Flowable;
 
 
 /**
+ * 直接获取流中的数据
+ *
  * @author ztiany
  *         Email: ztiany3@gmail.com
  */

@@ -6,15 +6,17 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 /**
+ * Behavior与Processor
+ *
  * @author ztiany
  *         Email: ztiany3@gmail.com
  */
 public class ProcessorsMain {
 
-     /*
-     在RxJava2中依然存在，但现在他们不支持backpressure。新出现的Processors支持backpressure，并且都设计为现成安全的
-      */
-    public static void main(String... args){
+    /*
+    Behavior在RxJava2中依然存在，但现在他们不支持backpressure。新出现的Processors支持backpressure，并且都设计为现成安全的
+     */
+    public static void main(String... args) {
         testAsyncSubject();
         testBehaviorProcessor();
     }
