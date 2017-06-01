@@ -1,4 +1,0 @@
-ext {
-//    isModular = false
-    isModular = true
-}
