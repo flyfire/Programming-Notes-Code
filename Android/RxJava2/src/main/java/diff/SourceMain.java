@@ -21,7 +21,7 @@ import java.util.List;
 
 
 /**
- * 测试Flowable
+ * Rx2中的各种数据源
  *
  * @author ztiany
  *         Email: ztiany3@gmail.com
@@ -30,10 +30,10 @@ public class SourceMain {
 
     public static void main(String... args) {
         testFlowable();
-//        test1Observable();
-//        test2Observable();
-//        testSingle();
-//        testCompletable();
+        test1Observable();
+        test2Observable();
+        testSingle();
+        testCompletable();
         Utils.blockMain();
     }
 

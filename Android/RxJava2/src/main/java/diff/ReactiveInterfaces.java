@@ -3,6 +3,8 @@ package diff;
 import io.reactivex.Flowable;
 
 /**
+ * 以Reactive-Streams为基础
+ *
  * @author ztiany
  *         Email: ztiany3@gmail.com
  */
@@ -14,7 +16,6 @@ public class ReactiveInterfaces {
     在使用其他遵循Reactive-Streams设计的第三方库的时候，
     就不需要把他自定义的Flowable转换成标准Flowable了。
      */
-
     public static void main(String... args) {
         //  Flowable --> Publisher
         // Observable --> ObservableSource

@@ -5,6 +5,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 /**
+ * Java8的函数式编程接口
  * @author ztiany
  *         Email: ztiany3@gmail.com
  */
@@ -15,9 +16,7 @@ public class FunctionalInterfaces {
     2   另外大部分接口方法都按照Java8的接口方法名进行了相应的修改，比如上面那个Consumer<T>接口原来叫Action1<T>，而Action2<T>改名成了BiConsumer
          Action3-Action9被删掉了
     3   Functions基本就是名字的修改和不常用类的删除
-
      */
-    @SuppressWarnings("all")
     public static void main(String... args) {
 
         Flowable.just(1, 3, 6, 8, 0, 1)
