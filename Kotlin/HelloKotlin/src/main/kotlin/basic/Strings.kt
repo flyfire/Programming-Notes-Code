@@ -67,6 +67,7 @@ fun strLiteral() {
  * 3，$ 字符（它不支持反斜杠转义）
  */
 fun strTemplate() {
+
     val i = 10
     val s1 = "i = $i" // 求值结果为 "i = 10"
 

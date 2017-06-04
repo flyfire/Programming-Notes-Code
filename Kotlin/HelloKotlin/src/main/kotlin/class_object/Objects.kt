@@ -17,28 +17,27 @@ import java.util.*
 
 /**
  * 对象： 有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。
- *          Java 用匿名内部类 处理这种情况。 Kotlin 用对象表达式和对象声明对这个概念稍微概括了下
+ *          Java 用匿名内部类处理这种情况。 Kotlin 用对象表达式和对象声明对这个概念稍微概括了下
  */
 
 /**
  * 对象表达式：要创建一个继承自某个（或某些）类型的匿名类的对象
  *
- * 1，如果超类型有一个构造函数，则必须传递适当的构造函数参数给它。 多个超类型可以由跟在冒号后面的逗号分隔的列表指定：
- * 2，匿名对象可以用作只在本地和私有作用域中声明的类型。如果你使用匿名对象作为公有函数的 返回类型或者用作公有属性的类型，
+ * 1，如果超类型有一个构造函数，则必须传递适当的构造函数参数给它。 多个超类型可以由跟在冒号后面的逗号分隔的列表指定
+ * 2，匿名对象可以用作只在本地和私有作用域中声明的类型。如果你使用匿名对象作为公有函数的 返回类型或者用作公有属性的类型
  *      那么该函数或属性的实际类型 会是匿名对象声明的超类型，如果你没有声明任何超类型，就会是 Any。
- * 3，在匿名对象 中添加的成员将无法访问。
+ * 3，在匿名对象中添加的成员将无法访问。
  */
 
 private fun testObject() {
 
     val window: Window = Window(Frame())
+
     window.addMouseListener(object : MouseAdapter() {
         override fun mouseClicked(e: MouseEvent) {
-            // ……
         }
 
         override fun mouseEntered(e: MouseEvent) {
-            // ……
         }
     })
 
@@ -47,7 +46,6 @@ private fun testObject() {
 
     val com = object : Closeable {
         override fun close() {
-            TODO("not implemented")
         }
     }
 
@@ -69,6 +67,7 @@ private fun testObject() {
 private interface DataProvider
 
 private object DataProviderManager {
+
     fun registerDataProvider(provider: DataProvider) {
 
     }
@@ -87,21 +86,22 @@ private object DataProviderManager {
  * 5，每个类，只能有一个伴生对象
  */
 
+private class CompanionClass1 {
+    companion object {
+        val x: Int = 100
+    }
+}
+
 class CompanionClass2 {
     companion object Factory {
         fun create(): CompanionClass2 = CompanionClass2()
     }
 }
 
-private class CompanionClass {
-    companion object {
-        val x: Int = 100
-    }
-}
 
 fun testCompanion() {
-    val create = CompanionClass2.create()
-    println(CompanionClass.x)
+    CompanionClass1.x
+    CompanionClass2.create()
 }
 
 /**

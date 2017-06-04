@@ -12,7 +12,7 @@ package basic
  */
 
 fun boolean() {
-    var b: Boolean? = false
+    val b: Boolean? = false
     if (b == true) {
         print("true")
     }

@@ -10,8 +10,10 @@ import java.util.*
  */
 
 /**
- * 数组类型：1，数组在 Kotlin 中使用 Array 类来表示，它定义了 get （按照运算符重载约定这会转变为 []）和 set 函数 和 size 属性，以及一些其他有用的成员函数
+ * 数组类型：
  *
+ * 1，数组在 Kotlin 中使用 Array 类来表示，
+ *      它定义了 get （按照运算符重载约定这会转变为 []）和 set 函数 和 size 属性，以及一些其他有用的成员函数
  * 2，与 Java 不同的是，Kotlin 中数组是不型变的（invariant）。这意味着 Kotlin 不让我们把 Array<String> 赋值给 Array<Any>
  * 3，Kotlin 也有无装箱开销的专门的类来表示原生类型数组: ByteArray、 ShortArray、IntArray 等等
  */

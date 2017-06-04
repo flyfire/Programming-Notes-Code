@@ -16,7 +16,7 @@ fun defineNumber() {
     //Kotlin 提供以下数字类型
     var d: Double = 33.33
     var f: Float = 32.3F
-    var l: Long = 330000
+    var l: Long = 330000L
     var i: Int = 32
     var s: Short = 32
     var b: Byte = 32
@@ -35,7 +35,8 @@ fun defineNumber() {
 
 
 /**
- * 表示方式 :在 Java 平台数字是物理存储为 JVM 的原生类型，除非我们需要一个可空的引用（如 Int?）或泛型。 后者情况下会把数字装箱。
+ * 表示方式 :在 Java 平台数字是物理存储为 JVM 的原生类型，除非我们需要一个可空的引用（如 Int?）或泛型。
+ * 后者情况下会把数字装箱。
  */
 fun numberBox() {
 
