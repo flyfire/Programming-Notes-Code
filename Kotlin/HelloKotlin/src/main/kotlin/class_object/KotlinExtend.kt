@@ -16,6 +16,7 @@ package class_object
 /**
  * 扩展函数示例
  */
+
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
     //这个 this 关键字在扩展函数内部对应到接收者对象
     val temp = this[index1]
@@ -27,6 +28,23 @@ private fun testSwap() {
     val list = mutableListOf(1, 2, 3, 4, 5, 6, 7)
     list.swap(1, 5)
     println(list)
+}
+
+private fun intExtend() {
+
+    //扩展的两种方式：
+
+    //1：
+    fun Int.add(value: Int): Int {
+        return this + value
+    }
+    println(5.add(5))
+
+    //2：
+    val subtract = fun Int.(value: Int): Int {
+        return this - value
+    }
+    println(10.subtract(20))
 }
 
 /**
@@ -48,6 +66,7 @@ fun ExtendD.foo() = "d"
 fun printFoo(c: ExtendC) {
     println(c.foo())
 }
+
 
 /**
  * 可空接收者：注意可以为可空的接收者类型定义扩展。这样的扩展可以在对象变量上调用， 即使其值为 null，
