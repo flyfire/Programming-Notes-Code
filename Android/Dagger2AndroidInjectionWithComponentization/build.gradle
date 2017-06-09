@@ -6,13 +6,13 @@ buildscript {
         maven { url 'https://maven.google.com' }
     }
     dependencies {
-       classpath 'com.android.tools.build:gradle:3.0.0-alpha2'
+       classpath 'com.android.tools.build:gradle:3.0.0-alpha3'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'https://maven.google.com' }
+        maven { url 'https://dl.google.com/dl/android/maven2/' }
         jcenter()
     }
 }

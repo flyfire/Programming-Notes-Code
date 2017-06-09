@@ -46,7 +46,6 @@ abstract class BindingModule {
      * 提供给BindingListFragment的presenter
      */
     @Binds
-    @FragmentScope
     abstract Contract.Presenter provideListPresenter(BindingListPresenter presenter);
 
 }
