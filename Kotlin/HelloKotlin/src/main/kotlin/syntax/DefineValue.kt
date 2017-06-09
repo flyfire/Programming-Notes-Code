@@ -7,7 +7,7 @@ package syntax
  *          Date 17.5.22 22:47
  */
 
-//定义局部变量
+
 fun main(args: Array<String>) {
     //一次赋值（只读）的局部变量
     val a: Int = 3
