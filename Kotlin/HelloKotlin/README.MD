@@ -291,3 +291,17 @@
  - `is`和`!is`用于检查
  - `as`和`as?`用于转换
 - this表达式：ThisExpression
+- 操作符重载：OperatorOverloading
+- 空安全：NullSafe
+- 异常：KotlinException
+- 注解：KotlinAnnotation
+- 反射：KotlinReflect
+
+
+## 3.6 与java互操作
+
+- kotlin调用java
+- java调用kotlin
+
+## 3.7 kotlin标准库
+

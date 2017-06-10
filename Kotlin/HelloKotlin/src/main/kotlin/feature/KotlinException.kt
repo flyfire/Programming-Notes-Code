@@ -1,6 +1,8 @@
 package feature
 
 import java.lang.Integer.parseInt
+import java.nio.file.Files
+import java.nio.file.Paths
 
 /**
  *Kotlin的异常
@@ -36,5 +38,11 @@ fun main(args: Array<String>) {
 
     fun fail(message: String): Nothing {
         throw IllegalArgumentException(message)
+    }
+
+    //try with source
+    val stream = Files.newInputStream(Paths.get("/some/file.txt"))
+    stream.buffered().reader().use { reader ->
+        println(reader.readText())
     }
 }
