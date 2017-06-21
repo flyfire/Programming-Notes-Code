@@ -39,12 +39,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
     compile project(':BaseLibrary')
-    def daggerVersion = "2.11-rc2"
-    compile "com.google.dagger:dagger:$daggerVersion"
-    compile "com.google.dagger:dagger-android:$daggerVersion"
-    compile "com.google.dagger:dagger-android-support:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    compile rootProject.dagger
+    compile rootProject.daggerAndroid
+    compile rootProject.daggerAndroidSupport
+    annotationProcessor rootProject.daggerAnntation
+    annotationProcessor rootProject.daggerAndroidAnntation
 
     if (!isMultiApp.toBoolean()) {
         compile project(':module_feature')

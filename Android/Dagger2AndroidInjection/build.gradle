@@ -3,20 +3,28 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url 'https://maven.google.com' }
     }
     dependencies {
-       classpath 'com.android.tools.build:gradle:3.0.0-alpha3'
+        classpath 'com.android.tools.build:gradle:2.3.3'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'https://dl.google.com/dl/android/maven2/' }
         jcenter()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+
+    def daggerVersion = "2.11"
+    dagger = "com.google.dagger:dagger:$daggerVersion"
+    daggerAndroid = "com.google.dagger:dagger-android:$daggerVersion"
+    daggerAndroidSupport = "com.google.dagger:dagger-android-support:$daggerVersion"
+    daggerAnntation = "com.google.dagger:dagger-android-processor:$daggerVersion"
+    daggerAndroidAnntation = "com.google.dagger:dagger-compiler:$daggerVersion"
 }

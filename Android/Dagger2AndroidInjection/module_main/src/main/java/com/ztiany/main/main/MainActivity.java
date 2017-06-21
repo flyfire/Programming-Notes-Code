@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mMainPresenter.start();
     }
 
-
     @Override
     public void showMessage(CharSequence message) {
         mMessageTv.setText(message);

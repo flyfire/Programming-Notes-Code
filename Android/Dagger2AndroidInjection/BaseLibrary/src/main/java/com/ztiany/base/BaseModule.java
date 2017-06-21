@@ -1,7 +1,7 @@
 package com.ztiany.base;
 
 import com.ztiany.base.data.UserDataSource;
-import com.ztiany.base.presention.ErrorHandler;
+import com.ztiany.base.presentation.ErrorHandler;
 
 import javax.inject.Singleton;
 

@@ -20,7 +20,6 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @Inject
     SplashPresenter mSplashPresenter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
