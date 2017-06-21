@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动清除现象</title>
+</head>
+
+<style type="text/css">
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        float: left;
+        background-color: rebeccapurple;
+    }
+
+</style>
+
+<body>
+
+<!--    本以为这些li，会分为两排，但是，第二组中的第1个li，去贴靠第一组中的最后一个li了。    -->
+<div>
+
+    <div>
+        <ul>
+            <li>我是列表1</li>
+            <li>我是列表1</li>
+            <li>我是列表1</li>
+            <li>我是列表1</li>
+            <li>我是列表1</li>
+            <li>我是列表1</li>
+        </ul>
+    </div>
+
+    <div>
+        <ul>
+            <li>我是列表2</li>
+            <li>我是列表2</li>
+            <li>我是列表2</li>
+            <li>我是列表2</li>
+            <li>我是列表2</li>
+            <li>我是列表2</li>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>
