@@ -35,7 +35,7 @@ Kotlin基础类容
            如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址；
            诸如String、Date等类对equals方法进行了重写，比较的是所指向的对象的内容。
         === 和 !==
-            a===b当且仅当a和b执行同一个对象时返回true
+            a===b当且仅当a和b指向同一个对象时返回true
 
 ### 空检查
 
@@ -66,7 +66,7 @@ Kotlin基础类容
 
    - 数组类型使用Array表示
    - 数组在 Kotlin 中使用 Array 类来表示， 它定义了 get （按照运算符重载约定这会转变为 []）和 set 函数 和 size 属性，以及一些其他有用的成员函数
-   - 与 Java 不同的是，Kotlin 中数组是不型变的（invariant）。这意味着 Kotlin 不让我们把 Array<String> 赋值给 Array<Any>
+   - 与 Java 不同的是，Kotlin 中数组是不型变的（invariant）。这意味着 Kotlin 不让我们把 `Array<String>` 赋值给 `Array<Any>`
    - Kotlin 也有无装箱开销的专门的类来表示原生类型数组: ByteArray、 ShortArray、IntArray 等等
    
 
