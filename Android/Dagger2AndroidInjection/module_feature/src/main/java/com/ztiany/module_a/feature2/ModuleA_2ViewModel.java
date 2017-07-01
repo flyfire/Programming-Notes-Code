@@ -2,7 +2,7 @@ package com.ztiany.module_a.feature2;
 
 import android.databinding.ObservableField;
 
-import com.ztiany.base.presention.ErrorHandler;
+import com.ztiany.base.presentation.ErrorHandler;
 
 import javax.inject.Inject;
 

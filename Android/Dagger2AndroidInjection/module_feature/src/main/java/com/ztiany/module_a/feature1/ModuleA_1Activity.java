@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.ztiany.base.presention.ErrorHandler;
+import com.ztiany.base.presentation.ErrorHandler;
 import com.ztiany.module_a.R;
 import com.ztiany.module_a.feature2.ModuleA_2Activity;
 

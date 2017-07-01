@@ -2,7 +2,7 @@ package com.ztiany.base;
 
 import android.widget.Toast;
 
-import com.ztiany.base.presention.ErrorHandler;
+import com.ztiany.base.presentation.ErrorHandler;
 
 import javax.inject.Inject;
 

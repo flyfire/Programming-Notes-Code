@@ -7,7 +7,7 @@ if (isMultiApp.toBoolean()) {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
 
         if (isMultiApp.toBoolean()) {
@@ -34,7 +34,7 @@ android {
             if (isMultiApp.toBoolean()) {
                 manifest.srcFile 'src/module/AndroidManifest.xml'
                 java.srcDirs += 'src/module/java/'
-                res.srcDirs +='src/module/res'
+                res.srcDirs += 'src/module/res'
             } else {
                 manifest.srcFile 'src/release/AndroidManifest.xml'
             }
@@ -53,11 +53,10 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    def daggerVersion = "2.11-rc2"
-    compile "com.google.dagger:dagger:$daggerVersion"
-    compile "com.google.dagger:dagger-android:$daggerVersion"
-    compile "com.google.dagger:dagger-android-support:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    compile rootProject.dagger
+    compile rootProject.daggerAndroid
+    compile rootProject.daggerAndroidSupport
+    annotationProcessor rootProject.daggerAnntation
+    annotationProcessor rootProject.daggerAndroidAnntation
 
 }

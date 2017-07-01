@@ -9,7 +9,6 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,9 +52,6 @@ public class BindingListFragment extends Fragment implements Contract.View {
         }
         AndroidSupportInjection.inject(this);
         mBindingListPresenter.setView(this);
-        Log.d("BindingListFragment", "mBindingListPresenter:" + mBindingListPresenter);
-        AndroidSupportInjection.inject(this);
-        Log.d("BindingListFragment", "mBindingListPresenter:" + mBindingListPresenter);
         super.onAttach(context);
     }
 

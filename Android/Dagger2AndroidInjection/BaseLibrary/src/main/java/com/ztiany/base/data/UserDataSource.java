@@ -8,7 +8,9 @@ package com.ztiany.base.data;
 public interface UserDataSource {
 
     interface Callback {
+
         void onLoadUser(User user);
+
     }
 
     void user(String id, Callback callback);
