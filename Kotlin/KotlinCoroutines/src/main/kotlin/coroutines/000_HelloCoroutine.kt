@@ -10,6 +10,7 @@ import kotlin.system.measureTimeMillis
  *          Email ztiany3@gmail.com
  *          Date 17.7.3 23:41
  */
+
 fun main(args: Array<String>) = runBlocking {
     val time = measureTimeMillis {
         val one = doSomethingUsefulOne()
@@ -21,7 +22,7 @@ fun main(args: Array<String>) = runBlocking {
 
 
 suspend fun doSomethingUsefulOne(): Int {
-    delay(1000L) // pretend we are doing something useful here
+    delay(3000L) // pretend we are doing something useful here
     return 13
 }
 
