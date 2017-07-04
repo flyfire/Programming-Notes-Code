@@ -105,7 +105,6 @@ private fun lamdbaReturn() {
  *
  */
 private fun anonymityFun() {
-
     val ints = listOf(1, 2, 3, 4, 5, 6, 7)
     ints.filter(fun(item): Boolean = item > 0)//指定返回类型
     ints.filter(fun(item) = item > 0)//不指定返回类型
