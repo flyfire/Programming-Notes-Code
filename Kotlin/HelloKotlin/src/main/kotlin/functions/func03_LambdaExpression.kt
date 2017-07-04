@@ -58,6 +58,10 @@ private fun testMap() {
     }
 }
 
+//可以直接声明Lambda类型
+val toStr: (num: Int) -> String = {
+    it.toString()
+}
 
 /**
  * 函数类型：对于接受另一个函数作为参数的函数，我们必须为该参数指定函数类型。
