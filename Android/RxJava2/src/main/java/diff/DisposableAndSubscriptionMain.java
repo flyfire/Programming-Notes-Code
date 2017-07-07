@@ -1,6 +1,5 @@
 package diff;
 
-import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
 
@@ -13,9 +12,7 @@ import io.reactivex.disposables.SerialDisposable;
 public class DisposableAndSubscriptionMain {
 
     /*
-
-    在RxJava1里，Subscription起到的是订阅桥梁的作用。
-    在2中，由于Subscription本身和Reactive-Streams里的另外一个同名概念冲突。
+    在RxJava1里，Subscription起到的是订阅桥梁的作用。在2中，由于Subscription本身和Reactive-Streams里的另外一个同名概念冲突。
     因此把原本的Subscription改名成了Disposable:
 
             CompositeSubscription 改名成了 CompositeDisposable
@@ -24,6 +21,7 @@ public class DisposableAndSubscriptionMain {
 
      */
     public static void main(String... args) {
+
         Disposable disposable = new Disposable() {
             @Override
             public void dispose() {
@@ -35,6 +33,7 @@ public class DisposableAndSubscriptionMain {
                 return false;
             }
         };
+
     }
 
     SerialDisposable serialDisposable = new SerialDisposable(new Disposable() {

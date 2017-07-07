@@ -8,13 +8,12 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 /**
- * ·
  * RxJava2中的概念
  *
  * @author ztiany
  *         Email: ztiany3@gmail.com
  */
-public class RxJava2Concept {
+public class RxJava2ConceptMain {
 
     public static void main(String... args) {
         flowableWithObservable();

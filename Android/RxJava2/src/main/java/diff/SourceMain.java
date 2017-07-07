@@ -123,7 +123,6 @@ public class SourceMain {
             ERROR 抛出MissingBackpressureException    默认行为
             LATEST 只保留最新的事件，总是能获得最后一个事件，如果不是使用create创建的Flowable，则对应方法为onBackpressureLatest()
             BUFFER 缓存所有数据，如果不是使用create创建的Flowable，则对应方法为onBackpressureBuffer()
-
          */
         Flowable.create((FlowableOnSubscribe<String>) e -> {
             for (int i = 0; i < 1000; i++) {
@@ -161,9 +160,7 @@ public class SourceMain {
 
 
     private static void test2Observable() {
-        /*
-        Disposable用于连接RxJava2中的Observable和Observer
-         */
+        /* Disposable用于连接RxJava2中的Observable和Observer   */
         io.reactivex.Observable.create((ObservableOnSubscribe<String>) e -> {
 
         }).subscribe(new Observer<String>() {
