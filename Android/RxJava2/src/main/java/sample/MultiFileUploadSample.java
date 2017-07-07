@@ -1,13 +1,12 @@
 package sample;
 
 import io.reactivex.Flowable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +20,11 @@ import java.util.concurrent.Executors;
 public class MultiFileUploadSample {
 
     private volatile static int taskCount = 0;
+    private volatile static int failTaskCount = 0;
     private static Executor executor = Executors.newSingleThreadExecutor();
 
     private static class Task {
         private final String name;
-
         private Task(String name) {
             this.name = name;
         }
@@ -33,9 +32,10 @@ public class MultiFileUploadSample {
 
     private static List<Task> taskList = new ArrayList<>();
 
+
     public static void main(String... args) {
         executor.execute(() -> {
-            for (int i = 0; i < 3000; i++) {
+            for (int i = 0; i < 100; i++) {
                 taskList.add(new Task(String.valueOf(i)));
             }
             uploadTask();
@@ -47,12 +47,12 @@ public class MultiFileUploadSample {
     private static Subscriber subscriber = new Subscriber<Boolean>() {
         @Override
         public void onSubscribe(Subscription s) {
-            s.request(300);
+            s.request(100);
         }
 
         @Override
         public void onNext(Boolean aBoolean) {
-            System.out.println("MultiFileUploadSample.onNext-------------->" + taskCount);
+            System.out.println("MultiFileUploadSample.onNext-------------->taskCount = " + taskCount + " failTaskCount = " + failTaskCount);
         }
 
         @Override
@@ -74,12 +74,27 @@ public class MultiFileUploadSample {
         }
     };
 
+    /*使用consumer订阅，默认request Long.MAX_VALUE个*/
+    private static Consumer errorConsumer = new Consumer<Throwable>() {
+        @Override
+        public void accept(Throwable throwable) throws Exception {
+            System.out.println("------------------throwable = [" + throwable + "]");
+        }
+    };
+
     //批量执行
     private static void uploadTask() {
-        Flowable.fromIterable(taskList)
+         Flowable.fromIterable(taskList)
                 .flatMap(MultiFileUploadSample::doUpload, true, 3)
-                .doOnNext(aBoolean -> System.out.println(++taskCount))
+                .doOnNext(aBoolean -> {
+                    if (aBoolean) {
+                        System.out.println("success " + ++taskCount);
+                    } else {
+                        System.out.println("fail " + ++failTaskCount);
+                    }
+                })
                 .observeOn(Schedulers.from(executor))
+                .doOnCancel(() -> System.out.println("MultiFileUploadSample.doOnCancel run"))
                 .subscribe(subscriber);
     }
 
@@ -87,10 +102,18 @@ public class MultiFileUploadSample {
     private static Publisher<Boolean> doUpload(Task task) {
         return Flowable.just(task)
                 .subscribeOn(Schedulers.io())
-                .map(task1 -> {
+                .flatMap(task1 -> {
                     Thread.sleep(300);
                     System.out.println("MultiFileUploadSample.apply-->Task =" + task1.name);
-                    return true;
+                    int i = Integer.parseInt(task1.name);
+                    int result = i % 3;
+                    if (result == 0) {
+                        return Flowable.just(true);//上传成功
+                    } else if (result == 1) {
+                        return Flowable.just(false);//上传失败
+                    } else {
+                        return Flowable.error(new RuntimeException("网络错误"));//网络错误
+                    }
                 });
     }
 }
