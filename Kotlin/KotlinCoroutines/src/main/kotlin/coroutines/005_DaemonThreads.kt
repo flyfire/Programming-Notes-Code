@@ -15,12 +15,14 @@ import kotlinx.coroutines.experimental.runBlocking
 Coroutines are like daemon threads，当主线程退出时，协程也会退出，Active coroutines do not keep the process alive. They are like daemon threads.
  */
 fun main(args: Array<String>) = runBlocking {
+
     launch(CommonPool) {
-        //repeat 0 -> 10000
+        //repeat作用：对给定的函数执行给定的次数
         repeat(1000) { i ->
             println("I'm sleeping $i ...")
             delay(500L)
         }
     }
+
     delay(1300L) // just quit after delay
 }

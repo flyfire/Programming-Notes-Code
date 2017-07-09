@@ -13,6 +13,8 @@ import kotlinx.coroutines.experimental.runBlocking
  */
 
 fun main(args: Array<String>) = runBlocking {
+    //List作用：创建一个规定size的只读列表, 每一个函数调用指定的函数
+    //这里创建了100_000协程
     val jobs = List(100_000) {
         // create a lot of coroutines and list their jobs
         launch(CommonPool) {
@@ -21,7 +23,9 @@ fun main(args: Array<String>) = runBlocking {
         }
     }
     println(jobs.size)
+    //在主线程调用每一个协程的join方法，主线程会等待所有协程执行完毕后，再执行
     jobs.forEach { it.join() } // wait for all jobs to complete
+    println(" end ....")
 }
 /*
 结果是：很快的打印了100000个点，所有的协程都在两秒后瞬间执行完毕，如果是换成线程的话，那很可能造成内存溢出。
