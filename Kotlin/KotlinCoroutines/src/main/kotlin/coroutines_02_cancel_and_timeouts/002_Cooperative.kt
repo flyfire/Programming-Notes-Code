@@ -1,4 +1,4 @@
-package coroutines_02_cance_and_timeouts
+package coroutines_02_cancel_and_timeouts
 
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay
@@ -9,22 +9,19 @@ import kotlinx.coroutines.experimental.runBlocking
  *
  * @author Ztiany
  *          Email ztiany3@gmail.com
- *          Date 17.7.9 14:47
+ *          Date 17.7.9 14:39
  */
 /*
-有两种方法可以让计算代码变得可以被取消。
-1. 定期调用一个暂停函数，yield是一个不错的选中
-2. 在协程内明确地检查自己的取消状态
+1. kotlinx.coroutines中的所有暂停功能都可以取消。他们检查取消协调，并在取消时抛出CancellationException
+2. 如果协同工作在计算中，并且不检查取消，则不能被取消，
  */
-
 fun main(args: Array<String>) = runBlocking {
 
-    //启动一个协程，在内部加上一个状态判断
+    //启动一个协程
     val job = launch(CommonPool) {
         var nextPrintTime = 0L
         var i = 0
-        //isActive 是协程的内部状态
-        while (isActive) { // cancellable computation loop
+        while (i < 10) { // computation loop
             val currentTime = System.currentTimeMillis()
             if (currentTime >= nextPrintTime) {
                 println("I'm sleeping ${i++} ...")
@@ -35,7 +32,8 @@ fun main(args: Array<String>) = runBlocking {
 
     delay(1300L) // delay a bit
     println("main: I'm tired of waiting!")
-    job.cancel() // cancels the job
+    val cancel = job.cancel() // cancels the job
+    println("cancel:$cancel")//即使取消后。协程还在运行
     delay(1300L) // delay a bit to see if it was cancelled....
     println("main: Now I can quit.")
 }
