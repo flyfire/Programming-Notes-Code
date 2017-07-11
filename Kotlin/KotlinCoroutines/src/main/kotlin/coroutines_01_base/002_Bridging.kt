@@ -30,12 +30,12 @@ fun main(args: Array<String>) = runBlocking {
     delay(2000L) // non-blocking delay for 2 seconds to keep JVM alive
 }
 
-/* 下面的运行结果与上面一样，但是原理却不一样，首先runBlocking启动协程执行，然后主线程被阻塞，等待协程执行完毕后主线程继续执行。
+// 下面的运行结果是，World! Hello, 首先runBlocking启动协程执行，然后主线程被阻塞，等待协程执行完毕后主线程继续执行。
+/*
 fun main(args: Array<String>) {
     runBlocking {
         delay(1000L)
         println("World!")
     }
     println("Hello,") // main coroutine continues while child is delayed 当子协程延迟时主协程继续
-}
-*/
+}*/
