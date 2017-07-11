@@ -1,4 +1,4 @@
-package context_and_dispatchers
+package coroutines_04_context_and_dispatchers
 
 import kotlinx.coroutines.experimental.*
 
@@ -9,7 +9,7 @@ import kotlinx.coroutines.experimental.*
  *          Date 17.7.9 17:19
  */
 /*
-Naming coroutines for debugging
+Naming coroutines_01_base for debugging
  */
 fun main(args: Array<String>) = runBlocking(CoroutineName("main")) {
     log("Started main coroutine")

@@ -7,7 +7,7 @@
  
 ## 2 Kotlin协程
 
-- 协程基础：coroutines
+- 协程基础：coroutines_01_base
     - 桥接阻塞和非阻塞世界
     - 等待一个jo
     - Coroutines是轻量级的
@@ -26,12 +26,12 @@
 - Coroutine context and dispatchers(调度器)
      - Dispatchers and threads
     - 无限制的dispatcher vs confined(限制的) dispatcher
-    - Debugging coroutines and threads
+    - Debugging coroutines_01_base and threads
     - Jumping between threads(在不同的线程中跳转)
     - Job in the context(Job是context的属性)
     - coroutine的子coroutine
     - 结合 contexts
-    - Naming coroutines for debugging
+    - Naming coroutines_01_base for debugging
     - 明确的取消Job
 
 - [ ] Channels

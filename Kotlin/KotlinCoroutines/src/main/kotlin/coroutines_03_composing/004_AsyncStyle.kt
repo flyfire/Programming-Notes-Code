@@ -1,4 +1,4 @@
-package composing
+package coroutines_03_composing
 
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async

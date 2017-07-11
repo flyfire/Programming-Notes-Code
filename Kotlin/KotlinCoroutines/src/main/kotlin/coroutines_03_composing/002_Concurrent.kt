@@ -1,5 +1,7 @@
-package composing
+package coroutines_03_composing
 
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.runBlocking
 import kotlin.system.measureTimeMillis
@@ -8,19 +10,22 @@ import kotlin.system.measureTimeMillis
  *
  * @author Ztiany
  *          Email ztiany3@gmail.com
- *          Date 17.7.3 23:41
+ *          Date 17.7.9 15:12
  */
-//在协程中，顺序的调用两个函数
+/**
+ * 并发的调用两个函数
+ */
 fun main(args: Array<String>) = runBlocking {
+
     val time = measureTimeMillis {
-        val one = doSomethingUsefulOne()
-        val two = doSomethingUsefulTwo()
-        println("The answer is ${one + two}")
+
+        val one = async(CommonPool) { doSomethingUsefulOne() }
+        val two = async(CommonPool) { doSomethingUsefulTwo() }
+
+        println("The answer is ${one.await() + two.await()}")
     }
-
-    println("Completed in $time ms")//4039
+    println("Completed in $time ms")//3071
 }
-
 
 private suspend fun doSomethingUsefulOne(): Int {
     delay(3000L) // pretend we are doing something useful here

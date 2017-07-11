@@ -1,4 +1,4 @@
-package context_and_dispatchers
+package coroutines_04_context_and_dispatchers
 
 import kotlinx.coroutines.experimental.newSingleThreadContext
 import kotlinx.coroutines.experimental.run
@@ -13,7 +13,7 @@ import kotlinx.coroutines.experimental.runBlocking
 /*
 使用线程调试应用程序的常见方法是在每个日志语句的日志文件中打印线程名称。日志记录框架通常支持此功能。
 
-JVM启动参数：-Dkotlinx.coroutines.debug
+JVM启动参数：-Dkotlinx.coroutines_01_base.debug
  */
 fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
 

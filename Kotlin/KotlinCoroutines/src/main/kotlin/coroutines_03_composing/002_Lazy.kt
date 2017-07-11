@@ -1,4 +1,4 @@
-package composing
+package coroutines_03_composing
 
 import kotlinx.coroutines.experimental.*
 import kotlin.system.measureTimeMillis

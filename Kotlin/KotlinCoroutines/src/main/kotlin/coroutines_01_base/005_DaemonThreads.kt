@@ -1,4 +1,4 @@
-package coroutines
+package coroutines_01_base
 
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay
@@ -12,7 +12,7 @@ import kotlinx.coroutines.experimental.runBlocking
  *          Date 17.7.5 0:24
  */
 /*
-Coroutines are like daemon threads，当主线程退出时，协程也会退出，Active coroutines do not keep the process alive. They are like daemon threads.
+Coroutines are like daemon threads，当主线程退出时，协程也会退出，Active coroutines_01_base do not keep the process alive. They are like daemon threads.
  */
 fun main(args: Array<String>) = runBlocking {
 

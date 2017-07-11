@@ -1,4 +1,4 @@
-package coroutines
+package coroutines_01_base
 
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay
@@ -16,7 +16,7 @@ fun main(args: Array<String>) = runBlocking {
     //List作用：创建一个规定size的只读列表, 每一个函数调用指定的函数
     //这里创建了100_000协程
     val jobs = List(100_000) {
-        // create a lot of coroutines and list their jobs
+        // create a lot of coroutines_01_base and list their jobs
         launch(CommonPool) {
             delay(2000L)//每一个协程都停一秒，但是相互之间并不阻塞
             print(".")

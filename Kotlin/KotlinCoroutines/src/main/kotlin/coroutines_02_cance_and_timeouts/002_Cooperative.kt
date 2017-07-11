@@ -1,4 +1,4 @@
-package cancellation_and_timeouts
+package coroutines_02_cance_and_timeouts
 
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay

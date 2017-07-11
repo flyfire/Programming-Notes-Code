@@ -1,4 +1,4 @@
-package coroutines
+package coroutines_01_base
 
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay
