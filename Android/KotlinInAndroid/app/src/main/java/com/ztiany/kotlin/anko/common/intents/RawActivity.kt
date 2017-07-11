@@ -18,7 +18,7 @@ class RawActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_raw)
+        setContentView(R.layout.activity_anko_common_intents_raw)
     }
 
     fun openOne(view: View) {
