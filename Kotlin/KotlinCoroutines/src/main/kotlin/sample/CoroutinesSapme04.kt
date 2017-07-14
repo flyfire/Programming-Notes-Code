@@ -41,7 +41,7 @@ private fun calcMd5(path: String): CompletableFuture<String> = CompletableFuture
     System.currentTimeMillis().toString()
 }
 
-suspend fun <T> CompletableFuture<T>.await(): T {
+private suspend fun <T> CompletableFuture<T>.await(): T {
     return suspendCoroutine {
         continuation ->
         whenComplete { result, e ->

@@ -47,13 +47,14 @@ private fun calcMd5(path: String): String {
 
 private fun asyncCalcMd5(path: String, block: suspend () -> Unit) {
 
+    //创建一个协程Continuation，Continuation代表一个协程节点
     val continuation = object : Continuation<Unit> {
 
         override val context: CoroutineContext
             get() = FilePath(path) + CommonPool
 
         override fun resume(value: Unit) {
-            println("resume: $value")
+            println("--------------inner continuation resume: $value")
         }
 
         override fun resumeWithException(exception: Throwable) {
@@ -65,14 +66,22 @@ private fun asyncCalcMd5(path: String, block: suspend () -> Unit) {
 }
 
 
+/*
+一个CoroutineContext
+一个Element代表一个协程上下文元素
+一个拦截器
+具有调用协程和拦截调度的功能
+ */
 open class Pool(val pool: ForkJoinPool) : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> =
             PoolContinuation(pool, //下面这段代码是要查找其他拦截器，并保证能调用它们的拦截方法
-                    continuation.context.fold(continuation,
-                            { cont, element ->
-                                if (element != this@Pool && element is ContinuationInterceptor)
-                                    element.interceptContinuation(cont) else cont
-                            }))
+                    //continuation 就是 cont
+                    continuation.context.fold(continuation, { cont, element ->
+                        if (element != this@Pool && element is ContinuationInterceptor)//如果element不是当前Pool并且是一个拦截器，那么就拦截
+                            element.interceptContinuation(cont)
+                        else//否则不拦截，返回原来的cont
+                            cont
+                    }))
 }
 
 class PoolContinuation<in T>(val pool: ForkJoinPool, val continuation: Continuation<T>) : Continuation<T> by continuation {

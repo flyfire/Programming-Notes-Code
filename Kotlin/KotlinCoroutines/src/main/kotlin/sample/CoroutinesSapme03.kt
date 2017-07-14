@@ -63,7 +63,7 @@ private fun asyncCalcMd5(path: String, block: suspend () -> Unit) {
     block.startCoroutine(continuation)
 }
 
-fun launch(context: CoroutineContext, block: suspend () -> Unit) = block.startCoroutine(StandaloneCoroutine(context))
+private fun launch(context: CoroutineContext, block: suspend () -> Unit) = block.startCoroutine(StandaloneCoroutine(context))
 
 class StandaloneCoroutine(override val context: CoroutineContext) : Continuation<Unit> {
     override fun resume(value: Unit) {}
