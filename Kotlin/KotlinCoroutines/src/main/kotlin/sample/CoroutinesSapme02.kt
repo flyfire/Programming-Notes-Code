@@ -74,6 +74,7 @@ private fun asyncCalcMd5(path: String, block: suspend () -> Unit) {
  */
 open class Pool(val pool: ForkJoinPool) : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> =
+
             PoolContinuation(pool, //下面这段代码是要查找其他拦截器，并保证能调用它们的拦截方法
                     //continuation 就是 cont
                     continuation.context.fold(continuation, { cont, element ->
@@ -89,9 +90,10 @@ class PoolContinuation<in T>(val pool: ForkJoinPool, val continuation: Continuat
     override fun resume(value: T) {
         if (isPoolThread()) {
             continuation.resume(value)
-        } else pool.execute {
-            continuation.resume(value)
-        }
+        } else
+            pool.execute {
+                continuation.resume(value)
+            }
     }
 
     override fun resumeWithException(exception: Throwable) {
