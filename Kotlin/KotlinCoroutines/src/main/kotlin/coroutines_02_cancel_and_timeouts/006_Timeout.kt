@@ -11,6 +11,7 @@ import kotlinx.coroutines.experimental.withTimeout
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 15:00
  */
+//协程是可以设置超时的
 fun main(args: Array<String>) = runBlocking {
     //withTimeout作用：Runs a given suspending block of code inside a coroutine with a specified timeout and throws
     // CancellationException if timeout was exceeded.
@@ -29,6 +30,7 @@ fun main(args: Array<String>) = runBlocking {
                 delay(500L)
             }
         }
+        println("ending=---")
     } catch (e: CancellationException) {
         e.printStackTrace(System.err)
     }

@@ -12,16 +12,12 @@ import kotlin.system.measureTimeMillis
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 15:12
  */
-/**
- * 并发的调用两个函数
- */
+//并发的调用两个函数
 fun main(args: Array<String>) = runBlocking {
 
     val time = measureTimeMillis {
-
         val one = async(CommonPool) { doSomethingUsefulOne() }
         val two = async(CommonPool) { doSomethingUsefulTwo() }
-
         println("The answer is ${one.await() + two.await()}")
     }
     println("Completed in $time ms")//3071

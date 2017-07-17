@@ -14,8 +14,8 @@ import kotlinx.coroutines.experimental.launch
 基本上，协同程序是轻量级的线程，其通过Builder中的launch启动
  */
 fun main(args: Array<String>) {
-    //launch作用：Launches new coroutine without blocking current thread and returns a reference to the coroutine as a [Job].
-    //CommonPool作用：代表CommonPool线程协程调度程序的计算密集型任务。
+    //launch作用：启动一个新的协程并返回一个代表协程引用的Job对象，当前线程不会被阻塞
+    //CommonPool作用：代表CommonPool线程协程调度程序的计算密集型任务。此时协程将会在CommonPoll提供的线程池中运行
     launch(CommonPool) {
         // create new coroutine in common thread pool：在一个线程池中启动一个协程
         //delay作用：在给定的时间内延迟协程，仅用于协程
