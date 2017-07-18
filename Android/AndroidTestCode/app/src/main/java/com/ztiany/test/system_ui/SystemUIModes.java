@@ -16,6 +16,7 @@
 
 package com.ztiany.test.system_ui;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
@@ -23,7 +24,9 @@ import android.app.ActionBar.Tab;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.ActionMode;
@@ -50,79 +53,8 @@ import com.ztiany.test.R;
  * the system decor, in order to better focus the user's attention or use available screen real
  * estate on the task at hand.
  */
+@RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class SystemUIModes extends Activity implements OnQueryTextListener, ActionBar.TabListener {
-
-    public static class IV extends ImageView implements View.OnSystemUiVisibilityChangeListener {
-
-        private SystemUIModes mActivity;
-        private ActionMode mActionMode;
-
-        public IV(Context context) {
-            super(context);
-        }
-
-        public IV(Context context, AttributeSet attrs) {
-            super(context, attrs);
-        }
-
-        public void setActivity(SystemUIModes act) {
-            setOnSystemUiVisibilityChangeListener(this);
-            mActivity = act;
-        }
-
-        @Override
-        public void onSizeChanged(int w, int h, int oldw, int oldh) {
-            mActivity.refreshSizes();
-        }
-
-        @Override
-        public void onSystemUiVisibilityChange(int visibility) {
-            mActivity.updateCheckControls();
-            mActivity.refreshSizes();
-        }
-
-        private class MyActionModeCallback implements ActionMode.Callback {
-
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                mode.setTitle("My Action Mode!");
-                mode.setSubtitle(null);
-                mode.setTitleOptionalHint(false);
-                menu.add("Sort By Size").setIcon(android.R.drawable.ic_menu_sort_by_size);
-                menu.add("Sort By Alpha").setIcon(android.R.drawable.ic_menu_sort_alphabetically);
-                return true;
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                return true;
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                return true;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-                mActionMode = null;
-                mActivity.clearActionMode();
-            }
-        }
-
-        public void startActionMode() {
-            if (mActionMode == null) {
-                ActionMode.Callback cb = new MyActionModeCallback();
-                mActionMode = startActionMode(cb);
-            }
-        }
-
-        public void stopActionMode() {
-            if (mActionMode != null) {
-                mActionMode.finish();
-            }
-        }
-    }
 
     private void setFullscreen(boolean on) {
         Window win = getWindow();
@@ -172,11 +104,13 @@ public class SystemUIModes extends Activity implements OnQueryTextListener, Acti
         win.setAttributes(winParams);
     }
 
+    @SuppressLint("DefaultLocale")
     private String getDisplaySize() {
         DisplayMetrics dm = getResources().getDisplayMetrics();
         return String.format("DisplayMetrics = (%d x %d)", dm.widthPixels, dm.heightPixels);
     }
 
+    @SuppressLint("DefaultLocale")
     private String getViewSize() {
         return String.format("View = (%d,%d - %d,%d)",
                 mImage.getLeft(), mImage.getTop(),
@@ -190,9 +124,10 @@ public class SystemUIModes extends Activity implements OnQueryTextListener, Acti
 
     IV mImage;
     CheckBox[] mCheckControls = new CheckBox[8];
+    /*八个UIFlag对应八个CheckBox*/
     int[] mCheckFlags = new int[]{
-            View.SYSTEM_UI_FLAG_LOW_PROFILE,
-            View.SYSTEM_UI_FLAG_FULLSCREEN,
+            View.SYSTEM_UI_FLAG_LOW_PROFILE,//SystemBar变暗
+            View.SYSTEM_UI_FLAG_FULLSCREEN,//控制StatusBar的显示
             View.SYSTEM_UI_FLAG_HIDE_NAVIGATION,
 
             View.SYSTEM_UI_FLAG_IMMERSIVE,              // API 19
@@ -202,17 +137,15 @@ public class SystemUIModes extends Activity implements OnQueryTextListener, Acti
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN,
             View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
     };
+
     TextView mMetricsText;
-
-    public SystemUIModes() {
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.system_ui_modes);
+
         mImage = (IV) findViewById(R.id.image);
         mImage.setActivity(this);
 
@@ -238,6 +171,9 @@ public class SystemUIModes extends Activity implements OnQueryTextListener, Acti
         for (int i = 0; i < mCheckControls.length; i++) {
             mCheckControls[i].setOnCheckedChangeListener(checkChangeListener);
         }
+
+
+        /*窗口Flag*/
         ((CheckBox) findViewById(R.id.windowFullscreen)).setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -294,6 +230,8 @@ public class SystemUIModes extends Activity implements OnQueryTextListener, Acti
                     }
                 }
         );
+
+
         mMetricsText = (TextView) findViewById(R.id.metricsText);
     }
 
@@ -389,4 +327,79 @@ public class SystemUIModes extends Activity implements OnQueryTextListener, Acti
     public void clearActionMode() {
         ((CheckBox) findViewById(R.id.windowActionMode)).setChecked(false);
     }
+
+
+    @SuppressLint("AppCompatCustomView")
+    public static class IV extends ImageView implements View.OnSystemUiVisibilityChangeListener {
+
+        private SystemUIModes mActivity;
+        private ActionMode mActionMode;
+
+        public IV(Context context) {
+            super(context);
+        }
+
+        public IV(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        public void setActivity(SystemUIModes act) {
+            setOnSystemUiVisibilityChangeListener(this);
+            mActivity = act;
+        }
+
+        @Override
+        public void onSizeChanged(int w, int h, int oldw, int oldh) {
+            mActivity.refreshSizes();
+        }
+
+        @Override
+        public void onSystemUiVisibilityChange(int visibility) {
+            mActivity.updateCheckControls();
+            mActivity.refreshSizes();
+        }
+
+        private class MyActionModeCallback implements ActionMode.Callback {
+
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                mode.setTitle("My Action Mode!");
+                mode.setSubtitle(null);
+                mode.setTitleOptionalHint(false);
+                menu.add("Sort By Size").setIcon(android.R.drawable.ic_menu_sort_by_size);
+                menu.add("Sort By Alpha").setIcon(android.R.drawable.ic_menu_sort_alphabetically);
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return true;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                mActionMode = null;
+                mActivity.clearActionMode();
+            }
+        }
+
+        public void startActionMode() {
+            if (mActionMode == null) {
+                ActionMode.Callback cb = new MyActionModeCallback();
+                mActionMode = startActionMode(cb);
+            }
+        }
+
+        public void stopActionMode() {
+            if (mActionMode != null) {
+                mActionMode.finish();
+            }
+        }
+    }
+
 }
