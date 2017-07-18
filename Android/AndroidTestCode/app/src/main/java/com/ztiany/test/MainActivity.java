@@ -8,7 +8,6 @@ import com.ztiany.test.activity_animation.AnimActivity;
 import com.ztiany.test.fragments.FragmentsActivity;
 import com.ztiany.test.fragments.ViewPagerActivity;
 import com.ztiany.test.status.StatusBarActivity;
-import com.ztiany.test.system_ui.SystemUIModes;
 import com.ztiany.test.time.TimeActivity;
 import com.ztiany.test.tint.TintActivity;
 
@@ -25,9 +24,6 @@ public class MainActivity extends AbstractActivity {
         recreate();
     }
 
-    public void openSystemUI(View view) {
-        startActivity(new Intent(this, SystemUIModes.class));
-    }
 
     public void opActivityAnim(View view) {
         startActivity(new Intent(this, AnimActivity.class));

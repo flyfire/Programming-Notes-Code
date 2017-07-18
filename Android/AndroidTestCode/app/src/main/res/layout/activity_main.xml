@@ -22,17 +22,7 @@
         android:text="recreate"
         tools:ignore="HardcodedText"/>
 
-
-    <Button
-        android:id="@+id/act_btn_system_ui"
-        style="@style/Base.Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="openSystemUI"
-        android:text="SystemUI"
-        tools:ignore="HardcodedText"/>
-
-    <Button
+     <Button
         style="@style/Base.Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

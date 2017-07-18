@@ -15,6 +15,9 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <integer name="system_ui_modes_cols">2</integer>
+
     <string name="activity_sample_code">API Demos</string>
 
     <!-- =============================== -->

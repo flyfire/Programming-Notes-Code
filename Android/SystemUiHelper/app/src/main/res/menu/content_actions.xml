@@ -14,17 +14,20 @@
      limitations under the License.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/action_search"
         android:actionViewClass="android.widget.SearchView"
         android:icon="@android:drawable/ic_menu_search"
         android:showAsAction="always"
         android:title="@string/action_bar_search"/>
+
     <item
         android:id="@+id/menu_item_share_action_provider_action_bar"
         android:actionProviderClass="android.widget.ShareActionProvider"
         android:showAsAction="always"
         android:title="@string/action_bar_share_with"/>
+
     <group
         android:id="@+id/show_tabs_group"
         android:checkableBehavior="single">
@@ -38,6 +41,7 @@
             android:showAsAction="never"
             android:title="Hide Tabs"/>
     </group>
+
     <group
         android:id="@+id/stable_layout_group"
         android:checkableBehavior="all">
@@ -47,11 +51,13 @@
             android:showAsAction="never"
             android:title="Stable Layout"/>
     </group>
+
     <item
         android:id="@+id/action_share"
         android:icon="@android:drawable/ic_menu_share"
         android:showAsAction="ifRoom"
         android:title="@string/action_bar_share"/>
+
     <item
         android:id="@+id/action_sort"
         android:icon="@android:drawable/ic_menu_sort_by_size"

@@ -8,10 +8,9 @@
 
     <view
         android:id="@+id/image"
-        class="com.ztiany.test.system_ui.SystemUIModes$IV"
+        class="com.ztiany.systemui.uimods.SystemUIModes$IV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         android:scaleType="fitXY"
         android:src="@drawable/frantic"/>
 

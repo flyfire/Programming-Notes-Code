@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.ztiany.systemui.R;
+import com.ztiany.systemui.Utils;
 import com.ztiany.systemui.uisapmle.utils.SystemUiHelper;
 
 /**
@@ -25,19 +25,10 @@ public class SystemUIActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_system_ui);
-        getWindow().getDecorView().post(new Runnable() {
-            @Override
-            public void run() {
-                Log.d(TAG, "getWindow().getDecorView().getMeasuredHeight():" + getWindow().getDecorView().getMeasuredHeight());
-                Log.d(TAG, "getWindow().getDecorView().getMeasuredWidth():" + getWindow().getDecorView().getMeasuredWidth());
-            }
-        });
-
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        Utils.printSize(this);
 
         mSystemUiHelper = new SystemUiHelper(this,
-                SystemUiHelper.LEVEL_HIDE_STATUS_BAR,
+                SystemUiHelper.LEVEL_IMMERSIVE,
                 SystemUiHelper.FLAG_IMMERSIVE_STICKY,
                 new SystemUiHelper.OnVisibilityChangeListener() {
                     @Override
@@ -47,6 +38,12 @@ public class SystemUIActivity extends AppCompatActivity {
                 });
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSystemUiHelper.hide();
+    }
 
     public void toggle(View view) {
         if (mSystemUiHelper.isShowing()) {

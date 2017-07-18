@@ -16,11 +16,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".system_ui.SystemUIModes"
-            android:theme="@android:style/Theme.Material"
-            />
-
         <activity android:name=".activity_animation.AnimActivity"/>
         <activity android:name=".activity_animation.AnimTwoActivity"/>
         <activity android:name=".tint.TintActivity"/>
