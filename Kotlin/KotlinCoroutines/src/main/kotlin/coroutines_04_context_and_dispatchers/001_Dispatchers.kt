@@ -10,7 +10,7 @@ import kotlinx.coroutines.experimental.*
  */
 /*
 Dispatchers(调度器) and threads：
-Coroutine context 包含一个Dispatchers，它确定对应协同程序用于执行的线程或线程。
+Coroutine context 包含一个Dispatchers，它确定对应协同程序用于执行的线程或线程池。
 Dispatchers可以将协程执行限制在一个特定的线程上，将其调度到线程池，或者让其无限制地运行。
  */
 

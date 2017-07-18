@@ -11,7 +11,7 @@ import kotlinx.coroutines.experimental.runBlocking
  *          Email ztiany3@gmail.com
  *          Date 17.7.5 0:16
  */
-
+//协程是轻量级的，它拥有自己的运行状态，但它对资源的消耗却非常的小
 fun main(args: Array<String>) = runBlocking {
     //List作用：创建一个规定size的只读列表, 每一个函数调用指定的函数
     //这里创建了100_000协程

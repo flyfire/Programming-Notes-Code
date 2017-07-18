@@ -19,7 +19,8 @@ fun main(args: Array<String>) = runBlocking {
     }
     println("Hello,")
     //join作用：Suspends coroutine until this job is complete.
-    job.join() // wait until child coroutine completes
+    job.join() // wait until child coroutine completes,此时当前协程会等到之前启动的协程运行完毕
+    println("ending--")
 }
 
 private suspend fun doWorld() {

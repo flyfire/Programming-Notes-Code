@@ -21,7 +21,8 @@ fun main(args: Array<String>) = runBlocking {
     val request = launch(CommonPool) {
         // it spawns two other jobs, one with its separate context
         println(context[Job])
-        val job1 = launch(CommonPool) {
+
+        val job1 = launch(CommonPool) {//由于1使用了新的Context，所以不会被取消
             println("job1: I have my own context and execute independently!")
             delay(1000)
             println("job1: I am not affected by cancellation of the request")
