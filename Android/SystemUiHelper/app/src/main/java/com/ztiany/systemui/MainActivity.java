@@ -9,11 +9,10 @@ import com.ztiany.systemui.uimods.SystemUIModes;
 import com.ztiany.systemui.uisapmle.FullscreenActivity;
 import com.ztiany.systemui.uisapmle.FullscreenActivity2;
 import com.ztiany.systemui.uisapmle.SystemUIActivity;
+import com.ztiany.systemui.uisapmle.SystemUIWithFragmentActivity;
 import com.ztiany.systemui.uisapmle.VisibilityFullscreenActivity;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void openFullscreen2(View view) {
         startActivity(new Intent(this, FullscreenActivity2.class));
+    }
+
+    public void openFullscreen3(View view) {
+        startActivity(new Intent(this, SystemUIWithFragmentActivity.class));
     }
 }

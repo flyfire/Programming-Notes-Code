@@ -1,6 +1,10 @@
 package com.ztiany.systemui.uisapmle;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.ztiany.systemui.R;
 
 /**
  * @author Ztiany
@@ -10,4 +14,24 @@ import android.support.v7.app.AppCompatActivity;
 public class SystemUIWithFragmentActivity extends AppCompatActivity {
 
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ui_with_fragment);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fl_container, new NormalFragment(), NormalFragment.class.getName())
+                    .commit();
+        }
+    }
+
+
+    public void showFullscreenFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_container, new FullscreenFragment(), FullscreenFragment.class.getName())
+                .addToBackStack("A")
+                .commit();
+    }
 }
