@@ -27,18 +27,23 @@ fun main(args: Array<String>) = runBlocking {
 
     var cur = numbersFrom(context, 2)
 
-   for (i in 1..5) {
+    for (i in 1..5) {
         val prime = cur.receive()//2
         println(prime)
         cur = filter(context, cur, prime)
     }
+// 2          2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+// 3             3    5    7    9      11     13      15
+// 5                   5    7             11     13
+// 7                         7             11     13
 
 }
+
 //过滤输入的数字流,删除所有可被整数给定素数的数字
 fun filter(context: CoroutineContext, numbers: ReceiveChannel<Int>, prime: Int) = produce(context) {
-    println("------------------")
-    for (x in numbers){
-        println("prime $prime")
+    println("------------------prime=$prime")
+    for (x in numbers) {
+        println("filter $x")
         if (x % prime != 0)
             send(x)
     }
