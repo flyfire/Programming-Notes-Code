@@ -11,9 +11,8 @@ import kotlin.coroutines.experimental.CoroutineContext
  *          Email ztiany3@gmail.com
  *          Date 17.7.20 0:10
  */
-//通道和质数
-
-fun numbersFrom(context: CoroutineContext, start: Int) = produce(context) {
+//通道和素数
+private fun numbersFrom(context: CoroutineContext, start: Int) = produce(context) {
     var x = start
     while (true) {
         println("numbersFrom $x")

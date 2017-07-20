@@ -12,7 +12,7 @@ import kotlinx.coroutines.experimental.runBlocking
  *          Date 17.7.19 23:54
  */
 //Pipelines(管道)是一个协程生产的模式，可能是无限的流
-fun produceNumbers() = produce(CommonPool) {
+private fun produceNumbers() = produce(CommonPool) {
     var x = 1
     while (true) {
         println("produceNumbers sending $x")

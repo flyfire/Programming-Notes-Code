@@ -168,3 +168,5 @@ block值main中通过launchWithContext提交的block
 - 由于CommonPool是拦截器，所以block被拦截然后在CommonPool的内部Poll中执行
 - 在block中把计算任务交给了CompletableFuture，然后返回一个CompletableFuture示例
 - CompletableFuture的扩展方法await等待任务执行完毕，调用continuation的resume方法传会执行结果
+- 最后我发现我总的的不对......,线程调度完全无规律可循。
+

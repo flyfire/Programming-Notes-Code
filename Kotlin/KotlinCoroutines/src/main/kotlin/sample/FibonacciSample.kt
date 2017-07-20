@@ -12,11 +12,14 @@ interface Sequence<out T> {
     operator fun iterator(): Iterator<T>
 }
 
-//延迟计算:斐波那契数列
 /*
+延迟计算:斐波那契数列
+
+斐波那契数列公式：
 F0 =0
 F1=1
 Fn=F(n-1)+F(n-2);(n>=2)
+
  */
 fun main(args: Array<String>) {
 

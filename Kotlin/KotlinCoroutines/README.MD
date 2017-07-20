@@ -1,15 +1,15 @@
-# Kotlin协程学习
+[Kotlin协程](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)学习
 
-## 1 协程的概念
+# 1 协程的概念
 
 - [我理解的协程](https://www.zybuluo.com/kuailezhishang/note/128823)
 - [协程](http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/0013868328689835ecd883d910145dfa8227b539725e5ed000)
  
-## 2 Kotlin协程
+# 2 Kotlin协程基本内容
 
 - 协程基础：coroutines_01_base
     - 桥接阻塞和非阻塞世界
-    - 等待一个jo
+    - 等待一个job
     - Coroutines是轻量级的
     - Coroutines类似守护线程
 - 撤销和超时

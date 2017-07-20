@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.ztiany.kotlin.R
 import kotlinx.android.synthetic.main.activity_anko_layouts2.*
+import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.toast
 
@@ -17,9 +21,17 @@ class LayoutsSample2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_anko_layouts2)
 
         anko_layouts_tv_name.text = "Click me"
-        //todo
-        anko_layouts_tv_name.onClick(UI) {
-            toast(" I am TextView")
+        //onClick已经执行在协程中了，通过参数可以指定协程上下文
+        anko_layouts_tv_name.onClick {
+            //启动异步
+            val async = async(CommonPool) {
+                delay(3000)
+                "ABC"
+            }
+            //在UI线程中等待结果
+            launch(UI) {
+                toast(" I am TextView ${async.await()}")
+            }
         }
 
     }
