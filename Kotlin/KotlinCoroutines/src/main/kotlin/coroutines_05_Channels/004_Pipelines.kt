@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.channels.produce
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *Pipeline管道
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.19 23:54

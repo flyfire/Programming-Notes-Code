@@ -6,14 +6,14 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *写出可以被取消的写成代码
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 14:47
  */
 /*
 有两种方法可以让计算代码变得可以被取消。
-1. 定期调用一个暂停函数，yield是一个不错的选中
+1. 定期调用一个暂停函数，yield是一个不错的选择
 2. 在协程内明确地检查自己的取消状态
  */
 

@@ -16,9 +16,7 @@ import kotlinx.coroutines.experimental.selects.select
  *          Email ztiany3@gmail.com
  *          Date 17.7.20 23:52
  */
-/*
-选择表达式具有onSend子句，可以与一个很好的选择结合使用偏好的属性。
- */
+//选择表达式具有onSend子句，可以与一个很好的选择结合使用偏好的属性。
 private fun produceNumbers(side: SendChannel<Int>) = produce(CommonPool) {
     for (num in 1..10) { // produce 10 numbers from 1 to 10
         delay(100) // every 100 ms

@@ -3,7 +3,7 @@ package coroutines_04_context_and_dispatchers
 import kotlinx.coroutines.experimental.*
 
 /**
- *
+ *Job
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 17:09
@@ -14,7 +14,6 @@ import kotlinx.coroutines.experimental.*
 the Job of the new coroutine becomes a child of the parent coroutine's job.
 When the parent coroutine is cancelled, all its children are recursively cancelled, too.
  */
-
 
 fun main(args: Array<String>) = runBlocking {
     // start a coroutine to process some kind of incoming request

@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *协程代码必须合作才能取消
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 14:39
@@ -16,6 +16,7 @@ import kotlinx.coroutines.experimental.runBlocking
 
 1. kotlinx.coroutines中的所有暂停功能都可以取消。他们检查取消状态，并在取消时抛出CancellationException
 2. 如果协同工作在计算中，并且不检查取消，则不能被取消，
+
  */
 fun main(args: Array<String>) = runBlocking {
 

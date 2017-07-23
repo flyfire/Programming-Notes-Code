@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *关闭通道
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.19 23:36

@@ -4,7 +4,7 @@ import kotlinx.coroutines.experimental.*
 import kotlin.system.measureTimeMillis
 
 /**
- *
+ *协程的懒启动
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 15:12

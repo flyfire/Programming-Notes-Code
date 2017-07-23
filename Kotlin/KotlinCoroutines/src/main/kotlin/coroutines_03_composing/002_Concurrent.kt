@@ -7,7 +7,7 @@ import kotlinx.coroutines.experimental.runBlocking
 import kotlin.system.measureTimeMillis
 
 /**
- *
+ *使用async异步执行协程
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 15:12

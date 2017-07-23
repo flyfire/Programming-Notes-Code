@@ -40,7 +40,6 @@ fun main(args: Array<String>) {
         }
     }
 
-
     for (i in fibonacci) {
         println(i)
         if (i > 100) break //大于100就停止循环

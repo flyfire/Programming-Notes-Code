@@ -3,7 +3,7 @@ package coroutines_02_cancel_and_timeouts
 import kotlinx.coroutines.experimental.*
 
 /**
- *
+ *实现不可取消的协程
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 14:58

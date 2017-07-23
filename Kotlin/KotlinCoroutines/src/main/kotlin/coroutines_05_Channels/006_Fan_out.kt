@@ -10,7 +10,7 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *多个coroutines可以从同一个channel接收
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.20 0:35
@@ -33,12 +33,14 @@ private fun launchProcessor(id: Int, channel: ReceiveChannel<Int>) = launch(Comm
 }
 
 /*
-多个coroutines可以从同一个channel接收，在他们之间分配工作。
+多个coroutines可以从同一个channel接收数据，在他们之间分配工作。
  */
 fun main(args: Array<String>) = runBlocking<Unit> {
     //ProducerJob: Job, ReceiveChannel
-    val producer: ProducerJob<Int> = produceNumbers()
-    repeat(5) { launchProcessor(it, producer) }
-    delay(1000)
+    val producer: ProducerJob<Int> = produceNumbers()//产生数据的通道
+
+    repeat(5) { launchProcessor(it, producer) }//多个协程获取通道的数据
+
+    delay(3000)
     producer.cancel() // cancel producer coroutine and thus kill them all
 }

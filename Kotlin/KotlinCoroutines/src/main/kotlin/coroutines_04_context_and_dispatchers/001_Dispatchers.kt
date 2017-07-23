@@ -3,7 +3,7 @@ package coroutines_04_context_and_dispatchers
 import kotlinx.coroutines.experimental.*
 
 /**
- *
+ *协程调度器
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 16:45
@@ -17,13 +17,14 @@ Dispatchers可以将协程执行限制在一个特定的线程上，将其调度
 fun main(args: Array<String>) = runBlocking {
 
     val jobs = arrayListOf<Job>()
+
     jobs += launch(Unconfined) {
         // not confined -- will work with main thread
         println(" 'Unconfined': I'm working in thread ${Thread.currentThread().name}")
     }
 
     jobs += launch(context) {
-        // context of the parent, runBlocking coroutine ???
+        // context of the parent, runBlocking coroutine
         println("    'context': I'm working in thread ${Thread.currentThread().name}")
     }
 

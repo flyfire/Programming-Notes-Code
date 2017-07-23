@@ -3,13 +3,13 @@ package coroutines_04_context_and_dispatchers
 import kotlinx.coroutines.experimental.*
 
 /**
- *
+ *给协程命名
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 17:19
  */
 /*
-Naming coroutines_01_base for debugging
+Naming coroutines  for debugging
  */
 fun main(args: Array<String>) = runBlocking(CoroutineName("main")) {
     log("Started main coroutine")

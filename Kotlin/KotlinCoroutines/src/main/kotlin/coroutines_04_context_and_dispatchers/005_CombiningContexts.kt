@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *协程上下文组合
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 17:14
@@ -18,13 +18,14 @@ import kotlinx.coroutines.experimental.runBlocking
 fun main(args: Array<String>) = runBlocking {
 
     // start a coroutine to process some kind of incoming request
-    val request = launch(context) { // use the context of `runBlocking`
+    val request = launch(context) {
+        // use the context of `runBlocking`
 
         println(Thread.currentThread().name)//main
-
+        println("context——"+context)
         // spawns CPU-intensive child job in CommonPool !!!，产生CPU密集型的子程序在共同工作池! ! !
         val job = launch(context + CommonPool) {
-
+            println("context——"+context)
             println(Thread.currentThread().name)//commonPool
             println("job: I am a child of the request coroutine, but with a different dispatcher")
             delay(1000)
