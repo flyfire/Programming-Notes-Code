@@ -1,0 +1,1 @@
+[kotlin-generics](https://blog.kotliner.cn/2017/06/26/kotlin-generics/)

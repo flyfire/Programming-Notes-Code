@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *再协程关闭时释放资源
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 14:53

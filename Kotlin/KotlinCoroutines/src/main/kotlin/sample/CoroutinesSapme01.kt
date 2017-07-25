@@ -3,9 +3,7 @@ package sample
 import java.util.concurrent.Executors
 import kotlin.coroutines.experimental.*
 
-/*
- * http://www.kotliner.cn/2017/01/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Kotlin%20Coroutine/
- */
+// http://www.kotliner.cn/2017/01/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Kotlin%20Coroutine/
 
 private val executor = Executors.newSingleThreadScheduledExecutor { Thread(it, "coroutine-scheduler") }
 
@@ -22,7 +20,7 @@ fun main(args: Array<String>) {
             continuation ->
             println("in suspend block.")
 
-            executor.submit{
+            executor.submit {
                 //将结果传了出去，传给suspendCoroutine 的返回值也即 result，这时候协程继续执行，打印 result 结束。
                 continuation.resume(calcMd5(continuation.context[FilePath]!!.path))
                 println("after resume.")

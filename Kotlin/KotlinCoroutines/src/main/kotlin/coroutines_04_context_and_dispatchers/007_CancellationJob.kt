@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *自定Job，用于取消协程
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 17:22
@@ -23,7 +23,8 @@ fun main(args: Array<String>) = runBlocking {
     // now launch ten coroutines_01_base for a demo, each working for a different time
     val coroutines = List(10) { i ->
         // they are all children of our job object
-        launch(context + job) { // we use the context of main runBlocking thread, but with our own job object
+        launch(context + job) {
+            // we use the context of main runBlocking thread, but with our own job object
             delay(i * 200L) // variable delay 0ms, 200ms, 400ms, ... etc
             println("Coroutine $i is done")
         }

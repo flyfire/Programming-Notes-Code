@@ -5,7 +5,7 @@ import kotlinx.coroutines.experimental.runBlocking
 import kotlin.system.measureTimeMillis
 
 /**
- *
+ *顺序执行两个协程
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.3 23:41

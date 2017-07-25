@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *
+ *协程等待机制——join
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.5 0:02
