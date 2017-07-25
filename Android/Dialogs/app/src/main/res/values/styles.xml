@@ -22,6 +22,8 @@
         <item name="android:windowIsTranslucent">true</item><!--透明的窗口颜色-->
         <item name="android:windowFrame">@null</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorAccent</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
