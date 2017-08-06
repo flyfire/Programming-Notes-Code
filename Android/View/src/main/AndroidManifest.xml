@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -15,24 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".scroll.ScrollActivity"/>
-        <activity android:name=".draw.color.ColorMatrixFilterActivity"/>
-        <activity android:name=".draw.canvas.ADrawingActivity"/>
-        <activity android:name=".draw.color.MaskFilterActivity"/>
-        <activity android:name=".draw.path.ABezierActivity"/>
-        <activity android:name=".draw.pathmeasure.PathMeasureActivity"/>
-        <activity android:name=".custom.activity.CustomViewActivity"/>
-        <activity android:name=".nestedscrolling.NestedScrollingActivity"/>
-        <activity
-            android:name=".coordinator.appbarlayout.AppBarLayoutSampleActivity"
-            android:label="@string/title_activity_coordinator_sample"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity
-            android:name=".coordinator.behavior.ScrollAwareFABActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+        <activity android:name=".ContentActivity"/>
 
     </application>
 

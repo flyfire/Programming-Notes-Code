@@ -58,11 +58,9 @@ public class OverScrollerView extends LinearLayout {
         mScaledMinimumFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
         mScaledMaximumFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
         mVelocityTracker = VelocityTracker.obtain();
-
         mOverScrollDistance = viewConfiguration.getScaledOverscrollDistance();//默认为0
         Log.d(TAG, "mOverScrollDistance:" + mOverScrollDistance);
         mOverScrollDistance = 300;
-
     }
 
     @Override

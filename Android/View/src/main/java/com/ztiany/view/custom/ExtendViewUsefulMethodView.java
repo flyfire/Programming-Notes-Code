@@ -18,7 +18,6 @@ public class ExtendViewUsefulMethodView extends View {
 
 # 继承View时可能用到的分发
 
-
     onFinishInflate
     onVisibilityChanged  当View被构造后，其默认会处于INVISIBLE不可见状态，随后被切换到VISIBLE可见状态，因此其在View被构造后会调用两次，
     onRtlPropertiesChanged 我们可以通过View的setLayoutDirection方法或者在AndroidManifest.xml中改变View或当前Activity默认的布局方向。
@@ -48,7 +47,6 @@ public class ExtendViewUsefulMethodView extends View {
     onLayout() called with: changed = [false], left = [402], top = [528], right = [677], bottom = [803]
     onDraw() called with: canvas = [android.view.DisplayListCanvas@e9372e7]
 
-
     //Activity停止
     onWindowFocusChanged() called with: hasWindowFocus = [false]
     09-10 19:45:26.103 2428-2428/com.ztiany D/CustomerVIew: onWindowVisibilityChanged() called with: visibility = [8]
@@ -58,7 +56,6 @@ public class ExtendViewUsefulMethodView extends View {
     onWindowFocusChanged() called with: hasWindowFocus = [false]
     onWindowVisibilityChanged() called with: visibility = [8]
     onDetachedFromWindow() called
-
 */
 
     public ExtendViewUsefulMethodView(Context context) {

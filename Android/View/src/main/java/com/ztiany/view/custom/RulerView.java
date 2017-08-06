@@ -23,7 +23,6 @@ import com.ztiany.view.R;
  */
 public class RulerView extends View {
 
-
     //滚动相关参数
     private OverScroller mOverScroller;
     private VelocityTracker mVelocityTracker;

@@ -42,25 +42,19 @@ public class HScrollLayout extends ViewGroup {
         //设置方向为横向布局
         mScroller = new Scroller(getContext(), new AccelerateDecelerateInterpolator());
         mVelocityTracker = VelocityTracker.obtain();
-
     }
-
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-
         if (getChildCount() < 0) {
             return false;
         }
-
-
         boolean intercept = false;
         int x = (int) event.getX();
         int y = (int) event.getY();
         int action = event.getActionMasked();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-
                 if (!mScroller.isFinished()) {
                     mScroller.abortAnimation();
                     intercept = true;
@@ -70,8 +64,6 @@ public class HScrollLayout extends ViewGroup {
                     mLastEventX = x;
                     mLastEventX = y;
                 }
-
-
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -84,7 +76,6 @@ public class HScrollLayout extends ViewGroup {
                     intercept = false;
                 }
                 break;
-
             case MotionEvent.ACTION_UP:
                 //手指抬起，必须返回false，因为返回值对自己没有影响，而对子view可能有影响
                 intercept = false;
@@ -115,9 +106,7 @@ public class HScrollLayout extends ViewGroup {
                 left += child.getMeasuredWidth();
             }
         }
-
     }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -144,17 +133,13 @@ public class HScrollLayout extends ViewGroup {
                 int distanceX;
                 mVelocityTracker.computeCurrentVelocity(1000);
                 float xVelocity = mVelocityTracker.getXVelocity();
-
                 Log.d(TAG, "xVelocity:" + xVelocity);
-
                 if (Math.abs(xVelocity) > 50) {
                     if (xVelocity > 0) {//向左
                         mCurrentPage--;
                     } else {
                         mCurrentPage++;
                     }
-
-
                 } else {
                     // 不考虑加速度
                     Log.d(TAG, "getScrollX():" + getScrollX());
@@ -167,7 +152,6 @@ public class HScrollLayout extends ViewGroup {
                         if (getScrollX() > maxScroll) {//超出了右边界
                             mCurrentPage = getChildCount() - 1;
                         } else {
-
                             //在边界范围内滑动
                             int currentScrollX = mCurrentPage * mWidth;//已近产生的偏移
                             int offset = getScrollX() % mWidth;
@@ -175,13 +159,11 @@ public class HScrollLayout extends ViewGroup {
                             Log.d(TAG, "offset:" + offset);
 
                             if (currentScrollX > Math.abs(getScrollX())) {//向左偏移
-
                                 if (offset < (mWidth - mWidth / 3)) {//小于其 2/3
                                     mCurrentPage--;
                                 } else {
 
                                 }
-
                             } else {//向右偏移
 
                                 if (offset > mWidth / 3) {//小于其 2/3
@@ -189,7 +171,6 @@ public class HScrollLayout extends ViewGroup {
                                 } else {
 
                                 }
-
                             }
 
                         }
@@ -230,7 +211,6 @@ public class HScrollLayout extends ViewGroup {
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
@@ -244,14 +224,8 @@ public class HScrollLayout extends ViewGroup {
             measureChild(child, MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY));
         }
-
-
         setMeasuredDimension(widthSize, heightSize);
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        mWidth = w;
-    }
 }
     

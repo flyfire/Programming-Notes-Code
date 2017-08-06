@@ -1,7 +1,6 @@
 package com.ztiany.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +9,12 @@ import android.widget.Button;
 import java.util.List;
 
 
-public class ItemAdapter extends RecyclerView.Adapter {
+class ItemAdapter extends RecyclerView.Adapter {
 
     private final Context mContext;
     private final List<Item> mItems;
 
-    public ItemAdapter(Context context, List<Item> items) {
+    ItemAdapter(Context context, List<Item> items) {
         mContext = context;
         mItems = items;
     }
@@ -29,14 +28,14 @@ public class ItemAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final Item item = mItems.get(position);
         Button button = (Button) holder.itemView;
         button.setText(item.mName);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, item.mClazz));
+                mContext.startActivity(ContentActivity.getLaunchIntent(mContext, item.mName, item.mClazz));
             }
         });
     }

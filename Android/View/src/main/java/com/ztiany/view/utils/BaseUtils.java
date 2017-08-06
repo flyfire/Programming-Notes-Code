@@ -33,7 +33,6 @@ public class BaseUtils {
         return mApplication;
     }
 
-
     public static Resources getResources() {
         return BaseUtils.getAppContext().getResources();
     }

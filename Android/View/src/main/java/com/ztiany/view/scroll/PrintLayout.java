@@ -23,10 +23,9 @@ public class PrintLayout extends FrameLayout {
         super(context, attrs, defStyleAttr);
     }
 
-
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-
+        Log.d(TAG, "onInterceptTouchEvent() called with: ev = [" + ev + "]");
         return false;
     }
 

@@ -18,10 +18,7 @@ import android.view.ViewTreeObserver;
 /**
  * 可收缩放大的ImageView
  */
-public class ZoomImageView extends AppCompatImageView implements
-        ViewTreeObserver.OnGlobalLayoutListener,
-        ScaleGestureDetector.OnScaleGestureListener,
-        View.OnTouchListener {
+public class ZoomImageView extends AppCompatImageView implements ViewTreeObserver.OnGlobalLayoutListener, ScaleGestureDetector.OnScaleGestureListener, View.OnTouchListener {
 
     private boolean isDrag;
 
