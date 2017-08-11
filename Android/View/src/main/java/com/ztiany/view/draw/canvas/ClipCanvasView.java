@@ -38,7 +38,7 @@ public class ClipCanvasView extends View {
     }
 
     private void init() {
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.shader);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img_fengjing);
 
         mPath = new Path();
         mRect = new Rect();

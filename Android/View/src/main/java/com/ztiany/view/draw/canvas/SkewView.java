@@ -17,13 +17,14 @@ import android.view.View;
 public class SkewView extends View {
 
     private Paint mPaint;
+    private Rect rect = new Rect(0, 0, 400, 400);
 
     public SkewView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public SkewView(Context context, AttributeSet attrs) {
-        this(context, attrs , 0);
+        this(context, attrs, 0);
     }
 
     public SkewView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -39,12 +40,15 @@ public class SkewView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(Color.GREEN);
-        canvas.drawRect(new Rect(0, 0, 400, 400), mPaint);
 
-        // x 方向上倾斜45 度
+        canvas.drawColor(Color.GREEN);
+        canvas.drawRect(rect, mPaint);
+
+        canvas.translate(0, 400);
+        // x 方向上向右边倾斜45 度
         canvas.skew(1F, 0);
         mPaint.setColor(0x88FF0000);
-        canvas.drawRect(new Rect(0, 0, 400, 400), mPaint);
+        canvas.drawRect(rect, mPaint);
+
     }
 }

@@ -49,7 +49,7 @@ public class DrawBitmapView extends View {
 
     private void init() {
 
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.shader);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img_fengjing);
         mSrcRect = new Rect();
         mDstRect = new RectF();
         mPaint = new Paint();

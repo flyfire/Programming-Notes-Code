@@ -14,17 +14,10 @@ import android.view.View;
 import com.ztiany.view.utils.UnitConverter;
 
 
-/**
- * Author Ztiany                   <br/>
- * Email ztiany3@gmail.com      <br/>
- * Date 2016-05-08 18:11      <br/>
- * Description：
- */
 public class BezierCircle extends View {
 
     private static final String TAG = BezierCircle.class.getSimpleName();
     private static final float C = 0.551915024494f;
-
 
     private PointF[] mControlPoints = new PointF[8];
     private PointF[] mExtremityPoints = new PointF[4];
@@ -68,11 +61,9 @@ public class BezierCircle extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         float min = Math.min(w, h) / 1.8F;
 
-
         mPointWidth = min * 0.2F;
 
         float circleRadius = min / 2;
-
 
         float bezierDistance = circleRadius * C;
 
@@ -91,7 +82,6 @@ public class BezierCircle extends View {
         mControlPoints[5].set(bezierDistance, circleRadius);
         mControlPoints[6].set(-bezierDistance, circleRadius);
         mControlPoints[7].set(-circleRadius, bezierDistance);
-
 
     }
 
@@ -123,7 +113,6 @@ public class BezierCircle extends View {
             mPath.lineTo(mExtremityPoints[temp].x, mExtremityPoints[temp].y);
         }
 
-
     }
 
 
@@ -154,7 +143,6 @@ public class BezierCircle extends View {
 
         canvas.drawPoint(0, 0, mPaint);
     }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
