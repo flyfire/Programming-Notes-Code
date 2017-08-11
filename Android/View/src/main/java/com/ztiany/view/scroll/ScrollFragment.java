@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.ztiany.view.BaseViewPagerFragment;
 import com.ztiany.view.R;
-import com.ztiany.view.scroll.sticky.StickyNavBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +25,7 @@ public class ScrollFragment extends BaseViewPagerFragment {
             "多指处理",
             "Scroller",
             "Over Scroller",
-            "嵌套滑动",
-            "Sticky Navigation"
+            "嵌套滑动"
     };
 
     @Override
@@ -37,7 +35,6 @@ public class ScrollFragment extends BaseViewPagerFragment {
         mViewList.add(View.inflate(getContext(), R.layout.scroll_scroller, null));
         mViewList.add(View.inflate(getContext(), R.layout.scroll_over_scroller, null));
         mViewList.add(View.inflate(getContext(), R.layout.scroll_nested_sample, null));
-        mViewList.add(new StickyNavBuilder(getContext()).getView());
     }
 
     @Override

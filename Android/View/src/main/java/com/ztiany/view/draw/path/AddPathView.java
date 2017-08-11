@@ -11,13 +11,6 @@ import android.view.View;
 
 import com.ztiany.view.utils.UnitConverter;
 
-
-/**
- * Author Ztiany                   <br/>
- * Email ztiany3@gmail.com      <br/>
- * Date 2016-04-25 22:04      <br/>
- * Description：
- */
 public class AddPathView extends View {
 
     private Path mPath;
@@ -45,22 +38,17 @@ public class AddPathView extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.RED);
         mPaint.setTextSize(UnitConverter.spToPx(18));
-
         mRectF = new RectF();
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-
-            canvas.translate(getMeasuredWidth() / 2, getMeasuredHeight() / 2);
-            mRectF.set(0, 0, 300, 300);
-            mPath.addArc(mRectF, 0, 270);
-            mPath.lineTo(500,500);
-            mPath.rLineTo(100,-100);
-
+        canvas.translate(getMeasuredWidth() / 2, getMeasuredHeight() / 2);
+        mRectF.set(0, 0, 300, 300);
+        mPath.addArc(mRectF, 0, 270);
+        mPath.lineTo(500, 500);
+        mPath.rLineTo(100, -100);
         canvas.drawPath(mPath, mPaint);
         canvas.drawTextOnPath(mText, mPath, 0, 0, mPaint);
     }

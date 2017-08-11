@@ -20,7 +20,7 @@ public class DrawArcView extends View {
     private RectF mRectF;
 
     private int mCurrentAngle;
-
+    private OnClickListener mOnClickListener;
 
     public DrawArcView(Context context) {
         this(context, null);
@@ -34,16 +34,15 @@ public class DrawArcView extends View {
         super(context, attrs, defStyleAttr);
         init();
 
-        setOnClickListener(new OnClickListener() {
+        mOnClickListener = new OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 mCurrentAngle = 0;
                 getHandler().removeCallbacksAndMessages(null);
                 post(new Runnable() {
                     @Override
                     public void run() {
-
-                        mCurrentAngle ++;
+                        mCurrentAngle++;
                         if (mCurrentAngle < 270) {
                             invalidate();
                             post(this);
@@ -51,7 +50,9 @@ public class DrawArcView extends View {
                     }
                 });
             }
-        });
+        };
+
+        setOnClickListener(mOnClickListener);
     }
 
     private void init() {
@@ -59,15 +60,10 @@ public class DrawArcView extends View {
         mRectF = new RectF();
     }
 
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         mPaint.setStyle(Paint.Style.STROKE);
         mRectF.set(0, 0, getMeasuredWidth() / 4, getMeasuredHeight() / 4);
         canvas.drawArc(mRectF, 0, mCurrentAngle, false, mPaint);
@@ -80,12 +76,18 @@ public class DrawArcView extends View {
         canvas.drawArc(mRectF, 0, mCurrentAngle, false, mPaint);
 
         mRectF.set(getMeasuredWidth() / 2 + getMeasuredWidth() / 4, getMeasuredHeight() / 4, getMeasuredWidth(), getMeasuredHeight() / 2);
-
         canvas.drawArc(mRectF, 0, mCurrentAngle, true, mPaint);
-
 
     }
 
-
-
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mOnClickListener.onClick(DrawArcView.this);
+            }
+        }, 1000);
+    }
 }

@@ -81,7 +81,7 @@ public class ColorMatrixFilterFragment extends Fragment implements SeekBar.OnSee
 
     private void init() {
 
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bit_gril);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img_gril_02);
 
         mImageView.setImageBitmap(mBitmap);
         mDesBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), mBitmap.getConfig());

@@ -23,9 +23,7 @@ import com.ztiany.view.utils.UnitConverter;
  */
 public class BezierCircleTranslate extends View implements View.OnClickListener {
 
-    private static final String TAG = BezierCircleTranslate.class.getSimpleName();
     private static final float C = 0.551915024494f;
-
 
     private PointF[] mControlPoints = new PointF[8];
     private PointF[] mExtremityPoints = new PointF[4];
@@ -38,7 +36,6 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
     private float mCenterX, mCenterY;
     private float mCircleRadius;
     private float mBezierDistance;
-
 
     private float mHeadAdd;
     private float mEndAdd;
@@ -58,10 +55,8 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
 
     private void init() {
 
-
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPath = new Path();
-
 
         int length = mControlPoints.length;
         for (int i = 0; i < length; i++) {
@@ -71,7 +66,6 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
         for (int i = 0; i < length; i++) {
             mExtremityPoints[i] = new PointF();
         }
-
         setOnClickListener(this);
     }
 
@@ -79,28 +73,20 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-
         float min = Math.min(w, h) / 6F;
-
         mCircleRadius = min / 2;
-
         mCenterX = mCircleRadius;
-
         mCenterY = h / 2;
-
-
         mBezierDistance = mCircleRadius * C;
         setValues();
     }
 
     private void setValues() {
 
-
         mExtremityPoints[0].set(mCenterX + mEndAdd- mCircleRadius, mCenterY);
         mExtremityPoints[1].set(mCenterX, mCenterY - mCircleRadius );
         mExtremityPoints[2].set(mCenterX+ mHeadAdd + mCircleRadius, mCenterY);
         mExtremityPoints[3].set(mCenterX, mCenterY + mCircleRadius );
-
 
         mControlPoints[0].set(mCenterX - mCircleRadius+ mEndAdd, mCenterY - mBezierDistance);
         mControlPoints[1].set(mCenterX - mBezierDistance, mCenterY - mCircleRadius );
@@ -127,8 +113,6 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
                     mControlPoints[i * 2 + 1].x, mControlPoints[i * 2 + 1].y,
                     mExtremityPoints[temp].x, mExtremityPoints[temp].y);
         }
-
-
     }
 
 
@@ -142,7 +126,6 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
         mPaint.setColor(Color.RED);
         canvas.drawPath(mPath, mPaint);
 
-
         mPaint.setStrokeWidth(UnitConverter.dpToPx(5));
         mPaint.setColor(Color.BLUE);
         for (PointF controlPoint : mControlPoints) {
@@ -152,15 +135,12 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
         for (PointF extremityPoint : mExtremityPoints) {
             canvas.drawPoint(extremityPoint.x, extremityPoint.y, mPaint);
         }
-
     }
 
 
     @Override
     public void onClick(View v) {
-
         mCenterX = mCircleRadius;
-
         if (mAnimatorSet == null) {
 
             ValueAnimator valueAnimator = ValueAnimator.ofFloat(mCenterX, getMeasuredWidth() - mCircleRadius).setDuration(2000);
@@ -170,12 +150,9 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-
                     mCenterX = (Float) animation.getAnimatedValue();
-
                 }
             });
-
 
             ValueAnimator valueAnimator1 = ValueAnimator.ofFloat(0, mCircleRadius * 2, 0).setDuration(3000);
             valueAnimator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -199,11 +176,9 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
             mAnimatorSet = new AnimatorSet();
             mAnimatorSet.play(valueAnimator1).with(valueAnimator).with(valueAnimator2);
 
-
         } else {
             mAnimatorSet.cancel();
         }
-
 
         mAnimatorSet.start();
     }

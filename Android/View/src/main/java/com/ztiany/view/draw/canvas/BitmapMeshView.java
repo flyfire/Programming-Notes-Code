@@ -23,7 +23,6 @@ public class BitmapMeshView extends View {
     private static final int COUNT = (WIDTH_MESH + 1) * (HEIGHT_MESH + 1);// 横纵向网格交织产生的点数量
 
     private float[] mVerts;
-    private static final String TAG = BitmapMeshView.class.getSimpleName();
 
     private Bitmap mBitmap;// 位图资源
 
@@ -47,40 +46,27 @@ public class BitmapMeshView extends View {
 
     private void init() {
         mVerts = new float[COUNT * 2];
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.shader);
-
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img_fengjing);
         int width = mBitmap.getWidth();
-
         int height = mBitmap.getHeight();
-
-
         int index = 0;
-
         float fx ;
         float fy ;
-
         for (int i = 0; i <= HEIGHT_MESH; i++) {
-
             fy = height * (i*1.0F / HEIGHT_MESH);
-
             for (int j = 0; j <= WIDTH_MESH; j++) {
-
                 // 根据 x = x0 + b*y0公式
-                fx = width * (j*1.0F / WIDTH_MESH) + 1 * fy;//这里1表示 tan45，即x方法倾斜45度
-                
+                fx = width * (j*1.0F / WIDTH_MESH) + 1 * fy;//这里1表示 tan45，即x方向倾斜45度
                 setXYWithIndex(fx, fy, index);
                 index++;
-
             }
         }
-
     }
 
     private void setXYWithIndex(float fx, float fy, int index) {
         mVerts[2 * index] = fx;
         mVerts[2 * index + 1] = fy;
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
