@@ -9,22 +9,13 @@ import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.PointF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.ztiany.view.utils.UnitConverter;
 
-
-/**
- * Author Ztiany                   <br/>
- * Email ztiany3@gmail.com      <br/>
- * Date 2016-05-08 18:11      <br/>
- * Description：
- */
 public class PathMeasureAnimView extends View {
 
-    private static final String TAG = PathMeasureAnimView.class.getSimpleName();
     private static final float C = 0.551915024494f;
 
     private PointF[] mControlPoints = new PointF[8];
@@ -74,14 +65,12 @@ public class PathMeasureAnimView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        float min = Math.min(w, h) / 1.8F;
 
+        float min = Math.min(w, h) / 1.8F;
 
         mPointWidth = min * 0.2F;
 
         float circleRadius = min / 2;
-
-
         float bezierDistance = circleRadius * C;
 
         mExtremityPoints[0].set(-circleRadius, 0);
@@ -106,7 +95,6 @@ public class PathMeasureAnimView extends View {
     private void drawCircle() {
         mPath.reset();
         mPath.moveTo(mExtremityPoints[0].x, mExtremityPoints[0].y);
-
         int length = mExtremityPoints.length;
         int temp;
         for (int i = 0; i < length; i++) {
@@ -114,12 +102,14 @@ public class PathMeasureAnimView extends View {
             if (temp == length) {
                 temp = 0;
             }
-            mPath.cubicTo(mControlPoints[i * 2].x, mControlPoints[i * 2].y,
-                    mControlPoints[i * 2 + 1].x, mControlPoints[i * 2 + 1].y,
-                    mExtremityPoints[temp].x, mExtremityPoints[temp].y);
+            mPath.cubicTo(
+                    mControlPoints[i * 2].x,
+                    mControlPoints[i * 2].y,
+                    mControlPoints[i * 2 + 1].x,
+                    mControlPoints[i * 2 + 1].y,
+                    mExtremityPoints[temp].x,
+                    mExtremityPoints[temp].y);
         }
-
-
     }
 
 
@@ -150,15 +140,11 @@ public class PathMeasureAnimView extends View {
         }
 
         mPaint.setColor(Color.GREEN);
-
         mPaint.setStrokeWidth(UnitConverter.dpToPx(20));
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         canvas.drawPoint(mCurrentPoint[0], mCurrentPoint[1], mPaint);
         mPaint.setColor(Color.GRAY);
         canvas.drawPoint(mCurrentTanPoint[0], mCurrentTanPoint[1], mPaint);
-
-
-
     }
 
 
@@ -178,9 +164,7 @@ public class PathMeasureAnimView extends View {
             }
         });
         mValueAnimator.start();
-
     }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -188,7 +172,6 @@ public class PathMeasureAnimView extends View {
         float y = event.getY();
         x -= getMeasuredWidth() / 2;
         y -= getMeasuredHeight() / 2;
-
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             for (PointF controlPoint : mControlPoints) {
@@ -218,7 +201,6 @@ public class PathMeasureAnimView extends View {
 
     boolean getCatchPoint(float x, float y, PointF controlPoint) {
         float hypot = (float) Math.hypot(x - controlPoint.x, y - controlPoint.y);
-        Log.d(TAG, "hypot:" + hypot);
         if (hypot <= mPointWidth) {
             controlPoint.set(x, y);
             return true;

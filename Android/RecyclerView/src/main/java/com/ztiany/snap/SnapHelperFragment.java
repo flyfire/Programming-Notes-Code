@@ -23,14 +23,11 @@ public class SnapHelperFragment extends Fragment {
 
     private final Random mRandom = new Random();
 
-    static SnapHelperFragment newInstance() {
-        return new SnapHelperFragment();
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        return inflater.inflate(R.layout.common_fragment_recycler_view, container, false);
     }
 
     @Override

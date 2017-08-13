@@ -16,19 +16,12 @@ import com.ztiany.recyclerview.R;
 
 public class LinearFragment extends Fragment {
 
-
     private ItemTouchHelper mTouchHelper;
-
-    static LinearFragment newInstance() {
-
-
-        return new LinearFragment();
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        return inflater.inflate(R.layout.common_fragment_recycler_view, container, false);
     }
 
     @Override
@@ -49,9 +42,6 @@ public class LinearFragment extends Fragment {
 
         mTouchHelper = new ItemTouchHelper(new HelperCallBack(recyclerAdapter));
         mTouchHelper.attachToRecyclerView(recyclerView);
-
-
     }
-
 
 }

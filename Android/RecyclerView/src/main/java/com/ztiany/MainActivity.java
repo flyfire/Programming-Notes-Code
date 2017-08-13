@@ -1,46 +1,54 @@
 package com.ztiany;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.ztiany.diffutils.DiffUtilsActivity;
-import com.ztiany.itemtouch.ItemTouchActivity;
-import com.ztiany.itemtouchhelperextension.ItemTouchHelperExtensionActivity;
 import com.ztiany.recyclerview.R;
-import com.ztiany.snap.SnapHelperActivity;
-import com.ztiany.wrapcontent.WrapContentActivity;
+import com.ztiany.wrapcontent.WithScrollVIewFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView mRecyclerView;
+    private static final List<Item> LIST = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        BaseUtils.init(getApplication());
+        setContentView(R.layout.common_activity_main);
+        initView();
     }
 
-
-    public void wrapContent(View view) {
-        startActivity(new Intent(this, WrapContentActivity.class));
+    private void initView() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setContentInsetStartWithNavigation(0);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    supportFinishAfterTransition();
+                }
+            });
+        }
+        mRecyclerView = (RecyclerView) findViewById(R.id.activity_main);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        setAdapter();
     }
 
-    public void snapHelper(View view) {
-        startActivity(new Intent(this, SnapHelperActivity.class));
+    private void setAdapter() {
+        mRecyclerView.setAdapter(new ItemAdapter(this, LIST));
     }
 
-    public void itemTouch(View view) {
-        startActivity(new Intent(this, ItemTouchActivity.class));
+    static {
+        LIST.add(new Item("Wrap RecyclerView", WithScrollVIewFragment.class));
     }
-
-    public void itemTouchExtension(View view) {
-        startActivity(new Intent(this, ItemTouchHelperExtensionActivity.class));
-    }
-
-    public void diffUtils(View view) {
-        startActivity(new Intent(this, DiffUtilsActivity.class));
-
-    }
-
-
 }

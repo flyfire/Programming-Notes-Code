@@ -24,32 +24,23 @@ import java.util.Random;
  */
 public class WithScrollVIewFragment extends Fragment {
 
-
     private final Random mRandom = new Random();
-
-
-    static WithScrollVIewFragment newInstance() {
-        return new WithScrollVIewFragment();
-    }
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_with_scrollview, container, false);
+        return inflater.inflate(R.layout.fragment_wrap_recycler, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setNestedScrollingEnabled(false);
         linearLayoutManager.setAutoMeasureEnabled(true);
-
 
         recyclerView.setAdapter(
                 new RecyclerView.Adapter() {

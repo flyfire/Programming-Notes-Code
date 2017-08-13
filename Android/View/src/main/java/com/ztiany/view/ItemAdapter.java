@@ -1,6 +1,7 @@
 package com.ztiany.view;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ class ItemAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Button button = new Button(mContext);
+        Button button = new AppCompatButton(mContext);
         button.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         return new RecyclerView.ViewHolder(button) {
         };

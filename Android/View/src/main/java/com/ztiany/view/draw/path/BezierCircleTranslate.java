@@ -14,13 +14,6 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.ztiany.view.utils.UnitConverter;
 
-
-/**
- * Author Ztiany                   <br/>
- * Email ztiany3@gmail.com      <br/>
- * Date 2016-05-08 18:11      <br/>
- * Description：
- */
 public class BezierCircleTranslate extends View implements View.OnClickListener {
 
     private static final float C = 0.551915024494f;
@@ -72,7 +65,6 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
         float min = Math.min(w, h) / 6F;
         mCircleRadius = min / 2;
         mCenterX = mCircleRadius;
@@ -101,7 +93,6 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
     private void drawCircle() {
         mPath.reset();
         mPath.moveTo(mExtremityPoints[0].x, mExtremityPoints[0].y);
-
         int length = mExtremityPoints.length;
         int temp;
         for (int i = 0; i < length; i++) {
@@ -109,9 +100,13 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
             if (temp == length) {
                 temp = 0;
             }
-            mPath.cubicTo(mControlPoints[i * 2].x, mControlPoints[i * 2].y,
-                    mControlPoints[i * 2 + 1].x, mControlPoints[i * 2 + 1].y,
-                    mExtremityPoints[temp].x, mExtremityPoints[temp].y);
+            mPath.cubicTo(
+                    mControlPoints[i * 2].x,
+                    mControlPoints[i * 2].y,
+                    mControlPoints[i * 2 + 1].x,
+                    mControlPoints[i * 2 + 1].y,
+                    mExtremityPoints[temp].x,
+                    mExtremityPoints[temp].y);
         }
     }
 
@@ -119,7 +114,6 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         drawCircle();
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(UnitConverter.dpToPx(1));
@@ -142,11 +136,9 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
     public void onClick(View v) {
         mCenterX = mCircleRadius;
         if (mAnimatorSet == null) {
-
             ValueAnimator valueAnimator = ValueAnimator.ofFloat(mCenterX, getMeasuredWidth() - mCircleRadius).setDuration(2000);
             valueAnimator.setStartDelay(1000);
             valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -163,7 +155,6 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
                     invalidate();
                 }
             });
-
             ValueAnimator valueAnimator2 = ValueAnimator.ofFloat(0, -mCircleRadius * 2, 0).setDuration(1500);
             valueAnimator2.setStartDelay(1500);
             valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -172,16 +163,13 @@ public class BezierCircleTranslate extends View implements View.OnClickListener 
                     mEndAdd = (Float) animation.getAnimatedValue();
                 }
             });
-
             mAnimatorSet = new AnimatorSet();
             mAnimatorSet.play(valueAnimator1).with(valueAnimator).with(valueAnimator2);
 
         } else {
             mAnimatorSet.cancel();
         }
-
         mAnimatorSet.start();
     }
-
 
 }

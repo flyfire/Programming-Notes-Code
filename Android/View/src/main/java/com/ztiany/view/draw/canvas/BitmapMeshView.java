@@ -46,7 +46,7 @@ public class BitmapMeshView extends View {
 
     private void init() {
         mVerts = new float[COUNT * 2];
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img_fengjing);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img_scenery_01);
         int width = mBitmap.getWidth();
         int height = mBitmap.getHeight();
         int index = 0;

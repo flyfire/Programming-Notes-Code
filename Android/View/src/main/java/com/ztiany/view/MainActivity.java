@@ -8,9 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.ztiany.view.custom.CustomViewFragment;
-import com.ztiany.view.draw.BezierFragment;
+import com.ztiany.view.draw.PathFragment;
 import com.ztiany.view.draw.CanvasFragment;
 import com.ztiany.view.draw.MatrixFragment;
+import com.ztiany.view.draw.camera.Camera3DFragment;
+import com.ztiany.view.draw.camera.Camera3DTheoryFragment;
+import com.ztiany.view.draw.camera.CameraDemoViewFragment;
 import com.ztiany.view.draw.color.ColorMatrixFilterFragment;
 import com.ztiany.view.draw.color.MaskFilterFragment;
 import com.ztiany.view.scroll.ScrollFragment;
@@ -62,7 +65,10 @@ public class MainActivity extends AppCompatActivity {
         LIST.add(new Item("矩阵", MatrixFragment.class));
         LIST.add(new Item("ColorMatrixFilter", ColorMatrixFilterFragment.class));
         LIST.add(new Item("MaskFilter", MaskFilterFragment.class));
-        LIST.add(new Item("Path&贝塞尔曲线", BezierFragment.class));
+        LIST.add(new Item("Path&贝塞尔曲线", PathFragment.class));
+        LIST.add(new Item("Camera变换", CameraDemoViewFragment.class));
+        LIST.add(new Item("Camera3D View", Camera3DFragment.class));
+        LIST.add(new Item("Camera3D 原理", Camera3DTheoryFragment.class));
         LIST.add(new Item("自定义View", CustomViewFragment.class));
     }
 }
