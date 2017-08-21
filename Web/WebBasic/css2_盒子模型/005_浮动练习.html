@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>practice</title>
+    <title>浮动 practice</title>
 
     <style type="text/css">
 
@@ -18,6 +18,7 @@
             height: 103px;
         }
 
+        /*banner左浮动，占据了277的空间*/
         .header .banner {
             float: left;
             width: 277px;
@@ -25,6 +26,7 @@
             background-color: red;
         }
 
+        /*title右浮动*/
         .header .title {
             float: right;
             width: 137px;
@@ -32,6 +34,7 @@
             background-color: green;
         }
 
+        /*mean向右浮动，由于没有足够的空间(banner和title占据了空间)，只能换行靠墙*/
         .header .menu {
             margin-top: 8px;
             float: right;
@@ -107,7 +110,7 @@
         .footer {
             width: 970px;
             height: 35px;
-            /*居中，这个语句今天没讲，你照抄，就是居中：*/
+            /*居中*/
             margin: 10px auto 0;
             background-color: blue;
         }
@@ -145,7 +148,6 @@
 </div>
 
 <div class="container footer"></div>
-
 
 </body>
 </html>

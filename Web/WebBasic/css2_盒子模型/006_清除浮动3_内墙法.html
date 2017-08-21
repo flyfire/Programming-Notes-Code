@@ -11,8 +11,10 @@
             padding: 0;
         }
 
-        /*使用内墙法，现在div有高度了*/
+        /*使用内墙法，现在div有高度了,margin生效了*/
         .box1 {
+            margin-top: 100px;
+            margin-bottom: 100px;
             background-color: red;
         }
 
@@ -52,6 +54,18 @@
             height: 100px;
             background-color: green;
         }
+
+        /*使用内墙法，margin生效了*/
+        .middle{
+            margin-top: 50px;
+        }
+
+        .bottom{
+            margin-top: 50px;
+            margin-left: 100px;
+        }
+
+
     </style>
 
 </head>
@@ -69,18 +83,17 @@
 </div>
 
 
-<div class="box2">
+<div class="box2 middle">
     <ul>
         <li>学习方法</li>
         <li>英语水平</li>
         <li>面试技巧</li>
     </ul>
     <div class="cl h8"></div>
-
 </div>
 
-<!--10_内墙法本质-给没有高的父亲撑出高-->
-<div class="box2">
+<!--内墙法本质-给没有高的父亲撑出高-->
+<div class="box2 bottom">
     <p class="p2"></p>
     <div class="cl"></div>
 </div>

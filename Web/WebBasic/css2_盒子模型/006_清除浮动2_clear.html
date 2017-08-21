@@ -6,6 +6,7 @@
 </head>
 
 <style type="text/css">
+
     * {
         margin: 0;
         padding: 0;
@@ -19,16 +20,26 @@
         background-color: orange;
     }
 
-    div {
+    /*parent的margin(top 和 bottom)失效*/
+    .parent{
         clear: both;
+        margin: 100px;
     }
+
+    /*此时bottom的margin(top 和 bottom)失效，第二个bottom的margin才会生效*/
+    .bottom{
+        height: 50px;
+        margin: 100px;
+        background: red;
+    }
+
 </style>
 
 <body>
 
 <div class="type_2">
 
-    <div>
+    <div class="parent">
         <ul>
             <li>我是列表1</li>
             <li>我是列表1</li>
@@ -39,7 +50,7 @@
         </ul>
     </div>
 
-    <div>
+    <div class="parent">
         <ul>
             <li>我是列表2</li>
             <li>我是列表2</li>
@@ -49,6 +60,9 @@
             <li>我是列表2</li>
         </ul>
     </div>
+
+    <div class="bottom"></div>
+    <div class="bottom"></div>
 
 </div>
 

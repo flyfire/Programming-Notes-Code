@@ -29,8 +29,8 @@ public class FileUploadSample {
 
         System.out.println(new File("files/1.jpg").getAbsolutePath());
         Map<String, File> files = new HashMap<String, File>();
-        files.put("haha1", new File("files/1.jpg"));
-        files.put("haha2", new File("files/2.jpeg"));
+        files.put("file1", new File("files/1.jpg"));
+        files.put("file2", new File("files/2.jpg"));
 
         try {
             fileUploadEx.uploadForm(params, files);
