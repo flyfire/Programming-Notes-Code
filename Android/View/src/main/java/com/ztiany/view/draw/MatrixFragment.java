@@ -12,6 +12,7 @@ import com.ztiany.view.draw.matrix.CanvasMatrix3View;
 import com.ztiany.view.draw.matrix.CanvasSetMatrixDemoView;
 import com.ztiany.view.draw.matrix.MatrixDemo1View;
 import com.ztiany.view.draw.matrix.MatrixView;
+import com.ztiany.view.draw.matrix.PolyToPolyDemoView;
 
 /**
  * @author Ztiany
@@ -26,7 +27,8 @@ public class MatrixFragment extends BaseViewPagerFragment {
             "Canvas Matrix2",
             "Canvas Matrix3",
             "canvas setMatrix",
-            "Matrix Image View"
+            "Matrix Image View",
+            "PolyToPoly"
     };
 
     @Override
@@ -65,6 +67,8 @@ public class MatrixFragment extends BaseViewPagerFragment {
                     matrixView.setImageResource(R.drawable.img_girl_01);
                     view = matrixView;
                     break;
+                case 6:
+                    view = new PolyToPolyDemoView(getContext());
             }
             return view;
         }
