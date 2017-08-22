@@ -20,17 +20,27 @@
         background-color: orange;
     }
 
-    /*parent的margin(top 和 bottom)失效*/
-    .parent{
-        clear: both;
-        margin: 100px;
+    .top{
+        height: 40px;
+        background-color: #ff3341;
     }
 
-    /*此时bottom的margin(top 和 bottom)失效，第二个bottom的margin才会生效*/
-    .bottom{
+    /*parent的margin(bottom)失效*/
+    .parent {
+        clear: both;
+        margin: 10px;
+    }
+
+    /*此时bottom1的margin(top)失效，第二个bottom的margin才会生效*/
+    .bottom1 {
         height: 50px;
-        margin: 100px;
+        margin: 10px;
         background: red;
+    }
+
+    .bottom2 {
+        height: 50px;
+        background: blue;
     }
 
 </style>
@@ -39,6 +49,8 @@
 
 <div class="type_2">
 
+    <div class="top"></div>
+
     <div class="parent">
         <ul>
             <li>我是列表1</li>
@@ -61,8 +73,8 @@
         </ul>
     </div>
 
-    <div class="bottom"></div>
-    <div class="bottom"></div>
+    <div class="bottom1"></div>
+    <div class="bottom2"></div>
 
 </div>
 
