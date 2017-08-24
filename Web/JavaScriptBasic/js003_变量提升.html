@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+</head>
+
+
+<body>
+
+<script type="text/javascript">
+
+
+    /*1 变量提升*/
+    var num = 20;
+    function printNum() {
+        //结果为undefined
+        alert(num)
+        var num = 10;
+    }
+    printNum();
+
+
+    /*undefined*/
+    var a;
+    var b = null;
+    console.log(a);//undefined
+    console.log(a == b);//true，但一般不要使用==，==会先转变类型再比较
+    console.log(a === b);//false
+    console.log(b + 10);//10
+    console.log(a + 10);//NaN，表示不是要给数字
+</script>
+
+</body>
+</html>

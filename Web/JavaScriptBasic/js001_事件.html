@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Js</title>
+    <style type="text/css">
+        body{
+            font-size: 10px;
+        }
+        .box_a {
+            height: 50px;
+            width: 50px;
+            background-color: black;
+        }
+        .box_b {
+            height: 50px;
+            width: 50px;
+            background-color: green;
+        }
+    </style>
+    <script type="text/javascript">
+
+        /*鼠标事件*/
+        window.onload = function () {
+            var div = document.getElementById('box_1');
+            div.onmouseover = function () {
+                div.style.backgroundColor = "#FF0000";
+            }
+            div.onmouseout = function () {
+                div.style.backgroundColor = "#00FF00";
+            }
+        }
+
+        function showAlert() {
+            alert("被点击了")
+        }
+    </script>
+</head>
+<body>
+
+<div class="box_a" id="box_1">鼠标经过</div>
+<!--行内直接写js-->
+<div onclick="alert('被点击了')" class="box_b">点击我1</div>
+<!--行内调用函数-->
+<div onclick="showAlert()" class="box_b">点击我2</div>
+
+</body>
+</html>
