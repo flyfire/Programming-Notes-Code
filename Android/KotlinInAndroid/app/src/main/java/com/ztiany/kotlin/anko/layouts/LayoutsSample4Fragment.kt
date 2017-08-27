@@ -10,6 +10,8 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.support.v4.UI
 
 /**
+ * Fragment使用Layouts
+ *
  *@author Ztiany
  *      Email: ztiany3@gmail.com
  *      Date : 2017-07-11 22:32

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.*
 
 /**
+ * 实现AnkoLogger就可以使用Log功能
+ *
  *@author Ztiany
  *      Email: ztiany3@gmail.com
  *      Date : 2017-07-09 23:47

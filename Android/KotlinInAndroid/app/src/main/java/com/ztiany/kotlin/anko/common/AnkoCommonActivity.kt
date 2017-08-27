@@ -10,7 +10,7 @@ import android.widget.TextView
 import org.jetbrains.anko.*
 
 /**
- * 演示：DimensionsKt，HelpersKt，UIKt的功能
+ * 演示：DimensionsKt，HelpersKt，UIKt 的功能
  *@author Ztiany
  *      Email: ztiany3@gmail.com
  *      Date : 2017-07-09 23:55
@@ -19,7 +19,6 @@ class AnkoCommonActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         val view = linearLayout {
             orientation = LinearLayout.VERTICAL
@@ -34,7 +33,7 @@ class AnkoCommonActivity : AppCompatActivity() {
                 button("cancel")
             }
             textView("End....")
-        }.applyRecursively {//被遍历View树，遍历顺序为深度优先
+        }.applyRecursively {//UIKt提供的遍历View树的方法，遍历顺序为深度优先
             view: View ->
             println(view)
             when (view) {

@@ -3,6 +3,9 @@ package com.ztiany.kotlin.anko.coroutines
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.LinearLayout
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
@@ -11,9 +14,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
  *      Email: ztiany3@gmail.com
  *      Date : 2017-07-11 23:02
  */
-//todo
 class CoroutinesActivity : AppCompatActivity(), AnkoLogger {
-
 
     private lateinit var frameLayout: LinearLayout
 
@@ -25,8 +26,12 @@ class CoroutinesActivity : AppCompatActivity(), AnkoLogger {
 
             }
             button("click me") {
-                onClick {
-                    toast("I am a Button")
+                onClick(CommonPool) {
+                    info("CommonPool " + Thread.currentThread())
+                    launch(UI) {
+                        info("UI " + Thread.currentThread())
+                        toast("I am a Button")
+                    }
                 }
             }
         }

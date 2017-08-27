@@ -18,6 +18,7 @@ class LayoutsSample2Activity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_anko_layouts2)
 
         anko_layouts_tv_name.text = "Click me"
