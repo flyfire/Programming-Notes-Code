@@ -2,26 +2,15 @@ package com.ztiany.diffutils;
 
 import android.support.annotation.DrawableRes;
 
-/**
- * <br/>    Description  :
- * <br/>    Email    : ztiany3@gmail.com
- *
- * @author Ztiany
- *         <p>
- *         Date : 2016-10-25 23:03
- */
 
-class TestBean implements Cloneable {
-
-
-
+class DiffBean implements Cloneable {
 
     private String mName;
     private String mDesc;
     @DrawableRes
     private int mPic;
 
-    TestBean(String name, String desc, int pic) {
+    DiffBean(String name, String desc, int pic) {
         mName = name;
         mDesc = desc;
         mPic = pic;
@@ -51,11 +40,10 @@ class TestBean implements Cloneable {
         mPic = pic;
     }
 
-
     @Override
-    protected TestBean clone() {
+    protected DiffBean clone() {
         try {
-            return (TestBean) super.clone();
+            return (DiffBean) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }

@@ -50,5 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
     static {
         LIST.add(new Item("Wrap RecyclerView", WithScrollVIewFragment.class));
+        LIST.add(new Item("ItemDecoration实现分组索引", WithScrollVIewFragment.class));
     }
 }

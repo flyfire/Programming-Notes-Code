@@ -18,7 +18,7 @@ import com.ztiany.recyclerview.R;
 import java.util.Random;
 
 /**
- *功能描述：RecyclerView与ScrollView嵌套时，最好使用NestedScrollView
+ * RecyclerView与ScrollView嵌套时，最好使用NestedScrollView
  *
  * @author Ztiany
  */
@@ -37,7 +37,7 @@ public class WithScrollVIewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),2);
+        GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setNestedScrollingEnabled(false);
         linearLayoutManager.setAutoMeasureEnabled(true);

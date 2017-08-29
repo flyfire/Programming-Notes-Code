@@ -8,9 +8,9 @@ import java.util.List;
 
 public class DiffCallBack extends DiffUtil.Callback {
 
-    private List<TestBean> mOldData, mNewData;//老的数据、新的数据
+    private List<DiffBean> mOldData, mNewData;//老的数据、新的数据
 
-    public DiffCallBack(List<TestBean> oldData, List<TestBean> newData) {
+    public DiffCallBack(List<DiffBean> oldData, List<DiffBean> newData) {
         this.mOldData = oldData;
         this.mNewData = newData;
     }
@@ -56,8 +56,8 @@ public class DiffCallBack extends DiffUtil.Callback {
      */
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        TestBean beanOld = mOldData.get(oldItemPosition);
-        TestBean beanNew = mNewData.get(newItemPosition);
+        DiffBean beanOld = mOldData.get(oldItemPosition);
+        DiffBean beanNew = mNewData.get(newItemPosition);
         if (!beanOld.getDesc().equals(beanNew.getDesc())) {
             return false;//如果有内容不同，就返回false 
         }
@@ -86,8 +86,8 @@ public class DiffCallBack extends DiffUtil.Callback {
         // 定向刷新中的部分更新 
         // 效率最高 
         //只是没有了ItemChange的白光一闪动画，（反正我也觉得不太重要） 
-        TestBean oldBean = mOldData.get(oldItemPosition);
-        TestBean newBean = mNewData.get(newItemPosition);
+        DiffBean oldBean = mOldData.get(oldItemPosition);
+        DiffBean newBean = mNewData.get(newItemPosition);
 
         //这里就不用比较核心字段了,一定相等 
         Bundle payload = new Bundle();

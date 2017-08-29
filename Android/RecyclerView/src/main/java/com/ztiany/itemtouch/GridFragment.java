@@ -26,24 +26,17 @@ public class GridFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(LayoutInflater.from(getContext()), new OnStartDragListener() {
             @Override
             public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
                 mTouchHelper.startDrag(viewHolder);
             }
         });
-
         recyclerView.setAdapter(recyclerAdapter);
-
         mTouchHelper = new ItemTouchHelper(new HelperCallBack(recyclerAdapter));
         mTouchHelper.attachToRecyclerView(recyclerView);
-
-
     }
-
 
 }

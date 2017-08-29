@@ -32,12 +32,12 @@ import java.util.List;
  */
 public class DiffUtilsOneFragment extends Fragment {
 
-    private List<TestBean> mData;
+    private List<DiffBean> mData;
     private DiffAdapter mDiffAdapter;
 
 
     private static final int H_CODE_UPDATE = 1;
-    private List<TestBean> mNewData;//增加一个变量暂存newList
+    private List<DiffBean> mNewData;//增加一个变量暂存newList
 
 
 
@@ -89,14 +89,14 @@ public class DiffUtilsOneFragment extends Fragment {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new TestBean("Ztiany", "Android", R.drawable.head_portrait1));
-        mData.add(new TestBean("ChenLong", "Java", R.drawable.head_portrait2));
-        mData.add(new TestBean("WangHan", "Python", R.drawable.head_portrait3));
-        mData.add(new TestBean("LiDaJun", "Groovy", R.drawable.head_portrait4));
-        mData.add(new TestBean("MaiMingLiang", "Ruby", R.drawable.head_portrait5));
-        mData.add(new TestBean("ZhangCheng", "C++", R.drawable.head_portrait6));
-        mData.add(new TestBean("DaiMaJia", "C", R.drawable.head_portrait7));
-        mData.add(new TestBean("DaTouGui", "RxJava", R.drawable.head_portrait8));
+        mData.add(new DiffBean("Ztiany", "Android", R.drawable.head_portrait1));
+        mData.add(new DiffBean("ChenLong", "Java", R.drawable.head_portrait2));
+        mData.add(new DiffBean("WangHan", "Python", R.drawable.head_portrait3));
+        mData.add(new DiffBean("LiDaJun", "Groovy", R.drawable.head_portrait4));
+        mData.add(new DiffBean("MaiMingLiang", "Ruby", R.drawable.head_portrait5));
+        mData.add(new DiffBean("ZhangCheng", "C++", R.drawable.head_portrait6));
+        mData.add(new DiffBean("DaiMaJia", "C", R.drawable.head_portrait7));
+        mData.add(new DiffBean("DaTouGui", "RxJava", R.drawable.head_portrait8));
     }
 
 
@@ -106,20 +106,20 @@ public class DiffUtilsOneFragment extends Fragment {
     public void onRefresh() {
 
         mNewData = new ArrayList<>();
-        for (TestBean bean : mData) {
+        for (DiffBean bean : mData) {
             mNewData.add(bean.clone());//clone一遍旧数据 ，模拟刷新操作
         }
-        mNewData.add(new TestBean("ZhangHongYang", "Android", R.drawable.head_portrait9));//模拟新增数据
+        mNewData.add(new DiffBean("ZhangHongYang", "Android", R.drawable.head_portrait9));//模拟新增数据
 
 
-        TestBean testBean0 = mNewData.get(0);
-        testBean0.setDesc(testBean0.getDesc().concat("+"));
-        testBean0.setPic(R.drawable.head_portrait15);//模拟修改数据
+        DiffBean diffBean0 = mNewData.get(0);
+        diffBean0.setDesc(diffBean0.getDesc().concat("+"));
+        diffBean0.setPic(R.drawable.head_portrait15);//模拟修改数据
 
 
-        TestBean testBean = mNewData.get(1);//模拟数据位移
-        mNewData.remove(testBean);
-        mNewData.add(testBean);
+        DiffBean diffBean = mNewData.get(1);//模拟数据位移
+        mNewData.remove(diffBean);
+        mNewData.add(diffBean);
 
 
         //新宠

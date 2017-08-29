@@ -13,13 +13,14 @@ import com.ztiany.recyclerview.R;
 import java.util.List;
 
 class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffVH> {
-    private List<TestBean> mData;
 
-    DiffAdapter(List<TestBean> data) {
+    private List<DiffBean> mData;
+
+    DiffAdapter(List<DiffBean> data) {
         this.mData = data;
     }
 
-    void setData(List<TestBean> data) {
+    void setData(List<DiffBean> data) {
         this.mData = data;
     }
 
@@ -30,7 +31,7 @@ class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffVH> {
 
     @Override
     public void onBindViewHolder(final DiffVH holder, final int position) {
-        TestBean bean = mData.get(position);
+        DiffBean bean = mData.get(position);
         holder.mTitleTv.setText(bean.getName());
         holder.mDescTv.setText(bean.getDesc());
         holder.mImageIV.setImageResource(bean.getPic());
@@ -43,7 +44,7 @@ class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.DiffVH> {
         } else { //部分改变
 
             Bundle payload = (Bundle) payloads.get(0);//取出我们在getChangePayload（）方法返回的bundle
-            TestBean bean = mData.get(position);//取出新数据源，（可以不用）
+            DiffBean bean = mData.get(position);//取出新数据源，（可以不用）
 
             for (String key : payload.keySet()) {
                 switch (key) {
