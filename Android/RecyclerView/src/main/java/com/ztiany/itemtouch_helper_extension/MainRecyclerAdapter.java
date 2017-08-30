@@ -1,5 +1,6 @@
 package com.ztiany.itemtouch_helper_extension;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,14 +17,14 @@ import java.util.List;
 
 class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int ITEM_TYPE_RECYCLER_WIDTH = 1000;
-    public static final int ITEM_TYPE_ACTION_WIDTH = 1001;
-    public static final int ITEM_TYPE_ACTION_WIDTH_NO_SPRING = 1002;//不回弹
+    private static final int ITEM_TYPE_RECYCLER_WIDTH = 1000;
+    private static final int ITEM_TYPE_ACTION_WIDTH = 1001;
+    private static final int ITEM_TYPE_ACTION_WIDTH_NO_SPRING = 1002;//不回弹
 
     private List<TestModel> mData;
     private Context mContext;
 
-    public MainRecyclerAdapter(Context context) {
+    MainRecyclerAdapter(Context context) {
         mData = new ArrayList<>();
         mContext = context;
     }
@@ -33,7 +34,7 @@ class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         mData.addAll(data);
     }
 
-    public void updateData(List<TestModel> datas) {
+    void updateData(List<TestModel> datas) {
         setData(datas);
         notifyDataSetChanged();
     }
@@ -51,7 +52,6 @@ class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         View view = getLayoutInflater().inflate(R.layout.item_touch_extension_main, parent, false);//action view_list_repo_action_container 容器id
-
         if (viewType == ITEM_TYPE_ACTION_WIDTH) {
             return new ItemSwipeWithActionWidthViewHolder(view);
         }
@@ -97,7 +97,6 @@ class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             doDelete(holder.getAdapterPosition());
                         }
                     }
-
             );
         }
     }
@@ -129,7 +128,7 @@ class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         View mViewContent;//滑动的内容容器，
         View mActionContainer;//Action容器
 
-        public ItemBaseViewHolder(View itemView) {
+        ItemBaseViewHolder(View itemView) {
             super(itemView);
             mTextTitle = (TextView) itemView.findViewById(R.id.text_list_main_title);
             mTextIndex = (TextView) itemView.findViewById(R.id.text_list_main_index);
@@ -137,13 +136,15 @@ class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mActionContainer = itemView.findViewById(R.id.view_list_repo_action_container);
         }
 
-        public void bind(TestModel testModel) {
+        @SuppressLint("SetTextI18n")
+        void bind(TestModel testModel) {
             mTextTitle.setText(testModel.title);
             mTextIndex.setText("#" + testModel.position);
         }
     }
 
 
+    @SuppressWarnings("all")
     class ItemViewHolderWithRecyclerWidth extends ItemBaseViewHolder {
 
         View mActionViewDelete;
@@ -155,6 +156,7 @@ class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
+    @SuppressWarnings("all")
     class ItemSwipeWithActionWidthViewHolder extends ItemBaseViewHolder implements Extension {//没有限制宽度的滑动item
 
         View mActionViewDelete;
@@ -172,6 +174,7 @@ class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
+    @SuppressWarnings("all")
     class ItemSwipeWithActionWidthNoSpringViewHolder extends ItemSwipeWithActionWidthViewHolder implements Extension {//限制了滑动距离的item
 
         public ItemSwipeWithActionWidthNoSpringViewHolder(View itemView) {

@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.ztiany.item_decoraion_index.ItemDecorationIndexFragment;
+import com.ztiany.item_touch_listener.ItemTouchListenerFragment;
+import com.ztiany.itemtouch.GridFragment;
+import com.ztiany.itemtouch.LinearFragment;
 import com.ztiany.recyclerview.R;
 import com.ztiany.wrapcontent.WithScrollVIewFragment;
 
@@ -52,5 +55,8 @@ public class MainActivity extends AppCompatActivity {
     static {
         LIST.add(new Item("Wrap RecyclerView", WithScrollVIewFragment.class));
         LIST.add(new Item("ItemDecoration实现分组索引", ItemDecorationIndexFragment.class));
+        LIST.add(new Item("ItemTouchListener研究", ItemTouchListenerFragment.class));
+        LIST.add(new Item("ItemTouch Linear", LinearFragment.class));
+        LIST.add(new Item("ItemTouch Grid", GridFragment.class));
     }
 }

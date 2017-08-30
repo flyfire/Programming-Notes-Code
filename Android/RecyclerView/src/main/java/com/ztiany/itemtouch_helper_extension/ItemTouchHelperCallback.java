@@ -25,18 +25,15 @@ class ItemTouchHelperCallback extends ItemTouchHelperExtension.Callback {
 
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-
         MainRecyclerAdapter.ItemBaseViewHolder holder = (MainRecyclerAdapter.ItemBaseViewHolder) viewHolder;//强制转换为baseViewHolder
-
         if (viewHolder instanceof MainRecyclerAdapter.ItemSwipeWithActionWidthNoSpringViewHolder) {//没有回弹效果的viewHolder
-
             if (dX < -holder.mActionContainer.getWidth()) {
                 dX = -holder.mActionContainer.getWidth();
             }
             holder.mViewContent.setTranslationX(dX);//这里实现拖动
             return;
         }
-        if (viewHolder instanceof MainRecyclerAdapter.ItemBaseViewHolder)
+        if (viewHolder != null)
             holder.mViewContent.setTranslationX(dX);
     }
 }
