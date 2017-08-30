@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.ztiany.item_decoraion_index.ItemDecorationIndexFragment;
 import com.ztiany.recyclerview.R;
 import com.ztiany.wrapcontent.WithScrollVIewFragment;
 
@@ -50,6 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
     static {
         LIST.add(new Item("Wrap RecyclerView", WithScrollVIewFragment.class));
-        LIST.add(new Item("ItemDecoration实现分组索引", WithScrollVIewFragment.class));
+        LIST.add(new Item("ItemDecoration实现分组索引", ItemDecorationIndexFragment.class));
     }
 }
