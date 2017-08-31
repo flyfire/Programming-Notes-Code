@@ -18,7 +18,6 @@ import java.util.List;
 
 public class ItemTouchExtensionFragment extends Fragment {
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,13 +28,11 @@ public class ItemTouchExtensionFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         MainRecyclerAdapter mAdapter = new MainRecyclerAdapter(getContext());
         recyclerView.setAdapter(mAdapter);
-
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext()));//添加一个分割线
         mAdapter.updateData(createTestData());
 

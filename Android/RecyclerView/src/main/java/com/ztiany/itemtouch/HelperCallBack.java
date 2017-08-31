@@ -29,15 +29,11 @@ class HelperCallBack extends ItemTouchHelper.Callback {
 
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
 
-
         if (layoutManager instanceof GridLayoutManager) {
-
             //拖动标志-拖动排序,根据标志判断是否允许某个方向上的拖动
             final int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
             final int swipeFlags = 0;//不允许滑动删除
             return makeMovementFlags(dragFlags, swipeFlags);
-
-
         } else if (layoutManager instanceof LinearLayoutManager) {
             final int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;//拖动标志-拖动排序   ：这里返回的UP | DOWN 表示只允许上下拖动
             /*
@@ -47,7 +43,6 @@ class HelperCallBack extends ItemTouchHelper.Callback {
              direction. Used for swipe & drag control.
              */
             final int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;//滑动标志位-滑动删除：这里返回 START | END 表示允许 左右滑动
-
             return makeMovementFlags(dragFlags, swipeFlags);
         }
         return 0;
@@ -67,9 +62,7 @@ class HelperCallBack extends ItemTouchHelper.Callback {
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         super.onSelectedChanged(viewHolder, actionState);
-            /*
-            当Item的选择状态改变时我们可以在这里通知其改变状态
-             */
+        //当Item的选择状态改变时我们可以在这里通知其改变状态
         if (viewHolder instanceof ItemTouchHelperViewHolder) {
             if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
                 ((ItemTouchHelperViewHolder) viewHolder).onItemSelected();
@@ -78,7 +71,6 @@ class HelperCallBack extends ItemTouchHelper.Callback {
 
         if (viewHolder == null) {
             Log.d(TAG, " viewHolder == null  " + (actionState == 0 ? "ACTION_STATE_IDLE" : actionState == 1 ? "ACTION_STATE_SWIPE" : "ACTION_STATE_DRAG"));
-
             return;
         }
         switch (actionState) {
@@ -95,7 +87,6 @@ class HelperCallBack extends ItemTouchHelper.Callback {
                 break;
         }
     }
-
 
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
