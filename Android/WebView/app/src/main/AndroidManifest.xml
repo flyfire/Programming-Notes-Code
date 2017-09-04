@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".basic.BasicActivity"/>
+        <activity android:name=".basic.BasicUseActivity"/>
         <activity android:name=".https.HttpsWebViewActivity"/>
 
     </application>

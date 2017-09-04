@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 public class LoadDiffDataFragment extends Fragment {
 
     /*
+        https://jeffjade.com/2015/03/19/2015-03-19-android-webview/
 
         loadUrl("http://www.google.com/")：加载一个网页
         loadUrl("file:///android_asset/test.html")：加载apk包中的一个html页面
