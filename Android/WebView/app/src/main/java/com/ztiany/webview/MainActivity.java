@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.ztiany.webview.basic.BasicActivity;
+import com.ztiany.webview.basic.BasicUseActivity;
 import com.ztiany.webview.https.HttpsWebViewActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openBasic(View view) {
-        startActivity(new Intent(this, BasicActivity.class));
+        startActivity(new Intent(this, BasicUseActivity.class));
     }
 
     public void openHttps(View view) {

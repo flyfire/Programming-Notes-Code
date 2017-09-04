@@ -9,10 +9,9 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.webkit.HttpAuthHandler;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
@@ -27,14 +26,22 @@ import android.webkit.WebViewClient;
 
 import com.ztiany.webview.R;
 import com.ztiany.webview.utils.Network;
+import com.ztiany.webview.utils.WebViewUtils;
 
 /**
+ * WebView基础用法
+ *
  * @author Ztiany
  *         Email: ztiany3@gmail.com
  *         Date : 2017-08-31 16:37
  */
-public class BasicActivity extends AppCompatActivity {
+public class BasicUseActivity extends AppCompatActivity {
 
+    private static final String TAG = BasicUseActivity.class.getSimpleName();
+
+    /*
+    Android的WebView在低版本和高版本采用了不同的webkit版本内核，4.4后直接使用了Chrome。
+     */
     private WebView mWebView;
     private WebSettings webSettings;
 
@@ -45,9 +52,9 @@ public class BasicActivity extends AppCompatActivity {
         mWebView = (WebView) findViewById(R.id.web_view);
         webSettings = mWebView.getSettings();
         setupWebViewBase();
-        setupJs();
         setupStorage();
         setLBS();
+        setupJs();
         setWebClient();
         setWebChromeClient();
         mWebView.loadUrl("http://3g.163.com/");
@@ -74,11 +81,7 @@ public class BasicActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mWebView.destroy();
-        ViewParent parent = mWebView.getParent();
-        if (parent != null && parent instanceof ViewGroup) {
-            ((ViewGroup) parent).removeView(mWebView);
-        }
+        WebViewUtils.destroy(mWebView);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -144,6 +147,7 @@ public class BasicActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
+                Log.d(TAG, "onProgressChanged() called with: view = [" + view + "], newProgress = [" + newProgress + "]");
             }
 
             @Override
@@ -199,7 +203,7 @@ public class BasicActivity extends AppCompatActivity {
                 super.onReceivedError(view, request, error);
             }
 
-            ////重写此方法可以让webview处理https请求。
+            ////重写此方法可以让WebView处理https请求。
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 super.onReceivedSslError(view, handler, error);
@@ -278,8 +282,8 @@ public class BasicActivity extends AppCompatActivity {
 
     private void setLBS() {
         //打开 WebView 的 LBS 功能，这样 JS 的 geolocation 对象才可以使用
-        webSettings.setGeolocationEnabled(true);
-        webSettings.setGeolocationDatabasePath("");
+        webSettings.setGeolocationEnabled(true);// 启用地理定位
+        //webSettings.setGeolocationDatabasePath("");// 设置定位的数据库路径
     }
 
     @SuppressWarnings("all")
@@ -290,10 +294,8 @@ public class BasicActivity extends AppCompatActivity {
         //设置ApplicationCaches缓存目录， 每个Application只调用一次WebSettings.setAppCachePath()，
         webSettings.setAppCachePath(getExternalCacheDir().getAbsolutePath());
 
-        //设置是否启动 WebView API，默认值为 false
-        webSettings.setDatabaseEnabled(true);
-        //打开 WebView 的 storage 功能，这样 JS 的 localStorage,sessionStorage 对象才可以使用
-        webSettings.setDomStorageEnabled(true);
+        webSettings.setDatabaseEnabled(true);//开启 database storage API 功能，默认值为false
+        webSettings.setDomStorageEnabled(true); // 开启 DOM storage API 功能，这样 JS 的 localStorage,sessionStorage 对象才可以使用
         //设置是否打开 WebView 表单数据的保存功能
         webSettings.setSaveFormData(true);
         webSettings.setAllowFileAccess(true);  //设置可以访问文件
@@ -316,6 +318,10 @@ public class BasicActivity extends AppCompatActivity {
         //mWebView.clearFormData();//这个api仅仅清除自动完成填充的表单数据，并不会清除WebView存储到本地的数据。
     }
 
+    /*
+     Using setJavaScriptEnabled can introduce XSS vulnerabilities into your application, review carefully.
+     Your code should not invoke setJavaScriptEnabled if you are not sure that your app really requires JavaScript support
+    */
     @SuppressLint("SetJavaScriptEnabled")
     private void setupJs() {
         //设置了这个属性后我们才能在 WebView 里与我们的 Js 代码进行交互，对于 WebApp 是非常重要的，默认是 false，
@@ -326,10 +332,7 @@ public class BasicActivity extends AppCompatActivity {
 
     }
 
-    /*
-    Using setJavaScriptEnabled can introduce XSS vulnerabilities into your application, review carefully.
-    Your code should not invoke setJavaScriptEnabled if you are not sure that your app really requires JavaScript support
-     */
+
     private void setupWebViewBase() {
         //WebView 是否支持多窗口，如果设置为 true，需要重写
         //WebChromeClient#onCreateWindow(WebView, boolean, boolean, Message) 函数，默认为 false
@@ -342,7 +345,7 @@ public class BasicActivity extends AppCompatActivity {
         webSettings.setLoadsImagesAutomatically(true);
         //标识是否加载网络上的图片（使用 http 或者 https 域名的资源），需要注意的是如果 getLoadsImagesAutomatically()
         //不返回 true，这个标识将没有作用。这个标识和上面的标识会互相影响。
-        webSettings.setBlockNetworkImage(false);
+        webSettings.setBlockNetworkImage(false);//可用于优化加载速度：首先阻塞图片，让图片不显示，页面加载好以后，在放开图片
 
 
         //设置 WebView 的默认 userAgent 字符串
@@ -354,7 +357,7 @@ public class BasicActivity extends AppCompatActivity {
         //被这个 tag 声明的宽度将会被使用，如果页面没有这个 tag 或者没有提供一个宽度，那么一个宽型 viewport 将会被使用。
         webSettings.setUseWideViewPort(true);
         // 缩放至屏幕的大小
-        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setLoadWithOverviewMode(true);//设置自适应屏幕，两者合用
 
 
         //设置 WebView 的字体，可以通过这个函数，改变 WebView 的字体，默认字体为 "sans-serif"
@@ -365,11 +368,11 @@ public class BasicActivity extends AppCompatActivity {
         webSettings.setMinimumFontSize(12);
 
 
-        //显示WebView提供的缩放控件
-        webSettings.setDisplayZoomControls(false);
-        webSettings.setBuiltInZoomControls(false);
-        //设置页面是否支持缩放
+        //设置页面是否支持缩放(前提)
         webSettings.setSupportZoom(false);
+        //显示WebView提供的缩放控件
+        webSettings.setDisplayZoomControls(false);//隐藏原生的缩放控件
+        webSettings.setBuiltInZoomControls(false);//设置内置的缩放控件。若为false，则该WebView不可缩放
         //设置文本的缩放倍数，默认为 100
         webSettings.setTextZoom(100);
 
@@ -378,8 +381,17 @@ public class BasicActivity extends AppCompatActivity {
         webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
 
 
-        //支持内容重新布局
+        //用来控制html的布局，总共有三种类型：
+        //NORMAL：正常显示，没有渲染变化。
+        //SINGLE_COLUMN：把所有内容放到WebView组件等宽的一列中
+        //NARROW_COLUMNS：可能的话，使所有列的宽度不超过屏幕宽度。
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
-        webSettings.setNeedInitialFocus(true); //当webview调用requestFocus时为webview设置节点
+
+
+        //当webView调用requestFocus时为webView设置节点
+        webSettings.setNeedInitialFocus(true);
+
+
+        webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
     }
 }

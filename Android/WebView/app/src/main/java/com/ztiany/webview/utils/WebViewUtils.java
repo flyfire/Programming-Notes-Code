@@ -48,6 +48,8 @@ public class WebViewUtils {
         if (webView == null) {
             return;
         }
+        webView.setWebChromeClient(null);
+        webView.setWebViewClient(null);
         if (webView.getParent() != null) {
             ((ViewGroup) webView.getParent()).removeAllViews();
         }
@@ -96,7 +98,9 @@ public class WebViewUtils {
             CookieSyncManager.createInstance(context);
         }
         CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
         cookieManager.setCookie(url, cookie);//如果没有特殊需求，这里只需要将session id以"key=value"形式作为cookie即可
+        CookieSyncManager.getInstance().sync();
     }
 
     /**
@@ -110,10 +114,12 @@ public class WebViewUtils {
         return cookieManager.getCookie(url);
     }
 
-    public static void clearCookie() {
+    public static void clearCookie(Context context) {
         // 这个两个在 API level 21 被抛弃
+        CookieSyncManager.createInstance(context);
         CookieManager.getInstance().removeSessionCookie();
         CookieManager.getInstance().removeAllCookie();
+        CookieSyncManager.getInstance().sync();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             clearCookie21();
         }
