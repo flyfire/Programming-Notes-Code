@@ -20,5 +20,5 @@ console.log(objQ.z.a);
 console.log(objQ["x"]);
 
 
-//对象创建表达式，使用new创建对象
+//对象创建表达式，使用new创建对象，等同于{}
 var objR = new Object();

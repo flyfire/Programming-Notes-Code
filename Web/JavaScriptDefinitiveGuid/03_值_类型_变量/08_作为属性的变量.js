@@ -1,5 +1,5 @@
 //定义变量
-var trueVar = 3;//使用var声明的全局变量是不可配置的，无发用delete删除。
+var trueVar = 3;//使用var声明的全局变量是不可配置的，无法用delete删除。
 fakeVar = 4;
 this.fakeVar2 = 5;
 

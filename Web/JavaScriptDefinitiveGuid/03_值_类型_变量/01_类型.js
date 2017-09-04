@@ -6,7 +6,7 @@ console.log(typeof valueUndefined);
 
 //数组
 var strArr = ["a", "b", 'C'];
-var intArr = new Array(1, 2, 3);
+var intArr = new Array(1, 2, 3);//等同于[]方式
 console.log(strArr.toString());
 console.log(intArr.toString());
 
