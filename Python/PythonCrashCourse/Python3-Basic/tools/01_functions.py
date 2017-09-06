@@ -1,9 +1,11 @@
-# 演示python内置函数 参考http://www.runoob.com/python/python-func-ord.html
+#########################
+# 演示python内置函数 参考 http://www.runoob.com/python/python-built-in-functions.html
+#########################
 
 # len(item) 计算容器中元素个数
 print(len("A"))
 
-# 返回容器中元素最大值/最小值
+# max/min返回容器中元素最大值/最小值
 item = [1, 2, 3]
 max(item),
 min(item),

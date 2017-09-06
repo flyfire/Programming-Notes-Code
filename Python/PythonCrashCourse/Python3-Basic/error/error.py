@@ -1,7 +1,9 @@
+#########################
 # 演示异常处理
+#########################
 
 # 一般的捕获异常
-try:  # 捕获语句
+try:
     a = 3 / 0
 except ZeroDivisionError:  # 指定要捕获的异常
     a = 0
@@ -30,6 +32,5 @@ def function_name(level):
     if level < 1:
         raise Exception("Invalid level!", level)
         # 触发异常后，后面的代码就不会再执行
-
 
 function_name(0)

@@ -1,5 +1,6 @@
+#########################
 # 演示列表
-
+#########################
 
 # 定义列表
 listA = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -14,15 +15,14 @@ chars = ['a', 'b', 'c', 'd']
 for i, ch in enumerate(chars):
     print(i, ch)
 
-# 增
+
 listA.append(11)  # 添加到末尾
-
 listA.insert(len(listA), 12)  # 插入
-print(listA)
 
+# 通过extend可以将另一个集合中的元素逐一添加到列表中
 list12 = [1, 2]
 list34 = [3, 4]
-list12.extend(list34)  # 通过extend可以将另一个集合中的元素逐一添加到列表中
+list12.extend(list34)
 print(list12)
 
 # 删除
@@ -52,7 +52,7 @@ print(len(listA))
 # range类：
 #
 #         1， 使用range能够轻松的生成一系列的数组
-#         2，使用range创建列表，使用range还可以指定步长
+#         2，使用range创建列表，同时range还可以指定步长
 
 for value in range(1, 4):
     print("%d " % value, end="")

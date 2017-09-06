@@ -1,4 +1,5 @@
 # coding=utf-8
+
 # 使用except而带多种异常类型
 try:
     a = 9 / 0
@@ -9,11 +10,11 @@ else:
 
 
 # 异常的参数
-def temp_convert(var):
+def convert(var):
     try:
         return int(var)
-    except ValueError, Argument:
-        print "参数没有包含数字:\n", Argument
+    except ValueError, argument:  # argument用于引用参数
+        print "参数无法转换为数字:\n", argument
 
 
-temp_convert("xyz")
+convert("xyz")

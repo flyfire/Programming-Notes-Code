@@ -1,4 +1,6 @@
+#########################
 # 演示Python中的流程控制语句
+#########################
 
 # if 语句
 age = 18
@@ -16,7 +18,7 @@ elif inputName != name or password != inputPwd:
 else:
     print("欢迎回来")
 
-# while 语句
+# while 语句 打印九九乘法表
 startRow = 1
 startColumn = 1
 while startRow <= 9:
@@ -28,7 +30,7 @@ while startRow <= 9:
     startColumn = 1
 
 # for 循环
-for x in name:
+for x in "abc":
     print(x)
 else:
     print("end")

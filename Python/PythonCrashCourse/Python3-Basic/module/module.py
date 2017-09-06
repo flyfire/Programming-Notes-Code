@@ -1,11 +1,9 @@
+#########################
 # 演示python中的模块
-
-# 导入模块
-import math
-# 导入模块的一部分
-from calendar import calendar
-# 导入模块内部所有元素
-from time import *
+#########################
+import math  # 导入模块
+from calendar import calendar  # 导入模块的一部分
+from time import *  # 导入模块内部所有元素
 
 print(time())
 print(calendar)
