@@ -14,7 +14,7 @@ public class WaitWithNotify {
     }
 
     private static boolean flag = true;
-    private static Object sObject = new Object();
+    private static final Object sObject = new Object();
 
     public static class WaitRunnable implements Runnable {
         @Override

@@ -24,7 +24,7 @@ Groovy是基于jvm的语言，所以需要依赖jdk。在官网下载安装包�
 
 
 <br/><br/>
-## 1 使用Groovysh
+## 1 使用groovysh
 
 在终端输入`groovysh`用于打开Groovyshell，groovysh是以交互式方式尝试一些小型的groovy代码的好工具，需要注意的是，**当按下回车键groovysh就会编译并执行输入完的语句，打印代码执行过程中的所有语句，并打印这条语句的执行结果**，对于某些语句，Groovy会等待你输入完毕才执行，比如下面的为String添加isPalindrome函数。
 

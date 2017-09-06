@@ -3,7 +3,7 @@ package chapter4;
 /**
  * 线程的状态
  */
-public class ThreadState {
+public class ThreadStatus {
 
     public static void main(String[] args) {
         new Thread(new Sleep_1(), "sleep-1").start();
