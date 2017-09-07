@@ -1,8 +1,8 @@
 package ztiany.chapter0
 
-//--------------------
-//引言，Groovy特性粗略介绍
-//--------------------
+//--------------------------------------------------
+// 引言，Groovy特性粗略介绍
+//--------------------------------------------------
 
 //动态语言实例，Integer运行时添加方法
 Integer.metaClass.percentRaise = {
@@ -21,7 +21,6 @@ println 5.percentRaise(8000)
 
 //在使用groovy编程时，java有的groovy几乎都有，groovy类同样的也扩展了Object类，
 //Groovy类就是java类，面向对象规范和java语义都保留了下来
-
 println(XmlParser.class)
 println(XmlParser.class.superclass)
 

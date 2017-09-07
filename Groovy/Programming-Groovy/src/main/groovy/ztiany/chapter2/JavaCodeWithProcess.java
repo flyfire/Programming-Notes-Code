@@ -1,24 +1,14 @@
 package ztiany.chapter2;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * <br/>    功能描述：
- * <br/>    Email     : ztiany3@gmail.com
- *
- * @author Ztiany
- * @see
- * @since 1.0
- */
 public class JavaCodeWithProcess {
 
     public static void main(String... args) {
         printGroovy();
         getProcessText();
-        System.out.println(new File("").getAbsolutePath());
     }
 
     private static void printGroovy() {
@@ -33,14 +23,14 @@ public class JavaCodeWithProcess {
         BufferedReader br = null;
         try {
             Process proc = Runtime.getRuntime().exec("git help");
-             br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+            br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line;
-            while ((line = br.readLine() )!= null){
+            while ((line = br.readLine()) != null) {
                 System.out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (br != null) {
                 try {
                     br.close();
