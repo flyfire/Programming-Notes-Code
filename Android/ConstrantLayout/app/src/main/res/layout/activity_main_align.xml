@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:ignore="HardcodedText"
     tools:context="com.ztiany.constrantlayout.MainActivity">
 
     <TextView
@@ -15,8 +16,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintVertical_bias="0.502"/>
 
     <Button
         android:id="@+id/button1"
@@ -30,17 +32,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        tools:ignore="HardcodedText"/>
+        app:layout_constraintVertical_bias="0.421"
+        tools:layout_editor_absoluteX="200dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="91dp"
         android:text="Button1"
         app:layout_constraintBottom_toTopOf="@id/button1"
-        app:layout_constraintLeft_toLeftOf="@id/button1"
-        app:layout_constraintRight_toRightOf="@id/button1"
-        tools:ignore="HardcodedText"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"/>
 
 </android.support.constraint.ConstraintLayout>
