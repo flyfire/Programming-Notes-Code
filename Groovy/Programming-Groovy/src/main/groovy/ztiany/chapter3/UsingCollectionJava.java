@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class UsingCollectionJava {
+
     public static void main(String... args) {
         ArrayList<String> list = new ArrayList<>();
         Collection<String> col = list;

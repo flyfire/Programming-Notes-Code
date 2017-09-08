@@ -13,7 +13,7 @@
 
 ### 第一部分：Groovy起步
 
-1. [引言](note/Groovy程序设计——00Groovy基本介绍.md)
+1. [引言](note/Groovy程序设计——00Groovy介绍.md)
     - Groovy是什么
     - 为何使用动态语言
     - 为何选择Groovy
