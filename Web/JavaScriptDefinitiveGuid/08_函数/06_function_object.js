@@ -62,6 +62,7 @@ if (!Function.prototype.bind) {
     }
 }
 
+//测试模拟的bind方法
 Function.prototype.mockBind = function (o/*, args*/) {
     var self = this;
     var boundArgs = arguments;
@@ -84,6 +85,6 @@ function testMockBind(a) {
 }
 var newFunction1 = testMockBind.mockBind({x: 1, y: 2, z: 2}, 15);//上面a=15
 var newFunction2 = testMockBind.mockBind({x: 1, y: 2, z: 2});//上面a=12
-console.log(newFunction1(12));//18
+console.log(newFunction1(100));//18，而100被忽略
 console.log(newFunction2(12));//15
 

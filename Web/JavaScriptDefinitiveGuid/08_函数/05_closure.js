@@ -2,6 +2,18 @@
 // 闭包
 //========================================================================
 
+/*
+ 函数的执行依赖变量的作用域，这个作用域是在函数定义时确定的，而不是函数调用是确定的，
+ 为了实现这种词法作用域，js函数对象的内部状态不仅包括函数的代码逻辑，还必需引用函数当前的作用域链。
+ 函数对象可以通过作用域链关联起来，函数体内部的变量都可以保存在函数作用域内，
+ 这种特性在计算机科学中称为闭包。
+
+ 维基百科：在计算机科学中，闭包（英语：Closure），又称词法闭包（Lexical Closure）或函数闭包（function closures），
+ 是引用了自由变量的函数。这个被引用的自由变量将和这个函数一同存在，即使已经离开了创造它的环境也不例外。
+ 所以，有另一种说法认为闭包是由函数和与其相关的引用环境组合而成的实体。
+ 闭包在运行时可以有多个实例，不同的引用环境和相同的函数组合可以产生不同的实例。
+ */
+
 var scope = "global scope";
 function checkScope() {
     var scope = "local scope";
@@ -75,13 +87,13 @@ console.log(c.count());//1
 //从技术角度来讲，可以将闭包合并为属性存储器方法getter和setter
 function counter2(n) {
     return {
-        get count(){
+        get count() {
             return n++;
         },
-        set count(value){
-            if(value>=n) {
+        set count(value) {
+            if (value >= n) {
                 n = value;
-            }else {
+            } else {
                 throw Error("count can only be set to a larger value");
             }
         }
@@ -97,7 +109,7 @@ console.log(c.count);
 // 闭包访问this和arguments
 //========================================================================
 /*
-1，闭包在外部函数里无法访问this，除非外部函数将this转存为一个变量：var self = this;
-2，闭包有自己的argument参数，所以闭包用样无法直接访问外部函数的参数数组
+ 1，闭包在外部函数里无法访问this，除非外部函数将this转存为一个变量：var self = this;
+ 2，闭包有自己的argument参数，所以闭包用样无法直接访问外部函数的参数数组
 
  */
