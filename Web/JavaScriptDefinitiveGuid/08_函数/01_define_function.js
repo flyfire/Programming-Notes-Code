@@ -10,7 +10,6 @@ function funcB(a, b) {
     return a / b;
 }
 
-
 //创建函数对象
 var funcC = new Function("var a = 10; var b = 20; return a+b;");
 console.log(funcC());
@@ -26,22 +25,17 @@ function outerFunc(a) {
 }
 
 
-//apply
-var o = [1, 2, 3];
-function applyFunc(a) {
-    console.log("this: " + this);
-    console.log(a);
-}
-applyFunc.apply(o, [{x: 1}]);//o此时时指定调用函数的上下文
-
-
-//匿名函数
+//========================================================================
+// 匿名函数
+//========================================================================
 outerFunc(function () {
     console.log("I am running");
 });
 
 
-//定义函数立即调用
+//========================================================================
+// 定义函数立即调用
+//========================================================================
 (function (a, b) {
     console.log(a + b);
 })(1, 2);
