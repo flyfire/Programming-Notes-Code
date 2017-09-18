@@ -2,28 +2,29 @@
 
 ## 1.1 语法
 
-### 定义变量：DefineValue
+### 定义变量
 
    - 可变使用`var`
    - 常量使用`val`
+    -  成员变量必须显示指定初始值，否则需要使用lateinit修饰变量，lateinit不能用于基本类型
     
-### 条件表达式：ConditionExpression
+### 条件表达式
 
    - 简单的函数声明省略大括号，直接使用表达式
     
-### 流程控制：FlowControl
+### 流程控制
 
    - `if`：if表达式取代了三元运算符，kotlin中没有三元运算符
    - `for`
    - `while`
    - `when`：kotlin没有`switch`
-   - 定义标签`loop1@`,标签返回`returnloop1@`
+   - 定义标签`loop1@`，标签返回`returnloop1@`
 
-### 类型检查：TypeCheck
+### 类型检查
 
-    - 类型检查用`is`，比如`obj is String`
+   - 类型检查用`is`，比如`obj is String`
     
-### 比较：Compare
+### 比较
     
        ==比较：
            如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等
@@ -41,7 +42,7 @@
    
 ## 1.2 数据类型
 
-### 数字类型：NumberType
+### 数字类型
 
    - 支持的数字数据类型
    - 不同数字类型不能隐式转换，使用`toXXX`方法进行转换
@@ -55,24 +56,24 @@
    - 编码其他字符要用 Unicode 转义序列语法：'\uFF00'。
    - 当需要可空引用时，像数字、字符会被装箱。装箱操作不会保留同一性
     
-### 字符串类型：Strings
+### 字符串类型
 
    - `"""`括起来的字符串会保留原来的换行格式
    - 字符串模板的使用方法：`$`
     
-### 数组类型：Arrays
+### 数组类型
 
    - 数组类型使用Array表示
    - 数组在 Kotlin 中使用 Array 类来表示， 它定义了 get （按照运算符重载约定这会转变为 []）和 set 函数 和 size 属性，以及一些其他有用的成员函数
    - 与 Java 不同的是，Kotlin 中数组是不型变的（invariant）。这意味着 Kotlin 不让我们把 `Array<String>` 赋值给 `Array<Any>`
    - Kotlin 也有无装箱开销的专门的类来表示原生类型数组: ByteArray、 ShortArray、IntArray 等等
    
-### 使用集合：UseCollection
+### 使用集合
 
    - 有很多关于集合的方法可以直接使用，比如`setOf、listOf`等
    - 使用集合的`StreamAPI`可以很方便的操作集合数据
 
-### 使用范围：Range
+### 使用范围
     
    - Range是一种数据结构，表示一个范围：比如1到5用`1..5`表示
    - 使用 `in` 运算符来检测某个数字是否在指定区间内

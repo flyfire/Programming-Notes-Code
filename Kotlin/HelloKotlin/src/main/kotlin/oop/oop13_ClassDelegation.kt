@@ -170,8 +170,6 @@ private fun localDelegate(computeFoo: () -> String) {
  */
 
 
-
-
 fun main(args: Array<String>) {
     //test property delegate
     testPropertyDelegation()

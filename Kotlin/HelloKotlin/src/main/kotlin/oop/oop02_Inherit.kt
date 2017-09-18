@@ -29,18 +29,16 @@ class Derived(p: Int) : Base() {
 
 //没有主构造函数，用super
 class Derived2 : Base {
-
     constructor(p: Int, name: String) : super() {
         println(name)
     }
-
 }
 
 
 /**
  * 覆盖方法和属性 ：
  *
- *1，    Kotlin 需要显式 标注可覆盖的成员（称之为开放）和覆盖后的成员
+ *1，   Kotlin 需要显式 标注可覆盖的成员（称之为开放）和覆盖后的成员
  *2，  子类的函数上必须加上 override标注。如果没写，编译器将会报错
  *3，  如果函数没有标注 open，则子类中不允许定义相同签名的函数， 不论加不加 override。
  *4，  在一个 final 类中（没有用 open 标注的类），开放成员是禁止的
@@ -52,7 +50,6 @@ class Derived2 : Base {
  * */
 
 open class Bird(name: String, age: Int) {
-
     open fun fly() {}
     var mAge: Int = age
     open val mId = name.hashCode()
@@ -61,11 +58,9 @@ open class Bird(name: String, age: Int) {
 }
 
 class Goose(name: String, age: Int, override var color: Int) : Bird(name, age) {
-
     val mTag = "Goose"
     override fun fly() {}
     override var mId = (mTag + name).hashCode()
-
 }
 
 
