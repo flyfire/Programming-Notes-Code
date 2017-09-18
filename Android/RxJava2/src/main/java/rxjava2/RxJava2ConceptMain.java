@@ -1,9 +1,8 @@
-package diff;
+package rxjava2;
 
 import io.reactivex.*;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
-import org.reactivestreams.Processor;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
@@ -16,21 +15,10 @@ import org.reactivestreams.Subscription;
 public class RxJava2ConceptMain {
 
     public static void main(String... args) {
-        flowableWithObservable();
         createSource();
+        flowableWithObservable();
         disposableObserver();
-        operator();
     }
-
-    private static void operator() {
-        //        操作符 (operator) 可以完成三种操作：
-        //              以某种方式操作或组合数据
-        //              以某种方式操作线程
-        //              以某种方式操作发射对象
-        String first = Flowable.fromCallable(() -> "你好啊").blockingFirst();
-        System.out.println(first);
-    }
-
 
     private static void createSource() {
         //从Callable创建Flowable
@@ -49,11 +37,10 @@ public class RxJava2ConceptMain {
 
     private static void flowableWithObservable() {
 
-        //        Flowable 对比 Observable，可观测的流，RxJava 2 当中表示这种过程的类型有两种：分别是 Flowable 和 Observable。
-        //         Flowable增加了对背压(BackPressure)的处理
+        //        Flowable 对比 Observable，可观测的流，RxJava 2 当中表示这种过程的类型有两种：
+        //        分别是 Flowable 和 Observable。Flowable增加了对背压(BackPressure)的处理
 
         //对数据进行处理
-
         //RxJava1中的概念，现在Subscriber在订阅的时候回调给订阅者
         Subscriber subscriber = new Subscriber() {
             @Override
@@ -100,37 +87,10 @@ public class RxJava2ConceptMain {
             }
         };
 
-        Processor processor = new Processor() {
-            @Override
-            public void subscribe(Subscriber s) {
-
-            }
-
-            @Override
-            public void onSubscribe(Subscription s) {
-
-            }
-
-            @Override
-            public void onNext(Object o) {
-
-            }
-
-            @Override
-            public void onError(Throwable t) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
     }
 
 
     private static void disposableObserver() {
-
         //名为 DisposableObserver 的类型，它将自动处理第四个方法，并允许只用关心来自 Observable 本身的通知
         //它实现了 Disposable，因此可以调用 dispose 方法，它会将其转发到过程链当中。
         DisposableObserver disposableObserver = new DisposableObserver() {

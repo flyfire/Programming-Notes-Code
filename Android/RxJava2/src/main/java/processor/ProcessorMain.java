@@ -16,8 +16,11 @@ public class ProcessorMain {
         testBehaviorProcessor();
     }
 
+    @SuppressWarnings("all")
     private static void testBehaviorProcessor() {
+
         BehaviorProcessor<String> behaviorProcessor = BehaviorProcessor.create();
+
         behaviorProcessor.subscribe(new Subscriber<String>() {
             @Override
             public void onSubscribe(Subscription s) {
@@ -45,11 +48,13 @@ public class ProcessorMain {
         behaviorProcessor.onNext("C");
         behaviorProcessor.onNext("D");
         behaviorProcessor.onError(new RuntimeException("test error"));
+
+
         //之后的订阅者在订阅了发生了错误的behaviorProcessor后，只会受到一个Error事件
         behaviorProcessor.subscribe(
                 s -> System.out.println("Second onNext -- " + s),
                 throwable -> System.out.println("Second onError -- " + throwable),
-                ()-> System.out.println("Second onComplete")
+                () -> System.out.println("Second onComplete")
         );
     }
 

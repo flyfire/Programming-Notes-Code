@@ -1,6 +1,5 @@
-package diff;
+package processor;
 
-import io.reactivex.processors.AsyncProcessor;
 import io.reactivex.processors.BehaviorProcessor;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -16,7 +15,8 @@ import rx.subjects.AsyncSubject;
 public class SubjectAndProcessorMain {
 
     /*
-    Behavior在RxJava2中依然存在，但现在他们不支持backpressure。新出现的Processors支持backpressure，并且都设计为现成安全的
+    Subject在RxJava2中依然存在，但现在他们不支持backpressure。
+    新出现的Processors支持backpressure，并且都设计为现成安全的
      */
     public static void main(String... args) {
         testAsyncSubject();
