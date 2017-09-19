@@ -2,15 +2,17 @@ package basic
 
 /**
  *类型检查与转换
+ *
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.5.22 23:08
  */
 
-/**
- * 类型检查与转换：
- * is 运算符检测一个表达式是否某类型的一个实例。如果一个不可变的局部变量或属性已经判断出为某类型，
- * 那么检测后的分支中可以直接当作该类型使用，无需显式转换
+/*
+类型检查与转换：
+
+is 运算符检测一个表达式是否某类型的一个实例。如果一个不可变的局部变量或属性已经判断出为某类型，
+那么检测后的分支中可以直接当作该类型使用，无需显式转换
  */
 
 private fun getStringLength(obj: Any): Int? {
@@ -39,7 +41,6 @@ private fun getStringLength_2(obj: Any): Int? {
 
 
 fun main(args: Array<String>) {
-
     //内部函数
     fun printLength(obj: Any) {
         println("'$obj' string length is ${basic.getStringLength(obj) ?: "... err, not a string"} ")
@@ -48,6 +49,5 @@ fun main(args: Array<String>) {
     printLength("i am ztiany")
     printLength(1000)
     printLength(listOf(Any()))
-
 }
 
