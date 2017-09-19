@@ -7,7 +7,5 @@ package com.ztiany.main.splash;
  */
 public interface SplashView {
 
-    void openMainPage();
-
     void showMessage(String message);
 }

@@ -12,11 +12,11 @@ import javax.inject.Inject;
  */
 public class BindingRepository implements BindingDataSource {
 
-
     private volatile List<BindingBean> mBindingBeans;
 
     @Inject
     BindingRepository() {
+
     }
 
     @Override
@@ -26,7 +26,6 @@ public class BindingRepository implements BindingDataSource {
             public void run() {
                 try {
                     Thread.sleep(1000);
-
                     callback.onLoadSuccess(createList());
                 } catch (InterruptedException e) {
                     e.printStackTrace();

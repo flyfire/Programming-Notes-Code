@@ -1,7 +1,5 @@
 package com.ztiany.main.main;
 
-public interface MainView {
-
+interface MainView {
     void showMessage(CharSequence message);
-
 }

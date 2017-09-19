@@ -50,8 +50,7 @@ public class BindingDetailFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ModuleMainFragmentBindingDetailBinding bindingDetailBinding = ModuleMainFragmentBindingDetailBinding.inflate(
-                inflater, container, false);
+        ModuleMainFragmentBindingDetailBinding bindingDetailBinding = ModuleMainFragmentBindingDetailBinding.inflate(inflater, container, false);
         bindingDetailBinding.setView(this);
         bindingDetailBinding.setViewmodel(mDetailViewModel);
         return bindingDetailBinding.getRoot();

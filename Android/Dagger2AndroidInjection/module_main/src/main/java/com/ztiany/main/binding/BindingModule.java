@@ -43,7 +43,8 @@ abstract class BindingModule {
     abstract BindingListFragment bindBindingListFragment();
 
     /**
-     * 提供给BindingListFragment的presenter
+     * 提供给BindingListFragment的presenter，这里可以偷懒，但是如果要指定Presenter的Scope为BindingDetailFragment中指定的Scope，则需要定义个新的Module，然后在添加到
+     * BindingDetailFragment对应的ContributesAndroidInjector中去
      */
     @Binds
     abstract Contract.Presenter provideListPresenter(BindingListPresenter presenter);

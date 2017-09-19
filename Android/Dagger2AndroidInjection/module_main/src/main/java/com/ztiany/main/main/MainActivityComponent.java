@@ -5,9 +5,7 @@ import com.ztiany.base.di.ActivityScope;
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
 
-@Subcomponent(
-        modules = MainModule.class
-)
+@Subcomponent(modules = MainModule.class)
 @ActivityScope
 public interface MainActivityComponent extends AndroidInjector<MainActivity> {
 

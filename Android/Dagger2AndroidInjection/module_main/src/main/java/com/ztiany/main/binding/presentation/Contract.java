@@ -12,7 +12,9 @@ import java.util.List;
 public interface Contract {
 
     interface View{
+
         void showList(List<BindingBean> bindingBeanList);
+
     }
 
     interface Presenter{

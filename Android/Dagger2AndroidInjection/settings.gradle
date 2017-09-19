@@ -1,1 +1,1 @@
-include ':module_main', ':BaseLibrary', ':module_feature', ':Home'
+include ':module_main', ':base', ':module_a', ':app', ':module_b'

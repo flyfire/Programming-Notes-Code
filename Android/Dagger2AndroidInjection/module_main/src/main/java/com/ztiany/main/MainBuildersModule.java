@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 
 import com.ztiany.base.di.ActivityScope;
+import com.ztiany.base.di.ViewKey;
 import com.ztiany.main.binding.BindingActivity;
 import com.ztiany.main.binding.BindingComponent;
 import com.ztiany.main.main.CustomTextView;
@@ -37,9 +38,8 @@ public abstract class MainBuildersModule {
     @ActivityKey(BindingActivity.class)
     public abstract AndroidInjector.Factory<? extends Activity> bindBindingActivityFactory(BindingComponent.Builder builder);
 
-
     /**
-     * ContributesAndroidInjector用在方法中，此方法必须是无参数的，且返回值为Android中具体的组件，然后ContributesAndroidInjector
+     * ContributesAndroidInjector用在方法中，此方法必须是无参数的，且返回值为Android中具体的组件(Activity，Fragment，Service等)，然后ContributesAndroidInjector
      * 根据方法的返回类型为其生成一个SubComponent，然后我们就不需要在写Component了
      */
     @ActivityScope
