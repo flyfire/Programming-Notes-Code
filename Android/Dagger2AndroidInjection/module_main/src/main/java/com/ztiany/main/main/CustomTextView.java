@@ -3,10 +3,10 @@ package com.ztiany.main.main;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.view.View;
 
-import com.ztiany.base.presentation.ErrorHandler;
-import com.ztiany.main.ViewInjection;
+import com.ztiany.base.di.ViewInjection;
+import com.ztiany.base.presentation.MessageUtils;
 
 import javax.inject.Inject;
 
@@ -18,7 +18,7 @@ import javax.inject.Inject;
 public class CustomTextView extends AppCompatTextView {
 
     @Inject
-    ErrorHandler mErrorHandler;
+    MessageUtils mMessageUtils;
 
     public CustomTextView(Context context) {
         this(context, null);
@@ -31,6 +31,11 @@ public class CustomTextView extends AppCompatTextView {
     public CustomTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         ViewInjection.inject(this);
-        Log.d("CustomTextView", "mErrorHandler:" + mErrorHandler);
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMessageUtils.showMessage(" I am CustomTextView");
+            }
+        });
     }
 }

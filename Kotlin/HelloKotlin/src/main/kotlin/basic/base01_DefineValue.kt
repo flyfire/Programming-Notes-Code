@@ -1,12 +1,14 @@
 package basic
 
+import java.util.*
+
 /**
  *定义局部变量
+ *
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.5.22 22:47
  */
-
 
 fun main(args: Array<String>) {
 
@@ -22,3 +24,7 @@ fun main(args: Array<String>) {
     println("x = $x")
 }
 
+private class ClassA {
+    //延迟初始化
+    lateinit var value: Date
+}

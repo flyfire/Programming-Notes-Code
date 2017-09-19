@@ -14,11 +14,13 @@ public interface BindingDataSource {
     void loadBindingBean(String id ,Callback callback);
 
     abstract class Callback {
+
         public void onLoadSuccess(List<BindingBean> bindingBeanList) {
 
         }
 
         public void onLoadSuccess(BindingBean bindingBean) {
+
         }
     }
 

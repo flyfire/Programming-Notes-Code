@@ -30,7 +30,4 @@ public class Utils {
         }
     }
 
-    public static void currentThread(String tag) {
-        System.out.println(tag + " --> current thread :" + Thread.currentThread());
-    }
 }

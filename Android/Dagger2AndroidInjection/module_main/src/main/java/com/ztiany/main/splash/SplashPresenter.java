@@ -9,7 +9,7 @@ import javax.inject.Inject;
  */
 class SplashPresenter {
 
-    SplashView mSplashView;
+    private SplashView mSplashView;
 
     @Inject
     SplashPresenter(SplashView splashView) {
@@ -20,7 +20,4 @@ class SplashPresenter {
         mSplashView.showMessage("SplashPresenter started");
     }
 
-    void open() {
-        mSplashView.openMainPage();
-    }
 }

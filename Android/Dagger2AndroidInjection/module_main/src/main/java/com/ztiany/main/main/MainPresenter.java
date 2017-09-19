@@ -7,7 +7,7 @@ import javax.inject.Inject;
  *         Email: ztiany3@gmail.com
  *         Date : 2017-05-17 17:45
  */
-public class MainPresenter {
+class MainPresenter {
 
     private MainView mMainView;
 
@@ -17,7 +17,7 @@ public class MainPresenter {
     }
 
     void start() {
-        mMainView.showMessage("MainPresenter installed");
+        mMainView.showMessage("MainPresenter started");
     }
 
 }

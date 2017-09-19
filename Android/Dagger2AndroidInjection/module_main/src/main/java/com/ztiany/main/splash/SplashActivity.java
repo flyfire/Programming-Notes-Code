@@ -2,9 +2,7 @@ package com.ztiany.main.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,25 +24,11 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.module_main_activity_splash);
         mSplashPresenter.start();
-        setupView();
     }
 
-    private void setupView() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.module_main_toolbar);
-        setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.module_main_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSplashPresenter.open();
-            }
-        });
-    }
-
-    @Override
-    public void openMainPage() {
+    public void openMain(View view) {
         startActivity(new Intent(this, MainActivity.class));
-        finish();
+        supportFinishAfterTransition();
     }
 
     @Override

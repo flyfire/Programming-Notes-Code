@@ -19,7 +19,6 @@ public class BindingDetailViewModel {
 
     public final ObservableField<String> name = new ObservableField<>();
 
-
     @Inject
     BindingDetailViewModel() {
 
