@@ -15,8 +15,7 @@ fun main(args: Array<String>) {
     //一次赋值（只读）的局部变量
     val a: Int = 3
     val b = 4
-    val c: Int
-    c = 5
+    val c: Int = 5
     println("a = $a, b = $b, c = $c")
 
     //可变变量

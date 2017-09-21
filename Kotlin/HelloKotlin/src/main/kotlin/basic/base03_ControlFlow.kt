@@ -2,6 +2,7 @@ package basic
 
 /**
  *控制流：if，when，for，while，返回和跳转
+ *
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.5.24 23:47
@@ -102,7 +103,7 @@ fun skip() {
         }
     }
 
-    //标签处返回，Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。
+    //标签处返回：Kotlin有函数字面量、局部函数和对象表达式。因此Kotlin的函数可以被嵌套。
     // 标签限制的 return 允许我们从外层函数返回。 最重要的一个用途就是从 lambda 表达式中返回
     val ints = listOf(1, 2, 3, 4)
     ints.forEach lit@ {
@@ -111,7 +112,7 @@ fun skip() {
         println(it)//打印：234
     }
 
-    //我们用一个匿名函数替代 lambda 表达式。 匿名函数内部的 return 语句将从该匿名函数自身返回+
+    //我们用一个匿名函数替代 lambda 表达式。 匿名函数内部的 return 语句将从该匿名函数自身返回
     ints.forEach(fun(value: Int) {
         if (value == 0) return
         print(value)

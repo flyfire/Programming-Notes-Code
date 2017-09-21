@@ -111,5 +111,4 @@ console.log(c.count);
 /*
  1，闭包在外部函数里无法访问this，除非外部函数将this转存为一个变量：var self = this;
  2，闭包有自己的argument参数，所以闭包用样无法直接访问外部函数的参数数组
-
  */
