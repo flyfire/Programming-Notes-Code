@@ -19,3 +19,5 @@
 - [ProgressManager](https://github.com/JessYanCoding/ProgressManager)
 - [OkHttpUtils](https://github.com/hongyangAndroid/okhttputils)
 - [GlideImageView](https://github.com/sfsheng0322/GlideImageView)
+- [XSnow](https://github.com/xiaoyaoyou1212/XSnow)
+- [Glide4.0使用浅解](http://www.jianshu.com/p/ab97d6bda8ec)

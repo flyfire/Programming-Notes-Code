@@ -7,21 +7,12 @@ public class ProgressInfo implements Parcelable {
 
     private long currentBytes; //当前已上传或下载的总长度
     private long contentLength; //数据总长度
-    private long intervalTime; //本次调用距离上一次被调用所间隔的时间(毫秒)
     private long eachBytes; //本次调用距离上一次被调用的间隔时间内上传或下载的byte长度
-    //如果同一个 Url 地址,上一次的上传或下载操作都还没结束,
-    //又开始了新的上传或下载操作(比如用户点击多次点击上传或下载同一个 Url 地址,当然你也可以在上层屏蔽掉用户的重复点击),
-    //此 id (请求开始时的时间)就变得尤为重要,用来区分正在执行的进度信息,因为是以请求开始时的时间作为 id ,所以值越大,说明该请求越新
-    private long id;
+    private long intervalTime; //本次调用距离上一次被调用所间隔的时间(毫秒)
     private boolean finish; //进度是否完成
 
-
-    public ProgressInfo(long id) {
-        this.id = id;
-    }
-
-    void setCurrentbytes(long currentbytes) {
-        this.currentBytes = currentbytes;
+    void setCurrentBytes(long currentBytes) {
+        this.currentBytes = currentBytes;
     }
 
     void setContentLength(long contentLength) {
@@ -40,7 +31,7 @@ public class ProgressInfo implements Parcelable {
         this.finish = finish;
     }
 
-    public long getCurrentbytes() {
+    public long getCurrentBytes() {
         return currentBytes;
     }
 
@@ -56,10 +47,6 @@ public class ProgressInfo implements Parcelable {
         return eachBytes;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public boolean isFinish() {
         return finish;
     }
@@ -70,8 +57,8 @@ public class ProgressInfo implements Parcelable {
      * @return
      */
     public int getPercent() {
-        if (getCurrentbytes() <= 0 || getContentLength() <= 0) return 0;
-        return (int) ((100 * getCurrentbytes()) / getContentLength());
+        if (getCurrentBytes() <= 0 || getContentLength() <= 0) return 0;
+        return (int) ((100 * getCurrentBytes()) / getContentLength());
     }
 
     /**
@@ -87,7 +74,6 @@ public class ProgressInfo implements Parcelable {
     @Override
     public String toString() {
         return "ProgressInfo{" +
-                "id=" + id +
                 ", currentBytes=" + currentBytes +
                 ", contentLength=" + contentLength +
                 ", eachBytes=" + eachBytes +
@@ -105,18 +91,20 @@ public class ProgressInfo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.currentBytes);
         dest.writeLong(this.contentLength);
-        dest.writeLong(this.intervalTime);
         dest.writeLong(this.eachBytes);
-        dest.writeLong(this.id);
+        dest.writeLong(this.intervalTime);
         dest.writeByte(this.finish ? (byte) 1 : (byte) 0);
+    }
+
+    ProgressInfo() {
+
     }
 
     protected ProgressInfo(Parcel in) {
         this.currentBytes = in.readLong();
         this.contentLength = in.readLong();
-        this.intervalTime = in.readLong();
         this.eachBytes = in.readLong();
-        this.id = in.readLong();
+        this.intervalTime = in.readLong();
         this.finish = in.readByte() != 0;
     }
 

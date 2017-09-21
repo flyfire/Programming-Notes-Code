@@ -15,17 +15,17 @@ import okio.Source;
 
 class ProgressResponseBody extends ResponseBody {
 
-    private int mRefreshTime;
+    private final int mRefreshTime;
     private final ResponseBody mDelegate;
     private final ProgressInfo mProgressInfo;
-    private BufferedSource mBufferedSource;
     private final ProgressListener mProgressListener;
+    private BufferedSource mBufferedSource;
 
     ProgressResponseBody(ResponseBody responseBody, int refreshTime, ProgressListener progressListener) {
         this.mDelegate = responseBody;
         mProgressListener = progressListener;
         this.mRefreshTime = refreshTime;
-        this.mProgressInfo = new ProgressInfo(System.currentTimeMillis());
+        this.mProgressInfo = new ProgressInfo();
     }
 
     @Override
@@ -59,7 +59,7 @@ class ProgressResponseBody extends ResponseBody {
                     bytesRead = super.read(sink, byteCount);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    mProgressListener.onError(mProgressInfo.getId(), e);
+                    mProgressListener.onError(e);
                     throw e;
                 }
                 if (mProgressInfo.getContentLength() == 0) { //避免重复调用 contentLength()
@@ -77,7 +77,7 @@ class ProgressResponseBody extends ResponseBody {
                     // Runnable 里的代码是通过 Handler 执行在主线程的,外面代码可能执行在其他线程
                     // 所以我必须使用 final ,保证在 Runnable 执行前使用到的变量,在执行时不会被修改
                     mProgressInfo.setEachBytes(bytesRead != -1 ? finalTempSize : -1);
-                    mProgressInfo.setCurrentbytes(finalTotalBytesRead);
+                    mProgressInfo.setCurrentBytes(finalTotalBytesRead);
                     mProgressInfo.setIntervalTime(finalIntervalTime);
                     mProgressInfo.setFinish(bytesRead == -1 && finalTotalBytesRead == mProgressInfo.getContentLength());
                     mProgressListener.onProgress(mProgressInfo);

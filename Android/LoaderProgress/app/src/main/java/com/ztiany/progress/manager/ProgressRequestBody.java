@@ -16,16 +16,16 @@ import okio.Sink;
 class ProgressRequestBody extends RequestBody {
 
     private final ProgressListener mProgressListener;
-    private int mRefreshTime;
     private final RequestBody mDelegate;
     private final ProgressInfo mProgressInfo;
+    private final int mRefreshTime;
     private BufferedSink mBufferedSink;
 
     ProgressRequestBody(RequestBody delegate, int refreshTime, ProgressListener progressListener) {
         this.mDelegate = delegate;
         mProgressListener = progressListener;
         this.mRefreshTime = refreshTime;
-        this.mProgressInfo = new ProgressInfo(System.currentTimeMillis());
+        this.mProgressInfo = new ProgressInfo();
     }
 
     @Override
@@ -53,7 +53,7 @@ class ProgressRequestBody extends RequestBody {
             mBufferedSink.flush();
         } catch (IOException e) {
             e.printStackTrace();
-            mProgressListener.onError(mProgressInfo.getId(), e);
+            mProgressListener.onError(e);
             throw e;
         }
     }
@@ -74,7 +74,7 @@ class ProgressRequestBody extends RequestBody {
                 super.write(source, byteCount);
             } catch (IOException e) {
                 e.printStackTrace();
-                mProgressListener.onError(mProgressInfo.getId(), e);
+                mProgressListener.onError(e);
                 throw e;
             }
             if (mProgressInfo.getContentLength() == 0) { //避免重复调用 contentLength()
@@ -89,7 +89,7 @@ class ProgressRequestBody extends RequestBody {
                 final long finalTotalBytesRead = totalBytesRead;
                 final long finalIntervalTime = curTime - lastRefreshTime;
                 mProgressInfo.setEachBytes(finalTempSize);
-                mProgressInfo.setCurrentbytes(finalTotalBytesRead);
+                mProgressInfo.setCurrentBytes(finalTotalBytesRead);
                 mProgressInfo.setIntervalTime(finalIntervalTime);
                 mProgressInfo.setFinish(finalTotalBytesRead == mProgressInfo.getContentLength());
                 mProgressListener.onProgress(mProgressInfo);
