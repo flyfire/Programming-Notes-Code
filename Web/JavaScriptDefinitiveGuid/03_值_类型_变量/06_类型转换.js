@@ -1,16 +1,23 @@
-//Number to String
-var num =15.555;
-console.log(num.toString(2));
-console.log(num.toFixed(2));//保留小数点的位数换为字符串
-console.log(num.toExponential(3));//使用指数计数法换为字符串
-console.log(num.toPrecision(10));//指定有效数字的位数转换为字符串
+//========================================================================
+// Number to String
+//========================================================================
+var num = 15.555;
+console.log(num.toString(2));//->1111.10001110000101000111101011100001010001111010111
+console.log(num.toFixed(2));//->15.55，保留小数点的位数换为字符串
+console.log(num.toExponential(3));//->1.555e+1，使用指数计数法换为字符串
+console.log(num.toPrecision(10));//->15.55500000，指定有效数字的位数转换为字符串
 
-//parseInt，parseFloat
+//========================================================================
+// parseInt，parseFloat是全局函数
+//========================================================================
 console.log(parseInt("4 abc"));
 console.log(parseInt("-12.32"));
 console.log(parseFloat("4.32 abc"));
 console.log(parseFloat("0xFF"));
 
-//对象转换为原始类型
+//========================================================================
+// 对象转换为原始类型
+//========================================================================
+//对象转换为原始类型用到的方法是toString和valueOf
 console.log([1, 3, 4].toString());
 console.log(new Date().valueOf());

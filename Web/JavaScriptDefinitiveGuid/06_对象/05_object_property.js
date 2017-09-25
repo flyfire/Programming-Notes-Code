@@ -11,7 +11,7 @@ var newPConstructor = newP.constructor;//->[Function: Object]
 var pConstructor = p.constructor;//->[Function: Object]
 // 使用create方法创建对象时，不能使用此方式获取原型属性，这里得到的是{}。应该使用`isPrototypeOf()`方法判断一个对象是不是另一个对象的原型。
 Object.getPrototypeOf(newP);//->{x:1}
-var fakePrototype = newP.constructor.prototype;//->{}，
+var fakePrototype = newP.constructor.prototype;//->{}
 
 //========================================================================
 // 类属性
@@ -55,9 +55,10 @@ var e = {x: 32};
 Object.freeze(e);//冻结对象，把对象变为不可扩展，并且所有属性改为不可配置且位置为只读，但是setter不受影响
 Object.isFrozen(e);//-> true
 
-//创建一个封闭对象，第一个参数为属性描述对象
+//创建一个封闭对象，第2个参数为属性描述对象
 var f = Object.create(Object.freeze({x: 1}), {
     y: {value: 3, writable: true}
 });
 console.log(f);//->{}，冻结对象属性不可枚举
+console.log(f.y);//->3
 

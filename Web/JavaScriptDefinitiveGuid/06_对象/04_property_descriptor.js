@@ -1,8 +1,7 @@
 //========================================================================
 // 属性描述符
 //========================================================================
-var pd = Object.getOwnPropertyDescriptor({x: 1}, 'x');
-console.log(pd);
+var pd = Object.getOwnPropertyDescriptor({x: 1}, 'x');//->{ value: 1, writable: true, enumerable: true, configurable: true }
 
 var accessorObj = {
     get value() {
@@ -12,11 +11,10 @@ var accessorObj = {
 
     }
 };
-var accessorPd = Object.getOwnPropertyDescriptor(accessorObj, 'value');
-console.log(accessorPd);
+var accessorPd = Object.getOwnPropertyDescriptor(accessorObj, 'value');//->{ get: [Function: get value], set: [Function: set value], enumerable: true, configurable: true }
 
 //========================================================================
-// defineProperty
+// defineProperty方法
 //========================================================================
 var o = {};
 Object.defineProperty(o, "x", {
@@ -25,26 +23,26 @@ Object.defineProperty(o, "x", {
     enumerable: true,
     configurable: true
 });
-console.log(o.x);
-console.log(Object.keys(o));
+console.log(o.x);//->1
+console.log(Object.keys(o));//->[ 'x' ]
 //现在对属性x进行修改，让其变为只读
 Object.defineProperty(o, "x", {
     writable: false
 });
 o.x = 4;//操作失败，不报错
-console.log(o.x);
+console.log(o.x);//->1
 //由于x依然是可以配置id，可以通过下面方法改变x的值
 Object.defineProperty(o, "x", {
     value: 4
 });
-console.log(o.x);
-//现在将先从数据属性改为存储器属性
+console.log(o.x);//->4
+//现在将x从数据属性改为存储器属性
 Object.defineProperty(o, "x", {
     get: function () {
         return 0;
     }
 });
-console.log(o.x);
+console.log(o.x);//->0
 
 
 //========================================================================
@@ -69,4 +67,4 @@ Object.defineProperty(Object.prototype, "extend", {
 var a = {x: 4, y: 4};
 var b = {};
 b.extend(a);
-console.log(b);
+console.log(b);//->{ x: 4, y: 4 }
