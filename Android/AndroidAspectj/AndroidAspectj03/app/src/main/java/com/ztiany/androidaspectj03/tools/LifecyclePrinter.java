@@ -16,12 +16,14 @@ import org.aspectj.lang.annotation.Before;
 @Aspect//@Aspect注解来定义这是一个AspectJ文件
 public class LifecyclePrinter {
 
-    @Before("execution(* android.app.Activity.on*(..))")
     /*
-    注解说明：这其实就是一个JoinPoint。
-        execution代表其方法执行的时候
-        * android.app.Activity.on*(..)对应：返回值 类型.方法名(参数)，第一个星号标识返回值为任意类型、然后类型限定为android.app.Activity或其子类，方法名以on开头，参数不限
-     */
+         execution代表其方法执行的时候
+         第一个星号标识返回值为任意类型
+          android.app.Activity标识类型限定为android.app.Activity或其子类
+         on*方法名以on开头
+         (..)表示参数不限
+ */
+    @Before("execution(* android.app.Activity.on*(..))")//注解定义通知，简单的切入点可以直接声明
     public void onActivityMethodBefore(JoinPoint joinPoint) throws Throwable {
         Object aThis = joinPoint.getThis();
         Signature signature = joinPoint.getSignature();
