@@ -4,21 +4,20 @@
 
 //ES5中用于判断数组的方法
 var a = [1, 2, 3];
-Array.isArray(a);
+Array.isArray(a);//-> true
 
 //ES3中却没有对应的方法，typeof只是简单的返回对象，instanceof操作只能用于简单的判断
-var isInstanceofArray1 = [] instanceof Array;
-var isInstanceofArray2 = {} instanceof Array;
-console.log(isInstanceofArray1);
-console.log(isInstanceofArray2);
+var isInstanceofArray1 = [] instanceof Array;//->true
+var isInstanceofArray2 = {} instanceof Array;//->false
 
-//兼容方式为
+
+//兼容ES3方式为
 var isArrayFunc = Array.isArray || function (o) {
         return typeof o === "object" &&
             Object.prototype.toString.call(o) === "[Object Array]";
     };
-console.log(isArrayFunc(a));
-console.log(Object.prototype.toString.call(a));
+console.log(isArrayFunc(a));//->true
+console.log(Object.prototype.toString.call(a));//->[object Array]
 
 
 //========================================================================
@@ -30,6 +29,7 @@ console.log(Object.prototype.toString.call(a));
  - 设置length为较小的值时自动截断数组
  - 从Array.prototype继承一些方法
  - 类属型为“Array”
+
  但这写都不是定义数组的本质特性，一种常常完全合理的看法是把有一个length属性和对应非负整数属性的对象看作一种类型的数组。即类数组。
  可以用针对数组的遍历方法来遍历这种类数组
  */
@@ -81,7 +81,7 @@ console.log(Array.join(b, "-"));
 //========================================================================
 // 作为数组的字符串
 //========================================================================
-//字符串类死于只读数组，除了用charAt方法还可用[]直接访问字符,所以数组方法也可以用于字符串，除了push等会改为数组的方法除外，因为字符串是不可变对象。
+//字符串类似于只读数组，除了用charAt方法还可用[]直接访问字符,所以数组方法也可以用于字符串，除了push等会改为数组的方法除外，因为字符串是不可变对象。
 var s = "JavaScript";
 console.log(s[1]);
 console.log(Array.prototype.join.call(s, '-'));

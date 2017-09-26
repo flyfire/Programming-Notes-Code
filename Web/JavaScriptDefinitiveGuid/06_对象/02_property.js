@@ -2,13 +2,13 @@
 // 检查属性
 //========================================================================
 var o = {x: 1};
-console.log("x" in o);//true
-console.log("y" in o);//false
-console.log("toString" in o);//true
+console.log("x" in o);//->true
+console.log("y" in o);//->false
+console.log("toString" in o);//->true
 
-console.log(o.hasOwnProperty('x'));//true
-console.log(o.hasOwnProperty('y'));//false
-console.log(o.hasOwnProperty('toString'));//false
+console.log(o.hasOwnProperty('x'));//->true
+console.log(o.hasOwnProperty('y'));//->false
+console.log(o.hasOwnProperty('toString'));//->false
 
 var o2 = Object.create({y: 3});
 o2.x = 1;
@@ -17,8 +17,9 @@ console.log(o2.propertyIsEnumerable("y"));//false，y是继承来的
 console.log(Object.prototype.propertyIsEnumerable("toString"));//false，toString不可枚举
 
 //========================================================================
-// 枚举属性
+// 枚举属性方法
 //========================================================================
+
 //复制p中可枚举属性到o中
 function extend(o, p) {
     for (var prop in  p) {

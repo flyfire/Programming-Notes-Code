@@ -1,19 +1,25 @@
-//空值和undefined
+//========================================================================
+// 空值和undefined
+//========================================================================
 var valueNull = null;
 var valueUndefined = undefined;
-console.log(typeof valueNull);
-console.log(typeof valueUndefined);
+console.log(typeof valueNull);//->object
+console.log(typeof valueUndefined);//->undefined
 
-//数组
+//========================================================================
+// 数组
+//========================================================================
 var strArr = ["a", "b", 'C'];
 var intArr = new Array(1, 2, 3);//等同于[]方式
 console.log(strArr.toString());
 console.log(intArr.toString());
 
-//日期
-var date = new Date();
-console.log(date);
+//========================================================================
+// 日期
+//========================================================================
+var date = new Date();//->2017-09-21T15:35:21.286Z
 
-//正则表达式
-var reg = new RegExp("[a]");
-console.log(reg)
+//========================================================================
+// 正则表达式
+//========================================================================
+var reg = new RegExp("[a]");//->/[a]/
