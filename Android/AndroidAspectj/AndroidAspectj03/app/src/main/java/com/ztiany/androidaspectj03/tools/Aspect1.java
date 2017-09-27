@@ -9,12 +9,14 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 
 /**
+ * 演示 Before 和After 两个Advice，打印Activity和Fragment所有的on开发的方法
+ *
  * @author Ztiany
  *         Email: ztiany3@gmail.com
  *         Date : 2017-09-25 18:18
  */
 @Aspect//@Aspect注解来定义这是一个AspectJ文件
-public class LifecyclePrinter {
+public class Aspect1 {
 
     /*
          execution代表其方法执行的时候
@@ -22,7 +24,7 @@ public class LifecyclePrinter {
           android.app.Activity标识类型限定为android.app.Activity或其子类
          on*方法名以on开头
          (..)表示参数不限
- */
+    */
     @Before("execution(* android.app.Activity.on*(..))")//注解定义通知，简单的切入点可以直接声明
     public void onActivityMethodBefore(JoinPoint joinPoint) throws Throwable {
         Object aThis = joinPoint.getThis();
