@@ -13,11 +13,22 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_1_basic"
+            android:id="@+id/btn_target_1"
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"/>
+            android:text="run target 1"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/btn_target_2"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="run target 2"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText"/>
 
     </LinearLayout>
 

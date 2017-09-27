@@ -46,7 +46,7 @@ AspectJ中具体的连接点表现为：
 Join Points | 说明 | 语法
 ---|---|---
 method call | 函数调用 | execution(方法签名)
-method execution|函数执行，注意它和method call的区别。method call是调用某个函数的地方。而execution是某个函数执行的内部。|call(方法签名)
+method execution|函数执行|call(方法签名)
 constructor call|构造函数调用|call(构造器签名)
 constructor execution|构造函数执行|execution(构造器签名)
 field get|获取某个变量|get(字段签名)
@@ -56,6 +56,11 @@ initialization|对象初始化，在构造器中的对象初始化。包含：�
 pre-initialization|对象预初始化，在构造器中的对象初始化之前：从当前构造器调用，到父构造器调用结束为止|preinitialization(构造器签名)
 handler|异常处理|handler(类型签名)
 advice execution|通知的执行：环绕某个通知的整个执行。可以对通知进行通知|adviceexecution()
+ 
+ 注意call和execution的区别：
+ 
+ 1. method call是调用某个函数的地方。而execution是某个函数执行的内部。
+ 2. call捕获的JoinPoint是签名方法的调用点，而execution捕获的则是执行点
  
 ### Pointcuts(切入点)
 
@@ -107,10 +112,12 @@ pointcut选择基于正则的语法，Pointcuts的主要类型有：
     - 在连接点之前/之后添加额外的逻辑，例如性能分析
     - 跳过原先逻辑还执行备选的逻辑，例如缓存。只要不调用proceed()，即不执行原有的逻辑
     - 使用try-catch包裹原先逻辑，提供异常处理策略，例如事务管理
-    
-Advance为Before和After时，切入方法的参数应该是JoinPoint，而Advance为Around时，方法参数应该为ProceedingJoinPoint，
-ProceedingJoinPoint继承JoinPoint，多了proceed功能，此时如果我们不调用proceed方法，被切入的方法将不会被调用，
-Around和After是不能同时作用在同一个方法上的，会产生重复切入的问题。
+ 
+注意：
+ 
+- Advice为Before和After时，切入方法的参数应该是JoinPoint
+- Advice为Around时，方法参数应该为ProceedingJoinPoint，ProceedingJoinPoint继承JoinPoint，多了proceed功能，此时如果我们不调用proceed方法，被切入的方法将不会被调用，
+- Around和After是不能同时作用在同一个方法上的，会产生重复切入的问题。
 
 
 ---
@@ -191,4 +198,3 @@ public class AspectSample {
 - [深入理解Android之AOP](http://blog.csdn.net/innost/article/details/49387395)
 - [Aspect Oriented Programming in Android](https://fernandocejas.com/2014/08/03/aspect-oriented-programming-in-android/)
 - [Android-AOPExample](https://github.com/android10/Android-AOPExample)
-- http://www.zdong.top/blog/2017/07/17/AspectJ(%E4%B8%80)%20%E6%A6%82%E5%BF%B5/
