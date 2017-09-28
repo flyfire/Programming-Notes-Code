@@ -1,4 +1,3 @@
-[TOC]
 # Aspectj 学习
 
 ---
@@ -138,7 +137,6 @@ Pointcuts语法包括：
 - 方法和构造器签名语法
     - 基本方法签名
     - 基于注解的方法签名
-    - 
 - 字段签名语法
 
 ### 通配符
@@ -171,24 +169,11 @@ execution(* com..*.*Dao.find*(..)) | com包下的所有一Dao结尾的类的一f
 
 #### cflow
 
- cflow获取的是一个控制流程。几乎不单独使用，一般与其他的pointcut 进行 &&运算。若要单独使用，一定要记得用!with()剔除Aspect本身。
+ cflow获取的是一个控制流程。一般与其他的pointcut 进行 &&运算。
 
-```java
-@Aspect  
-public class AspectSample {  
-  
-    @Pointcut("call(* com.sample.Sample.get*(String,String))")  
-    public void pointcutSample(){}  
-      
-    @Pointcut("cflow(ivalueAspectj()) && !within(AspectSample)")  
-    public void cflowSample(){}  
-      
-    @Before("cflowSample() && pointcutSample()")  
-    public void testExecute(){  
-        System.out.println("run");  
-    }  
-}
-```
+
+
+>todo，完成剩余部分的学习！！！
 
 ---
 ## 引用
@@ -197,4 +182,3 @@ public class AspectSample {
 - [跟我学AspectJ](http://blog.csdn.net/zl3450341/article/category/1169602)
 - [深入理解Android之AOP](http://blog.csdn.net/innost/article/details/49387395)
 - [Aspect Oriented Programming in Android](https://fernandocejas.com/2014/08/03/aspect-oriented-programming-in-android/)
-- [Android-AOPExample](https://github.com/android10/Android-AOPExample)
