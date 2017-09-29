@@ -6,11 +6,11 @@ import android.support.v7.util.DiffUtil;
 
 import java.util.List;
 
-public class DiffCallBack extends DiffUtil.Callback {
+class DiffCallBack extends DiffUtil.Callback {
 
     private List<DiffBean> mOldData, mNewData;//老的数据、新的数据
 
-    public DiffCallBack(List<DiffBean> oldData, List<DiffBean> newData) {
+    DiffCallBack(List<DiffBean> oldData, List<DiffBean> newData) {
         this.mOldData = oldData;
         this.mNewData = newData;
     }
@@ -88,18 +88,19 @@ public class DiffCallBack extends DiffUtil.Callback {
         //只是没有了ItemChange的白光一闪动画，（反正我也觉得不太重要） 
         DiffBean oldBean = mOldData.get(oldItemPosition);
         DiffBean newBean = mNewData.get(newItemPosition);
-
         //这里就不用比较核心字段了,一定相等 
         Bundle payload = new Bundle();
         if (!oldBean.getDesc().equals(newBean.getDesc())) {
             payload.putString("KEY_DESC", newBean.getDesc());
         }
+
         if (oldBean.getPic() != newBean.getPic()) {
             payload.putInt("KEY_PIC", newBean.getPic());
         }
 
-        if (payload.size() == 0)//如果没有变化 就传空
+        if (payload.size() == 0) {//如果没有变化 就传空
             return null;
+        }
         return payload;//
     }
 } 

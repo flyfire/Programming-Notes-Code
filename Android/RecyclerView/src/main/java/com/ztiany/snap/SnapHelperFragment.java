@@ -18,11 +18,13 @@ import com.ztiany.recyclerview.R;
 
 import java.util.Random;
 
-
+/**
+ * https://juejin.im/entry/59bdc3575188256bce40dec6?from=singlemessage
+ * https://github.com/rubensousa/RecyclerViewSnap
+ */
 public class SnapHelperFragment extends Fragment {
 
     private final Random mRandom = new Random();
-
 
     @Nullable
     @Override
