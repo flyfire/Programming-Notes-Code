@@ -7,7 +7,7 @@
 
 
 // 同理，可以创建对象的构造器不仅仅有 Object，也可以是 Array，Date，Function等。
-// 所以我们也可以构造函数来创建 Array、 Date、Function
+// 所以我们也可以通过构造函数来创建 Array、 Date、Function
 
 var b = new Array();
 console.log(b.constructor === Array);//-> true
@@ -20,6 +20,8 @@ console.log(c.__proto__ === Date.prototype);//-> true
 var d = new Function();
 console.log(d.constructor === Function);//-> true
 console.log(d.__proto__ === Function.prototype);//-> true
+
+console.log(Function.constructor === Function);//->true，Function的constructor是其本身
 
 //========================================================================
 // 原型链

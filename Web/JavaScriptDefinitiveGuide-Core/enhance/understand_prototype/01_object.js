@@ -6,7 +6,7 @@ var o2 = new Object();
 var o3 = new f1();
 
 function f1() {
-};
+}
 var f2 = function () {
 };
 var f3 = new Function('str', 'console.log(str)');

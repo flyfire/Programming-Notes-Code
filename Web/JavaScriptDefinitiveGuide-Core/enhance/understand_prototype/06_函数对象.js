@@ -29,7 +29,7 @@ Date.constructor == Function //true
 Object.__proto__ === Function.prototype;  //->true
 Object.constructor == Function; //->true
 
-// 所有的构造器都来自于Function.prototype，甚至包括根构造器Object及Function自身
+
 Function.__proto__ === Function.prototype; //->true
 Function.constructor == Function; //true
 Function.prototype.__proto__ === Object.prototype;//->true
@@ -37,8 +37,9 @@ Function.prototype.__proto__ === Object.prototype;//->true
 /*
  JavaScript中有内置(build-in)构造器/对象共计12个（ES5中新加了JSON），
  这里列举了可访问的8个构造器。剩下如Global不能直接访问，Arguments仅在函数调用时由JS引擎创建，
- Math，JSON是以对象形式存在的，无需new。它们的proto是Object.prototype。如下
+ Math，JSON是以对象形式存在的，无需new。它们的__proto__都是Object.prototype。如下
  */
+
 Math.__proto__ === Object.prototype;  //->true
 Math.construrctor == Object; //->true
 
@@ -57,5 +58,4 @@ JSON.construrctor == Object; //true
  在 ECMAScript 核心所定义的全部属性中，最耐人寻味的就要数 prototype 属性了。
  对于 ECMAScript 中的引用类型而言，prototype 是保存着它们所有实例方法的真正所在。
  换句话所说，诸如 toString()和 valueOf() 等方法实际上都保存在 prototype 名下，只不过是通过各自对象的实例访问罢了。
-
  */
