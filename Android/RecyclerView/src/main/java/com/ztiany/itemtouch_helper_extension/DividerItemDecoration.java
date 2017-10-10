@@ -14,10 +14,10 @@ import com.ztiany.recyclerview.R;
 
 
 class DividerItemDecoration extends RecyclerView.ItemDecoration {
+
     private static final int DEFAULT_DIVIDER_HEIGHT = 1;
 
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
-
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
 
     protected int mOrientation;
@@ -40,7 +40,6 @@ class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public DividerItemDecoration(Context context, int orientation, int padding, int dividerHeight) {
         setOrientation(orientation);
         mContext = context;
-
         init();
         if (padding != -1) this.padding = padding;
         updatePaddint();
@@ -50,7 +49,6 @@ class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public DividerItemDecoration(Context context, int orientation, int startpadding, int endpadding, int dividerHeight) {
         setOrientation(orientation);
         mContext = context;
-
         init();
         if (startpadding != -1) this.startpadding = startpadding;
         if (endpadding != -1) this.endpadding = endpadding;
@@ -98,13 +96,12 @@ class DividerItemDecoration extends RecyclerView.ItemDecoration {
         final int right = parent.getWidth() - parent.getPaddingRight();
 
         final int childCount = parent.getChildCount();
+
         for (int i = 0; i < childCount - 1; i++) {
             final View child = parent.getChildAt(i);
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-            final int top = child.getBottom() + params.bottomMargin +
-                    Math.round(ViewCompat.getTranslationY(child));
+            final int top = child.getBottom() + params.bottomMargin + Math.round(ViewCompat.getTranslationY(child));
             final int bottom = top + dividerHeight;
-
             c.drawRect(left, top, left + startpadding, bottom, mPaddingPaint);
             c.drawRect(right - endpadding, top, right, bottom, mPaddingPaint);
             c.drawRect(left + startpadding, top, right - endpadding, bottom, mDividerPaint);
@@ -114,7 +111,6 @@ class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public void drawHorizontal(Canvas c, RecyclerView parent) {
         final int top = parent.getPaddingTop();
         final int bottom = parent.getHeight() - parent.getPaddingBottom();
-
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount - 1; i++) {
             final View child = parent.getChildAt(i);
@@ -144,6 +140,5 @@ class DividerItemDecoration extends RecyclerView.ItemDecoration {
                 outRect.set(0, 0, 0, 0);
             }
         }
-
     }
 }

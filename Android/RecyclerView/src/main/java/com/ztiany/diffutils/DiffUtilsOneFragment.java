@@ -34,12 +34,8 @@ public class DiffUtilsOneFragment extends Fragment {
 
     private List<DiffBean> mData;
     private DiffAdapter mDiffAdapter;
-
-
     private static final int H_CODE_UPDATE = 1;
     private List<DiffBean> mNewData;//增加一个变量暂存newList
-
-
 
     public static DiffUtilsOneFragment newInstance() {
         return new DiffUtilsOneFragment();
@@ -79,7 +75,6 @@ public class DiffUtilsOneFragment extends Fragment {
         initData();
         mDiffAdapter = new DiffAdapter(mData);
         recyclerView.setAdapter(mDiffAdapter);
-
     }
 
     @Override
@@ -104,25 +99,20 @@ public class DiffUtilsOneFragment extends Fragment {
      * 模拟刷新操作
      */
     public void onRefresh() {
-
         mNewData = new ArrayList<>();
         for (DiffBean bean : mData) {
             mNewData.add(bean.clone());//clone一遍旧数据 ，模拟刷新操作
         }
         mNewData.add(new DiffBean("ZhangHongYang", "Android", R.drawable.head_portrait9));//模拟新增数据
 
-
         DiffBean diffBean0 = mNewData.get(0);
         diffBean0.setDesc(diffBean0.getDesc().concat("+"));
         diffBean0.setPic(R.drawable.head_portrait15);//模拟修改数据
-
 
         DiffBean diffBean = mNewData.get(1);//模拟数据位移
         mNewData.remove(diffBean);
         mNewData.add(diffBean);
 
-
-        //新宠
         //利用DiffUtil.calculateDiff()方法，传入一个规则DiffUtil.Callback对象，和是否检测移动item的 boolean变量，得到DiffUtil.DiffResult 的对象
         //mAdapter.notifyDataSetChanged();//以前普通青年的我们只能这样，现在我们是文艺青年了，有新宠了
         new Thread(new Runnable() {
@@ -135,10 +125,7 @@ public class DiffUtilsOneFragment extends Fragment {
                 message.sendToTarget();
             }
         }).start();
-
-
     }
-
 
     //demo 就不考虑泄漏了
     @SuppressWarnings("HandlerLeak")
@@ -149,18 +136,14 @@ public class DiffUtilsOneFragment extends Fragment {
                 case H_CODE_UPDATE:
                     //取出Result
                     DiffUtil.DiffResult diffResult = (DiffUtil.DiffResult) msg.obj;
-
                     //别忘了将新数据给Adapter
                     mData = mNewData;
                     mDiffAdapter.setData(mData);
-
                     //利用DiffUtil.DiffResult对象的dispatchUpdatesTo（）方法，传入RecyclerView的Adapter
                     diffResult.dispatchUpdatesTo(mDiffAdapter);
-
                     break;
             }
         }
     };
-
 
 }

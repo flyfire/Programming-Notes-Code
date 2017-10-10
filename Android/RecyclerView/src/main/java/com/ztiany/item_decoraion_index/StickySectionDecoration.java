@@ -11,7 +11,7 @@ import android.text.TextPaint;
 import android.util.TypedValue;
 import android.view.View;
 
-public class StickySectionDecoration extends RecyclerView.ItemDecoration {
+class StickySectionDecoration extends RecyclerView.ItemDecoration {
 
     private static final int DEFAULT_HEADER_HEIGHT = 20;
     private static final int DEFAULT_TEXT_SIZE = 12;
@@ -33,7 +33,7 @@ public class StickySectionDecoration extends RecyclerView.ItemDecoration {
 
     private final GroupInfo mGroupInfo = new GroupInfo();
 
-    public StickySectionDecoration(@NonNull Context context, @NonNull GroupInfoCallback callback) {
+    StickySectionDecoration(@NonNull Context context, @NonNull GroupInfoCallback callback) {
         mContext = context;
         this.mCallback = callback;
 
@@ -124,7 +124,6 @@ public class StickySectionDecoration extends RecyclerView.ItemDecoration {
         //绘制Title
         c.drawText(groupinfo.mTitle, titleX, v - offset, mTextPaint);
     }
-
 
     ///////////////////////////////////////////////////////////////////////////
     // 设置属性

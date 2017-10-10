@@ -15,7 +15,9 @@ import com.ztiany.recyclerview.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * see：https://github.com/loopeer/itemtouchhelper-extension
+ */
 public class ItemTouchExtensionFragment extends Fragment {
 
     @Nullable
@@ -23,7 +25,6 @@ public class ItemTouchExtensionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.common_fragment_recycler_view, container, false);
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
