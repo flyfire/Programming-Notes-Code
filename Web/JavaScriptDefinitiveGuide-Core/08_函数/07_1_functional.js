@@ -17,7 +17,9 @@ var mean = data.reduce(sum) / data.length;//平均值
 var deviations = data.map(function (p1) {
     return p1 - mean;
 });//偏差
+
 var stddev = Math.sqrt(deviations.map(square).reduce(sum) / (data.length - 1));//标准偏差
+
 console.log(mean);
 console.log(deviations);
 console.log(stddev);

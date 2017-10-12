@@ -2,13 +2,22 @@
 //
 //========================================================================
 
-//nodeJs模块引入
-var Tools = require('../Tools');
+function inherit(p) {
+    if (p == null) throw TypeError();
+    if (Object.create)
+        return Object.create(p);
+    var t = typeof p;
+    if (t !== "object" && t !== "function") throw TypeError();
+    function f() {
+    }
 
+    f.prototype = p;
+    return new f();
+}
 
 // 工厂方法，返回一个Range实例
 function range(from, to) {
-    var r = Tools.inherit(range.methods);
+    var r = inherit(range.methods);
     r.from = from;
     r.to = to;
     return r;
