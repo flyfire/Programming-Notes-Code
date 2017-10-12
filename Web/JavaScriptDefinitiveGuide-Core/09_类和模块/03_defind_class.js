@@ -2,7 +2,7 @@
 // 模拟定义Java类
 //========================================================================
 
-//node引入
+//nodeJs模块引入
 var Tools = require("../Tools");
 var extend = Tools.extend;
 
@@ -41,3 +41,5 @@ var SimpleRange = defineClass(
 //创建对象并使用
 var sr = new SimpleRange(1, 100);
 console.log(sr.includes(3));//-> true
+var sr2 = SimpleRange.upto(8);
+console.log(sr2);
