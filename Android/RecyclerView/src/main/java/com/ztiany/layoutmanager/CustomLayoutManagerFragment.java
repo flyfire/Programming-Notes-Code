@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.ztiany.recyclerview.R;
  */
 public class CustomLayoutManagerFragment extends Fragment {
 
+    private static final String TAG = CustomLayoutManagerFragment.class.getSimpleName();
+    private int count;
     private RecyclerView mRecyclerView;
 
     @Nullable
@@ -31,7 +34,7 @@ public class CustomLayoutManagerFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mRecyclerView.setLayoutManager(new Custom1LayoutManager());
+        mRecyclerView.setLayoutManager(new CustomLinearLayoutManager());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(new Adapter());
     }
@@ -40,6 +43,7 @@ public class CustomLayoutManagerFragment extends Fragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            Log.d(TAG, "onCreateViewHolder() ]" + ++count);
             View itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_swipe_menu, parent, false);
             return new RecyclerView.ViewHolder(itemView) {
             };

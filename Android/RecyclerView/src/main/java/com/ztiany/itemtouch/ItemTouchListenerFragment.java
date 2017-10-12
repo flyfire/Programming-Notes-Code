@@ -1,4 +1,4 @@
-package com.ztiany.item_touch_listener;
+package com.ztiany.itemtouch;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
