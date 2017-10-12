@@ -8,17 +8,7 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
 
-/**
- * <pre>
- *          工具类基础
- * </pre>
- *
- * @author Ztiany
- *         date :   2016-03-19 23:09
- *         email:    ztiany3@gmail.com
- */
 public class BaseUtils {
-
 
     @SuppressLint("StaticFieldLeak")
     private static Context mApplication;

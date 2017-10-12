@@ -8,10 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.ztiany.item_decoraion_index.ItemDecorationIndexFragment;
-import com.ztiany.item_touch_listener.ItemTouchListenerFragment;
+import com.ztiany.itemtouch.GridFragment;
+import com.ztiany.itemtouch.ItemTouchListenerFragment;
 import com.ztiany.itemtouch.LinearFragment;
 import com.ztiany.layoutmanager.CustomLayoutManagerFragment;
 import com.ztiany.recyclerview.R;
+import com.ztiany.snap.SnapHelperFragment;
 import com.ztiany.swipe_menu.SwipeMenu1Fragment;
 import com.ztiany.wrapcontent.WithScrollVIewFragment;
 
@@ -58,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
         LIST.add(new Item("ItemDecoration实现分组索引", ItemDecorationIndexFragment.class));
         LIST.add(new Item("ItemTouchListener研究", ItemTouchListenerFragment.class));
         LIST.add(new Item("ItemTouch Linear", LinearFragment.class));
-        LIST.add(new Item("SwipeMenu实现1", SwipeMenu1Fragment.class));
-        LIST.add(new Item("自定义LayoutManager1", CustomLayoutManagerFragment.class));
+        LIST.add(new Item("ItemTouch Grid", GridFragment.class));
+        LIST.add(new Item("Pager Snap Helper", SnapHelperFragment.class));
+        LIST.add(new Item("ScrollView实现SwipeMenu", SwipeMenu1Fragment.class));
+        LIST.add(new Item("自定义LinearLayoutManager", CustomLayoutManagerFragment.class));
     }
 }
