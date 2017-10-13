@@ -79,6 +79,7 @@ var reduce = function (a, f, initial) {
 var product = function (x, y) {
     return x * y;
 };//积
+
 var neg = partial(product, -1);//求负数
 var square = partial(Math.pow, undefined, 2);//平方
 var sqrt = partial(Math.pow, undefined, .5);//开平方根
