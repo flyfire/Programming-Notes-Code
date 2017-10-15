@@ -2,7 +2,6 @@ package com.ztiany.view.view_drag_helper;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.SystemClock;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
@@ -64,7 +63,7 @@ public class SlidingMenu extends ViewGroup {
 
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {//事件交给VIewDragHelper处理
+    public boolean onInterceptTouchEvent(MotionEvent ev) {//事件交给ViewDragHelper处理
         return viewDragHelper.shouldInterceptTouchEvent(ev);
     }
 
@@ -78,7 +77,7 @@ public class SlidingMenu extends ViewGroup {
     private class SlidingCallBack extends ViewDragHelper.Callback {
 
         @Override
-        public boolean tryCaptureView(View arg0, int arg1) {//这里用来真正控制view的拖动 
+        public boolean tryCaptureView(View arg0, int arg1) {
             if (arg0 == menuView) {//如果是菜单
                 return isMenuOpened;//菜单打开了
             } else {
@@ -88,15 +87,18 @@ public class SlidingMenu extends ViewGroup {
 
         @Override
         public void onEdgeDragStarted(int edgeFlags, int pointerId) {//当发生边界事件
-            viewDragHelper.captureChildView(menuView, pointerId);
+            viewDragHelper.captureChildView(menuView, pointerId);//此时直接调用captureChildView方法，捕获menuView进入拖动状态
         }
 
         /**
-         * child 当前拖动的View left 建议 拖动到的距离 dx 偏移量 left + dx = child.getLeft();
+         * child 当前拖动的View
+         * left 建议 拖动到的距离
+         * dx 偏移量
+         * left + dx = child.getLeft();
          */
         @Override
-        public int clampViewPositionHorizontal(View child, int left, int dx) {//返回应当滑动到的位置
-            return Math.max(-child.getWidth(), Math.min(left, 0));//这里是最左隐藏最 完全出现
+        public int clampViewPositionHorizontal(View child, int left, int dx) {//返回应当到达的位置
+            return Math.max(-child.getWidth(), Math.min(left, 0));
         }
 
         /**
@@ -123,9 +125,7 @@ public class SlidingMenu extends ViewGroup {
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            if (changedView == menuView) {
-                ViewCompat.postInvalidateOnAnimation(SlidingMenu.this);
-            }
+
         }
 
         // 当拖动的view 被释放
@@ -160,35 +160,6 @@ public class SlidingMenu extends ViewGroup {
         menuView = getChildAt(1);
     }
 
-    long timeD = 0;
-    int dx = 0;
-    int dy = 0;
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (isMenuOpened) {
-            int dx = (int) ev.getX();
-            int dy = (int) ev.getY();
-            int action = ev.getAction();
-            switch (action) {
-                case MotionEvent.ACTION_DOWN:
-                    timeD = SystemClock.currentThreadTimeMillis();
-                    this.dx = dx;
-                    this.dy = dy;
-                    break;
-                case MotionEvent.ACTION_CANCEL:
-                case MotionEvent.ACTION_UP:
-                    if (SystemClock.currentThreadTimeMillis() - timeD <= 400 && (dx < getMeasuredWidth() && dx > menuView.getMeasuredWidth())) {
-                        viewDragHelper.smoothSlideViewTo(menuView, -menuView.getMeasuredWidth(), 0);
-                        ViewCompat.postInvalidateOnAnimation(this);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        return super.dispatchTouchEvent(ev);
-    }
 
     private void performMenu(boolean isOpen) {
         int targetX;

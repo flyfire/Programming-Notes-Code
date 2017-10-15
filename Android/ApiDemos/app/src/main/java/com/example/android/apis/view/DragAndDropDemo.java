@@ -16,13 +16,13 @@
 
 package com.example.android.apis.view;
 
-import com.example.android.apis.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.android.apis.R;
 
 public class DragAndDropDemo extends Activity {
     TextView mResultText;
@@ -34,10 +34,13 @@ public class DragAndDropDemo extends Activity {
         setContentView(R.layout.drag_layout);
 
         TextView text = (TextView) findViewById(R.id.drag_text);
+
         DraggableDot dot = (DraggableDot) findViewById(R.id.drag_dot_1);
         dot.setReportView(text);
+
         dot = (DraggableDot) findViewById(R.id.drag_dot_2);
         dot.setReportView(text);
+
         dot = (DraggableDot) findViewById(R.id.drag_dot_3);
         dot.setReportView(text);
 
@@ -45,7 +48,9 @@ public class DragAndDropDemo extends Activity {
         mHiddenDot.setReportView(text);
 
         mResultText = (TextView) findViewById(R.id.drag_result_text);
+
         mResultText.setOnDragListener(new View.OnDragListener() {
+
             public boolean onDrag(View v, DragEvent event) {
                 final int action = event.getAction();
                 switch (action) {

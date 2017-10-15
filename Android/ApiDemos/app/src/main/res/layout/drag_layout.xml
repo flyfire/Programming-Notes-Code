@@ -26,8 +26,7 @@
     <TextView android:id="@+id/drag_explanation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/drag_explanation"
-        />
+        android:text="@string/drag_explanation"/>
 
     <com.example.android.apis.view.DraggableDot
         android:id="@+id/drag_dot_1"
@@ -35,8 +34,7 @@
         android:layout_height="wrap_content"
         dot:radius="64dp"
         android:padding="15dp"
-        android:layout_below="@id/drag_explanation"
-        />
+        android:layout_below="@id/drag_explanation"/>
 
     <com.example.android.apis.view.DraggableDot
         android:id="@+id/drag_dot_2"
@@ -87,7 +85,6 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:layout_below="@id/drag_dot_3"
-        android:layout_alignLeft="@id/drag_dot_3"
-        />
+        android:layout_alignLeft="@id/drag_dot_3"/>
 
 </RelativeLayout>
