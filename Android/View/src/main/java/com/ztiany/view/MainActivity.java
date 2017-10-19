@@ -16,6 +16,8 @@ import com.ztiany.view.draw.camera.Camera3DTheoryFragment;
 import com.ztiany.view.draw.camera.CameraDemoViewFragment;
 import com.ztiany.view.draw.color.ColorMatrixFilterFragment;
 import com.ztiany.view.draw.color.MaskFilterFragment;
+import com.ztiany.view.message_drag.MessageDragFragment;
+import com.ztiany.view.pull_refresh.PullToRefreshFragment;
 import com.ztiany.view.scroll.ScrollFragment;
 import com.ztiany.view.scroll.sticky.StickyNavigationFragment;
 import com.ztiany.view.utils.BaseUtils;
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         LIST.add(new Item("Camera3D View", Camera3DFragment.class));
         LIST.add(new Item("Camera3D 原理", Camera3DTheoryFragment.class));
         LIST.add(new Item("自定义View", CustomViewFragment.class));
+        LIST.add(new Item("消息的拖拽", MessageDragFragment.class));
         LIST.add(new Item("ViewDragHelper使用", ViewDragHelperFragment.class));
+        LIST.add(new Item("下拉刷新", PullToRefreshFragment.class));
     }
 }
