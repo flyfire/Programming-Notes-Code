@@ -1,4 +1,4 @@
-package com.ztiany.view.message_drag;
+package com.ztiany.view.custom.message_drag;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

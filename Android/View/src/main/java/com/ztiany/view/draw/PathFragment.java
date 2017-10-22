@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ztiany.view.BaseViewPagerFragment;
-import com.ztiany.view.draw.path.AddPath1View;
+import com.ztiany.view.draw.path.AddPathView;
 import com.ztiany.view.draw.path.BezierCircle;
 import com.ztiany.view.draw.path.BezierCircleTranslate;
 import com.ztiany.view.draw.path.BezierView;
@@ -14,6 +14,7 @@ import com.ztiany.view.draw.path.PathMeasureCircleSampleBuilder;
 import com.ztiany.view.draw.path.PathMeasureLoading;
 import com.ztiany.view.draw.path.PathMeasureTanView;
 import com.ztiany.view.draw.path.PathMeasureTriangleEffect;
+import com.ztiany.view.draw.path.PeachHeartsView;
 import com.ztiany.view.draw.path.ThirdBezierView;
 import com.ztiany.view.draw.path.TwoBezierView;
 import com.ztiany.view.draw.path.WaveView;
@@ -33,13 +34,14 @@ public class PathFragment extends BaseViewPagerFragment {
             "三阶贝塞尔曲线",
             "圆圈贝塞尔曲线",
             "圆圈贝塞尔曲线Translate",
-            "AddPath-1",
+            "AddPath",
             "PathEffective",
             "波动",
             "PathMeasure Circle",
             "PathMeasure Loading",
             "PathMeasure Triangle",
-            "PathMeasure 切线"
+            "PathMeasure 切线",
+            "桃心"
     };
 
     @Override
@@ -73,7 +75,7 @@ public class PathFragment extends BaseViewPagerFragment {
                     view = new BezierCircleTranslate(getContext());
                     break;
                 case 5:
-                    view = new AddPath1View(getContext());
+                    view = new AddPathView(getContext());
                     break;
                 case 6:
                     view = new PathEffectView(getContext());
@@ -92,6 +94,9 @@ public class PathFragment extends BaseViewPagerFragment {
                     break;
                 case 11:
                     view = new PathMeasureTanView(getContext());
+                    break;
+                case 12:
+                    view = new PeachHeartsView(getContext());
                     break;
             }
             return view;

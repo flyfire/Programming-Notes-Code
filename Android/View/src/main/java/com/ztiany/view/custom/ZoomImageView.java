@@ -16,7 +16,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 
 /**
- * 可收缩放大的ImageView
+ * 可收缩放大的ImageView ：http://www.imooc.com/learn/239
  */
 public class ZoomImageView extends AppCompatImageView implements ViewTreeObserver.OnGlobalLayoutListener, ScaleGestureDetector.OnScaleGestureListener, View.OnTouchListener {
 
@@ -33,7 +33,6 @@ public class ZoomImageView extends AppCompatImageView implements ViewTreeObserve
     public ZoomImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         //init();
-
         mMatrix = new Matrix();
         setScaleType(ScaleType.MATRIX);
         mScaleGestureDetector = new ScaleGestureDetector(getContext(), this);
@@ -41,14 +40,11 @@ public class ZoomImageView extends AppCompatImageView implements ViewTreeObserve
             @Override
             public boolean onDoubleTap(MotionEvent e) {
 
-
                 float x = e.getX();
                 float y = e.getY();
 
                 if (getMatrixScale() < mMiddleScale) {
-
                     post(new AutoScaleRunnable(mMaxScale, x, y));
-
                 } else {
                     post(new AutoScaleRunnable(mInitScale, x, y));
                 }
@@ -77,9 +73,7 @@ public class ZoomImageView extends AppCompatImageView implements ViewTreeObserve
     private boolean isCheckLeftAndRight;
     private boolean isCheckTopAndBottom;
 
-
     private GestureDetector mGestureDetector;
-
 
     private class AutoScaleRunnable implements Runnable {
         private float targetScale;
@@ -377,7 +371,7 @@ public class ZoomImageView extends AppCompatImageView implements ViewTreeObserve
     }
 
     private boolean isMove(float dx, float dy) {
-//dx dy 距离中心点的距离
+        //dx dy 距离中心点的距离
         return Math.sqrt(dx * dx + dy * dy) > mTouchSlop;
     }
 

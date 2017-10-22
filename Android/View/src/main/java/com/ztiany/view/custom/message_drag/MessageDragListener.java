@@ -1,4 +1,4 @@
-package com.ztiany.view.message_drag;
+package com.ztiany.view.custom.message_drag;
 
 import android.content.Context;
 import android.graphics.Bitmap;

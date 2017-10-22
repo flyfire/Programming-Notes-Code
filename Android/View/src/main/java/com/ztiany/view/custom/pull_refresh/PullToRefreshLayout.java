@@ -1,4 +1,4 @@
-package com.ztiany.view.pull_refresh;
+package com.ztiany.view.custom.pull_refresh;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

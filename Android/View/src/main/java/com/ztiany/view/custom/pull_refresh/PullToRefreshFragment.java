@@ -1,4 +1,4 @@
-package com.ztiany.view.pull_refresh;
+package com.ztiany.view.custom.pull_refresh;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

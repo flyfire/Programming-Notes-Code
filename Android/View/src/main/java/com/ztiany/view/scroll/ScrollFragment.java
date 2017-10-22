@@ -23,7 +23,6 @@ public class ScrollFragment extends BaseViewPagerFragment {
 
     String[] mTitles = {
             "多指处理",
-            "Scroller",
             "Over Scroller",
             "嵌套滑动"
     };
@@ -32,7 +31,6 @@ public class ScrollFragment extends BaseViewPagerFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewList.add(View.inflate(getContext(), R.layout.scroll_multi_drag, null));
-        mViewList.add(View.inflate(getContext(), R.layout.scroll_scroller, null));
         mViewList.add(View.inflate(getContext(), R.layout.scroll_over_scroller, null));
         mViewList.add(View.inflate(getContext(), R.layout.scroll_nested_sample, null));
     }
