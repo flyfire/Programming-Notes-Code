@@ -24,23 +24,17 @@ public class PathEffectView extends View {
     private int[] mColors;
     private float mPhase;
 
-    private static PathEffect makeDash(float phase) {
-        return new DashPathEffect(new float[]{15, 5, 8, 5}, phase);
-    }
-
     private static void makeEffects(PathEffect[] e, float phase) {
         e[0] = null;     // no effect
         e[1] = new CornerPathEffect(10);
         e[2] = new DashPathEffect(new float[]{10, 5, 5, 5}, phase);//phase表示相
-        e[3] = new PathDashPathEffect(makePathDash(), 12, phase,
-                PathDashPathEffect.Style.ROTATE);
+        e[3] = new PathDashPathEffect(makePathDash(), 12, phase, PathDashPathEffect.Style.ROTATE);
         e[4] = new ComposePathEffect(e[2], e[1]);
         e[5] = new ComposePathEffect(e[3], e[1]);
     }
 
     public PathEffectView(Context context) {
         this(context, null);
-
     }
 
     public PathEffectView(Context context, AttributeSet attributeSet) {
@@ -56,9 +50,7 @@ public class PathEffectView extends View {
 
         mEffects = new PathEffect[6];
 
-        mColors = new int[]{Color.BLACK, Color.RED, Color.BLUE,
-                Color.GREEN, Color.MAGENTA, Color.BLACK
-        };
+        mColors = new int[]{Color.BLACK, Color.RED, Color.BLUE, Color.GREEN, Color.MAGENTA, Color.BLACK};
     }
 
     @Override

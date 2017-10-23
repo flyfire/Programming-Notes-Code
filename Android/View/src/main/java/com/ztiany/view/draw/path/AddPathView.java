@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.ztiany.view.utils.UnitConverter;
 
-public class AddPath1View extends View {
+public class AddPathView extends View {
 
     private Path mPath;
     private Paint mPaint;
@@ -19,15 +19,15 @@ public class AddPath1View extends View {
 
     String mText = "A B C D E F G H I J K L M N O P Q R  S T U V W X Y Z";
 
-    public AddPath1View(Context context) {
+    public AddPathView(Context context) {
         this(context, null);
     }
 
-    public AddPath1View(Context context, AttributeSet attrs) {
+    public AddPathView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public AddPath1View(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AddPathView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -46,9 +46,9 @@ public class AddPath1View extends View {
         super.onDraw(canvas);
         canvas.translate(getMeasuredWidth() / 2, getMeasuredHeight() / 2);
         mRectF.set(0, 0, 300, 300);
-        mPath.addArc(mRectF, 0, 270);
+        mPath.lineTo(100,-100);
+        mPath.arcTo(mRectF, 0, 270,true);
         mPath.lineTo(500, 500);
-        mPath.rLineTo(100, -100);
         canvas.drawPath(mPath, mPaint);
         canvas.drawTextOnPath(mText, mPath, 0, 0, mPaint);
     }

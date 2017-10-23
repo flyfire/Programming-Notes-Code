@@ -21,7 +21,6 @@ public class CustomViewFragment extends BaseViewPagerFragment {
     private List<View> mViewList = new ArrayList<>();
 
     private String[] titles = {
-            "流式布局",
             "水平滑动",
             "BitmapDecor显式大图",
             "Surface Loading",
@@ -35,7 +34,6 @@ public class CustomViewFragment extends BaseViewPagerFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewList.add(new FlowLayout(getContext()));
         mViewList.add(HScrollLayoutBuilder.buildHScrollLayout(getContext()));
         mViewList.add(new LargeImageView(getContext()));
         mViewList.add(new LoadingView(getContext()));
