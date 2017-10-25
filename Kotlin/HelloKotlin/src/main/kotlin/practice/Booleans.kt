@@ -2,6 +2,7 @@ package practice
 
 /**
  *Boolean扩展：https://blog.kotliner.cn/2017/06/19/interesting-booleanext/
+ *
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.23 23:49

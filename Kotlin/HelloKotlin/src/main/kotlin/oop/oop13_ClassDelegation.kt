@@ -13,6 +13,7 @@ import kotlin.reflect.KProperty
 /**
  *类的委托：委托模式已经证明是实现继承的一个很好的替代方式， 而 Kotlin 可以零样板代码地原生支持它。
  */
+
 private interface DelegationBase {
     fun print()
 }
@@ -25,7 +26,6 @@ private class BaseImpl(val x: Int) : DelegationBase {
 
 private class ObjectA(b: DelegationBase) : DelegationBase by b
 
-
 private fun testClassDelegation() {
     val b = BaseImpl(10)
     ObjectA(b).print() // 输出 10
@@ -33,18 +33,18 @@ private fun testClassDelegation() {
 
 
 /**
- * 委托属性：有一些常见的属性类型，虽然我们可以在每次需要的时候手动实现它们，
- *                  但是如果能够为大家把他们只实现一次并放入一个库会更好。例如包括：
+ * 委托属性：有一些常见的属性类型，虽然我们可以在每次需要的时候手动实现它们，但是如果能够为大家把他们只实现一次并放入一个库会更好。例如包括：
  *
  *          延迟属性（lazy properties）: 其值只在首次访问时计算，
  *          可观察属性（observable properties）: 监听器会收到有关此属性变更的通知，
  *          把多个属性储存在一个映射（map）中，而不是每个存在单独的字段中。
  *
  *Kotlin 支持 委托属性：语法是： val/var <属性名>: <类型> by <表达式>
- *     在 by 后面的表达式是该 委托， 因为属性对应的 get()（和 set()）会被委托给它的 getValue() 和 setValue() 方法。
- *     属性的委托不必实现任何的接口，但是需要提供一个 getValue() 函数（和 setValue()——对于 var 属性）
  *
+ *     在 by 后面的表达式是该委托， 因为属性对应的 get()（和 set()）会被委托给它的 getValue() 和 setValue() 方法。
+ *     属性的委托不必实现任何的接口，但是需要提供一个 getValue() 函数（和 setValue()——对于 var 属性）
  * */
+
 private class Delegate {
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
@@ -73,7 +73,7 @@ private fun testPropertyDelegation() {
  *1，延迟属性 Lazy
  *
  * lazy() 是接受一个 lambda 并返回一个 Lazy <T> 实例的函数，返回的实例可以作为实现延迟属性的委托：
- * 第一次调用 get() 会执行已传递给 lazy() 的 lamda 表达式并记录结果， 后续调用 get() 只是返回记录的结果。
+ * 第一次调用 get() 会执行已传递给 lazy() 的 lambda 表达式并记录结果， 后续调用 get() 只是返回记录的结果。
  *
  * 默认情况下，对于 lazy 属性的求值是同步锁的（synchronized）：该值只在一个线程中计算，并且所有线程 会看到相同的值。
  * 如果初始化委托的同步锁不是必需的，这样多个线程 可以同时执行，那么将 LazyThreadSafetyMode.PUBLICATION 作为参数传递给 lazy() 函数。
@@ -95,12 +95,13 @@ private val lazyValueUnSafe: String by lazy(LazyThreadSafetyMode.PUBLICATION) {
  *2，可观察属性 Observable：
  *
  * Delegates.observable() 接受两个参数：初始值和修改时处理程序（handler）。 每当我们给属性赋值时会调用该处理程序（在赋值后执行）。
- * 它有三个 参数：被赋值的属性、旧值和新值
+ * 它有三个参数：被赋值的属性、旧值和新值
  *
  * 如果你想能够截获一个赋值并“否决”它，就使用 vetoable() 取代 observable()。 在属性被赋新值生效之前会调用传递给 vetoable 的处理程序。
  */
 
 private class User {
+
     var name: String by Delegates.observable("<no name>") {
         property, old, new ->
         println("$property.name now：$old -> $new")

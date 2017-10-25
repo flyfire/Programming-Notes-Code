@@ -20,8 +20,7 @@ fun main(args: Array<String>) {
 
     //使用 lambda 表达式来过滤（filter）和映射（map）集合：
     val fruits = listOf("banana", "avocado", "apple", "kiwi")
-    fruits
-            .filter { it.startsWith("a") }
+    fruits.filter { it.startsWith("a") }
             .sortedBy { it }
             .map { it.toUpperCase() }
             .forEach { println(it) }
