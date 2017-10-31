@@ -3,6 +3,7 @@
 Kotlin与java的交互： Kotlin 在设计时就考虑了Java 互操作性。
 可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以很顺利地调用 Kotlin 代码。
 
+---
 ## Kotlin中调用Java
 
 - 遵循 Java 约定的 getter 和 setter 的方法（名称以 get 开头的无参数方法和以 set 开头的单参数方法）在 Kotlin 中表示为属性。
@@ -17,6 +18,7 @@ Kotlin与java的交互： Kotlin 在设计时就考虑了Java 互操作性。
 - 对于每种原生类型的数组都有一个特化的类（IntArray、 DoubleArray、 CharArray 等等）来处理这种情况。 它们与 Array 类无关，并且会编译成 Java 原生类型数组以获得最佳性能。
 - Java可变参数
 
+---
 ## Java中调用Kotlin
  
 - 属性
