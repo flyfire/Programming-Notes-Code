@@ -4,10 +4,7 @@ package ztiany.chapter5
 //字符串便捷的方法
 //--------------------
 
-
-/*
-String的execute方法可以帮我们创建一个process对象，他还有其他重载的操作符
- */
+//String的execute方法可以帮我们创建一个process对象，他还有其他重载的操作符
 str = "It is a rainy day in seattle"
 println str
 str -= "rainy"
@@ -19,7 +16,6 @@ It is a  day in seattle
 
  -=用于从原有的字符串中减去字符串，其他的操作符还有
  plus + ， multiply * , next ++ , replaceAll和tokenize等
-
  */
 
 //还可以迭代String
@@ -29,13 +25,9 @@ for(str1 in 'held'.."helm"){
 
 println 'a'.next()
 
-
 //索引String
-
 str3 = "abcdefg"
 println "str3[2..5] = ${str3[2..5]}"
-
-
 
 
 
