@@ -1,4 +1,4 @@
- 
+
 # 第二章：面向Java开发者的Groovy
 
 因为groovy支持java语法，并保留了java语义，所以我们可以随心所欲的混用这两种语言风格，但是当我们把java代码重构为groovy代码后，会发现groovy会更加简洁简单。
@@ -35,7 +35,7 @@
 - Groovy中的陷阱
 
 
-<br/><br/>
+---
 ## 1 Groovy基础语法
 
 ### 定义变量
@@ -222,7 +222,7 @@ Groovy并不强制处理任何异常，我们不处理的异常都会别自动�
 - Groovy不强迫开发者捕获自己不关心的异常，没有被捕获的将自动向上传递
 - 静态方法中可以使用this来引用Class对象
 
-<br/><br/>
+---
 ## 2 JavaBean
 
 在Java中，JavaBean中的字段总是伴随者setter和getter方法，这样看起来非常的繁琐，而在Groovy中，javaBean变得很简单：
@@ -253,7 +253,7 @@ println(car)
 println(car.miles)
 ```
 
-<br/><br/>
+---
 ## 3 灵活初始化与具名参数
 
 
@@ -292,7 +292,7 @@ def access(Map location, weight, fragile) {
 access(x: 20, y: 20, z: 10, 50, true)//这时如果传入的不是两个对象和一个名值对就会报错。//打印结果：received fragile? true, weight:50, loc:[x:20, y:20, z:10]
 ```
 
-<br/><br/>
+---
 ## 4 可选形参
 
 Groovy可以把方法和构造器中的形参设置为可选的，想设置多少就可以设置多少，但是要求这些可选的形参必须放在参数列表的最后面，**定义形参只需 为其设置一个默认值**
@@ -319,7 +319,7 @@ task 'call'
 ```
 
 
-<br/><br/>
+---
 ## 5 使用多赋值
 
 ```groovy
@@ -342,7 +342,7 @@ task 'call'
 当变量与值的数量不相等时，如果有多余的变量，Groovy会将它们设置为null，多余的值则会被抛弃，**如果对于的变量是不能设置为null的基本类型，Groovy将会抛出一个异常**,在Groovy2中，只要可能int会被看作基本类型，而非Integer
 
 
-<br/><br/>
+---
 ## 6 实现接口
 
 假设UIAPI中有一个Button,我们需要为其设置各种监听事件。
@@ -474,7 +474,7 @@ button.performFocusLost()
 
 
 
-<br/><br/>
+---
 ##  7 Boolean求值
 
 Groovy中的布尔求值与Java不同，根据上下文，Groovy会把表达式计算为布尔值，java代码中的if语句必须要求表达式的结果是个布尔值，而Groovy不会，Groovy会尝试推断，比如在需要boolean的地方放一个对象引用，Groovy会尝试检查引用是否为null，它将null视作false，将非null视作true，如：
@@ -509,7 +509,7 @@ if (str2) {//不会被打印
 | 其他类型         | 引用不为null          |
 
 
-<br/><br/>
+---
 ## 8 操作符重载
 
 Groovy支持操作符重载，可以巧妙的应用这一点来创建DSL领域特定语言，java不支持，Groovy的做法的每一个操作符都会映射到一个标准的方法，在java可以使用的那些方法，在groovy中既可以使用操作符，也可以使用与之对应的方法
@@ -577,7 +577,7 @@ println new ComplexNumber(real: 2, imaginary: 4) + new ComplexNumber(real: 5, im
 >注意： a或b即`a|b`
 
 
-<br/><br/>
+---
 ## 9 Groovy对java1.5的支持
 
 下面是JDK1.5的新特性：
@@ -696,7 +696,7 @@ for (int i   : list) {//Cannot cast object 'Dd' with class 'java.lang.String' to
 
 
 
-<br/><br/>
+---
 ##  10 使用Groovy生成代码
 
 Groovy在groovy.transform包和其他一些包中提供了很多代码生成的注解
@@ -856,7 +856,7 @@ class Son extends Father {
 ```
 
 
-<br/><br/>
+---
 ## 11 Groovy的陷阱
 
 - Groovy的 == 等于Java中的equals
@@ -964,7 +964,7 @@ int[] arr1 = [1, 2, 4]
 def arr2 = [1, 2, 5] as int[]
 ```
 
-<br/><br/>
+---
 ## 12 [Groovy操作符](http://blog.csdn.net/dabaoonline/article/list/2)
 
 

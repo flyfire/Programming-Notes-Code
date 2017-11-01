@@ -2,7 +2,7 @@
 
 
 
-<br><br>
+---
 ## 1  DSL
 
 ### 什么是DSL
@@ -103,7 +103,7 @@ DSL可以分为 外部DSL和内部DSL
 - groovy 的动态类型和元编程能力对创建内部的DSL帮助很大，其对括号的处理没有ruby显得优雅
 - python 创建DSL面临着一些挑战。
 
-<br><br>
+---
 ## 2 Groovy与DSL
 
 Groovy的很多核心功能对创建内部的DSL很有帮助：
@@ -356,5 +356,3 @@ Calendar.metaClass.at={
 
 println 4.days.ago.at(5:32)
 ```
-
-

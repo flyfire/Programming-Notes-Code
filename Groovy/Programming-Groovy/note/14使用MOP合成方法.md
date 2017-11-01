@@ -8,7 +8,7 @@
 
 合成的方法直到调用时才会作为独立的方法存在。
 
-<br><br>
+---
 ## 1 使用methodMissing合成方法
 ```
 class Person {
@@ -77,7 +77,7 @@ class Person1 {
 }
 ```
 
-<br><br>
+---
 ## 2 使用GroovyInterceptable合成方法
 
 ```
@@ -141,7 +141,7 @@ methodMissing called for playBasketball
 playing Basketball
 ```
 
-<br><br>
+---
 ## 3 使用ExpandoMetaClass合成方法
 ```
 class Person3{

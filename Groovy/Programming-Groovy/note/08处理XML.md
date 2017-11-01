@@ -51,7 +51,7 @@ test2.xml:
 - 创建Xml
 
 
-<br><br>
+---
 ## 1 解析xml
 
 使用Groovy的分类可以在类上定义动态的方法，其中一个分类`DOMCategory(DOM:Document Object Model)`可以处理文档对象模型DOMCategory可以通过`GPath(Groovy path extension)`：
@@ -133,7 +133,7 @@ println languagesNs.language.collect{it.@name}.join(' , ')
 println languagesNs.'human:language'.collect{it.@name}.join(' , ')//.'human:language'用于获取human对应命名空间的所有元素
 ```
 
-<br><br>
+---
 ## 4 创建xml
 
 1. 使用GString的嵌入能力创建xml前面 已经学习过了

@@ -1,8 +1,8 @@
 package ztiany.chapter2
 
-//----------
+//--------------------
 // 1  hello groovy  使用groovy打印 ho ho ho merry groovy
-//----------
+//--------------------
 
 for (int i = 0; i < 3; i++) {
     print 'ha '

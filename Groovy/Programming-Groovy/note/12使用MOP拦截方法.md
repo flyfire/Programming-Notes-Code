@@ -8,7 +8,7 @@
 
 使用MOP可以轻松的实现这些建议的拦截器
 
-<br><br>
+---
 ## 1 使用GroovyInterceptable拦截方法
 
 GroovyInterceptable拦截方法的规则上一章已经学习过了。**使用GroovyInterceptable拦截方法适用于拦截自己编写的类**
@@ -75,7 +75,7 @@ groovy.lang.MissingMethodException: No signature of method: ztiany.chapter12.Car
 Possible solutions: sleep(long), sleep(long, groovy.lang.Closure), end(), split(groovy.lang.Closure), check(), start()
 ```
 
-<br><br>
+---
 ## 2 使用MetaClass拦截方法
 
 **注意：对于没有实现GroovyInterceptable的类，如果它的MetaClass上实现了invokeMethod();不管方法是否存在，都会调用到该方法**

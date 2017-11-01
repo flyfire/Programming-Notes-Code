@@ -1,7 +1,7 @@
 # 第七章：探索GDK
 
 
-<br><br>
+---
 ## 1 使用Object类的扩展
 
 Groovy在Collection上添加`了each，find，collect`等方法，其实不仅Collection可以使用这些方法，其任何对象都是可以使用的，这为我们以类似的方式使用不同的对象和集合体提供了一致的api。
@@ -143,7 +143,7 @@ Number上加上了`upto、downto、step`方法
 
 
 
-<br/><br/>
+---
 ## 2 其他扩展
 
 更详细的GDK所做的扩展，参考GDK文档，这里介绍的只是一个子集
@@ -199,7 +199,7 @@ Thread.start {
 }
 ```
 
-<br/><br/>
+---
 ## 3 io的扩展
 
 Java中file也加入了很多方面的方法，其中eachFile和eachDir这样的方法可以接受闭包，Java中读取File的文本显得过于繁复,Groovy通过向`BufferedReader、InputStream、File`添加了一个text属性用于一次新读取file或者流中的文本，使之简单的了许多:
@@ -226,7 +226,7 @@ new File('test.md').withWriter {
 }
 ```
 
-<br/><br/>
+---
 ## 4 java.util的扩展
 
 - List Set  SortedMap 都加入了asImmutable方法，用于获取对应的一个不可变对象，
@@ -234,7 +234,7 @@ new File('test.md').withWriter {
 - Iterator支持的inject方法前面学习过
 - Timer.runAfter方法接受一个闭包，改闭包将在给定的(毫秒)时间后运行
 
-<br/><br/>
+---
 ## 5 使用扩展模块定制方法
 
 使用extension-modules特性，我们还可以在编译时向现有类添加方法或者静态方法
