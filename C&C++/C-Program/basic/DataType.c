@@ -47,7 +47,6 @@ void dataType() {
     printf("%f\n", f);
     printf("%lf\n", lf);
 
-
     printf("字符的长度是:%d\n", sizeof(char));
     printf("short的长度是:%d\n", sizeof(short));
     printf("int的长度是:%d\n", sizeof(int));
@@ -57,13 +56,10 @@ void dataType() {
     printf("double的长度是:%d\n", sizeof(double));
 
     printf("常量A=%f", A);
-
 }
 
 
-/*
- * 获取与打印内存地址
- */
+//获取与打印内存地址
 void memoryAddress() {
     int cc = 3;
     printf("%p\n", &cc);

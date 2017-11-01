@@ -8,6 +8,7 @@
  */
 #include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 
 struct Student {

@@ -8,12 +8,9 @@
  */
 
 int main(){
-
     int array1[4] = {1, 2, 4, 5};
-
     //c99可以指定初始化某个元素
     int days[7] = {[6] = 6};
-
 }
 
 void arrayTest1(const int array[]){

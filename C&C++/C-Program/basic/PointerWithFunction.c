@@ -19,7 +19,6 @@ void returnPointerFunction();
  函数指针：
  如果在程序中定义一个函数，在编译时编译系统为函数代码分配一端存储空间，这段存空间袋起始地址(入口地址)称为函数的指针。
  定义函数指针的：类型名(* 指针变量名)(函数参数列表)，例如：int (*p)(int,int);
-
  */
 int main() {
     functionPointer();
