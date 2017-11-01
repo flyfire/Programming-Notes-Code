@@ -5,20 +5,11 @@ android {
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-        applicationId "com.ztiany.sample4"
+        applicationId "com.ztiany.ndk.two_libs"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
-        externalNativeBuild {
-            ndkBuild {
-                arguments "NDK_APPLICATION_MK:=src/main/jni/Application.mk"
-                cFlags "-DTEST_C_FLAG1", "-DTEST_C_FLAG2"
-                cppFlags "-DTEST_CPP_FLAG2", "-DTEST_CPP_FLAG2"
-                abiFilters "armeabi-v7a", "armeabi", "x86"
-            }
-        }
     }
 
     externalNativeBuild {
