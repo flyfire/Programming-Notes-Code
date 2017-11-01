@@ -1,12 +1,17 @@
-Kotlin Android Sample
+# Kotlin Android Sample
 
-# 1 Kotlin
+---
+## 1 Kotlin
 
-todo study
+- 学习kotlin基本语法
+- 掌握kotlin 高级特性
+- 掌握kotlin协程
 
-# 2 Anko库
+---
+## 2 Anko库
 
-## 2.1 Common库
+
+### 2.1 Common库
 
 - 快速的构建Dialog
 - 使用intentFor方面的打开Activity
@@ -17,18 +22,16 @@ todo study
 
 todo study
 
-## 2.2 协程
+### 2.2 协程
 
 - `asReference()`用于避免内存泄漏
 - `bg{}`用于在异步线程执行任务
 
-todo study
-
-## 2.3 Anko Layouts
+### 2.3 Anko Layouts
 
 Anko Layouts允许使用DSL的方式来创建布局，切使用起来非常方便.
 
-### 基本功能
+#### 基本功能
 
 1. Layouts可扩展，只需要在ViewManager上添加对应View的扩展
 2. 可以使用Gradle继承Anko所有的库，也可以单独继承Anko的Layouts库
@@ -42,14 +45,14 @@ Anko Layouts允许使用DSL的方式来创建布局，切使用起来非常方�
     - xml布局转换为DSL布局
 9. 在Activity中使用DSL布局，不需要再调用setContentView方法，框架自动完成
 
-### DSL的原理：
+#### DSL的原理：
 
 1. Anko库给Activity添加了很多的扩展方法，比如`verticalLayout`
 2. 在Fragment中需要先调用`UI`方法获取AnkoContext才能进行DSL布局编程
 
-todo study
+todo
 
 
-## 2.4 Anko SQLite
+### 2.4 Anko SQLite
 
-todo study
+todo
