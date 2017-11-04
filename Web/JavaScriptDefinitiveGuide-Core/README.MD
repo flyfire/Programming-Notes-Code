@@ -1,9 +1,9 @@
-# JavaScript权威指南6学习笔记
+#  《JavaScript权威指南第6版》学习笔记
 
 [原书代码](https://resources.oreilly.com/examples/9780596805531/)
 
 
-## Js原形
+## js原形
    
 - [最详尽的 JS 原型与原型链终极详解](http://www.jianshu.com/p/dee9f8b14771)
 - [继承与原型链](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
