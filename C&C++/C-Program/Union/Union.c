@@ -8,7 +8,6 @@
  */
 #include <stdio.h>
 
-
 union UA {
     int i;
     float j;
@@ -24,9 +23,7 @@ int main() {
 }
 
 void unionSample() {
-    /*
-     * 联合体中的所以数据都放在同一个地址开始的内存单元中。每一瞬间，联合体只能存储其中一个成员
-     */
+    //联合体中的所以数据都放在同一个地址开始的内存单元中。每一瞬间，联合体只能存储其中一个成员
     union Date {
         int i;
         char ch;

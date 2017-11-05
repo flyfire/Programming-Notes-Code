@@ -16,6 +16,7 @@ int main() {
 }
 
 void enumSample() {
+
     //如果一个变量只有集中可能的值，可以定义枚举类型
     //c语言对枚举的元素按照常量处理，每一个枚举都是int类型，默认从0开始,
     enum Weekday {
@@ -25,7 +26,7 @@ void enumSample() {
     printf("%d", day1);
 
     //可以指定枚举的值
-    enum E1 {
+    enum Enum {
         a = 3, b = 5
     };
 

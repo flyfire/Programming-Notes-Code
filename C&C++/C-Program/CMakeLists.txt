@@ -3,5 +3,5 @@ project(C_Program)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES basic/DataType.c)
+set(SOURCE_FILES Variable/DefineVariable.c)
 add_executable(C_Program ${SOURCE_FILES})

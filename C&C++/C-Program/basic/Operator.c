@@ -35,9 +35,7 @@ void bitOperation() {
     printInt('n', n);
     printInt('m', m);
     printInt('l', l);
-
 }
-
 
 void printInt(char name, int x) {
     printf("数据%c的值为%d \n", name, x);

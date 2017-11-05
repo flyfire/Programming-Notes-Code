@@ -15,18 +15,17 @@ const int days[3] = {1, 2, 3};//const定义常量更灵活，可以定义数组
 void dataType();//如果函数写在main后面，需要在main函数前面先声明这个函数
 void memoryAddress();
 
-//C程序一定是从主函数开始执行的。main函数的返回值为int类型.
+//C程序一定是从主函数开始执行的，main函数的返回值为int类型.
 int main() {
     dataType();//数据类型与数据类下大小
     memoryAddress();//获取内存地址
     return 1;
 }
 
-/*
- * 数类型
- */
+
 void dataType() {
 
+    //C语言中的数据类型
     char c = 'c';
     short hd = 1233;
     int d = 12312312;
@@ -46,15 +45,18 @@ void dataType() {
     printf("%lld\n", ld);
     printf("%f\n", f);
     printf("%lf\n", lf);
+    printf("%d\n", flag);
+    printf("%d\n", b1);
+    printf("%d\n", b2);
 
-    printf("字符的长度是:%d\n", sizeof(char));
-    printf("short的长度是:%d\n", sizeof(short));
-    printf("int的长度是:%d\n", sizeof(int));
-    printf("long的长度是:%d\n", sizeof(long));
-    printf("long long的长度是:%d\n", sizeof(long long));
-    printf("float的长度是:%d\n", sizeof(float));
-    printf("double的长度是:%d\n", sizeof(double));
-
+    //打印数据类型的长度
+    printf("字符的长度是:%zd\n", sizeof(char));
+    printf("short的长度是:%zd\n", sizeof(short));
+    printf("int的长度是:%zd\n", sizeof(int));
+    printf("long的长度是:%zd\n", sizeof(long));
+    printf("long long的长度是:%zd\n", sizeof(long long));
+    printf("float的长度是:%zd\n", sizeof(float));
+    printf("double的长度是:%zd\n", sizeof(double));
     printf("常量A=%f", A);
 }
 

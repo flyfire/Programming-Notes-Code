@@ -10,13 +10,9 @@
 #include <mem.h>
 
 void structSample();
-
 void referenceStruct();
-
 void structArray();
-
 void structPointer();
-
 void functionPointerInStruct();
 
 int main() {

@@ -16,3 +16,7 @@ int main() {
 void printInt(char name, int x) {
     printf("数据%c的值为%d \n", name, x);
 }
+
+static inner_method(){//静态函数只能在内部调用
+
+}
