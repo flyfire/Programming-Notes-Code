@@ -8,11 +8,13 @@
  */
 
 int main(){
+    //定义数组
     int array[4] = {1, 2, 4, 5};
     //c99可以指定初始化某个元素
     int days[7] = {[6] = 6};
 }
 
+//使用数组作为参数
 void arrayTest(const int array[]){
     
 }
