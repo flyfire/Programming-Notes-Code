@@ -29,25 +29,30 @@ void dataType() {
     char c = 'c';
     short hd = 1233;
     int d = 12312312;
-    long long ld = 232423423;
     long sld = 432432;
+    long long ld = 232423423;
+    unsigned int ud = 323;
+    unsigned long uld = 3333;
     float f = 1212.132121F;
     double lf = 232.222222222;
     bool flag = false;    //布尔类型，c99添加
-    _Bool b1 = 1;
-    _Bool b2 = 0;
+    _Bool b1 = 1;//c99添加
+    _Bool b2 = 0;//c99添加
+
 
     //打印变量
     printf("%c\n", c);
     printf("%ld\n", sld);
+    printf("%ld\n", uld);
     printf("%hd\n", hd);
     printf("%d\n", d);
+    printf("%d\n", ud);
     printf("%lld\n", ld);
-    printf("%f\n", f);
-    printf("%lf\n", lf);
     printf("%d\n", flag);
     printf("%d\n", b1);
     printf("%d\n", b2);
+    printf("%f\n", f);
+    printf("%lf\n", lf);
 
     //打印数据类型的长度
     printf("字符的长度是:%zd\n", sizeof(char));

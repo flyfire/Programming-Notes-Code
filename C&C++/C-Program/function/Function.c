@@ -7,7 +7,10 @@
  ============================================================================
  */
 
-void printInt(char name, int x);//声明的时候可以不写参数名，所以void printInt(char, int);也是可以的
+
+//如果自建的函数写在main函数的后面，需要在main函数之前声明这个函数
+//声明的时候可以不写参数名，所以void printInt(char, int);也是可以的
+void printInt(char name, int x);
 
 int main() {
     printInt('a', 54);

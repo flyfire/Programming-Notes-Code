@@ -1,7 +1,7 @@
 /*
  ============================================================================
  Author      : Ztiany
- Description : 演示C语言的算法运算
+ Description : C语言的运算符
  ============================================================================
  */
 
@@ -9,6 +9,7 @@ void bitOperation();//位运算
 void printInt(char name, int x);
 
 #include <stdio.h>
+#include <iso646.h>//如果键盘无法输入操作符，可以用里面的宏定义代替
 
 int main(void) {
     //位运算
