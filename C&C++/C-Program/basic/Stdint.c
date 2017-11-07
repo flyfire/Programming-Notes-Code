@@ -13,6 +13,5 @@
 
 int main() {
     int32_t me32;//一个32位有符号整型
-
     return 0;
 }

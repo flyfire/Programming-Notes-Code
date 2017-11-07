@@ -5,27 +5,22 @@
  ============================================================================
  
  Author      : Ztiany
- Description : 动态申请内存
+ Description : 动态内存管理与指向它的指针变量
 
  ============================================================================
  */
 
 void mallocSample();
-
 void mallocSample2();
-
 void voidTypePointer();
-
 void voidTypePointerSample();
 
 int main() {
-//动态分配内存与指向它的指针变量
     mallocSample();
     mallocSample2();
     voidTypePointer();
     voidTypePointerSample();
 }
-
 
 void voidTypePointerSample() {
     int *p1;
@@ -51,7 +46,7 @@ void voidTypePointer() {
     p2 = (char *) p3;//void转换为char*类型
     printf("%d", *p1);
     p3 = &a;//赋值后得到的是纯地址，单并不指向a，不能通过*p3获取a的值。
-// printf("%d", *p3);//不合法，编译错误
+    // printf("%d", *p3);//不合法，编译错误
 }
 
 void mallocSample2() {

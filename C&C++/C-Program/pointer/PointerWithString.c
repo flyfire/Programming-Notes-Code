@@ -14,7 +14,7 @@ void stringPointer();
 
 
 int main(){
-//通过指针引用字符串
+    //通过指针引用字符串
     stringPointer();
 }
 

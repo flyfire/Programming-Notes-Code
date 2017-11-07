@@ -48,14 +48,15 @@ int maxValue(int a, int b) {
 
 
 void structPointer() {
+
     struct Student {
         //下面元素可以称为：成员列表或域表
         int num;                    //4
-        char name[20];          //20
+        char name[20];              //20
         char sex;                   //1
         int age;                    //4
-        float score;               //4
-        char address[20];       //20
+        float score;                //4
+        char address[20];           //20
     } student = {20, "张三", 'm', 30, 23.6F, "湖南"};
 
     struct Student *sp;
@@ -69,7 +70,7 @@ void structPointer() {
 void structArray() {
     //使用结构体数组
     struct Man {
-        char name[20];          //20
+        char name[20];              //20
         int num;                    //4
     } players[] = {"z", 0, "y", 0, "x", 0};
 
@@ -91,34 +92,32 @@ void structArray() {
 void referenceStruct() {
     struct Student {
         //下面元素可以称为：成员列表或域表
-        int num;                    //4
-        char name[20];          //20
-        char sex;                   //1
-        int age;                    //4
-        float score;               //4
-        char address[20];       //20
+        int num;            //4
+        char name[20];      //20
+        char sex;           //1
+        int age;            //4
+        float score;        //4
+        char address[20];   //20
     } student = {20, "张三", 'm', 30, 23.6F, "湖南"};
 
     printf("student address is %o \n", &student);   //结构体首地址
     printf("student address is %o \n", &student.num);
-
-
 }
 
 void structSample() {
     //数组只能存储类型相同的元素，如果需要在一个数据结果中存储不同的数据类型，可以使用结构体
-
     struct Student {
         //下面元素可以称为：成员列表或域表
-        int num;                    //4
-        char name[20];          //20
-        char sex;                   //1
-        int age;                    //4
-        float score;               //4
-        char address[20];       //20
+        int num;            //4
+        char name[20];      //20
+        char sex;           //1
+        int age;            //4
+        float score;        //4
+        char address[20];   //20
     };
 
-    printf("Student size is %d \n", sizeof(struct Student));// 56 = 4 * 14, 计算机对内存的管理是以字为点位的(字的长度称为字长，一般计算机的字长为4或8个字节)
+    // 56 = 4 * 14, 计算机对内存的管理是以字为点位的(字的长度称为字长，一般计算机的字长为4或8个字节)
+    printf("Student size is %d \n", sizeof(struct Student));
 
     //结构体中可以定义另一个结构体
     struct Date {

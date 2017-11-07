@@ -9,19 +9,12 @@
  ============================================================================
  */
 
-
 void arrayPointerSample1();
-
 void arrayPointerSample2();
-
 void arrayPointerSample3();
-
 void arrayPointerSample4();
-
 void arrayPointerSample5(int []);
-
 void multidimensionalArray();
-
 
 static void invArr(int *pInt, int i) {
     int half = i / 2;
@@ -56,9 +49,10 @@ int main() {
 
 //通过指针引用多维数组
 void multidimensionalArray() {
+    //arr指向arr[0]，即二维数组的0行首地址，arr可以理解为指向指针的指针
     int arr[3][3] = {{1, 2, 3},
                      {5, 6, 7},
-                     {8, 9, 10}};//arr指向arr[0]，即二维数组的0行首地址，arr可以理解为指向指针的指针
+                     {8, 9, 10}};
 
     printf("%d \n", sizeof(arr));//32
     printf("%d \n", sizeof(*arr));//12

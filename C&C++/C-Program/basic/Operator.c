@@ -27,6 +27,7 @@ void bitOperation() {
     int n = x | y;
     int m = x << 3;
     int l = x >> 3;
+    int o = x bitand 3;
 
     printInt('x', x);
     printInt('y', y);
@@ -36,6 +37,8 @@ void bitOperation() {
     printInt('n', n);
     printInt('m', m);
     printInt('l', l);
+    printInt('l', l);
+    printInt('o', o);
 }
 
 void printInt(char name, int x) {
