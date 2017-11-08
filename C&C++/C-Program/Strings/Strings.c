@@ -13,6 +13,11 @@
 
 static void defineArray() {
     char c[] = {'a', 'b', '\0'};
+    char *str1 = "hello";
+    char *str2 = "abc""ddd""zz";
+    char *str3 = "abc""ddd"
+            "zz";
+
     printf("c = %o\n", c);//以八进制形式输出数组首地址
     printf("c = %s\n", c);//以字符串的形式输出字符数组
 }

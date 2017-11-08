@@ -3,5 +3,5 @@ project(C_Program)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES Pointer/Pointer08_Linked.c)
+set(SOURCE_FILES Strings/GetString.c)
 add_executable(C_Program ${SOURCE_FILES})
