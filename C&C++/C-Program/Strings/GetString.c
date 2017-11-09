@@ -18,13 +18,13 @@ static void scanfSample() {
     puts(str);
 }
 
-static void getsSample() {
+static void getsSample1() {
     char str[100];
     gets(str);
     puts(str);
 }
 
-static void fgetsSample(){
+static void fgetsSample() {
     const int SIZE = 20;
     char worlds[SIZE];
     fgets(worlds, SIZE, stdin);
@@ -32,9 +32,20 @@ static void fgetsSample(){
     fputs(worlds, stdout);
 }
 
+static void getsSample2() {
+    char str[100];
+    char *result;
+    //如果gets读取到文件结尾会返回NULL，一般在标准输入中Ctrl+Z或Ctrl+D表示文件结尾信号
+    while ((result = gets(str)) != NULL) {
+        printf("your enter is = %s\n", result);
+    }
+}
+
+
 int main() {
-    fgetsSample();
+    //fgetsSample();
     //scanfSample();
-    //getsSample();
+    //getsSample1();
+    getsSample2();
     return EXIT_SUCCESS;
 }
