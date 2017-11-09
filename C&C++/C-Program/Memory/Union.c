@@ -14,7 +14,6 @@ union UA {
 };
 
 void unionParameter(union UA ua);
-
 void unionSample();
 
 int main() {

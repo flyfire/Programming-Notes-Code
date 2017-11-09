@@ -9,29 +9,38 @@
 #include <stdio.h>
 #include <mem.h>
 
-void structSample();
-void referenceStruct();
-void structArray();
-void structPointer();
-void functionPointerInStruct();
+static void defineStruct();
+
+static void referenceStruct();
+
+static void structArray();
+
+static void structPointer();
+
+static void functionPointerInStruct();
 
 int main() {
-    structSample();//结构体示例
-    referenceStruct();//引用结构体
-    structArray();//结构体数组
-    structPointer();//结构体指针
-    functionPointerInStruct();//结构体中的函数指针
+    //结构体示例
+    defineStruct();
+    //引用结构体
+    referenceStruct();
+    //结构体数组
+    structArray();
+    //结构体指针
+    structPointer();
+    //结构体中的函数指针
+    functionPointerInStruct();
     return 0;
 }
 
-void functionPointerInStruct() {
-    //在结构体中声明指针变量
+//在结构体中声明指针变量
+static void functionPointerInStruct() {
     struct Arr {
         int (*f)(int, int);
         int a;
         int b;
     };
-    int maxValue(int, int);
+    extern int maxValue(int, int);
     int (*f)(int, int) = maxValue;
     struct Arr arr = {f, 3, 100};
     int max = arr.f(arr.a, arr.b);
@@ -46,11 +55,10 @@ int maxValue(int a, int b) {
     return b;
 }
 
-
-void structPointer() {
-
+//结构体指针
+static void structPointer() {
+    //定义结构体指针
     struct Student {
-        //下面元素可以称为：成员列表或域表
         int num;                    //4
         char name[20];              //20
         char sex;                   //1
@@ -63,12 +71,13 @@ void structPointer() {
     sp = &student;
     student.num = 1;
     strcpy(student.name, "李四");
-    printf(" %s , %d\n", sp->name, sp->num);// 使用结构体指针引用结构体的数据时，直接使用 ->符号
+    printf("%s,%d\n", sp->name, sp->num);// 使用结构体指针引用结构体的数据时，直接使用 ->符号
     printf("%d", (*sp).num);
 }
 
-void structArray() {
-    //使用结构体数组
+//定义结构体数组
+static void structArray() {
+    //使用结构体数组，这里定义了3个元素的数组
     struct Man {
         char name[20];              //20
         int num;                    //4
@@ -88,10 +97,9 @@ void structArray() {
     }
 }
 
-
-void referenceStruct() {
+//访问结构体的成员
+static void referenceStruct() {
     struct Student {
-        //下面元素可以称为：成员列表或域表
         int num;            //4
         char name[20];      //20
         char sex;           //1
@@ -100,11 +108,13 @@ void referenceStruct() {
         char address[20];   //20
     } student = {20, "张三", 'm', 30, 23.6F, "湖南"};
 
-    printf("student address is %o \n", &student);   //结构体首地址
-    printf("student address is %o \n", &student.num);
+    printf("student address is %p \n", &student);   //结构体首地址
+    printf("student address is %p \n", &student.num);
 }
 
-void structSample() {
+
+//定义结构体
+static void defineStruct() {
     //数组只能存储类型相同的元素，如果需要在一个数据结果中存储不同的数据类型，可以使用结构体
     struct Student {
         //下面元素可以称为：成员列表或域表
@@ -116,8 +126,7 @@ void structSample() {
         char address[20];   //20
     };
 
-    // 56 = 4 * 14, 计算机对内存的管理是以字为点位的(字的长度称为字长，一般计算机的字长为4或8个字节)
-    printf("Student size is %d \n", sizeof(struct Student));
+    printf("Student size is %d \n", sizeof(struct Student));//56
 
     //结构体中可以定义另一个结构体
     struct Date {

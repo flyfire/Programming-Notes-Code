@@ -35,6 +35,8 @@
 #define MY_NAME  "Ztiany"
 #endif
 
+#define PR(...) printf(__VA_ARGS__)//__VA_ARGS__是一个预定义宏，表示可变参数
+
 #define NEWLINE printf("-------------------------------------------------------\n")
 
 void printPredefinedMacros() {
@@ -69,6 +71,10 @@ int main() {
 
     //使用NEWLINE
     NEWLINE;
+
+    //使用PR
+    PR("Hello PR\n");
+    PR("name=%s,age=%d\n","Ztiany",27);
 
     //打印预定义宏
     printPredefinedMacros();

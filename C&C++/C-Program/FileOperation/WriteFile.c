@@ -14,14 +14,12 @@
 #define FILE3 "H:\\codes\\C\\C-File\\file\\test3.txt"
 
 void writeFile();
-
 void readFile();
-
 void formatWriteRead() ;
 
 int main() {
-//    writeFile();
-//    readFile();
+    //writeFile();
+    //readFile();
     formatWriteRead();
     return 0;
 }
@@ -47,7 +45,8 @@ void readFile() {
         exit(0);
     }
     char c;
-    while (!feof(fp)) {//feof如果未遇到文件结束标识。
+    //feof表示如果未遇到文件结束标识。
+    while (!feof(fp)) {
         c = (char) fgetc(fp);
         fputc(c, fpTarget);
         putchar(c);
