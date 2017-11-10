@@ -21,7 +21,6 @@ static void getcharEOF() {
     }
 }
 
-
 static void scanfReturn(){
     int result;
     //当用户输入的不是数字，ret=0

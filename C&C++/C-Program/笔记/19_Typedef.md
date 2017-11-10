@@ -1,6 +1,6 @@
 # typedef
 
-可以使用typedef指定新的类型名来代替已有的类型名，习惯把typedef声明的类型的第一次字母大写
+typedef可以指定新的类型名来代替已有的类型名，目的是为了使源代码更易于阅读和理解。习惯把typedef声明的类型的第一次字母大写。
 
 定义一个新的类型的方法是：
 
@@ -8,6 +8,11 @@
 2. 将变量名换成新的类型名(Count)
 3. 在最前面加上typedef(typedef Count)
 4. 然后可以用新的类型名去定义变量
+
+```
+typedef int Integer//给int定义一个Integer名称。
+typedef	void (*__p_sig_fn_t)(int);//定义一个函数指针。
+```
 
 
 ## typedef和#define的区别

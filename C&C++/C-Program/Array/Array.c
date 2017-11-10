@@ -16,8 +16,7 @@ int main() {
     int days[7] = {[6] = 6};
 
     //定义多维数组
-    int multiArr1[][4] = {{4},
-                          {4}};//直接初始化
+    int multiArr1[][4] = {{4}, {4}};//直接初始化
     int multiArr2[3][4];//同时指定行列数
 }
 

@@ -68,7 +68,11 @@ String s = "abc";
 
 //5:声明Pointer为指向函数指针的类型，该函数返回int类型
 typedef int (*Pointer)();
+
 Pointer pointer;
+
+//6:定义函数指针
+typedef void (*p_function)(int);
 
 int get() {
     return 9;

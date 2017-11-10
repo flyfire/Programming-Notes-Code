@@ -9,7 +9,6 @@ void bitOperation();//位运算
 void printInt(char name, int x);
 
 #include <stdio.h>
-#include <iso646.h>//如果键盘无法输入操作符，可以用里面的宏定义代替
 
 int main(void) {
     //位运算
@@ -27,7 +26,6 @@ void bitOperation() {
     int n = x | y;
     int m = x << 3;
     int l = x >> 3;
-    int o = x bitand 3;
 
     printInt('x', x);
     printInt('y', y);
@@ -38,7 +36,6 @@ void bitOperation() {
     printInt('m', m);
     printInt('l', l);
     printInt('l', l);
-    printInt('o', o);
 }
 
 void printInt(char name, int x) {
