@@ -17,7 +17,7 @@
 1. [头文件](笔记/13_头文件.md)
 1. [typedef](笔记/19_Typedef.md)
 1. [结构体-枚举-联合体](笔记/14_结构体-枚举-联合体.md)
-1. [C语言字节对齐与内存分配](笔记/15_C语言字节对齐与内存分配.md) todo
+1. [字节对齐与内存分配](笔记/15_C语言字节对齐与内存分配.md)
 1. [文件读写](笔记/16_C语言读写文件.md) 
 1. [错误处理](笔记/17_错误处理.md)
 1. [动态内存管理](笔记/15_动态内存管理.md)
@@ -29,7 +29,7 @@
 - 《谭浩强C程序设计》
 - 《C Primer Plus》
 - [cplusplus](http://www.cplusplus.com/)
-- [菜鸟教程](http://www.runoob.com/cprogramming/c-header-files.html)
+- [菜鸟教程——C语言](http://www.runoob.com/cprogramming/c-header-files.html)
 - [awesome-c-cn](https://github.com/jobbole/awesome-c-cn)
 - [C语言编码规范](http://www.jianshu.com/p/0c29795c31fe)
 - [维基百科：C标准函数库](https://zh.wikipedia.org/wiki/C%E6%A8%99%E6%BA%96%E5%87%BD%E5%BC%8F%E5%BA%AB)
