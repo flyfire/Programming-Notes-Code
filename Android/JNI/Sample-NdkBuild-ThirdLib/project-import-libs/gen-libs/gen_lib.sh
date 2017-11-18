@@ -8,7 +8,7 @@
 # Execution in Terminal:
 #          source gen_lib.sh  ( or ./gen_lib.sh )
 
-# Build 2 libs in terminal with  ndk-build tool DIRECTLY
+# Build 2 libs in terminal with  ndk-build tool DIRECTLY，windows用户手动执行这两个命令
 ndk-build APP_BUILD_SCRIPT=./gmath/Android.mk  NDK_PROJECT_PATH=. NDK_APPLICATION_MK=./gmath/Application.mk
 ndk-build APP_BUILD_SCRIPT=./gperf/Android.mk  NDK_PROJECT_PATH=. NDK_APPLICATION_MK=./gperf/Application.mk
 

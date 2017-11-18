@@ -8,6 +8,6 @@ set(CMAKE_C_STANDARD 99)
 #add_executable(Sample02 ${SOURCE_FILES})
 
 #方式2
-# 查找当前目录下的所有源文件，并将名称保存到 DIR_SRCS 变量
+# 查找Source目录下的所有源文件，并将名称保存到 DIR_SRCS 变量
 aux_source_directory(Source DIR_SRCS)
-add_executable(Sample02 ${DIR_SRCS})
+add_executable(Sample02 ${DIR_SRCS})	
