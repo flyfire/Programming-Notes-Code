@@ -4,18 +4,22 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * @Author Administrator
- * Date:2016-03-17.23:36
- * 描述：
+ * 变换原理
  */
-public class SchedulersTest {
+public class Lift {
 
 
-    public static void main(String[] args) {
+    private static class DemoCompose implements Observable.Transformer<Integer, Integer> {
 
-
+        @Override
+        public Observable<Integer> call(Observable<Integer> integerObservable) {
+            return integerObservable
+                    .lift(new Operator1())
+                    .lift(new Operator2())
+                    .lift(new Operator3())
+                    .lift(new Operator4());
+        }
     }
-
 
     private static class Operator1 implements Observable.Operator<String, Integer> {
 
@@ -50,17 +54,5 @@ public class SchedulersTest {
         }
     }
 
-
-    private static class DemoCompose implements Observable.Transformer<Integer, Integer> {
-
-        @Override
-        public Observable<Integer> call(Observable<Integer> integerObservable) {
-            return integerObservable
-                    .lift(new Operator1())
-                    .lift(new Operator2())
-                    .lift(new Operator3())
-                    .lift(new Operator4());
-        }
-    }
 
 }

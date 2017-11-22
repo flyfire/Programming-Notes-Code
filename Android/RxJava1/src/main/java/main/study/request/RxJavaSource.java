@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import main.Look;
+import main.RxLock;
 import rx.Observable;
 import rx.Producer;
 import rx.Subscriber;
@@ -55,7 +55,7 @@ public class RxJavaSource {
                     }
                 });
 
-        Look.look();
+        RxLock.lock();
     }
 
     private static void testBackPressure() {
@@ -138,7 +138,7 @@ public class RxJavaSource {
         customerSubscriber.requestMore(3);
         customerSubscriber.requestMore(3);
 
-        Look.look();
+        RxLock.lock();
 
     }
 

@@ -14,11 +14,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @Author Administrator
- * Date:2016-03-14.21:23
- * 描述：
- */
+
 public class Transform {
 
     public static void main(String[] args) throws InterruptedException {

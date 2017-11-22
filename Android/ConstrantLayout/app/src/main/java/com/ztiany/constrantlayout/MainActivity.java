@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         menu.add(Menu.NONE, 3, 3, "chain");
         menu.add(Menu.NONE, 4, 4, "ratio");
         menu.add(Menu.NONE, 5, 5, "match constraint");
+        menu.add(Menu.NONE, 6, 6, "wrap content");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 5:
                 setContentView(R.layout.activity_match_constraint);
+                break;
+            case 6:
+                setContentView(R.layout.activity_wrap_content);
                 break;
         }
 
