@@ -1,6 +1,6 @@
 package main.practice.logic;
 
-import main.study.filter.FilterMain;
+import main.utils.RxLock;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
@@ -58,19 +58,10 @@ public class RepeatWhen {
                     }
                 });
 
-        waitMain();//防止主线程退出，导致线程池shutdown
+        RxLock.lock();
     }
 
 
-    private static void waitMain() {
-        synchronized (FilterMain.class) {
-            try {
-                FilterMain.class.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     private static String getNumber() {
         try {
