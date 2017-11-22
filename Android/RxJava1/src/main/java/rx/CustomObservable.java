@@ -7,7 +7,6 @@ public class CustomObservable<T> extends Observable<T> {
         super(f);
     }
 
-
     public interface ThreadFactory {
         Thread createThread(Runnable runnable);
     }

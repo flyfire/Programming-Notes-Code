@@ -1,6 +1,6 @@
 package rx;
 
-public class TestCustomObservable {
+public class UseCustomObservable {
 
     public static void main(String[] args) {
 

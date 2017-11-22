@@ -1,11 +1,11 @@
-package main.study.request;
+package main.study;
 
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import main.RxLock;
+import main.utils.RxLock;
 import rx.Observable;
 import rx.Producer;
 import rx.Subscriber;
@@ -24,8 +24,8 @@ import rx.schedulers.Schedulers;
 public class RxJavaSource {
 
     public static void main(String... args) {
-//        testRequest();
-//        testBackPressure();
+        //testRequest();
+        //testBackPressure();
         testZip();
     }
 
@@ -59,8 +59,6 @@ public class RxJavaSource {
     }
 
     private static void testBackPressure() {
-
-
         Observable.range(1, 30)
                 .doOnRequest(new Action1<Long>() {
                     @Override
@@ -69,7 +67,6 @@ public class RxJavaSource {
                     }
                 })
                 .subscribe(new Subscriber<Integer>() {
-
                     @Override
                     public void onStart() {
                         super.onStart();
@@ -139,14 +136,12 @@ public class RxJavaSource {
         customerSubscriber.requestMore(3);
 
         RxLock.lock();
-
     }
 
     private static void testRequest() {
 
         long andAddRequest = BackpressureUtils.getAndAddRequest(new AtomicLong(), Long.MAX_VALUE);
         System.out.println("andAddRequest " + andAddRequest);
-
 
         Observable.range(1, 100)
                 .doOnRequest(new Action1<Long>() {

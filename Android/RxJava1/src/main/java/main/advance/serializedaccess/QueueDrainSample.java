@@ -8,9 +8,7 @@ import java.util.function.Consumer;
 import rx.internal.util.unsafe.MpscLinkedQueue;
 
 /**
- * <br/>   Description：Operator 并发原语：串行访问（serialized access）（二），queue-drain:
- * http://blog.piasy.com/AdvancedRxJava/2016/05/13/operator-concurrency-primitives-2/
- * <br/>    Email: ztiany3@gmail.com
+ * Operator 并发原语：串行访问（serialized access）（二），queue-drain：http://blog.piasy.com/AdvancedRxJava/2016/05/13/operator-concurrency-primitives-2/
  *
  * @author Ztiany
  *         Date : 2016-12-06 22:52
@@ -24,9 +22,6 @@ public class QueueDrainSample {
     或者发射操作在另一个线程执行，由于其阻塞（blocking）的原理，发射者循环就会出现性能瓶颈。
 
     在本文中，我将介绍另一种非阻塞的串行实现方式，我称之为队列漏（queue-drain）。
-
-
-
 
     但是，有一个几乎任何人都会使用的操作符就是使用的队列漏：observeOn。它目前的实现，
     使用了 ValueQueueDrainOptimized 中介绍的优化方案，因为它对队列（SpscArrayQueue）的 offer 和 poll 的操作都只在单一的线程中（两者是不同的线程）

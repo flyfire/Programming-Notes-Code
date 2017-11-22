@@ -1,4 +1,4 @@
-package main.study.cutomer;
+package main.study;
 
 import rx.Observable;
 import rx.Producer;
@@ -15,14 +15,14 @@ import java.util.concurrent.Executors;
  *         Date:2016-04-02.12:41
  *         描述：
  */
-public class TestCustomOpt {
+public class CustomRx {
 
 
     private static Executor sExecutor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     public static void main(String[] args) {
 
-       Observable.just(32)
+        Observable.just(32)
                 .lift(new Test1Opt<>(new Func1<Integer, String>() {
                     @Override
                     public String call(Integer integer) {
@@ -44,7 +44,6 @@ public class TestCustomOpt {
                     public void call(String s) {
                         System.out.println(s);
                         System.out.println(Thread.currentThread());
-
                     }
                 });
 
@@ -58,7 +57,6 @@ public class TestCustomOpt {
         public Test1Opt(Func1<R, T> test1Transform) {
             mTest1Transform = test1Transform;
         }
-
 
         @Override
         public Subscriber<? super R> call(Subscriber<? super T> subscriber) {
@@ -87,7 +85,6 @@ public class TestCustomOpt {
                 public void onNext(R r) {
                     if (!subscriber.isUnsubscribed()) {
                         subscriber.onNext(mTest1Transform.call(r));
-
                     }
                 }
             };
@@ -109,20 +106,19 @@ public class TestCustomOpt {
     }
 
 
-
-    public static class ComputerSchedulerTrans implements Observable.Transformer{
+    public static class ComputerSchedulerTrans implements Observable.Transformer {
 
         @Override
         public Object call(Object o) {
-            return ((Observable)o).subscribeOn(Schedulers.computation()).observeOn(Schedulers.from(sExecutor));
+            return ((Observable) o).subscribeOn(Schedulers.computation()).observeOn(Schedulers.from(sExecutor));
         }
     }
 
-    public static class ApplyComputer{
+    public static class ApplyComputer {
 
         private static ComputerSchedulerTrans mComputerSchedulerTrans = new ComputerSchedulerTrans();
 
-      static    <T> Observable.Transformer<T, T> applySchedulers() {
+        static <T> Observable.Transformer<T, T> applySchedulers() {
             return (Observable.Transformer<T, T>) mComputerSchedulerTrans;
         }
     }

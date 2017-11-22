@@ -12,9 +12,7 @@ import java.util.function.Consumer;
 import rx.internal.util.unsafe.MpscLinkedQueue;
 
 /**
- * <br/>   Description：Operator 并发原语：串行访问（serialized access）（一），emitter-loop：
- * http://blog.piasy.com/AdvancedRxJava/2016/05/06/operator-concurrency-primitives/
- * <br/>    Email: ztiany3@gmail.com
+ * Operator 并发原语：串行访问（serialized access）（一），emitter-loop：http://blog.piasy.com/AdvancedRxJava/2016/05/06/operator-concurrency-primitives/
  *
  * @author Ztiany
  *         Date : 2016-12-06 21:48
@@ -30,9 +28,6 @@ public class EmitterLoopSample {
 
     问题：
         1    如果不保证串行调用会有什么样的问题？
-
-
-
 
         在编写 RxJava 操作符时需要理解的最重要的算法，就是如何把并发的事件发射转化为串行的事件发射。在本文中，我介绍了一种叫做发射者循环（emitter-loop）的方式，
         这种方式和其他方式相比，具有不错的性能表现。由于这种方式使用了锁进行同步，以及偏向锁移除时的巨大开销，

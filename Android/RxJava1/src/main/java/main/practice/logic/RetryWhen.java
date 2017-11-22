@@ -1,8 +1,7 @@
 package main.practice.logic;
 
-import main.RxLock;
+import main.utils.RxLock;
 import rx.Observable;
-import rx.Scheduler;
 import rx.Subscriber;
 import rx.functions.Action1;
 import rx.functions.Func1;

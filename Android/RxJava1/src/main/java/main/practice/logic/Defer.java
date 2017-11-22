@@ -1,6 +1,6 @@
 package main.practice.logic;
 
-import main.RxLock;
+import main.utils.RxLock;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 

@@ -1,6 +1,6 @@
 package main.practice.logic;
 
-import main.RxLock;
+import main.utils.RxLock;
 import rx.*;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
