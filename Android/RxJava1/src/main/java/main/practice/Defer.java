@@ -1,4 +1,4 @@
-package main.practice.logic;
+package main.practice;
 
 import main.utils.RxLock;
 import rx.Observable;

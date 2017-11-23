@@ -1,4 +1,4 @@
-package main.practice.logic;
+package main.practice;
 
 import rx.Observable;
 import rx.schedulers.Schedulers;
