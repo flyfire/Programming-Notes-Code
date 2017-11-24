@@ -4,7 +4,7 @@
 ---
 ## C&C++
 
-- [C语言基础](C&C++/C-Program/README.md)
+- [C语言基础](C&C++/c-program/README.md)
 
 
 ---
