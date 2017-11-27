@@ -13,6 +13,5 @@
 
 ## 技术点
 
-- [Kotlin泛型](note/Kotlin泛型.md)
 - [Unit和Nothing区别](note/Unit和Nothing.md)
 
