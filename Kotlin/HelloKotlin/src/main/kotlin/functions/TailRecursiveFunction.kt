@@ -1,9 +1,9 @@
 package functions
 
-//todo 理解尾递归
 
 /**
  *尾递归函数
+ *
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.6.3 0:16
@@ -19,12 +19,9 @@ package functions
  * 并且不能用在 try/catch/finally 块中。目前尾部递归只在 JVM 后端中支持。
  */
 
-private tailrec fun findFixPoint(x: Double = 1.0): Double
-        = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
+private tailrec fun findFixPoint(x: Double = 1.0): Double = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
 
-/**
- * 最终代码相当于这种更传统风格的代码
- */
+//最终代码相当于这种更传统风格的代码
 private fun findFixPoint(): Double {
     var x = 1.0
     while (true) {

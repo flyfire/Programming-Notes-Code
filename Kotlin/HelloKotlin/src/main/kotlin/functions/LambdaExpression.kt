@@ -34,17 +34,19 @@ private fun testLock() {
 
 /**
  * Lambda 表达式：
- * 1，lambda 表达式总是被大括号括着，
- * 2，其参数（如果有的话）在 -> 之前声明（参数类型可以省略），
- * 3，函数体（如果存在的话）在 -> 后面。
- * 4，如果 lambda 是该调用的是唯一参数，则调用中的圆括号可以完全省略。
- * 5，如果函数字面值只有一个参数， 那么它的声明可以省略（连同 ->），其名称是 it。
+ *      1，lambda 表达式总是被大括号括着，
+ *      2，其参数（如果有的话）在 -> 之前声明（参数类型可以省略），
+ *      3，函数体（如果存在的话）在 -> 后面。
+ *      4，如果 lambda 是该调用的是唯一参数，则调用中的圆括号可以完全省略。
+ *      5，如果函数字面值只有一个参数， 那么它的声明可以省略（连同 ->），其名称是 it。
  */
+
 //给List添加map操作
 private fun <T, R> List<T>.map(transform: (T) -> R): List<R> {
     val result = arrayListOf<R>()
-    for (item in this)
+    for (item in this) {
         result.add(transform(item))
+    }
     return result
 }
 
@@ -59,15 +61,13 @@ private fun testMap() {
     }
 }
 
-//可以直接声明Lambda类型
-val toStr: (num: Int) -> String = {
-    it.toString()
-}
 
-/**
- * 函数类型：对于接受另一个函数作为参数的函数，我们必须为该参数指定函数类型。
- * 比如下面max，必须指定less的类型为  (T, T) -> Boolean) 接收两个类型，返回一个Boolean
- */
+//可以直接声明Lambda类型
+private val toStr: (num: Int) -> String = { it.toString() }
+
+
+// 函数类型：对于接受另一个函数作为参数的函数，我们必须为该参数指定函数类型。
+// max函数中必须指定less的类型，其类型为(T, T) -> Boolean) 接收两个类型，返回一个Boolean
 private fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
     var max: T? = null
     for (item in collection) {
@@ -78,7 +78,9 @@ private fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
     return max
 }
 
-private fun lamdbaReturn() {
+
+private fun lambdaReturn() {
+
     val ints = listOf(1, 2, 3, 4, 5, 6, 7)
 
     //下面两个表达式等价
@@ -91,7 +93,6 @@ private fun lamdbaReturn() {
         val shouldFilter = it > 0
         return@filter shouldFilter
     }
-
 }
 
 /**
@@ -105,7 +106,7 @@ private fun lamdbaReturn() {
  *            这意味着 lambda 表达式中的 return 将从包含它的函数返回，而匿名函数中的 return 将从匿名函数自身返回。
  *
  */
-private fun anonymityFun() {
+private fun anonymityFunction() {
     val ints = listOf(1, 2, 3, 4, 5, 6, 7)
     ints.filter(fun(item): Boolean = item > 0)//指定返回类型
     ints.filter(fun(item) = item > 0)//不指定返回类型
@@ -113,33 +114,38 @@ private fun anonymityFun() {
 
 
 /**
- * Lambda 表达式或者匿名函数（以及局部函数和对象表达式） 可以访问其闭包 ，即在外部作用域中声明的变量。
+ * Lambda 表达式或者匿名函数（以及局部函数和对象表达式）可以访问其闭包 ，即在外部作用域中声明的变量。
  */
 private fun testClosure() {
     val ints = listOf(1, 2, 3, 4, 5, 6, 7)
     var sum = 0
-
     ints.filter { it > 0 }
             .map { it * it }
             .forEach { sum += it }
-
     print(sum)
 }
+
+
+//自执行闭包：自执行闭包就是在定义闭包的同时直接执行闭包，一般用于初始化上下文环境。
+fun autoExecute() {
+    { x: Int, y: Int ->
+        println("${x + y}")
+    }(1, 3)
+}
+
 
 /**
  * 带接收者的函数字面值：
  *
- * Kotlin 提供了使用指定的接收者对象 用函数字面值的功能。
- *在函数字面值的函数体中，可以调用该接收者对象上的方法而无需任何额外的限定符。
- * 这类似于扩展函数，它允你在函数体内访问接收者对象的成员。 其用法的最重要的示例之一是
- *
+ *      Kotlin 提供了使用指定的接收者对象 用函数字面值的功能。
+ *      在函数字面值的函数体中，可以调用该接收者对象上的方法而无需任何额外的限定符。
+ *      这类似于扩展函数，它允你在函数体内访问接收者对象的成员。 其用法的最重要的示例之一是
  */
 private fun testExtend() {
 
     //扩展
     val sum = fun Int.(other: Int): Int = this + other
     1.sum(2)
-
 
     //当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。
     class HTML {
@@ -159,9 +165,4 @@ private fun testExtend() {
         // 带接收者的 lambda 由此开始
         body()   // 省略HTML直接调用该接收者对象的一个方法
     }
-}
-
-fun main(args: Array<String>) {
-//    testLock()
-    testMap()
 }

@@ -15,9 +15,7 @@ package oop
  * 扩展的作用域：要使用所定义包之外的一个扩展，我们需要在调用方导入它
  */
 
-/**
- * 扩展函数示例
- */
+//扩展函数示例
 private fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
     //这个 this 关键字在扩展函数内部对应到接收者对象
     val temp = this[index1]
@@ -32,8 +30,8 @@ private fun testSwap() {
 }
 
 private fun intExtend() {
-
     //扩展的两种方式：
+
     //1：
     fun Int.add(value: Int): Int {
         return this + value
@@ -50,9 +48,8 @@ private fun intExtend() {
 /**
  * 扩展是静态的：扩展不能真正的修改他们所扩展的类。通过定义一个扩展，你并没有在一个类中插入新成员， 仅仅是可以通过该类型的变量用点表达式去调用这个新函数。
  *
- *1，扩展函数是静态分发的，即他们不是根据接收者类型的虚方法。 这意味着调用的扩展函数是由函数调用所在的表达式的类型来决定的， 而不是由表达式运行时求值结果决定的
- *2，如果一个类定义有一个成员函数和一个扩展函数，而这两个函数又有相同的接收者类型、相同的名字 并且都适用给定的参数，这种情况总是取成员函数。
- *
+ *       1，扩展函数是静态分发的，即他们不是根据接收者类型的虚方法。 这意味着调用的扩展函数是由函数调用所在的表达式的类型来决定的，而不是由表达式运行时求值结果决定的
+ *      2，如果一个类定义有一个成员函数和一个扩展函数，而这两个函数又有相同的接收者类型、相同的名字 并且都适用给定的参数，这种情况总是取成员函数。
  */
 private open class ExtendC
 
@@ -79,7 +76,6 @@ private fun Any?.toString(): String {
 }
 
 
-
 /**
  * 扩展属性：和函数类似，Kotlin 支持扩展属性
  *
@@ -88,7 +84,6 @@ private fun Any?.toString(): String {
  */
 private val <T> List<T>.lastIndex: Int
     get() = size - 1//扩展属性只有setter
-
 
 
 /**
@@ -126,7 +121,6 @@ private class ExtendF {
         e.foo()   // 调用扩展函数
     }
 }
-
 
 
 fun main(args: Array<String>) {

@@ -10,14 +10,18 @@ import java.util.*
 
 /**
  *对象
+ *
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.5.30 17:45
  */
 
 /**
- * 有时候我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。Java 用匿名内部类处理这种情况。——Kotlin 用对象表达式和对象声明
+ * 有时候我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。Java 用匿名内部类处理这种情况。
+ *
+ *                                                                                                                                      ——Kotlin 用对象表达式和对象声明
  */
+
 
 /**
  * 对象表达式：要创建一个继承自某个（或某些）类型的匿名类的对象
@@ -60,8 +64,7 @@ private fun testObject() {
  * 对象声明：下面程序则为对象声明，可作为对单例模式应用。
  *
  * 对象声明不能在局部作用域（即直接嵌套在函数内部），但是它们可以嵌套到其他对象声明或非内部类中。
- *
- * */
+ */
 private interface DataProvider
 
 private object DataProviderManager {
@@ -83,7 +86,6 @@ private object DataProviderManager {
  * 4，在 JVM 平台，如果使用 @JvmStatic 注解，你可以将伴生对象的成员生成为真正的 静态方法和字段
  * 5，每个类，只能有一个伴生对象
  */
-
 private class CompanionClass1 {
     companion object {
         val x: Int = 100

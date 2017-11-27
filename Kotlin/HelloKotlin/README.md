@@ -2,6 +2,7 @@
 
 ## 基础
 
+- [Kotlin入门](note/00_Kotlin入门.md)
 - [Kotlin基础](note/01_Kotlin基础.md)
 - [面向对象](note/02_面向对象.md)
 - [函数与表达式](note/03_函数与lambda.md)
