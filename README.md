@@ -23,8 +23,7 @@
 ---
 ## Android
 
-- [JNI](Android/JNI/REAEME.md)
-
+- [JNI](Android/JNI/README.md)
 
 ---
 ## 如何使用GitHub项目?
