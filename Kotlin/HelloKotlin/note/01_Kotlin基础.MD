@@ -1,4 +1,4 @@
-#  1 基础
+#  1 Kotlin基础
 
 ---
 ## 1.1 语法
@@ -7,7 +7,7 @@
 
    - 可变使用`var`
    - 常量使用`val`
-    -  成员变量必须显式指定初始值，否则需要使用*lateinit*修饰变量，lateinit不能用于基本类型和可空类型
+   - 成员变量必须显式指定初始值，否则需要使用*lateinit*修饰变量，lateinit不能用于基本类型和可空类型
     
 ### 条件表达式
 
@@ -49,6 +49,7 @@
    - 支持的数字数据类型
    - 不同数字类型不能隐式转换，使用`toXXX`方法进行转换，比如`toInt()`
    - 字面量支持二进制、十进制、十六进制，不支持八进制
+   - 2进制以 `0b `开头：`0b00001011`
    - 数字类型位操作：`shl、shr、ushr、and、or、xor、inv`
    - 当需要可空引用时，像数字、字符会被装箱。装箱操作不会保留同一性
     
@@ -56,7 +57,6 @@
 
    - **它们不能直接当作数字**，字符字面值用单引号括起来: '1'，特殊字符可以用反斜杠转义，
    - 编码其他字符要用 Unicode 转义序列语法：'\uFF00'。
-   - 当需要可空引用时，像数字、字符会被装箱。装箱操作不会保留同一性
     
 ### 字符串类型
 
@@ -65,10 +65,9 @@
     
 ### 数组类型
 
-   - 数组类型使用Array表示
    - 数组在 Kotlin 中使用 Array 类来表示， 它定义了 get （按照运算符重载约定这会转变为 []）和 set 函数 和 size 属性，以及一些其他有用的成员函数
    - 与 Java 不同的是，Kotlin 中数组是**不型变**的（invariant）。这意味着 Kotlin 不让我们把 `Array<String>` 赋值给 `Array<Any>`
-   - Kotlin 也有无装箱开销的专门的类来表示原生类型数组: _ByteArray、 ShortArray、IntArray_ 等等
+   - Kotlin 也有无装箱开销的专门的类来表示原生类型数组: `ByteArray、 ShortArray、IntArray` 等等
    
 ### 使用集合
 
@@ -80,3 +79,31 @@
    - Range是一种数据结构，表示一个范围：比如1到5用`1..5`表示
    - 使用 `in` 运算符来检测某个数字是否在指定区间内
         
+`..`操作符表示区间表达式，重载的是`rangeTo`函数
+
+```kotlin
+fun range(){
+    for(i in 1..10 step 2){
+        println(i)
+    }
+     for(i in 1.rangeTo(10) step 2){
+            println(i)
+     }
+}
+```
+
+---
+## 3 Kotlin默认导入
+
+有多个包会默认导入到每个 Kotlin 文件中：
+
+```
+kotlin.*
+kotlin.annotation.*
+kotlin.collections.*
+kotlin.comparisons.*
+kotlin.io.*
+kotlin.ranges.*
+kotlin.sequences.*
+kotlin.text.*
+```

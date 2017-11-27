@@ -2,10 +2,13 @@ package advance
 
 /**
  *操作符重载
+ *
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.6.7 23:08
  */
+
+//todo 操作符与对应的函数名
 
 /**
  * 操作符符重载：Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。

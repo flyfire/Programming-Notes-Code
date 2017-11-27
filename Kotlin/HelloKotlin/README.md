@@ -2,6 +2,7 @@
 
 ## 基础
 
+- [Kotlin入门](note/00_Kotlin入门.md)
 - [Kotlin基础](note/01_Kotlin基础.md)
 - [面向对象](note/02_面向对象.md)
 - [函数与表达式](note/03_函数与lambda.md)
@@ -12,6 +13,5 @@
 
 ## 技术点
 
-- [Kotlin泛型](note/Kotlin泛型.md)
 - [Unit和Nothing区别](note/Unit和Nothing.md)
 
