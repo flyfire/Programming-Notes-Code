@@ -117,7 +117,7 @@ Lambda表达式
 
 ### 7. [API学习](note/API.md)
 
-         - Standard.kt
+- Standard.kt
          
 ### 8. [Kotlin标准库](note/Kotlin标准库.md) 
 
