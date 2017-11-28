@@ -1,6 +1,6 @@
 package advance
 
-//todo  理解结构声明
+//todo  理解解构声明
 
 /**
  *解构声明
@@ -55,6 +55,4 @@ private fun structDeclarationsSample() {
         (key, value) ->
         "$key->$value"
     })
-
-
 }

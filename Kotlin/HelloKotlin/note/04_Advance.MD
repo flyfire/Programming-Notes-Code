@@ -78,7 +78,7 @@ componentN函数
    - Kotlin 没有受检的异常。
 
 ---
-## 注解：KotlinAnnotation
+## 注解
  
  `annotation`声明关键字
 
@@ -88,14 +88,19 @@ componentN函数
    - 类引用`::`
    - KProperty
    - KClass
-
+   
 ---
-##  类型安全的构建器
+## 泛型
 
-构建器类似Groovy中的生成器，使用要给DSL的语法来生成具有特定结构的对象
+-  泛型使用
+-  声明处型变
+-  类型投影
+-  星投影
+-  @UnsafeVariance
+-  泛型函数
+-  泛型约束与where子句
+-  Kotlin集合中的泛型
 
-- 构建器很适合用来生成 XML、 布局 UI 组件、 描述 3D 场景
-- 作用域控制：@DslMarker（自 1.1 起）
 
 ---
 ## 类别名
@@ -105,3 +110,12 @@ componentN函数
 Kotlin 编译器总是把它扩展为 (Int) -> Boolean。 因此，当你需要泛型函数类型时，你可以传递该类型的变量，反之亦然
 
             typealias NodeSet = Set<Network.Node>
+
+
+---
+##  类型安全的构建器
+
+构建器类似Groovy中的生成器，使用要给DSL的语法来生成具有特定结构的对象
+
+- 构建器很适合用来生成 XML、 布局 UI 组件、 描述 3D 场景
+- 作用域控制：@DslMarker

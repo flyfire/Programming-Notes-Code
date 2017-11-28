@@ -8,8 +8,6 @@ package advance
  *          Date 17.6.7 23:08
  */
 
-//todo 操作符与对应的函数名
-
 /**
  * 操作符符重载：Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。
  * 这些操作符具有固定的符号表示 （如 + 或 *）和固定的优先级。为实现这样的操作符，
@@ -26,6 +24,8 @@ package advance
  *   相等与不等操作符
  *   比较操作符
  *   命名函数的中缀调用
+ *
+ *   函数名与对应的操作符参考：https://www.kotlincn.net/docs/reference/operator-overloading.html
  */
 
 

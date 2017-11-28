@@ -3,7 +3,6 @@ package generic;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.TreeMap;
 
 /**
  * @author ztiany
@@ -18,22 +17,25 @@ public class JavaGeneric {
         //List<Object> objs = strs; // ！！！即将来临的问题的原因就在这里。Java 禁止这样！
         //objs.add(1); // 这里我们把一个整数放入一个字符串列表
         //String s = strs.get(0); // ！！！ ClassCastException：无法将整数转换为字符串
+
+        List<Object> objs = new ArrayList<>();
+        objs.add("ABC");
     }
 
 
-    //2 泛型上线
-    interface CollectionA<E> {
+    //2 泛型上限
+    private interface CollectionA<E> {
         void addAll(Collection<E> items);
     }
 
     // Java
-    void copyAllA(CollectionA<Object> to, CollectionA<String> from) {
+    private void copyAllA(CollectionA<Object> to, CollectionA<String> from) {
         // ！！！对于这种简单声明的 addAll 将不能编译：
         //Collection<String> 不是 Collection<Object> 的子类型
         //to.addAll(from);
     }
 
-    interface CollectionB<E> {
+    private interface CollectionB<E> {
         //通配符类型参数 ? extends E 表示此方法接受 E 或者 E 的 一些子类型对象的集合，而不只是 E 自身。
         // 这意味着我们可以安全地从其中（该集合中的元素是 E 的子类的实例）读取 E，但不能写入
         // 因为我们不知道什么对象符合那个未知的 E 的子类型。
@@ -43,9 +45,17 @@ public class JavaGeneric {
     }
 
     // Java
-    void copyAllB(CollectionB<Object> to, CollectionB<String> from) {
+    private void copyAllB(CollectionB<Object> to, CollectionB<String> from) {
         //该限制可以让Collection<String>表示为Collection<? extends Object>的子类型
         to.addAll(from);
+    }
+
+    private void addSample() {
+        List<? extends Number> list;
+        List<Integer> managerList = new ArrayList<>();
+        list = managerList;
+        //list.add(new Float(2)); //编译错误
+        managerList.add(new Integer(2));//ok
     }
 
 
@@ -55,10 +65,28 @@ public class JavaGeneric {
     //并且对于 List <? super String> 你只能调用接受 String 作为参数的方法 （例如，你可以调用 add(String) 或者 set(int, String)），
     // 当然如果调用函数返回 List<T> 中的 T，你得到的并非一个 String 而是一个 Object。
 
+    //泛型下限使得子类型可以加入父类型容器
+    private void addToPareanContainer() {
+        class A {
+        }
+        class B extends A {
+        }
+        class C extends B {
+
+        }
+
+        List<? super A> integers2 = new ArrayList<>();
+        integers2.add(new C());
+        integers2.add(new B());
+        integers2.add(new A());
+        Object object = integers2.get(0);
+    }
+
+
     // public TreeSet(Comparator<? super E> comparator) {...}，TreeSet中就使用了通配符下限，这里的Comparator作为消费者
 
     //通配符 ? 表示它必须是Type本身，或是Type的父类
-    public static <T> T copy(Collection<? super T> dest, Collection<T> src) {
+    private static <T> T copy(Collection<? super T> dest, Collection<T> src) {
         T last = null;
         for (T ele : src) {
             last = ele;
@@ -67,7 +95,7 @@ public class JavaGeneric {
         return last; //返回一个T类型的变量
     }
 
-    public void contravariance() {
+    private void contravariance() {
         //在 Java 中有 List<? super String> 是 List<Object> 的一个超类。
         List<? super String> a = new ArrayList<>();
         List<Object> b = new ArrayList<>();
@@ -90,7 +118,7 @@ public class JavaGeneric {
     //5 弊端
 
     //假设有一个泛型接口 Source<T>，该接口中不存在任何以 T 作为参数的方法，只是方法返回 T 类型值：
-    interface Source<T> {
+    private interface Source<T> {
         T nextT();
     }
 
