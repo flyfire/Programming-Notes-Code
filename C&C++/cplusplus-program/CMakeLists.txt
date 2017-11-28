@@ -3,5 +3,5 @@ project(C__Basic)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES variables_type/struct_type.cpp)
+set(SOURCE_FILES strings_vertor_array/strings.cpp)
 add_executable(C__Basic ${SOURCE_FILES})

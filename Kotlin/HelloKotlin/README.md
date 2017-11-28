@@ -1,9 +1,10 @@
 # Kotlin基础学习笔记与代码
 
-## 基础笔记
+## 1 学习笔记
 
+### 基础笔记
 
-1. [Kotlin入门](note/00_Kotlin入门.md)
+1. [Kotlin入门资料](note/00_Kotlin入门.md)
 2. [Kotlin基础](note/01_Kotlin基础.md)
 3. [面向对象](note/02_面向对象.md)
 4. [函数与表达式](note/03_函数与lambda.md)
@@ -12,18 +13,15 @@
 7. [API学习](note/API.md)
 8. [Kotlin标准库](note/Kotlin标准库.md) 
 
+## 知识点
 
 - [Unit和Nothing区别](note/Unit和Nothing.md)
 
 
 ---
-## 基础笔记
+## 2 知识点归纳
 
-### 1. [Kotlin入门](note/00_Kotlin入门.md)
-
-Kotlin的入门资料
-
-### 2. [Kotlin基础](note/01_Kotlin基础.md)
+### Kotlin基础
 
 基础语法
 
@@ -44,7 +42,7 @@ Kotlin的入门资料
    - 使用范围
 
 
-### 3. [面向对象](note/02_面向对象.md)
+###  面向对象
 
 定义类
    
@@ -83,7 +81,7 @@ Kotlin的入门资料
    - 翻译规则
    - 提供委托
 
-### 4. [函数与表达式](note/03_函数与lambda.md)
+###  函数与表达式
 
 函数
 
@@ -108,7 +106,7 @@ Lambda表达式
    - noinline
    - crossinline
 
-### 5. [Kotlin特性](note/04_Advance.md)
+###  Kotlin特性
 
 - 解构声明
 - 使用集合
@@ -124,21 +122,14 @@ Lambda表达式
 - 类型别名
 - 类型安全的构建器
 
-
-### 6. [Kotlin与java相互操作](note/05_与Java互相操作.md)
+###  Kotlin与java相互操作
 
 - Java中操作Kotlin
 - Kotlin中操作Java
 
-### 7. [API学习](note/API.md)
+###  Kotlin标准库
 
-- Standard.kt
-         
-### 8. [Kotlin标准库](note/Kotlin标准库.md) 
+- 各种API学习
 
-
----
-## 技术点
-
-- [Unit和Nothing区别](note/Unit和Nothing.md)
+ 
 
