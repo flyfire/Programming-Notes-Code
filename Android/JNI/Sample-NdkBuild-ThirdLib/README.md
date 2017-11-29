@@ -17,6 +17,14 @@ JNI代码在被运行在android上时不能引用非/system/lib下的动态库�
 演示：其他开发者提供了静态库+头文件或者动态库加头文件，自己在开发JNI时如何导入这些库
 
 
+## 其他操作
+
+- [android-extend](https://github.com/Ztiany/android-extend)
+- [认识Android.mk和Application.mk](http://www.jianshu.com/p/f23df3aa342c)
+- [android.mk语法详解](http://blog.csdn.net/huangxiaominglipeng/article/details/17839239)
+- [android.mk语法详解](http://www.jianshu.com/p/703ef39dff3f)
+- [android.mk语法详解](http://blog.csdn.net/huangxiaominglipeng/article/details/17839239)
+
 ## 引用
 
 - [googlesamples/android-ndk](https://github.com/googlesamples/android-ndk)

@@ -1,6 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 
-#定义第一个静态模块，first lib, which will be built statically
+#定义第一个静态模块
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := MathLib
@@ -9,12 +9,16 @@ LOCAL_SRC_FILES := lib_static.c
 include $(BUILD_STATIC_LIBRARY)
 
 
-#定义一个动态库，并且依赖第一个静态库，second lib, which will depend on and include the first one
+#定义一个动态库，并且依赖第一个静态库
 include $(CLEAR_VARS)
+
 LOCAL_MODULE := Math
 LOCAL_SRC_FILES := lib_share.c
+
 #LOCAL_STATIC_LIBRARIES表示引用一个静态库
 LOCAL_STATIC_LIBRARIES := MathLib
+
 #LOCAL_LDLIBS用于添加一个本地依赖库，这里添加Android Log库
 LOCAL_LDLIBS += -llog
+
 include $(BUILD_SHARED_LIBRARY)

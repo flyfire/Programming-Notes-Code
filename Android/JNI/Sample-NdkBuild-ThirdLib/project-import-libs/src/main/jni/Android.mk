@@ -28,11 +28,12 @@ LOCAL_EXPORT_C_INCLUDES := $(EXT_LIB_ROOT)/gperf/include
 include $(PREBUILT_SHARED_LIBRARY)
 
 
-# 够建我们App自己的动态库
+# 够建App自己的动态库
 include $(CLEAR_VARS)
 
 #C指令
 LOCAL_CFLAGS := -std=gnu++11
+
 LOCAL_MODULE    := hello-libs
 LOCAL_SRC_FILES := hello-libs.cpp
 
