@@ -25,6 +25,6 @@ fun main(args: Array<String>) = runBlocking {
 
 private suspend fun doWorld() {
     // create new coroutine and keep a reference to its Job
-    delay(1000L)
+    delay(2000L)
     println("World!")
 }

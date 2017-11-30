@@ -16,7 +16,6 @@ calc md5 for test.zip.
 after resume.
 in coroutine. After suspend. result = 1499929744853
 resume: kotlin.Unit
-
  */
 
 object CommonPool : Pool(ForkJoinPool.commonPool())

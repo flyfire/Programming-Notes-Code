@@ -27,6 +27,5 @@ fun main(args: Array<String>) = runBlocking {
     jobs.forEach { it.join() } // wait for all jobs to complete
     println(" end ....")
 }
-/*
-结果是：很快的打印了100000个点，所有的协程都在两秒后瞬间执行完毕，如果是换成线程的话，那很可能造成内存溢出。
- */
+
+//结果是：很快的打印了100000个点，所有的协程都在两秒后瞬间执行完毕，如果是换成线程的话，那很可能造成内存溢出。

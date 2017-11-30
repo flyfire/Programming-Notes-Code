@@ -1,19 +1,22 @@
-# [Kotlin协程](https://github.com/Kotlin/kotlinx.coroutines)学习
+# Kotlin协程学习
 
 ---
-## 1 协程的概念
+## 1 笔记
+ 
+ - [协程概念](note/Kotlin协程概念.md)
+ - [协程核心组件](note/协程核心组件.md)
+ 
+---
+## 2 Kotlin协程内容
 
-- [我理解的协程](https://www.zybuluo.com/kuailezhishang/note/128823)
-- [协程](http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/0013868328689835ecd883d910145dfa8227b539725e5ed000)
- 
- ## 2 学习笔记
- 
- - [note](note)
- 
- ---
-## 3 Kotlin协程基本内容
+Kotlin协程以一共包括四个模块
 
-### 3.1 Core
+- core是kotlin协程核心基础模块，
+- reactive为各种响应式库(RxJava等)提供构建器和迭代器
+- ui模块
+- integration模块
+
+### 2.1 Core模块主要包括以下内容
 
 #### 协程基础(core.base)
 
@@ -32,7 +35,7 @@
 #### 组合暂停函数(core.composing)
 
 - 顺序执行的协程
-- 使用async并发执行
+- 使用async并发执行——带返回值的协程Deferred
 - 懒执行
 - 编写异步风格的协程函数
     
@@ -68,6 +71,6 @@
 - 选择表达式(还不是很理解)
 
 
-### 3.2 reactive
+### 2.2 reactive
 
-todo
+- [ ] todo
