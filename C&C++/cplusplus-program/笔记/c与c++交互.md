@@ -1,0 +1,2 @@
+- [#ifdef __cplusplus 倒底是什么意思？](http://www.cnblogs.com/stonecrazyking/archive/2006/09/23/512552.html)
+- [深入理解C/C++混合编程（关于#ifdef __cplusplus extern "C" {...}的用法）](http://blog.csdn.net/zzwdkxx/article/details/44244535)

@@ -29,6 +29,7 @@
 
 - 《谭浩强C程序设计》
 - 《C Primer Plus》
+- 《C标准库》
 - [cplusplus](http://www.cplusplus.com/)
 - [菜鸟教程——C语言](http://www.runoob.com/cprogramming/c-header-files.html)
 - [awesome-c-cn](https://github.com/jobbole/awesome-c-cn)

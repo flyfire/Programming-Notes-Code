@@ -9,11 +9,10 @@
 
 #include <vector>
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-//创建vector
+//1：创建vector
 static void create_vector() {
     vector<int> vector1;//创建空的vector，执行默认初始化
     vector<int> vector2(vector1);//v2中包含所有v1中元素的副本
@@ -28,14 +27,18 @@ static void create_vector() {
     vector<string> vector9{10, "hi"};//v9中有十个hi
 }
 
-//vector的常见操作
+//2：vector的操作
 static void vector_operation() {
+
     vector<int> vector1;
+
+    //2.1：向尾部添加元素
     for (int i = 0; i < 100; ++i) {
-        vector1.push_back(i);//向尾部添加元素
+        vector1.push_back(i);
     }
     cout << "vector1 size = " << vector1.size() << endl;//100
 
+    //2.2
     vector<int>::size_type size = vector1.size();//获取size
     bool is_empty = vector1.empty();//是否为空
     int index_10 = vector1[10];//访问元素
@@ -44,9 +47,12 @@ static void vector_operation() {
     vector1 = {100, 2, 3, 100};//用列表中的元素，替换v1中的元素，虽然vector1范围外的内存依然保持着原有的值，但是vector的size已经变为4了
     cout << "vector1 size = " << vector1.size() << endl;//4
 
-    //比较vector，另外还有 !=、>、<、>=、<=。
+
+    //2.3：vector的比较，=、!=、>、<、>=、<=操纵
     bool is_same = vector1 == vector2;//当且仅当两个vector的元素数量和对应位置的元素值相等才为true
 
+
+    //2.4 防止脚标越界
     cout << "vector1[99] = " << vector1[99];//100
     cout << "vector2[100] = " << vector2[101];//位置值，脚标越界。
 }

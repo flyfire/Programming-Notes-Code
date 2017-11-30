@@ -14,7 +14,7 @@
 
 using namespace std;
 
-//定义和初始化字符串
+//1：定义和初始化字符串
 static void defineString() {
     string str1;//空字符串
     string str2 = str1;//str2是str1的一个副本
@@ -28,7 +28,7 @@ static void defineString() {
     string str6 = string(10, 'a');//这种方式是创建一个临时对象，在执行拷贝初始化
 }
 
-//字符串的操作
+//2：字符串的操作
 static void stringOperation() {
 
     string str1 = "abcdefg";
@@ -72,12 +72,12 @@ static void getline_sample() {
 }
 
 
-//处理字符串中的字符
+//3：处理字符串中的字符
 static void process_string() {
 
     string str1 = "abcdefghijklnmopqretuvwxyz";
 
-    //编译字符串方式1
+    //for遍历字符串
     for (auto c:str1) {
         cout << c;
         if (c != 'z') {
@@ -87,8 +87,8 @@ static void process_string() {
         }
     }
 
-    string str2 = "hello, hi, wow!!!";
     //统计字符串中的标点符号
+    string str2 = "hello, hi, wow!!!";
     decltype(str2.size()) punct_count = 0;
     for (auto c:str2) {
         if (ispunct(c)) {//ispunct在cctype中，判断字符是否为标点符号
