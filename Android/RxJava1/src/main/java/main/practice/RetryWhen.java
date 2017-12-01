@@ -1,6 +1,7 @@
 package main.practice;
 
 import main.utils.RxLock;
+import rx.Emitter;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Action1;
@@ -24,11 +25,41 @@ public class RetryWhen {
         //testRetryWhen();
         //testFuncRetryWithDelay();
         testDeferFuncRetryWithDelay();
+        testCreateFuncRetry();
         RxLock.lock();
     }
 
     private static volatile boolean sTokenOk = false;
     private static AtomicInteger sRetryCount = new AtomicInteger(0);
+
+    private static void testCreateFuncRetry() {
+        Observable.create(
+                (Action1<Emitter<String>>) emitter -> {
+                    for (int i = 0; i < 10; i++) {
+                        emitter.onNext(String.valueOf(i));
+                        RxLock.sleep(100);
+                    }
+                    emitter.onError(new RuntimeException("ABC"));
+                }, Emitter.BackpressureMode.BUFFER)
+                .retryWhen(observable ->
+                        observable.flatMap(new Func1<Throwable, Observable<?>>() {
+
+                            int time = 0;
+
+                            @Override
+                            public Observable<?> call(Throwable throwable) {
+                                time++;
+                                if (time < 4) {
+                                    return Observable.just(1);
+                                } else {
+                                    return Observable.error(throwable);
+                                }
+                            }
+                        }))
+                .observeOn(Schedulers.io())
+                .subscribe(System.out::println, Throwable::printStackTrace);
+    }
+
 
     private static void testRetryWhen() {
         Observable.just(null)
@@ -102,7 +133,6 @@ public class RetryWhen {
 
 
     private static class TokenInvalidateException extends RuntimeException {
-
     }
 
 
@@ -143,7 +173,6 @@ public class RetryWhen {
                         System.out.println(s);
                     }
                 });
-
     }
 
 
