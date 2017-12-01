@@ -1,9 +1,10 @@
 package sample
 
-import java.util.concurrent.ForkJoinPool
-import java.util.concurrent.ForkJoinWorkerThread
 import java.util.concurrent.TimeUnit
-import kotlin.coroutines.experimental.*
+import kotlin.coroutines.experimental.Continuation
+import kotlin.coroutines.experimental.CoroutineContext
+import kotlin.coroutines.experimental.startCoroutine
+import kotlin.coroutines.experimental.suspendCoroutine
 
 /*
 打印顺序：
@@ -16,7 +17,6 @@ calc md5 for test.zip.
 after resume.
 in coroutine. After suspend. result = 1499929744853
 resume: kotlin.Unit
-
  */
 
 

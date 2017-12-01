@@ -3,23 +3,25 @@ package sample
 import java.util.concurrent.Executors
 import kotlin.coroutines.experimental.*
 
-// http://www.kotliner.cn/2017/01/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Kotlin%20Coroutine/
+/**
+ * 深入理解 Kotlin Coroutine：https://blog.kotliner.cn/2017/01/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Kotlin%20Coroutine/
+ */
 
 private val executor = Executors.newSingleThreadScheduledExecutor { Thread(it, "coroutine-scheduler") }
 
 fun main(args: Array<String>) {
+
     println("before coroutine")
 
     //启动我们的协程
     asyncCalcMd5("test.zip") {
+
         println("in coroutine. Before suspend.")
 
         //暂停我们的线程，并开始执行一段耗时操作
         //suspendCoroutine 这个方法将外部的代码执行权拿走，并转入传入的 Lambda 表达式中，而这个表达式当中的操作就对应异步的耗时操作了
-        val result: String = suspendCoroutine {
-            continuation ->
+        val result: String = suspendCoroutine { continuation ->
             println("in suspend block.")
-
             executor.submit {
                 //将结果传了出去，传给suspendCoroutine 的返回值也即 result，这时候协程继续执行，打印 result 结束。
                 continuation.resume(calcMd5(continuation.context[FilePath]!!.path))

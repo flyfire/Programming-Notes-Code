@@ -166,3 +166,11 @@ private fun testExtend() {
         body()   // 省略HTML直接调用该接收者对象的一个方法
     }
 }
+
+//给String添加带接收者的函数字面值
+private val add = fun String.(o: String): String = this + o
+
+private fun testAdd() {
+    val result = add.invoke("A", "B")
+    println(result)//"AB"
+}

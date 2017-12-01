@@ -10,6 +10,7 @@ import kotlinx.coroutines.experimental.*
  */
 /*
 1. job是其context的一部分。协同程序可以使用context[Job]表达式获取job
+
 2. When context of a coroutine is used to launch another coroutine,
 the Job of the new coroutine becomes a child of the parent coroutine's job.
 When the parent coroutine is cancelled, all its children are recursively cancelled, too.
