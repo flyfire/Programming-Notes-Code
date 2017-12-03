@@ -19,12 +19,11 @@ public class ForkJoinTest {
     public static void main(String... args) {
 
         long start = System.currentTimeMillis();
-//        testForkJoin();
-        testNormal();
+        testForkJoin();
+//        testNormal();
         System.out.println("time = " + (System.currentTimeMillis() - start));
 
         handleException();
-
     }
 
     private static void handleException() {
@@ -37,15 +36,23 @@ public class ForkJoinTest {
 
     private static void testNormal() {
         long sum = 0;
-        for (int i = 0; i <= 1000000; i++) {
+        for (long i = 0; i < 100; i++) {
+            sleep();
             sum += i;
         }
         System.out.println(sum);
+    }
 
+    private static void sleep() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void testForkJoin() {
-        CountTask countTask = new CountTask(1, 1000000);
+        CountTask countTask = new CountTask(1, 100);
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         ForkJoinTask<Long> submit = forkJoinPool.submit(countTask);
         try {
@@ -57,7 +64,6 @@ public class ForkJoinTest {
 
 
     public static class CountTask extends RecursiveTask<Long> {
-
 
         private static final int THRESHOLD = 30;//阈值
 
@@ -80,6 +86,7 @@ public class ForkJoinTest {
             if (canCompute) {
                 for (int i = start; i <= end; i++) {
                     sum += i;
+                    sleep();
                 }
             } else {//如果任务大于阈值，就分裂成两个任务
                 /*

@@ -2,13 +2,7 @@ package chapter5;
 
 import java.util.concurrent.locks.LockSupport;
 
-/**
- * <br/>   Description：
- * <br/>    Email: ztiany3@gmail.com
- *
- * @author Ztiany
- *         Date : 2016-12-18 18:31
- */
+
 public class UsingLockSupport {
 
     private static Object blocker = new Object();

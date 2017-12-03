@@ -6,13 +6,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-/**
- * <br/>   Description：
- * <br/>    Email: ztiany3@gmail.com
- *
- * @author Ztiany
- *         Date : 2016-12-18 18:16
- */
+
 public class UsingReentrantReadWriteLock {
 
     private static Map<String, String> cache = new HashMap<>();

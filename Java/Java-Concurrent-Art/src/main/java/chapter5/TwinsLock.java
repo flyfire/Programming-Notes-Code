@@ -6,7 +6,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * 共享锁
+ * 设计一个同步组件，该同步组件同一个时刻允许两个线程获取同步状态，超过两个线程访问将会被阻塞。
  *
  * @author Ztiany
  *         Date : 2016-12-18 16:45

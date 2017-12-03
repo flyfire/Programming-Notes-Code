@@ -3,14 +3,9 @@ package chapter5;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * <br/>   Description：
- * <br/>    Email: ztiany3@gmail.com
- *
- * @author Ztiany
- *         Date : 2016-12-17 21:57
- */
+
 public class UsingLock {
+
     private static Lock lock = new ReentrantLock();
 
     public static void main(String... args) {

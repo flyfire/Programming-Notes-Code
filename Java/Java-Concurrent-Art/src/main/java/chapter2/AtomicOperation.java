@@ -42,6 +42,7 @@ public class AtomicOperation {
                 e.printStackTrace();
             }
         });
+
         System.out.println("非安全自加：" + atomicOperation.count);
         System.out.println("安全自加：" + atomicOperation.mAtomicInteger.get());
         System.out.println("耗时：" + (System.currentTimeMillis() - start));

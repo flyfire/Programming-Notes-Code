@@ -5,9 +5,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * <br/>    author      Ztiany 模拟一个多线程链接数据库连接池
- * <br/>    Date        2016-06-10-0010
- * <br/>    描述
+ * 模拟一个多线程链接数据库连接池
  */
 public class DataBaseConnectionDemo {
 
@@ -35,8 +33,6 @@ public class DataBaseConnectionDemo {
         System.out.println("total invoke =" + threadSize * count);
         System.out.println("get connection =" +  get.get());
         System.out.println("noGet connection =" +  noGet.get());
-
-
     }
 
 

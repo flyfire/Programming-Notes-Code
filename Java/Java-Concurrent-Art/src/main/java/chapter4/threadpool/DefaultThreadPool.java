@@ -3,11 +3,7 @@ package chapter4.threadpool;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * <br/>    author      Ztiany
- * <br/>    Date        2016-06-10-0010
- * <br/>    描述
- */
+
 public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job> {
 
     private static final int MIN_WORKER_SIZE = 1;
