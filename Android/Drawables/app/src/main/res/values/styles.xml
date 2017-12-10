@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Style_View_Drawable">
+        <item name="android:layout_width">@dimen/view_drawable_size</item>
+        <item name="android:layout_height">@dimen/view_drawable_size</item>
+        <item name="android:layout_margin">20dp</item>
+    </style>
+
 </resources>
