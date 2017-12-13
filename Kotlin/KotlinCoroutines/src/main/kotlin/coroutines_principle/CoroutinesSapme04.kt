@@ -1,4 +1,4 @@
-package sample
+package coroutines_principle
 
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
     launchWithContext(FilePath("test.zip") + CommonPool) {
         //this在代码块中指向最左边的接收者，这里就是协程上下文
         println("in coroutine. Before suspend.")
-        println("main block -- "+Thread.currentThread())
+        println("main block -- " + Thread.currentThread())
         val result: String = calcMd5(this[FilePath]!!.path).await()
         println("in coroutine. After suspend. result = $result")
     }

@@ -1,4 +1,4 @@
-package sample
+package coroutines_principle
 
 import java.util.concurrent.Executors
 import kotlin.coroutines.experimental.*
