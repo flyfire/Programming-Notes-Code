@@ -1,4 +1,4 @@
-package sample
+package coroutines_principle
 
 import kotlin.coroutines.experimental.buildSequence
 

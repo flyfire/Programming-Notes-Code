@@ -1,4 +1,4 @@
-package sample
+package coroutines_principle
 
 import java.util.concurrent.ForkJoinPool
 import java.util.concurrent.ForkJoinWorkerThread
@@ -24,8 +24,7 @@ fun main(args: Array<String>) {
     println("before coroutine")
     asyncCalcMd5("test.zip") /*下面这个lambda已经在异步现成中执行了*/{
         println("in coroutine. Before suspend.")
-        val result: String = suspendCoroutine {
-            continuation ->
+        val result: String = suspendCoroutine { continuation ->
             println("in suspend block.")
             continuation.resume(calcMd5(continuation.context[FilePath]!!.path))
             println("after resume.")
