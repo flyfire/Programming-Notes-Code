@@ -65,47 +65,36 @@ static void array_parameter3(const int *arr, size_t size) {
 }
 
 
-
-
-
-
-
+//5：可变参数类型
 //initializer_list是标准中的类型，与vector类似， 它是一个模板，initializer_list中的对象永远是常量
-static void initializer_parameter() {
+//initializer_list可用于传递类型相同数量不定的参数
+static void initializer_sample() {
     initializer_list<int> lst1;
     initializer_list<int> lst2{1, 2, 3, 4, 5, 6};
     initializer_list<int> lst3(lst2);//拷贝一个initializer_list，不会拷贝列表中的元素，拷贝后，原始列表和副本共享元素
     initializer_list<int> lst4 = lst2;//赋值一个initializer_list，不会拷贝列表中的元素，拷贝后，原始列表和副本共享元素
 }
 
-
-//返回引用
-const static string &short_string(const string s1, const string s2) {
-    return s1.size() > s2.size() ? s2 : s1;
+static void initializer_parameter(initializer_list<string> il) {
+    for (auto begin = il.begin(); begin != il.end(); begin++) {
+        cout << *begin << " ";
+    }
+    cout << endl;
 }
 
-
-//返回列表
-static vector<string> get_message() {
-    return {"A", "B", "C"};//列表转换为vector
+static void invoke_initializer() {
+    initializer_parameter({"CBA", "CBA", "CBA"});
+    initializer_parameter({"NBA", "NBA"});
 }
 
+//`...`省略符一般是为了c++访问某些特殊的c代码而使用。
+static void varargs_c1(...) {
 
-//c++11尾置返回类型声明
-static auto func(int i) -> int (*)[10];//该函数返回一个指针，指针指向含有十个元素的int数组
-
-
-//使用decltype
-static int odd[] = {1, 3, 5, 7, 9};
-static int even[] = {0, 2, 4, 6, 8};
-
-//decltype不负责把数组类型转换为对象的指针，所以返回值上需要加上*
-decltype(even) *arrPtr(int i) {//返回一个指针，指针指向5个元素的数组
-    return (i % 2) == 0 ? &even : &odd;
 }
 
 
 int main(int argc, char *argv[]) {
+
     //0：获取main函数的参数
     cout << argc << endl;
     for (int i = 0; i < argc; ++i) {
@@ -118,17 +107,17 @@ int main(int argc, char *argv[]) {
     reference_parameter1(intA);
     cout << "intA =" << intA << endl;
 
-    //4 常量形参
+
+    //3 常量形参
     char *str1 = "abcdefg";
     const char *str2 = "hijklmn";
     const_par1(str1);
     const_par1(str2);
     const_par2(str1);
-    //const_par2(str2);//Parameter type mismatch: Assigning 'const char *' to 'char *' discards const qualifier
+    //const_par2(str2);//常量类型传递给非产量类型时，类型不匹配，Parameter type mismatch: Assigning 'const char *' to 'char *' discards const qualifier
 
 
-    //2 array_parameter
+    //4 array_parameter
     int array[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     array_parameter1(array);
-
 }
