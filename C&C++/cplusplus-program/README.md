@@ -9,9 +9,17 @@
 1. [vector](笔记/05_vertor.md)
 1. [迭代器](笔记/06_迭代器.md)
 1. [数组](笔记/07_数组.md)
+1. [C++表达式](笔记/08_表达式.md)
+1. [数组](笔记/09_C++函数.md)
 
 
-## 引用
+## 学习资料
 
-- 《C++ Primer》
+- 《C++ Primer》第五版
+- 《Effective C++》
+- 《C++ 编程规范》
+- 《C++ 编程规范》
+- 《C++ 必知必会》
+- 《C++ Primer Plus》
+- [cplusplus](http://www.cplusplus.com/)
 - [菜鸟教程](http://www.runoob.com/cplusplus/)

@@ -2,25 +2,63 @@
  ============================================================================
  
  Author      : Ztiany
- Description : ä½¿ç”¨structè‡ªå®šä¹‰æ•°æ®ç»“æ„
+ Description : Ê¹ÓÃstruct×Ô¶¨ÒåÊı¾İ½á¹¹
 
  ============================================================================
  */
 
 #include <iostream>
 #include "struct_type.h"
+#include <cstring>
 
 using namespace std;
 
-int main() {
-    Sales_data data1, data2;
 
-    double price;//ä¹¦çš„å•ä»·
+static void test_sales_data() {
 
-    cin >> data1.bookNo >> data1.units_sold >> price;
+    Sales_data data1;//ÉùÃ÷Ò»¸öSales_data
+
+    double price;//ÊéµÄµ¥¼Û
+
+    cin >> data1.bookNo >> data1.units_sold >> price;//ÊäÈëµ¥¼Û
+
     data1.revenue = data1.units_sold * price;
 
     cout << "bookNo = " << data1.bookNo << ", units_sold = " << data1.units_sold << ", revenue=" << data1.revenue;
+}
 
+static void test_Books() {
+    Books Book1, Book2;
+
+    // Book1 ÏêÊö
+    strcpy(Book1.title, "C++ ½Ì³Ì");//Êı¾İÎŞ·¨Ö±½Ó¸³Öµ£¬Ö»ÄÜ¿½±´
+    strcpy(Book1.author, "Runoob");
+    strcpy(Book1.subject, "±à³ÌÓïÑÔ");
+    Book1.book_id = 12345;
+
+    // Book2 ÏêÊö
+    strcpy(Book2.title, "CSS ½Ì³Ì");
+    strcpy(Book2.author, "Runoob");
+    strcpy(Book2.subject, "Ç°¶Ë¼¼Êõ");
+    Book2.book_id = 12346;
+
+    // Êä³ö Book1 ĞÅÏ¢
+    cout << "µÚÒ»±¾Êé±êÌâ : " << Book1.title << endl;
+    cout << "µÚÒ»±¾Êé×÷Õß : " << Book1.author << endl;
+    cout << "µÚÒ»±¾ÊéÀàÄ¿ : " << Book1.subject << endl;
+    cout << "µÚÒ»±¾Êé ID : " << Book1.book_id << endl;
+
+    // Êä³ö Book2 ĞÅÏ¢
+    cout << "µÚ¶ş±¾Êé±êÌâ : " << Book2.title << endl;
+    cout << "µÚ¶ş±¾Êé×÷Õß : " << Book2.author << endl;
+    cout << "µÚ¶ş±¾ÊéÀàÄ¿ : " << Book2.subject << endl;
+    cout << "µÚ¶ş±¾Êé ID : " << Book2.book_id << endl;
+
+}
+
+
+int main() {
+    test_sales_data();
+    test_Books();
     return EXIT_SUCCESS;
 }

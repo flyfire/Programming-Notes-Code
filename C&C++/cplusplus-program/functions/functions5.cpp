@@ -22,6 +22,10 @@ inline int add(int a, int b) {
     return a + b;
 }
 
+/*声明constexpr函数 */
+constexpr int length() {
+    return 3;
+}
 
 int main() {
     string window;
