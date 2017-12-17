@@ -11,6 +11,7 @@
 #include <iostream>
 //cctype与ctypeh的内容是一样的，都是用来处理字符的头文件，cctype符合c++的规范。
 #include <cctype>
+#include <cstring>
 
 using namespace std;
 
@@ -47,7 +48,7 @@ static void stringOperation() {
     //字符串的size方法返回的类型是string::size_type
     //这在c++中很常见，string类和其他标准库类型都定义了几种配套类型，这些配套类型体现了与机器无关的特性
     //size_type就是其中一种，size_type是一种无符号类型，且保证其长度可以容纳string的size。
-        string::size_type str1_size = str1.size();
+    string::size_type str1_size = str1.size();
 
     char first = str1[0];//获取单个字符
 
@@ -128,10 +129,29 @@ static void sample() {
     cout << "result = " << result << endl;
 }
 
+static void c_string() {
+    char str1[11] = "Hello";
+    char str2[11] = "World";
+    char str3[11];
+    size_t len;
+
+    // 复制 str1 到 str3
+    strcpy(str3, str1);
+    cout << "strcpy( str3, str1) : " << str3 << endl;
+
+    // 连接 str1 和 str2
+    strcat(str1, str2);
+    cout << "strcat( str1, str2): " << str1 << endl;
+
+    // 连接后，str1 的总长度
+    len = strlen(str1);
+    cout << "strlen(str1) : " << len << endl;
+}
 
 int main() {
     //getline_sample();
     //process_string();
-    sample();
+    //sample();
+    c_string();
     return EXIT_SUCCESS;
 }
