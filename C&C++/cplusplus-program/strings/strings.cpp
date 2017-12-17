@@ -9,7 +9,6 @@
 
 #include <string>
 #include <iostream>
-//cctype与ctypeh的内容是一样的，都是用来处理字符的头文件，cctype符合c++的规范。
 #include <cctype>
 #include <cstring>
 
@@ -18,14 +17,14 @@ using namespace std;
 //1：定义和初始化字符串
 static void defineString() {
     string str1;//空字符串
-    string str2 = str1;//str2是str1的一个副本
+    string str2 = str1;//str2是str1的一个副本(拷贝初始化)
     string str3 = "hi ya";//str3是该字符串字面常量的一个副本
     string str4(10, 'c');//str4的内容是 cccccccccc
     string str5("hi ya");//等价于str3
 
     //直接初始化与拷贝初始化
     //使用=初始化一个变量，实际上执行的是拷贝初始化，编译器把=号左边的值拷贝到新创建的对象中去
-    //如果不使用=，则执行的是 直接初始化
+    //如果不使用=，则执行的是直接初始化
     string str6 = string(10, 'a');//这种方式是创建一个临时对象，在执行拷贝初始化
 }
 
@@ -61,7 +60,7 @@ static void stringOperation() {
     bool greater = str1 > str2;
 }
 
-static void getline_sample() {
+static void getLineSample() {
     string str;
     while (getline(cin, str)) {
         if (!str.empty()) {
@@ -74,7 +73,7 @@ static void getline_sample() {
 
 
 //3：处理字符串中的字符
-static void process_string() {
+static void processString() {
 
     string str1 = "abcdefghijklnmopqretuvwxyz";
 
@@ -90,13 +89,13 @@ static void process_string() {
 
     //统计字符串中的标点符号
     string str2 = "hello, hi, wow!!!";
-    decltype(str2.size()) punct_count = 0;
+    decltype(str2.size()) punctCount = 0;
     for (auto c:str2) {
         if (ispunct(c)) {//ispunct在cctype中，判断字符是否为标点符号
             ++punct_count;
         }
     }
-    cout << "punct_count = " << punct_count << endl;
+    cout << "punctCount = " << punctCount << endl;
 
     //使用for循环改变字符串中的内容
     for (auto &c:str1) {//这里c是一个引用
@@ -115,7 +114,7 @@ static void process_string() {
 }
 
 //把输入的数字转换为16进制表示
-static void sample() {
+static void sampleHex() {
     const string hex_digits = "0123456789ABCDEF";
     cout << "enter a series of number between 0 and 15"
          << "separated by spaces" << endl;
@@ -129,7 +128,8 @@ static void sample() {
     cout << "result = " << result << endl;
 }
 
-static void c_string() {
+//4: c风格的字符串
+static void cString() {
     char str1[11] = "Hello";
     char str2[11] = "World";
     char str3[11];
@@ -149,9 +149,9 @@ static void c_string() {
 }
 
 int main() {
-    //getline_sample();
-    //process_string();
-    //sample();
-    c_string();
+    //getLineSample();
+    //processString();
+    //sampleHex();
+    cString();
     return EXIT_SUCCESS;
 }

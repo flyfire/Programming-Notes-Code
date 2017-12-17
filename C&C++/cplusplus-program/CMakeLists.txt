@@ -3,5 +3,5 @@ project(C__Basic)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES oop/polymorphic.cpp)
+set(SOURCE_FILES functions/functions2.cpp)
 add_executable(C__Basic ${SOURCE_FILES})

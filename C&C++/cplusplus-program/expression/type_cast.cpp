@@ -12,6 +12,7 @@
 using namespace std;
 
 int main() {
+
     //static_cast
     int i1 = 4;
     int i2 = 5;
@@ -29,9 +30,6 @@ int main() {
 
     cout << "p_i3 = " << *p_i3 << endl;//始终为：100
     cout << "i3 = " << i3 << endl;//如果i3是const的，那么无法修改i3的值，i3始终未333
-
-
-
 
     return EXIT_SUCCESS;
 }

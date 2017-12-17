@@ -12,14 +12,15 @@
 
 using namespace std;
 
-static void initialize_array() {
+//1：初始化数据
+static void initializeArray() {
     int size = 3;
-    int const c_size = 10;
+    int const cSize = 10;
     int arr1[size];
     int arr2[] = {1, 2, 3};
     int arr3[5] = {1, 2, 3};
     string arr4[7] = {"a", "bc", "dd"};
-    int arr5[c_size];
+    int arr5[cSize];
 
     const char *arr6 = "abc";
     char arr7[10] = "C++";
@@ -32,7 +33,7 @@ static void initialize_array() {
 }
 
 //2：访问数组
-static void access_array() {
+static void accessArray() {
     //通过下标访问数组时，通常将其定义为size_t
     int arr[10];
     for (int i = 0; i < 10; ++i) {
@@ -43,7 +44,7 @@ static void access_array() {
 }
 
 //3：数组与指针、迭代器
-static void array_pointer() {
+static void arrayPointer() {
     int arr[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     int *pInt1 = arr;
     int *pInt2 = begin(arr);//等同于pInt1
@@ -60,7 +61,6 @@ static void array_pointer() {
     ptrdiff_t pt = end_1 - pInt1;
     cout << pt << endl;//10
 
-
     //下标和指针
     int arr2[] = {1, 2, 3, 4, 5};
     int *pInt3 = arr2;
@@ -69,7 +69,7 @@ static void array_pointer() {
 }
 
 //4：使用数组初始化vector
-static void array_init_vector() {
+static void arrayInitializeVector() {
     //允许使用数组来初始化vector对象
     int arr[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     //用于创建vec的两个指针指定了用来初始化的值在数组中的位置
@@ -82,9 +82,9 @@ static void array_init_vector() {
 }
 
 int main() {
-    //initialize_array();
-    //access_array();
-    //array_pointer();
-    array_init_vector();
+    //initializeArray();
+    //accessArray();
+    //arrayPointer();
+    arrayInitializeVector();
     return EXIT_SUCCESS;
 }
