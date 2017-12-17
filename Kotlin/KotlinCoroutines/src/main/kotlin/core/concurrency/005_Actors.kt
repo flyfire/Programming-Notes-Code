@@ -1,8 +1,6 @@
 package core.concurrency
 
 import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.channels.ActorJob
-import kotlinx.coroutines.experimental.channels.Channel
 import kotlinx.coroutines.experimental.channels.SendChannel
 import kotlinx.coroutines.experimental.channels.actor
 import kotlinx.coroutines.experimental.runBlocking
@@ -40,15 +38,15 @@ fun counterActor() = actor<CounterMsg>(CommonPool) {
 //Actor是一个协程，并且它顺序执行，所以这解决共享可变状态的问题
 //Actor比加载下的锁定更有效率，因为在这种情况下，它总是有工作要做，而且根本不需要切换到不同的上下文。
 fun main(args: Array<String>) = runBlocking<Unit> {
+//todo
+//    val counter: ActorJob<CounterMsg> = counterActor() // create the actor
 
-    val counter: ActorJob<CounterMsg> = counterActor() // create the actor
+//    massiveRun(CommonPool) {
+//        counter.send(IncCounter)
+//    }
 
-    massiveRun(CommonPool) {
-        counter.send(IncCounter)
-    }
-
-    val response = Channel<Int>()//创建一个通道
-    counter.send(GetCounter(response))//send会暂停，因为counter已经满了
-    println("Counter = ${response.receive()}")//从通道获取值
-    counter.close() // shutdown the actor
+//    val response = Channel<Int>()//创建一个通道
+//    counter.send(GetCounter(response))//send会暂停，因为counter已经满了
+//    println("Counter = ${response.receive()}")//从通道获取值
+//    counter.close() // shutdown the actor
 }

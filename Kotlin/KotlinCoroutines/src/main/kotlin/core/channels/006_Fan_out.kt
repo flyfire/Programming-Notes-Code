@@ -1,7 +1,6 @@
 package core.channels
 
 import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.channels.ProducerJob
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
 import kotlinx.coroutines.experimental.channels.consumeEach
 import kotlinx.coroutines.experimental.channels.produce
@@ -36,11 +35,12 @@ private fun launchProcessor(id: Int, channel: ReceiveChannel<Int>) = launch(Comm
 多个coroutines可以从同一个channel接收数据，在他们之间分配工作。
  */
 fun main(args: Array<String>) = runBlocking<Unit> {
+//    todo
     //ProducerJob: Job, ReceiveChannel
-    val producer: ProducerJob<Int> = produceNumbers()//产生数据的通道
+//    val producer: ProducerJob<Int> = produceNumbers()//产生数据的通道
 
-    repeat(5) { launchProcessor(it, producer) }//多个协程获取通道的数据
+//    repeat(5) { launchProcessor(it, producer) }//多个协程获取通道的数据
 
-    delay(3000)
-    producer.cancel() // cancel producer coroutine and thus kill them all
+//    delay(3000)
+//    producer.cancel() // cancel producer coroutine and thus kill them all
 }
