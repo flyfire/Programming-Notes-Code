@@ -10,6 +10,19 @@ import kotlin.coroutines.experimental.*
 //一个线程池
 private val executor = Executors.newSingleThreadScheduledExecutor { Thread(it, "coroutine-scheduler") }
 
+/**
+执行结果：
+   1 before coroutine
+   2 in coroutine. Before suspend.
+   3 in suspend block.
+   4 after coroutine
+   5 calc md5 for test.zip.----------------------------------
+
+   6 in coroutine. After suspend. result = 1513701367927  Thread[coroutine-scheduler,5,main]
+   7 resume: kotlin.Unit Thread[coroutine-scheduler,5,main]
+   8 after resume.
+
+ */
 fun main(args: Array<String>) {
 
     //1

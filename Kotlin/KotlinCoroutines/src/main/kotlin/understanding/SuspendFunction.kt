@@ -10,8 +10,9 @@ import kotlinx.coroutines.experimental.*
  */
 fun main(args: Array<String>) {
     //asyncCallbackSample() //传统异步回调方式
-    //asyncReturnSample() // 协程异步返回方式
-    coroutinesSwitch() // 感受协程中暂停方法的多入口，每次暂停到恢复都可以切换到不同的调度线程
+    //asyncReturnSample1() // 协程异步返回方式1
+    asyncReturnSample2() // 协程异步返回方式2
+    //coroutinesSwitch() // 感受协程中暂停方法的多入口，每次暂停到恢复都可以切换到不同的调度线程
 }
 
 
@@ -69,7 +70,7 @@ private fun coroutinesSwitch() {
 //====================================================================
 //  协程的同步返回
 //====================================================================
-fun asyncReturnSample() = runBlocking {
+fun asyncReturnSample1() = runBlocking {
     //1 在主线程启动协程
     println("1 主线程开启协程")
     println("2 在主线程协程中开启新的协程异步查询数据")
@@ -80,6 +81,26 @@ fun asyncReturnSample() = runBlocking {
     val data = deferred.await()
     println("4 得到数据回到主线程协程$data")
 }
+
+private fun asyncReturnSample2() = runBlocking {
+    //1 在主线程启动协程
+    println("1 主线程开启协程")
+    println("2 在主线程协程中开启新的协程异步查询数据")
+    //2 开启异步协程去查询数据
+    val deferred = async(CommonPool) { queryDatabase() }
+    println("3 主携程继续执行.....1.")
+    //3 获取数据
+    launch(coroutineContext) {
+        val data = deferred.await()
+        println("5 得到数据回到主线程协程$data")
+    }
+    println("4 主携程继续执行.....2.")
+    val time = System.currentTimeMillis()
+    while (System.currentTimeMillis() - time < (5000)) {
+        println("wait. ")
+    }
+}
+
 
 //====================================================================
 //  传统方式的异步回调
