@@ -12,7 +12,7 @@
 
 using namespace std;
 
-//引用类型
+//1：引用类型
 static void reference() {
     int value_a = 323;
     int &ref_a = value_a;//ref_a指向value_a
@@ -21,7 +21,7 @@ static void reference() {
     cout << "value_a = " << value_a << endl;
 }
 
-//指针类型
+//2：指针类型
 static void pointer() {
     int value_a = 32;
     int *pA = &value_a;
@@ -33,7 +33,7 @@ static void pointer() {
     int *const pC = &value_a;//pC是一个常量指针
 }
 
-//const与引用
+//3：const与引用
 static void cons_reference() {
     int value_a = 3;
     const int &ref_a1 = value_a;
@@ -45,11 +45,11 @@ static void cons_reference() {
 }
 
 
+//4：constexpr常量表达式
 static constexpr int size_a() {
     return 333;
 }
 
-//constexpr常量表达式
 static void constexpr_type() {
     constexpr int value_b = 3243;
     constexpr int value_c = value_b + 3;
@@ -57,13 +57,13 @@ static void constexpr_type() {
 }
 
 
-//使用typedef定义类型别名
+//5：使用typedef定义类型别名
 static void typeDef() {
     typedef int Integer;
     typedef const char *String;
 }
 
-//使用auto定义变量
+//6：使用auto定义变量
 static void autoValue() {
     int value_a = 3, value_b = 4;
     auto value_c = value_a + value_b;//编译器推断出value_c的类型是int类型
@@ -72,7 +72,7 @@ static void autoValue() {
     int value_d = value_c;
 }
 
-//使用delctype定义变量
+//7：使用delctype定义变量
 static void decltype_type() {
     const int ci = 0, &cj = ci;
     decltype(ci) x = 0;//x的类型是const int

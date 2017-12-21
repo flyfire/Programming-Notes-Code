@@ -11,7 +11,7 @@
 
 using namespace std;
 
-static void size_of() {
+static void sizeofExpression() {
     cout << sizeof(char) << endl;//char或char类型为1
     cout << sizeof(vector<int>) << endl;//对于vector，sizeof只返回该类型的固定大小，32
     cout << sizeof(string) << endl;//对于string，sizeof只返回该类型的固定大小，32
@@ -20,46 +20,8 @@ static void size_of() {
     //对数组类型执行sizeof运算得到的是数组所占总内存的字节数
 }
 
-static void try_catch() {
-
-    try {
-        //throw用于抛出异常
-        throw exception();
-    } catch (exception e) {//catch用于抓住异常
-        cout << e.what() << endl;
-    }
-
-    try {
-        throw logic_error("throw error");
-    } catch (logic_error logicError) {
-        cout << logicError.what() << endl;
-    }
-}
-
-
-struct MyException : public exception {
-    const char *what() const throw() {
-        return "C++ Exception";
-    }
-};
-
-void custom_exception() {
-    try {
-        throw MyException();
-    }
-    catch (MyException &e) {
-        std::cout << "MyException caught" << std::endl;
-        std::cout << e.what() << std::endl;
-    }
-    catch (std::exception &e) {
-        //其他的错误
-    }
-}
-
 int main() {
-    size_of();
-    try_catch();
-    custom_exception();
+    sizeofExpression();
     return EXIT_SUCCESS;
 }
 

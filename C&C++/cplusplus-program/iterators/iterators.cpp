@@ -15,8 +15,9 @@
 
 using namespace std;
 
+//1：使用迭代器
+static void useIterator() {
 
-static void use_iterator() {
     string s1("abcdefg hello!!");
 
     //1：第一个字符变大写
@@ -26,7 +27,7 @@ static void use_iterator() {
     }
     cout << "s1 = " << s1 << endl;
 
-    //：所有的字符变大写
+    //2：所有的字符变大写
     for (auto it = s1.begin(); it != s1.end(); it++) {
         if (!isspace(*it)) {
             *it = toupper(*it);
@@ -37,7 +38,7 @@ static void use_iterator() {
 
 
 //2：迭代器类型
-static void iterator_type() {
+static void iteratorType() {
     //常量迭代器
     const string string1 = "abc";
     string::const_iterator iterator1 = string1.begin();
@@ -67,8 +68,8 @@ static void dereference() {
 
 
 int main() {
-    //use_iterator();
-    //iterator_type();
+    //useIterator();
+    //iteratorType();
     dereference();
     return EXIT_SUCCESS;
 }

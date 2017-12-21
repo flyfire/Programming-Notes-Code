@@ -1,4 +1,4 @@
-package coroutines_principle
+package understanding
 
 import java.util.concurrent.ForkJoinPool
 import java.util.concurrent.ForkJoinWorkerThread
@@ -99,5 +99,5 @@ class PoolContinuation<in T>(val pool: ForkJoinPool, val continuation: Continuat
         else pool.execute { continuation.resumeWithException(exception) }
     }
 
-    fun isPoolThread(): Boolean = (Thread.currentThread() as? ForkJoinWorkerThread)?.pool == pool
+    private fun isPoolThread(): Boolean = (Thread.currentThread() as? ForkJoinWorkerThread)?.pool == pool
 }

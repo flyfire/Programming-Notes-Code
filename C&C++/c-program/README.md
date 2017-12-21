@@ -1,5 +1,4 @@
-
-## C语言编程基础
+## 1 C语言编程基础
 
 1. [C语言简介](笔记/01_C语言简介.md)
 1. [C语言基础](笔记/02_C语言基础.md)
@@ -25,13 +24,39 @@
 1. [C语言内存四区](笔记/20_内存四区.md)
 
 
-## 教程
+## 2 教程
 
 - 《谭浩强C程序设计》
-- 《C Primer Plus》
+- 《C Primer Plus》
 - 《C标准库》
-- [cplusplus](http://www.cplusplus.com/)
-- [菜鸟教程——C语言](http://www.runoob.com/cprogramming/c-header-files.html)
+- [菜鸟教程](http://www.runoob.com/cprogramming/c-header-files.html)
 - [awesome-c-cn](https://github.com/jobbole/awesome-c-cn)
 - [C语言编码规范](http://www.jianshu.com/p/0c29795c31fe)
 - [维基百科：C标准函数库](https://zh.wikipedia.org/wiki/C%E6%A8%99%E6%BA%96%E5%87%BD%E5%BC%8F%E5%BA%AB)
+
+
+---
+## 3 工程构建
+
+- [make makefile cmake qmake都是什么，有什么区别？](https://www.zhihu.com/question/27455963)
+
+### Make File
+
+- [Make 命令教程](http://www.ruanyifeng.com/blog/2015/02/make.html)
+- [makefile 介绍](http://wiki.ubuntu.org.cn/%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%86%99Makefile:MakeFile%E4%BB%8B%E7%BB%8D#makefile_.E4.BB.8B.E7.BB.8D)
+
+### C Make
+
+- [CMake官网教程](https://cmake.org/documentation/)
+- [CMake文档](https://cmake.org/cmake/help/v3.0/index.html#)
+- [CMake Wiki](https://cmake.org/Wiki/CMake)
+- [CMake 入门实战](http://hahack.com/codes/cmake/)
+- [CMake简要教程](http://www.jianshu.com/p/bbf68f9ddffa)
+- [使用CMake组织C++工程](https://elloop.github.io/tools/2016-04-04/learning-cmake-0)
+
+### 编译器
+
+- gcc
+- clang
+
+gcc与clang都是c和c++的编译器。

@@ -1,7 +1,6 @@
 package core.channels
 
 import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.channels.ProducerJob
 import kotlinx.coroutines.experimental.channels.produce
 import kotlinx.coroutines.experimental.runBlocking
 
@@ -25,7 +24,8 @@ private fun produceSquares() = produce(CommonPool) {
 }
 
 fun main(args: Array<String>) = runBlocking {
-    val squares: ProducerJob<Int> = produceSquares()
+//    todo
+//    val squares: ProducerJob<Int> = produceSquares()
 
 //    squares.consumeEach { println(it) }
     //这里使用为什么不会等待Channel关闭呢？
@@ -38,7 +38,7 @@ fun main(args: Array<String>) = runBlocking {
 
     repeat(6){
         //第六次的时候会抛出异常：.ClosedReceiveChannelException: Channel was closed
-        println(squares.receive())
+//        println(squares.receive())
     }
 
     println("Done!")

@@ -13,7 +13,7 @@
 using namespace std;
 
 //1：创建vector
-static void create_vector() {
+static void createVector() {
     vector<int> vector1;//创建空的vector，执行默认初始化
     vector<int> vector2(vector1);//v2中包含所有v1中元素的副本
     vector<int> vector3 = vector1;//等价于上面vector2
@@ -28,7 +28,7 @@ static void create_vector() {
 }
 
 //2：vector的操作
-static void vector_operation() {
+static void vectorOperation() {
 
     vector<int> vector1;
 
@@ -38,7 +38,7 @@ static void vector_operation() {
     }
     cout << "vector1 size = " << vector1.size() << endl;//100
 
-    //2.2
+    //2.2：size和empty函数、访问元素
     vector<int>::size_type size = vector1.size();//获取size
     bool is_empty = vector1.empty();//是否为空
     int index_10 = vector1[10];//访问元素
@@ -59,6 +59,7 @@ static void vector_operation() {
 
 
 int main() {
-    vector_operation();
+    //createVector();
+    vectorOperation();
     return EXIT_SUCCESS;
 }
