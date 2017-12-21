@@ -20,6 +20,7 @@ public class SysMediaSelector {
     private static final int REQUEST_CAMERA = 196;
     private static final int REQUEST_CROP = 197;
     private static final int REQUEST_ALBUM = 198;
+    private static final int REQUEST_FILE = 199;
 
     private static final String POSTFIX = ".fileProvider";
     private String mAuthority;
@@ -134,7 +135,7 @@ public class SysMediaSelector {
 
     private boolean toCrop(Uri uri) {
         File targetFile = new File(mSavePhotoPath);
-        Intent intent = Utils.makeCropIntent(uri, targetFile, getCropOptions(), mCropTitle);
+        Intent intent = Utils.makeCropIntent(mContextWrapper.getContext(), uri, targetFile, mAuthority, getCropOptions(), mCropTitle);
         try {
             mContextWrapper.startActivityForResult(intent, REQUEST_CROP, null);
             return true;
@@ -144,9 +145,25 @@ public class SysMediaSelector {
         return false;
     }
 
+
+    public boolean takeFile() {
+        return takeFile(null);
+    }
+
+    public boolean takeFile(String mimeType) {
+        Intent intent = Utils.makeFilesIntent(mimeType);
+        try {
+            mContextWrapper.startActivityForResult(intent, REQUEST_FILE, null);
+        } catch (Exception e) {
+            Log.e(TAG, "takeFile error", e);
+            return false;
+        }
+        return true;
+    }
     ///////////////////////////////////////////////////////////////////////////
     // Process Result
     ///////////////////////////////////////////////////////////////////////////
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CAMERA) {
             processCameraResult(resultCode, data);
@@ -154,6 +171,22 @@ public class SysMediaSelector {
             processCropResult(resultCode, data);
         } else if (requestCode == REQUEST_ALBUM) {
             processAlbumResult(resultCode, data);
+        } else if (requestCode == REQUEST_FILE) {
+            processFileResult(resultCode, data);
+        }
+    }
+
+    private void processFileResult(int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            if (uri == null) {
+                mMediaSelectorCallback.onTakeFail();
+            } else {
+                String absolutePath = Utils.getAbsolutePath(mContextWrapper.getContext(), uri);
+                mMediaSelectorCallback.onTakeSuccess(absolutePath);
+            }
+        } else {
+            mMediaSelectorCallback.onTakeFail();
         }
     }
 
@@ -164,13 +197,13 @@ public class SysMediaSelector {
                 if (mNeedCrop) {
                     boolean success = toCrop(uri);
                     if (!success) {
-                        mMediaSelectorCallback.onTakePhotoSuccess(Utils.getAbsolutePath(mContextWrapper.getContext(), uri));
+                        mMediaSelectorCallback.onTakeSuccess(Utils.getAbsolutePath(mContextWrapper.getContext(), uri));
                     }
                 } else {
-                    mMediaSelectorCallback.onTakePhotoSuccess(Utils.getAbsolutePath(mContextWrapper.getContext(), uri));
+                    mMediaSelectorCallback.onTakeSuccess(Utils.getAbsolutePath(mContextWrapper.getContext(), uri));
                 }
             } else {
-                mMediaSelectorCallback.onTakePhotoFail();
+                mMediaSelectorCallback.onTakeFail();
             }
         }
     }
@@ -179,35 +212,36 @@ public class SysMediaSelector {
         //有时候，系统裁减的结果可能没有保存到我们指定的目录，而是通过data返回了
         if (resultCode == Activity.RESULT_OK) {
             if (new File(mSavePhotoPath).exists()) {
-                mMediaSelectorCallback.onTakePhotoSuccess(mSavePhotoPath);
+                mMediaSelectorCallback.onTakeSuccess(mSavePhotoPath);
             } else if (data != null && data.getData() != null) {
                 String realPathFromURI = Utils.getAbsolutePath(mContextWrapper.getContext(), data.getData());
                 if (TextUtils.isEmpty(realPathFromURI)) {
-                    mMediaSelectorCallback.onTakePhotoFail();
+                    mMediaSelectorCallback.onTakeFail();
                 } else {
-                    mMediaSelectorCallback.onTakePhotoSuccess(realPathFromURI);
+                    mMediaSelectorCallback.onTakeSuccess(realPathFromURI);
                 }
             } else {
-                mMediaSelectorCallback.onTakePhotoFail();
+                mMediaSelectorCallback.onTakeFail();
             }
         }
     }
+
 
     private void processCameraResult(int resultCode, @SuppressWarnings("unused") Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             //检测图片是否被保存下来
             if (!new File(mSavePhotoPath).exists()) {
-                mMediaSelectorCallback.onTakePhotoFail();
+                mMediaSelectorCallback.onTakeFail();
                 return;
             }
             //需要裁减，可以裁减则进行裁减，否则直接返回
             if (mNeedCrop) {
                 boolean success = toCrop();
                 if (!success) {
-                    mMediaSelectorCallback.onTakePhotoSuccess(mSavePhotoPath);
+                    mMediaSelectorCallback.onTakeSuccess(mSavePhotoPath);
                 }
             } else {
-                mMediaSelectorCallback.onTakePhotoSuccess(mSavePhotoPath);
+                mMediaSelectorCallback.onTakeSuccess(mSavePhotoPath);
             }
         }
     }
@@ -215,11 +249,12 @@ public class SysMediaSelector {
     ///////////////////////////////////////////////////////////////////////////
     // Interface
     ///////////////////////////////////////////////////////////////////////////
+
     public interface MediaSelectorCallback {
 
-        void onTakePhotoSuccess(String path);
+        void onTakeSuccess(String path);
 
-        void onTakePhotoFail();
+        void onTakeFail();
     }
 
 }
