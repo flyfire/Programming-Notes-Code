@@ -1,5 +1,6 @@
 package com.ztiany.mediaselector;
 
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -15,12 +16,19 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 /**
+ * See:
+ * <pre>
+ *      https://stackoverflow.com/questions/20067508/get-real-path-from-uri-android-kitkat-new-storage-access-framework
+ * </pre>
+ *
  * @author Ztiany
  *         Email: ztiany3@gmail.com
  *         Date : 2017-08-09 10:54
@@ -30,6 +38,10 @@ final class Utils {
     private Utils() {
         throw new UnsupportedOperationException("Utils");
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Camera
+    ///////////////////////////////////////////////////////////////////////////
 
     /**
      * 判断系统中是否存在可以启动的相机应用
@@ -43,6 +55,9 @@ final class Utils {
         return list.size() > 0;
     }
 
+    /**
+     * @param targetFile 源文件，裁剪之后新的图片覆盖此文件
+     */
     static Intent makeCaptureIntent(Context context, File targetFile, String authority) {
         makeFilePath(targetFile);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -52,21 +67,45 @@ final class Utils {
         } else {
             Uri fileUri = FileProvider.getUriForFile(context, authority, targetFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
         return intent;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Files
+    ///////////////////////////////////////////////////////////////////////////
+    static Intent makeFilesIntent(String mimeType) {
+        if (TextUtils.isEmpty(mimeType)) {
+            mimeType = "*/*";
+        }
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType(mimeType);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        return intent;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Crop
+    ///////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @param targetFile 源文件，裁剪之后新的图片覆盖此文件
+     */
     static Intent makeCropIntent(Context context, File targetFile, String authority, CropOptions cropOptions, String title) {
+
         makeFilePath(targetFile);
         Intent intent = new Intent("com.android.camera.action.CROP");
+
         Uri fileUri;
         if (Build.VERSION.SDK_INT < 24) {
             fileUri = Uri.fromFile(targetFile);
         } else {
             fileUri = FileProvider.getUriForFile(context, authority, targetFile);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         }
+
         intent.setDataAndType(fileUri, "image/*");
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         intent.putExtra("aspectX", cropOptions.getAspectX());
@@ -81,10 +120,25 @@ final class Utils {
         return intent;
     }
 
-    static Intent makeCropIntent(Uri src, File targetFile, CropOptions cropOptions, String title) {
+    /**
+     * @param targetFile 目标文件，裁剪之后新的图片保存到此文件
+     * @param src        源文件
+     */
+    static Intent makeCropIntent(Context context, Uri src, File targetFile, String authority, CropOptions cropOptions, String title) {
+
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(src, "image/*");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(targetFile));
+
+        Uri fileUri;
+        if (Build.VERSION.SDK_INT < 24) {
+            fileUri = Uri.fromFile(targetFile);
+        } else {
+            fileUri = FileProvider.getUriForFile(context, authority, targetFile);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        }
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         intent.putExtra("aspectX", cropOptions.getAspectX());
         intent.putExtra("aspectY", cropOptions.getAspectY());
         intent.putExtra("outputX", cropOptions.getOutputX());
@@ -97,22 +151,19 @@ final class Utils {
         return intent;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // Album
+    ///////////////////////////////////////////////////////////////////////////
+
     static Intent makeAlbumIntent() {
         return new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
     }
 
-    private static boolean makeFilePath(File file) {
-        if (file == null) {
-            return false;
-        }
-        File parent = file.getParentFile();
-        return parent.exists() || parent.mkdirs();
-    }
 
     ///////////////////////////////////////////////////////////////////////////
     // 从各种Uri中获取真实的路径
     ///////////////////////////////////////////////////////////////////////////
-    public static String getAbsolutePath(final Context context, final Uri uri) {
+    static String getAbsolutePath(final Context context, final Uri uri) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(context, uri)) {
             // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {
@@ -181,8 +232,9 @@ final class Utils {
                 return cursor.getString(column_index);
             }
         } finally {
-            if (cursor != null)
+            if (cursor != null) {
                 cursor.close();
+            }
         }
         return null;
     }
@@ -212,15 +264,17 @@ final class Utils {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // 如果拍摄的图片存在角度问题，通过下面分发修正
+    // BitmapUtils：如果拍摄的图片存在角度问题，通过下面分发修正
     ///////////////////////////////////////////////////////////////////////////
+
     /**
      * 读取图片的旋转的角度
      *
      * @param path 图片绝对路径
      * @return 图片的旋转角度
      */
-    private int getBitmapDegree(String path) {
+    @SuppressWarnings("unused")
+    public static int getBitmapDegree(String path) {
         int degree = 0;
         try {
             // 从指定路径下读取图片，并获取其EXIF信息
@@ -252,6 +306,7 @@ final class Utils {
      * @param degree 旋转角度
      * @return 旋转后的图片
      */
+    @SuppressWarnings("unused")
     public static Bitmap rotateBitmapByDegree(Bitmap bm, int degree) {
         Bitmap returnBm = null;
         // 根据旋转角度，生成旋转矩阵
@@ -261,6 +316,7 @@ final class Utils {
             // 将原始图片按照旋转矩阵进行旋转，并得到新的图片
             returnBm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), matrix, true);
         } catch (OutOfMemoryError e) {
+            e.printStackTrace();
         }
         if (returnBm == null) {
             returnBm = bm;
@@ -269,5 +325,44 @@ final class Utils {
             bm.recycle();
         }
         return returnBm;
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    // FileUtils
+    ///////////////////////////////////////////////////////////////////////////
+
+    private static boolean makeFilePath(File file) {
+        if (file == null) {
+            return false;
+        }
+        File parent = file.getParentFile();
+        return parent.exists() || parent.mkdirs();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //如果照片保存的文件目录是由 getExternalFilesDir() 所提供的，那么，媒体扫描器是不能访问这些文件的，因为照片对于你的APP来说是私有的。
+    ///////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 显示图片到相册
+     *
+     * @param photoFile 要保存的图片文件
+     */
+    public static void displayToGallery(Context context, File photoFile) {
+        if (photoFile == null || !photoFile.exists()) {
+            return;
+        }
+        String photoPath = photoFile.getAbsolutePath();
+        String photoName = photoFile.getName();
+        // 其次把文件插入到系统图库
+        try {
+            ContentResolver contentResolver = context.getContentResolver();
+            MediaStore.Images.Media.insertImage(contentResolver, photoPath, photoName, null);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        // 最后通知图库更新
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + photoPath)));
     }
 }
