@@ -68,7 +68,7 @@ fun main(args: Array<String>) {
  *协程上下文，用来存放我们需要的信息，可以灵活的自定义，
  *这里AbstractCoroutineContextElement的参数为FilePath，作为覆盖父类中的key属性
  */
-class FilePath(val path: String) : AbstractCoroutineContextElement(MyKey) {
+class FilePath(val path: String) : AbstractCoroutineContextElement(FilePath/*其实传递的是MyKey*/) {
     //这里创建了一个Key类型的伴生对象,Key上定义的实际泛型类型为FilePath，则通过该Key获取的Element就是FilePath类型
     companion object MyKey : CoroutineContext.Key<FilePath>
 }
@@ -76,7 +76,7 @@ class FilePath(val path: String) : AbstractCoroutineContextElement(MyKey) {
 
 //模拟计算mdl，这是一个耗时操作
 private fun calcMd5(path: String): String {
-    println("calc md5 for $path.----------------------------------")
+    println("               calc md5 for $path.----------------------------------")
     println()
     println()
     //暂时用这个模拟耗时

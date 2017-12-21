@@ -6,43 +6,31 @@ import kotlin.coroutines.experimental.CoroutineContext
 import kotlin.coroutines.experimental.startCoroutine
 import kotlin.coroutines.experimental.suspendCoroutine
 
-/*
-打印顺序：
-
-before coroutine
-after coroutine
-in coroutine. Before suspend.
-in suspend block.
-calc md5 for test.zip.
-after resume.
-in coroutine. After suspend. result = 1499929744853
-resume: kotlin.Unit
- */
-
 
 fun main(args: Array<String>) {
-    println("before coroutine")
+    println("1 before coroutine")
     asyncCalcMd5("test.zip") /*下面这个lambda已经在异步现成中执行了*/{
-        println("in coroutine. Before suspend.")
+        println("3 in coroutine. Before suspend.")
         val result: String = suspendCoroutine { continuation ->
-            println("in suspend block.")
+            println("4 in suspend block.")
             continuation.resume(calcMd5(continuation.context[FilePath]!!.path))
-            println("after resume.")
+            println("5 after resume.")
         }
-        println("in coroutine. After suspend. result = $result")
+        println("6 in coroutine. After suspend. result = $result")
     }
-    println("after coroutine")
+    println("2 after coroutine")
 
     CommonPool.pool.awaitTermination(10000, TimeUnit.MILLISECONDS)
 }
 
 
 private fun calcMd5(path: String): String {
-    println("calc md5 for $path.")
+    println("               calc md5 for $path.")
     Thread.sleep(1000)
     return System.currentTimeMillis().toString()
 }
 
+/**以CommonPool调度black*/
 private fun asyncCalcMd5(path: String, block: suspend () -> Unit) {
 
     val continuation = object : Continuation<Unit> {
@@ -62,8 +50,11 @@ private fun asyncCalcMd5(path: String, block: suspend () -> Unit) {
     block.startCoroutine(continuation)
 }
 
-private fun launch(context: CoroutineContext, block: suspend () -> Unit) = block.startCoroutine(StandaloneCoroutine(context))
+/**函数用于在执行的协程上下文中调度block*/
+private fun launch(context: CoroutineContext, block: suspend () -> Unit) =
+        block.startCoroutine(StandaloneCoroutine(context))
 
+/**独立的协程*/
 class StandaloneCoroutine(override val context: CoroutineContext) : Continuation<Unit> {
     override fun resume(value: Unit) {}
     override fun resumeWithException(exception: Throwable) {

@@ -65,12 +65,13 @@ public interface Continuation<in T> {
     public fun resumeWithException(exception: Throwable)
 }
 ```
-许多个Continuation组合起来形成了一个协程，协程之间通过Continuation协作运行，挂起段由Continuation中的CoroutineContext调度。
+协程之间通过Continuation协作运行，挂起段由Continuation中的CoroutineContext调度。
 
 
 ## CoroutinesLibrary函数说明
 
 ### suspendCoroutine函数
+
 ```kotlin
 public inline suspend fun <T> suspendCoroutine(crossinline block: (Continuation<T>) -> Unit): T =
         suspendCoroutineOrReturn { c: Continuation<T> ->
@@ -82,4 +83,30 @@ public inline suspend fun <T> suspendCoroutine(crossinline block: (Continuation<
 suspendCoroutine是一个suspend函数，所以它只能在协程中调用，
 suspendCoroutine的作用是将当前执行流挂起, 在适合的时机再将协程恢复执行。
 suspendCoroutine方法接受一个lambda，这个lambda的返回值就是该函数的返回值，
-当block执行完毕后，Kotlin回切换回之前的挂起点继续调度。
+block有一个参数continuation，当block执行完毕后，调用continuation的resume方法则返回结果，
+这个结果就是suspendCoroutine的返回值，然后Kotlin回切换回之前的挂起点继续调度。
+
+
+## 协程API
+
+Kotlin官方对协程提供的三种级别的能力支持, 分别是: 
+
+- 最底层的语言层
+- 中间层标准库(kotlin-stdlib)
+- 最上层应用层(kotlinx.coroutines).
+
+### 应用层
+
+它的实现在kotlinx.coroutines里面，比如常用的launch方法, async方法等
+
+### 标准库
+
+标准库仅仅提供了少量创建协程的方法：
+
+- createCoroutine()
+- startCoroutine()
+- suspendCoroutine()
+
+### 语言层
+
+语言本身主要提供了对suspend关键字的支持, Kotlin编译器会对suspend修饰的方法或lambda特殊处理, 生成一些中间类和逻辑代码。
