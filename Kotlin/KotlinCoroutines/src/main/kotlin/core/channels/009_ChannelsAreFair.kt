@@ -24,7 +24,7 @@ private suspend fun player(name: String, table: Channel<Ball>) {
     }
 }
 
-//发送和接收频道的操作对于多个协同程序的调用顺序是公平的。他们以先到先得的顺序送达，调用接收的第一个协同程序获取元素。，
+//发送和接收频道的操作对于多个协程的调用顺序是公平的。他们以先到先得的顺序送达，调用接收的第一个协程获取元素。，
 fun main(args: Array<String>) = runBlocking<Unit> {
     val table = Channel<Ball>() // a shared table
 

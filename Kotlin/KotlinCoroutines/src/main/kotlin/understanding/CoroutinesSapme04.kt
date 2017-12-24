@@ -8,6 +8,15 @@ import kotlin.coroutines.experimental.suspendCoroutine
 
 
 fun main(args: Array<String>) {
+    //sample1()
+    sample2()
+}
+
+fun sample2() {
+
+}
+
+private fun sample1() {
     println("1 before coroutine")
 
     launchWithContext(FilePath("test.zip") + CommonPool) {
@@ -57,17 +66,4 @@ private fun <T> launch(receiver: T, context: CoroutineContext, block: suspend T.
  */
 private fun launchWithContext(context: CoroutineContext, block: suspend CoroutineContext.() -> Unit) {
     launch(context, context, block)
-}
-
-
-//test
-private fun (Int.() -> String).mt() = {
-    //this 指向 (Int.() -> String)
-    this.invoke(3)
-}
-
-private fun abc(a: Int.() -> String) {
-    //于是函数a可以调用函数mt
-    a.mt()
-    //a.invoke()，此时调用invoke需要一个Int参数
 }

@@ -1,9 +1,9 @@
 ## Suspend函数
 
-在Kotlin中，Suspend函数表示一个可以被暂停的函数，运行在协程中，Suspend函数是协程的核心概念之一。
-使用协程可以像写单线程方法一样来编写各种异步操作，这些都归功于Suspend函数。
+在Kotlin中，Suspending函数表示一个可以被挂起的函数，Suspending函数是协程的核心概念之一。
+使用协程可以像写单线程方法一样来编写各种异步操作。而Suspending函数是Kotlin中标准库中提供的底层支持。
 
-### 异步回调
+### 异步回调方式
 
 在异步回调的模型中，当开启一个异步任务去获取数据时，有两种方式去获取结果：
 
@@ -12,8 +12,8 @@
 
 ### Suspend函数的暂停与恢复
 
-在协程中，可以实现异步返回，由于Suspend函数是可以被暂停的。被暂停的函数在恢复执行后，回回到之前的暂停点继续执行。
-而且，任何一个恢复都可以切换调度线程。看下面代码：
+在协程中，可以实现**异步返回**(在编写程序一样享受无需考虑异步等待，却能享受到类似的功能)，由于Suspending函数是可以被挂起的。被挂起的函数在恢复执行后，会回到之前的挂起点继续执行。
+而且，从任何一个挂起点恢复都可以切换调度线程。看下面代码：
 
 ```kotlin
 private fun asyncReturnSample2() = runBlocking {
@@ -80,7 +80,7 @@ public inline suspend fun <T> suspendCoroutine(crossinline block: (Continuation<
             safe.getResult()
         }
 ```
-suspendCoroutine是一个suspend函数，所以它只能在协程中调用，
+suspendCoroutine是一个suspending函数，所以它只能在协程中调用，
 suspendCoroutine的作用是将当前执行流挂起, 在适合的时机再将协程恢复执行。
 suspendCoroutine方法接受一个lambda，这个lambda的返回值就是该函数的返回值，
 block有一个参数continuation，当block执行完毕后，调用continuation的resume方法则返回结果，
@@ -88,6 +88,9 @@ block有一个参数continuation，当block执行完毕后，调用continuation�
 
 
 ## 协程API
+
+Kotlin作为一门编程语言，在其标准库中只提供了最低级别的低级API，以使各种其他库能够使用协程，与许多其他具有类似功能的语言不同
+，async和await不是Kotlin中的关键字，甚至不是其标准库的一部分。kotlinx.coroutines就是这样一个丰富的库，它包含许多高级协程API，比如launch, async函数等。
 
 Kotlin官方对协程提供的三种级别的能力支持, 分别是: 
 

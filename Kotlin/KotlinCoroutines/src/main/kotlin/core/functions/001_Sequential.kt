@@ -1,4 +1,4 @@
-package core.composing
+package core.functions
 
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.runBlocking
@@ -19,12 +19,12 @@ fun main(args: Array<String>) = runBlocking {
         val two = doSomethingUsefulTwo()
         println("The answer is ${one + two}")
     }
-    println("Completed in $time ms")//4039
+    println("Completed in $time ms")
 }
 
 
 private suspend fun doSomethingUsefulOne(): Int {
-    delay(3000L) // pretend we are doing something useful here
+    delay(1000L) // pretend we are doing something useful here
     return 13
 }
 

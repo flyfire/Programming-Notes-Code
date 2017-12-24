@@ -1,4 +1,4 @@
-package core.canceltimeouts
+package core.cancel_timeouts
 
 import kotlinx.coroutines.experimental.CancellationException
 import kotlinx.coroutines.experimental.delay
@@ -7,6 +7,7 @@ import kotlinx.coroutines.experimental.withTimeout
 
 /**
  *协程设置超时
+ *
  * @author Ztiany
  *          Email ztiany3@gmail.com
  *          Date 17.7.9 15:00
@@ -27,5 +28,4 @@ fun main(args: Array<String>) = runBlocking {
     } catch (e: CancellationException) {
         e.printStackTrace(System.err)
     }
-
 }

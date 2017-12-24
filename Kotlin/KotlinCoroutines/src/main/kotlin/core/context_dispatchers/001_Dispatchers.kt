@@ -1,4 +1,4 @@
-package core.contextdispatchers
+package core.context_dispatchers
 
 import kotlinx.coroutines.experimental.*
 
@@ -10,7 +10,7 @@ import kotlinx.coroutines.experimental.*
  */
 /*
 Dispatchers(调度器) and threads：
-Coroutine context 包含一个Dispatchers，它确定对应协同程序用于执行的线程或线程池。
+Coroutine context 包含一个Dispatchers，它确定对应协程用于执行的线程或线程池。
 Dispatchers可以将协程执行限制在一个特定的线程上，将其调度到线程池，或者让其无限制地运行。
  */
 
@@ -23,7 +23,7 @@ fun main(args: Array<String>) = runBlocking {
         println(" 'Unconfined': I'm working in thread ${Thread.currentThread().name}")
     }
 
-    jobs += launch(context) {
+    jobs += launch(coroutineContext) {
         // context of the parent, runBlocking coroutine
         println("    'context': I'm working in thread ${Thread.currentThread().name}")
     }

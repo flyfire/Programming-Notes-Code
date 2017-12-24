@@ -1,4 +1,4 @@
-package core.composing
+package core.functions
 
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
             println("The answer is ${one.await() + two.await()}")
         }
     }
-    println("Completed in $time ms")//3112
+    println("Completed in $time ms")
 }
 
 
@@ -43,7 +43,7 @@ private fun asyncSomethingUsefulTwo() = async(CommonPool) {
 
 private suspend fun doSomethingUsefulOne(): Int {
     println("doSomethingUsefulOne")
-    delay(3000L) // pretend we are doing something useful here
+    delay(1000L) // pretend we are doing something useful here
     return 13
 }
 
