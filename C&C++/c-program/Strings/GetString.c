@@ -20,6 +20,7 @@ static void scanfSample() {
 
 static void getsSample1() {
     char str[100];
+    //gets是不安全的函数，如果用户输入超过100个，会发生缓冲区溢出
     gets(str);
     puts(str);
 }
