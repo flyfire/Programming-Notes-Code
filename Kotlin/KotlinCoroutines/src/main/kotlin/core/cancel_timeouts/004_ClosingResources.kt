@@ -1,4 +1,4 @@
-package core.canceltimeouts
+package core.cancel_timeouts
 
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.delay
@@ -6,7 +6,7 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
- *再协程关闭时释放资源
+ *在协程关闭时释放资源
  *
  * @author Ztiany
  *          Email ztiany3@gmail.com
@@ -21,6 +21,9 @@ fun main(args: Array<String>) = runBlocking {
                 println("I'm sleeping $i ...")
                 delay(500L)//暂停
             }
+        } catch (e: Exception) {
+            //去掉给挂起的
+            e.printStackTrace()
         } finally {//如果暂停状态被取消，将会抛出异常，所以需要在finally中释放资源
             println("I'm running finally")
         }

@@ -1,4 +1,4 @@
-package core.composing
+package core.functions
 
 import kotlinx.coroutines.experimental.*
 
@@ -11,9 +11,10 @@ import kotlinx.coroutines.experimental.*
  */
 fun main(args: Array<String>) = runBlocking {
 
-    println("start")
+    println("1 start")
     val result1 = async(CommonPool) {
         delay(3000)
+        throw IllegalStateException("--------")
         1
     }
     val result2 = async(CommonPool) {
@@ -23,16 +24,13 @@ fun main(args: Array<String>) = runBlocking {
 
     //await表示，当Deferred代表的协程调度完毕，会在指定的协程剩下文中调度await所在的代码块。
     val launch = launch(coroutineContext) {
-        println(result1.await() + result2.await())
+        try {
+            println("3 ${result1.await() + result2.await()}")
+        } catch (e: Exception) {
+            println("发生错误了")
+        }
     }
 
-    println("ending")
+    println("2 ending")
     launch.join()
 }
-
-/*
-打印结果为：
-start
-ending
-3
- */

@@ -24,7 +24,7 @@ Kotlin协程以一共包括四个模块
 - 在finally中释放资源
 - 设置协程超时
     
-### 组合暂停函数(core.composing)
+### 组合暂停函数(core.functions)
 
 - 顺序执行的协程
 - 使用async并发执行——带返回值的协程Deferred

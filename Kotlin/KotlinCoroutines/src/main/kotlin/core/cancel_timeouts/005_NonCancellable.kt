@@ -1,4 +1,4 @@
-package core.canceltimeouts
+package core.cancel_timeouts
 
 import kotlinx.coroutines.experimental.*
 
@@ -17,7 +17,7 @@ fun main(args: Array<String>) = runBlocking {
                 delay(500L)
             }
         } finally {
-            //在罕见的情况下，需要在取消的协议中挂起，可以使用run(NonCancellable) {...}，
+            //在罕见的情况下，需要在取消的协程中挂起，可以使用run(NonCancellable) {...}，
             //run作用：Calls the specified suspending block with a given coroutine context, suspends until it completes, and returns the result.
             run(NonCancellable) {
                 println("I'm running finally")
