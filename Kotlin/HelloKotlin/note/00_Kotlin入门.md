@@ -7,24 +7,27 @@ Kotlin是一门**静态的强类型编程语言**，可以运行在JVM上，但�
 ---
 ## 1 文档与资料
 
-- [官网](https://kotlinlang.org/)
-- [官方：Kotlin协程](https://github.com/Kotlin/kotlinx.coroutines)
-- [官方：kotlin-examples](https://github.com/JetBrains/kotlin-examples)
-- [官方：anko](https://github.com/Kotlin/anko)
-- [Kotlin中文站](https://www.kotlincn.net/)
-- [Kotlin-Tutorials-视频教程](https://github.com/enbandari/Kotlin-Tutorials)
-- [kymjs：Kotlin Primer](https://kymjs.com/code/2017/02/03/01/)
-- [Kotlin 知识梳理系列文章](http://www.jianshu.com/p/f9e78d6c54bd)
-- 《Kotlin实战》
+- [官网](https://kotlinlang.org/)
+- [官方：Kotlin协程](https://github.com/Kotlin/kotlinx.coroutines)
+- [官方：kotlin-examples](https://github.com/JetBrains/kotlin-examples)
+- [Kotlin中文站](https://www.kotlincn.net/)
+- [Kotlin-Tutorials-视频教程](https://github.com/enbandari/Kotlin-Tutorials)
+- [kymjs：Kotlin Primer](https://kymjs.com/code/2017/02/03/01/)
+- [Kotlin 知识梳理系列文章](http://www.jianshu.com/p/f9e78d6c54bd)
+- [EasyKotlin](https://github.com/JackChan1999/EasyKotlin)
+- [EasyKotlin-All](https://github.com/EasyKotlin)
+- 《Kotlin实战》
 
 ---
 ## 2 Android
 
-- [kotlin-for-android-developers](https://wangjiegulu.gitbooks.io/kotlin-for-android-developers-zh/guan_yu_ben_shu.html)
-- [Kotlin on Android FAQ](https://developer.android.com/kotlin/faq.html)
+- [kotlin-for-android-developers](https://wangjiegulu.gitbooks.io/kotlin-for-android-developers-zh/guan_yu_ben_shu.html)
+- [Kotlin on Android FAQ](https://developer.android.com/kotlin/faq.html)
+- [官方：anko库](https://github.com/Kotlin/anko)
+- [kovenant](http://kovenant.komponents.nl/)：Kotlin的简单异步库
 
 ---
 ## 3 项目
 
-- [awesome-kotlin](https://github.com/KotlinBy/awesome-kotlin)
-- [awesome-kotlin-cn](https://github.com/kymjs/awesome-kotlin-cn)
+- [awesome-kotlin](https://github.com/KotlinBy/awesome-kotlin)
+- [awesome-kotlin-cn](https://github.com/kymjs/awesome-kotlin-cn)

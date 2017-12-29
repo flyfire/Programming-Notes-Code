@@ -20,7 +20,7 @@ private interface MachineGun {
  * 飞机
  */
 private interface Plane {
-    fun fly();
+    fun fly()
 }
 
 
