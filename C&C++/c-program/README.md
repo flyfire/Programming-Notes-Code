@@ -58,5 +58,3 @@
 
 - gcc
 - clang
-
-gcc与clang都是c和c++的编译器。

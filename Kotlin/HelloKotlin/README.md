@@ -4,7 +4,7 @@
 
 ### 基础笔记
 
-1. [Kotlin入门资料](note/00_Kotlin入门.md)
+1. [Kotlin资料](note/00_Kotlin入门.md)
 2. [Kotlin基础](note/01_Kotlin基础.md)
 3. [面向对象](note/02_面向对象.md)
 4. [函数与表达式](note/03_函数与lambda.md)

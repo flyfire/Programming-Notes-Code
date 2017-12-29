@@ -47,6 +47,12 @@ fun applySample() {
         println(this)
     }
     println(result)
+
+    val list = mutableListOf<String>()
+    list.apply {
+        add("A")
+        add("B")
+    }
 }
 
 private fun letSample() {

@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <wctype.h>
 
 int main() {
     char a = 'a', b = 'b', s = ' ';
