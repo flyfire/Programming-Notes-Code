@@ -51,12 +51,14 @@ public class BasicUseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_basic_web_view);
         mWebView = (WebView) findViewById(R.id.web_view);
         webSettings = mWebView.getSettings();
+
         setupWebViewBase();
         setupStorage();
         setLBS();
         setupJs();
         setWebClient();
         setWebChromeClient();
+
         mWebView.loadUrl("http://3g.163.com/");
     }
 
