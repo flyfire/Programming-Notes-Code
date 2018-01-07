@@ -82,7 +82,7 @@ static void initializerParameter(initializer_list<string> il) {
     cout << endl;
 }
 
-static void invokeIinitializer() {
+static void invokeInitializer() {
     initializerParameter({"CBA", "CBA", "CBA"});
     initializerParameter({"NBA", "NBA"});
 }

@@ -14,11 +14,11 @@ using namespace std;
 
 int main() {
 
-    Rectangle Rect;
+    Rectangle rectangle;
 
-    Rect.setWidth(5);
-    Rect.setHeight(7);
+    rectangle.setWidth(5);
+    rectangle.setHeight(7);
 
     // 输出对象的面积
-    cout << "Total area: " << Rect.getArea() << endl;
+    cout << "Total area: " << rectangle.getArea() << endl;
 }

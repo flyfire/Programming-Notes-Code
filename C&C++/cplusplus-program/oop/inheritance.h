@@ -28,7 +28,7 @@ protected:
 };
 
 
-// 基类 PaintCost
+// 基类 PaintCost(油漆成本)
 class PaintCost {
 public:
     int getCost(int area) {

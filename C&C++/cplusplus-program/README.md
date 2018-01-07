@@ -25,3 +25,4 @@
 - 《C++ Primer Plus》
 - [cplusplus](http://www.cplusplus.com/)
 - [菜鸟教程](http://www.runoob.com/cplusplus/)
+- [C++笔记](http://www.hahack.com/wiki/)
