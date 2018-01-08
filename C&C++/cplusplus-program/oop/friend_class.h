@@ -12,16 +12,17 @@
 
 
 #include <iostream>
+#include <vector>
+
 
 class Box {
+private:
     double width;
 public:
-
-    friend void printWidth(Box box);
-
-    friend class Friend;
-
     void setWidth(double wid);
+public://友元放在一起
+    friend void printWidth(Box box);
+    friend class Friend;
 };
 
 // 成员函数定义
@@ -35,6 +36,7 @@ void printWidth(Box box) {
     std::cout << "Width of box : " << box.width << std::endl;
 }
 
+//这是一个友元类
 class Friend {
 public:
     double getBoxWidth(Box box) {

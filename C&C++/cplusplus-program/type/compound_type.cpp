@@ -31,6 +31,7 @@ static void pointer() {
 
     const int *pB = &value_a;//pA是一个指向整型常量的指针
     int *const pC = &value_a;//pC是一个常量指针
+
 }
 
 //3：const与引用
