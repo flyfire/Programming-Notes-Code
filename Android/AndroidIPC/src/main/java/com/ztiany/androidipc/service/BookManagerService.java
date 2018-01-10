@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.ztiany.androidipc.IBookManager;
 import com.ztiany.androidipc.IOnNewBookArrivedListener;
-import com.ztiany.androidipc.model.bean.Book;
+import com.ztiany.androidipc.model.Book;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -22,7 +22,6 @@ public class BookManagerService extends Service {
     private CopyOnWriteArrayList<Book> mBooks;
     private RemoteCallbackList<IOnNewBookArrivedListener> mListeners;
     private AtomicBoolean mSelfIsRunning = new AtomicBoolean(true);
-
 
     public BookManagerService() {
 
@@ -38,7 +37,6 @@ public class BookManagerService extends Service {
         mBooks.add(new Book("002", "Android 开发艺术探索"));
         new Thread(new AddBookRunnable()).start();
     }
-
 
     @Override
     public void onDestroy() {
@@ -84,10 +82,6 @@ public class BookManagerService extends Service {
                 }
             }
             Log.d("BookManagerService", "package name right");
-
-
-
-
 
             return super.onTransact(code, data, reply, flags);
         }

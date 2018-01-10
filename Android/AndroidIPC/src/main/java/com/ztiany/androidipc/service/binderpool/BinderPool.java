@@ -13,6 +13,11 @@ import com.ztiany.androidipc.service.BinderPoolService;
 
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * 简单说明BinderPool采用单例实现，保证一个进程中只有一个对象，在初始化的时候就进行bindService，
+ * 采用CountDownLatch来保证返回对象钱连接已经成功(即同步)，内部实现IBinderPool.Sub,让服务端Service返回IBinderPool.Sub，
+ * 返回客户端可以通过IBinderPool.Sub进行其他业务模块的AIDL查询。并且处理好Service的异常重连。
+ */
 public class BinderPool {
 
     public static final String TAG = BinderPool.class.getSimpleName();
@@ -21,17 +26,15 @@ public class BinderPool {
     public static final int BINDER_COMPUTE = 0;
     public static final int BINDER_SECURITY = 1;
 
-
     public Context mContext;
     public IBinderPool mIBinderPool;
     public static volatile BinderPool sInstance;
-    private CountDownLatch      mCountDownLatch ;
+    private CountDownLatch mCountDownLatch;
 
 
     public BinderPool(Context context) {
-      mContext = context.getApplicationContext();
+        mContext = context.getApplicationContext();
         context = null;
-
         connectBinderPoolService();
     }
 
@@ -104,7 +107,6 @@ public class BinderPool {
 
     public static class BinderPoolImpl extends IBinderPool.Stub {
 
-
         @Override
         public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
 
@@ -121,7 +123,6 @@ public class BinderPool {
             return null;
         }
     }
-
 
 
 }

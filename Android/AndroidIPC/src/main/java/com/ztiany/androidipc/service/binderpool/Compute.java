@@ -6,6 +6,7 @@ import android.util.Log;
 import com.ztiany.androidipc.ICompute;
 
 public class Compute extends ICompute.Stub  {
+
     @Override
     public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
 

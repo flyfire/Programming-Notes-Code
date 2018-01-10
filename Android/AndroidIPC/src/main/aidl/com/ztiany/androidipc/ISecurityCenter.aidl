@@ -4,16 +4,15 @@ package com.ztiany.androidipc;
 // Declare any non-default types here with import statements
 
 interface ISecurityCenter {
+
     /**
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.
      */
-    void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,
-            double aDouble, String aString);
+    void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,double aDouble, String aString);
 
+     String encrypt(String content);
 
-            String encrypt(String content);
-
-            String decrypt(String pwd);
+     String decrypt(String pwd);
 
 }

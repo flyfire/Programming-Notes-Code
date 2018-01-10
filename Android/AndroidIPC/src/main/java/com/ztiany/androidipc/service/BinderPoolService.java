@@ -10,9 +10,7 @@ import com.ztiany.androidipc.service.binderpool.BinderPool;
 
 public class BinderPoolService extends Service {
 
-
     private IBinderPool.Stub mStub = new BinderPool.BinderPoolImpl();
-
 
     @Nullable
     @Override

@@ -9,9 +9,6 @@ public class IPCService extends Service {
     public IPCService() {
     }
 
-
-
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         return super.onStartCommand(intent, flags, startId);

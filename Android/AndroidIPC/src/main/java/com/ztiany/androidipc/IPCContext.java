@@ -5,9 +5,7 @@ import android.util.Log;
 
 public class IPCContext extends Application {
 
-
     private static final String TAG = IPCContext.class.getName();
-
 
     @Override
     public void onCreate() {

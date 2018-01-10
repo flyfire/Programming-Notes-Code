@@ -14,20 +14,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         Log.d(TAG, this.getClass().getSimpleName() + "---->onCreate");
-
+        Log.d(TAG, this.getClass().getSimpleName() + "---->onCreate");
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        Log.d(TAG, this.getClass().getSimpleName() + "---->onPostCreate"+savedInstanceState);
+        Log.d(TAG, this.getClass().getSimpleName() + "---->onPostCreate" + savedInstanceState);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-            Log.d(TAG, this.getClass().getSimpleName() + "---->onDestroy");
+        Log.d(TAG, this.getClass().getSimpleName() + "---->onDestroy");
     }
 
     @Override
@@ -36,18 +35,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         Log.d(TAG, this.getClass().getSimpleName() + "---->onSaveInstanceState");
     }
 
-
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.d(TAG, this.getClass().getSimpleName() + "---->onRestoreInstanceState="+savedInstanceState);
+        Log.d(TAG, this.getClass().getSimpleName() + "---->onRestoreInstanceState=" + savedInstanceState);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Log.d(TAG, this.getClass().getSimpleName() + "---->onConfigurationChanged");
-
     }
 
 }

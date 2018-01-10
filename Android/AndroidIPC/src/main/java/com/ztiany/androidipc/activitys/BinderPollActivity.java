@@ -21,7 +21,6 @@ import java.util.concurrent.Executors;
 
 public class BinderPollActivity extends AppCompatActivity {
 
-
     private EditText mAEt;
     private EditText mBEt;
     private EditText mTextEt;
@@ -33,16 +32,13 @@ public class BinderPollActivity extends AppCompatActivity {
     private ICompute mICompute;
     private boolean mIsEn = true;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_binder_poll);
-
         findViews();
         initEvent();
         init();
-
     }
 
     private void initEvent() {
@@ -56,15 +52,9 @@ public class BinderPollActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
     }
 
     private void init() {
-
-
         mExecutorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -83,13 +73,10 @@ public class BinderPollActivity extends AppCompatActivity {
     }
 
     public void add(View view) {
-
         if (mICompute == null) {
             Toast.makeText(BinderPollActivity.this, "not init", Toast.LENGTH_SHORT).show();
             return;
         }
-
-
 
         mExecutorService.execute(new Runnable() {
             @Override
@@ -107,17 +94,14 @@ public class BinderPollActivity extends AppCompatActivity {
     }
 
     public void deOrEn(View view) {
-
         if (mISecurityCenter == null) {
             Toast.makeText(BinderPollActivity.this, "not init", Toast.LENGTH_SHORT).show();
-
             return;
         }
 
       mExecutorService.execute(new Runnable() {
           @Override
           public void run() {
-
               String text = mTextEt.getText().toString();
               try {
                   if(mIsEn)
@@ -128,11 +112,8 @@ public class BinderPollActivity extends AppCompatActivity {
               } catch (RemoteException e) {
                   e.printStackTrace();
               }
-
-
           }
       });
-
     }
 
     @Override
@@ -150,7 +131,5 @@ public class BinderPollActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-
     }
 }

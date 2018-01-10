@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class TcpServerService extends Service {
 
-    private boolean isServiceDestory = false;
+    private volatile boolean isServiceDestroy = false;
 
     public TcpServerService() {
     }
@@ -35,12 +35,12 @@ public class TcpServerService extends Service {
                     public void run() {
                         ServerSocket mServerSocket;
                         try {
-                             mServerSocket = new ServerSocket(8888);
+                            mServerSocket = new ServerSocket(8888);
                         } catch (IOException e) {
                             e.printStackTrace();
                             return;
                         }
-                        while (!isServiceDestory) {
+                        while (!isServiceDestroy) {
                             try {
                                 final Socket clientSocket = mServerSocket.accept();
                                 new Thread(new Runnable() {
@@ -68,7 +68,7 @@ public class TcpServerService extends Service {
 
         printStream.println("你好吗");
 
-        while (!isServiceDestory) {
+        while (!isServiceDestroy) {
 
             String str = bufferedInputStream.readLine();
 
@@ -76,25 +76,21 @@ public class TcpServerService extends Service {
             if (str == null) {
                 break;
             }
-            printStream.println(msgs[new Random(msgs.length).nextInt()]);
-
-
+            printStream.println(mSgs[new Random(mSgs.length).nextInt()]);
         }
 
         printStream.close();
         bufferedInputStream.close();
         clientSocket.close();
-
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
 
-    public String[] msgs = {
+    public String[] mSgs = {
             "你好吗？"
             , "草泥马"
             , "哈哈 ，我很帅"

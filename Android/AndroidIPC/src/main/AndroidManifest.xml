@@ -19,6 +19,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activitys.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,30 +28,31 @@
             </intent-filter>
         </activity>
 
-        <!-- Sercice -->
+        <activity android:name=".activitys.BookManagerActivity"/>
+        <activity android:name=".activitys.BinderPollActivity"/>
+        <activity android:name=".activitys.MessengerActivity"/>
+        <activity android:name=".activitys.SocketActivity"/>
+
         <service
             android:name=".service.IPCService"
             android:enabled="true"
             android:exported="true"
             android:process=":ipc_service">
         </service>
+
         <service
             android:name=".service.BookManagerService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote_book">
         </service>
+
         <service
             android:name=".service.BinderPoolService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote_binder.pool">
         </service>
-
-        <activity android:name=".activitys.BookManagerActivity">
-        </activity>
-        <activity android:name=".activitys.BinderPollActivity">
-        </activity>
 
         <service
             android:name=".service.MessengerService"
@@ -59,15 +61,6 @@
             android:process=":remote_messenger">
         </service>
 
-        <provider
-            android:name=".provider.BookProvider"
-            android:authorities="com.ztiany.androidipc.provider"
-            android:permission="com.ztiany.androidipc.book.provider_access"
-            android:process=":book_provider"/>
-
-        <activity android:name=".activitys.MessengerActivity">
-        </activity>
-
         <service
             android:name=".service.TcpServerService"
             android:enabled="true"
@@ -75,8 +68,12 @@
             android:process=":socket">
         </service>
 
-        <activity android:name=".activitys.SocketActivity">
-        </activity>
+        <provider
+            android:name=".provider.BookProvider"
+            android:authorities="com.ztiany.androidipc.provider"
+            android:permission="com.ztiany.androidipc.book.provider_access"
+            android:process=":book_provider"/>
+
     </application>
 
 </manifest>

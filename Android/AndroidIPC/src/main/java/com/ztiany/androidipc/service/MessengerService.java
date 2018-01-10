@@ -15,9 +15,9 @@ import com.ztiany.androidipc.activitys.MessengerActivity;
 import java.lang.ref.WeakReference;
 
 public class MessengerService extends Service {
+
     public MessengerService() {
     }
-
 
     private Messenger mMessenger = new Messenger(new MessengerHandler(this));//本地信使，传递给客户端
     private Messenger mClientMessenger;//客户端信使，用于向客户端发送消息

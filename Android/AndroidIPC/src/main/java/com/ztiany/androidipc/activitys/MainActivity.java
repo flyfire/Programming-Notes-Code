@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initService();
     }
 
@@ -25,28 +24,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void openBookManagerAct(View view) {
         startActivity(new Intent(this, BookManagerActivity.class));
-
     }
 
     public void openBinderPool(View view) {
-
         startActivity(new Intent(this, BinderPollActivity.class));
     }
-
 
     public void startSelf(View view) {
         startActivity(new Intent(this, this.getClass()));
     }
-
 
     public void openSocket(View view) {
         startActivity(new Intent(this, SocketActivity.class));
     }
 
     private void initService() {
-
         Const.ConsName = "MainActivity";
-
         startService(new Intent(this, IPCService.class));
     }
 }

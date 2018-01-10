@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.ztiany.androidipc.IBookManager;
 import com.ztiany.androidipc.IOnNewBookArrivedListener;
 import com.ztiany.androidipc.R;
-import com.ztiany.androidipc.model.bean.Book;
+import com.ztiany.androidipc.model.Book;
 import com.ztiany.androidipc.service.BookManagerService;
 
 import java.util.List;
@@ -33,12 +33,10 @@ public class BookManagerActivity extends AppCompatActivity {
     private InterHandler mInterHandler;
     private String TAG = BookManagerActivity.class.getSimpleName();
 
-
     private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
         @Override
         public void binderDied() {
             Log.d("BookManagerActivity", Thread.currentThread().getName());
-
             if (mIBookManager == null) {
                 return;
             }
@@ -46,7 +44,6 @@ public class BookManagerActivity extends AppCompatActivity {
             mIBookManager = null;
             //重连
             bindService(null);
-
         }
     };
 
@@ -65,8 +62,6 @@ public class BookManagerActivity extends AppCompatActivity {
         public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
 
         }
-
-
 
         @Override
         public void onNewBookArrived(Book newBook) throws RemoteException {
@@ -89,7 +84,6 @@ public class BookManagerActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
         }
 
         @Override
@@ -112,13 +106,10 @@ public class BookManagerActivity extends AppCompatActivity {
         mBookNameEt = (EditText) findViewById(R.id.id_act_book_name_et);
     }
 
-
     public void bindService(View view) {
-
         Intent intent = new Intent(this, BookManagerService.class);
         bindService(intent, mServiceConnection, Service.BIND_AUTO_CREATE);
     }
-
 
     public void addBook(View view) {
         String id = mBookIdEt.getText().toString();
@@ -126,7 +117,6 @@ public class BookManagerActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(id) || TextUtils.isEmpty(name)) {
             return;
         }
-
         if (mIBookManager != null) {
             try {
                 mIBookManager.addBook(new Book(id, name));
@@ -148,20 +138,16 @@ public class BookManagerActivity extends AppCompatActivity {
             } catch (RemoteException e) {
                 e.printStackTrace();
                 Toast.makeText(BookManagerActivity.this, "get book list fail " + e.getCause(), Toast.LENGTH_SHORT).show();
-
             }
         }
     }
 
     @Override
     protected void onDestroy() {
-
         super.onDestroy();
         if (mIBookManager == null) {
-
             return;
         }
-
         if (mIBookManager.asBinder().isBinderAlive()) {
             try {
                 mIBookManager.unregisterListener(mIOnNewBookArrivedListener);
@@ -170,7 +156,6 @@ public class BookManagerActivity extends AppCompatActivity {
             }
         }
         mIBookManager = null;
-
         unbindService(mServiceConnection);
     }
 }
