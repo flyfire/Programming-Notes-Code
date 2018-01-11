@@ -25,10 +25,9 @@ public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
 
     private static final int PATCH_BASE_CLASS_LOADER = 1;
-
     private static final int CUSTOM_CLASS_LOADER = 2;
 
-    private static final int HOOK_METHOD = CUSTOM_CLASS_LOADER;
+    private static final int HOOK_METHOD = PATCH_BASE_CLASS_LOADER;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -46,14 +45,17 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 try {
                     Intent t = new Intent();
-                    if (HOOK_METHOD == PATCH_BASE_CLASS_LOADER) {
-                        t.setComponent(new ComponentName("com.weishu.upf.dynamic_proxy_hook.app2",
-                                "com.weishu.upf.dynamic_proxy_hook.app2.MainActivity"));
-                    } else {
-                        t.setComponent(new ComponentName("com.weishu.upf.ams_pms_hook.app",
-                                "com.weishu.upf.ams_pms_hook.app.MainActivity"));
-                    }
+                    t.setComponent(new ComponentName("com.ztiany.noresourceapp", "com.ztiany.noresourceapp.MainActivity"));
                     startActivity(t);
+
+                    //发个广播给插件
+                    v.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            sendBroadcast(new Intent("com.ztiany.noresource.test"));
+                        }
+                    }, 2000);
+
                 } catch (Throwable e) {
                     e.printStackTrace();
                 }
@@ -62,22 +64,24 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    @SuppressWarnings("all")
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(newBase);
         try {
-            Utils.extractAssets(newBase, "dynamic-proxy-hook.apk");
-            Utils.extractAssets(newBase, "ams-pms-hook.apk");
-            Utils.extractAssets(newBase, "test.apk");
+            Utils.extractAssets(newBase, "no_resource.apk");
 
             if (HOOK_METHOD == PATCH_BASE_CLASS_LOADER) {
-                File dexFile = getFileStreamPath("test.apk");
-                File optDexFile = getFileStreamPath("test.dex");
+                File dexFile = getFileStreamPath("no_resource.apk.apk");
+                File optDexFile = getFileStreamPath("no_resource.apkdex");
                 BaseDexClassLoaderHookHelper.patchClassLoader(getClassLoader(), dexFile, optDexFile);
             } else {
-                LoadedApkClassLoaderHookHelper.hookLoadedApkInActivityThread(getFileStreamPath("ams-pms-hook.apk"));
+                File fileStreamPath = getFileStreamPath("no_resource.apk.apk");
+                LoadedApkClassLoaderHookHelper.hookLoadedApkInActivityThread(fileStreamPath);
             }
+
             AMSHookHelper.hookActivityManagerNative();
             AMSHookHelper.hookActivityThreadHandler();
+
         } catch (Throwable e) {
             e.printStackTrace();
         }

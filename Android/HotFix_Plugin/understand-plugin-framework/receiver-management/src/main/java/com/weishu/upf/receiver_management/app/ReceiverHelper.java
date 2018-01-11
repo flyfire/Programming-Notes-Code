@@ -1,18 +1,18 @@
 package com.weishu.upf.receiver_management.app;
 
-import java.io.File;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
+
+import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author weishu
@@ -22,8 +22,7 @@ public final class ReceiverHelper {
 
     private static final String TAG = "ReceiverHelper";
 
-    public static Map<ActivityInfo, List<? extends IntentFilter>> sCache =
-            new HashMap<ActivityInfo, List<? extends IntentFilter>>();
+    public static Map<ActivityInfo, List<? extends IntentFilter>> sCache = new HashMap<ActivityInfo, List<? extends IntentFilter>>();
 
     /**
      * 解析Apk文件中的 <receiver>, 并存储起来
@@ -57,8 +56,7 @@ public final class ReceiverHelper {
         Field intentsField = componentClass.getDeclaredField("intents");
 
         // 需要调用 android.content.pm.PackageParser#generateActivityInfo(android.content.pm.ActivityInfo, int, android.content.pm.PackageUserState, int)
-        Method generateReceiverInfo = packageParserClass.getDeclaredMethod("generateActivityInfo",
-                packageParser$ActivityClass, int.class, packageUserStateClass, int.class);
+        Method generateReceiverInfo = packageParserClass.getDeclaredMethod("generateActivityInfo", packageParser$ActivityClass, int.class, packageUserStateClass, int.class);
 
         // 解析出 receiver以及对应的 intentFilter
         for (Object receiver : receivers) {
@@ -70,16 +68,18 @@ public final class ReceiverHelper {
     }
 
     public static void preLoadReceiver(Context context, File apk) throws Exception {
+
         parserReceivers(apk);
 
         ClassLoader cl = null;
+
         for (ActivityInfo activityInfo : ReceiverHelper.sCache.keySet()) {
+
             Log.i(TAG, "preload receiver:" + activityInfo.name);
             List<? extends IntentFilter> intentFilters = ReceiverHelper.sCache.get(activityInfo);
             if (cl == null) {
                 cl = CustomClassLoader.getPluginClassLoader(apk, activityInfo.packageName);
             }
-
             // 把解析出来的每一个静态Receiver都注册为动态的
             for (IntentFilter intentFilter : intentFilters) {
                 BroadcastReceiver receiver = (BroadcastReceiver) cl.loadClass(activityInfo.name).newInstance();

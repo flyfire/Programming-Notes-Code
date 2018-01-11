@@ -1,7 +1,6 @@
 package com.weishu.upf.hook_classloader.classloder_hook;
 
 import android.content.pm.ApplicationInfo;
-import android.util.Log;
 
 import com.weishu.upf.hook_classloader.Utils;
 
@@ -78,15 +77,11 @@ public class LoadedApkClassLoaderHookHelper {
 
         // 首先拿到我们得终极目标: generateApplicationInfo方法
         // API 23 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // public static ApplicationInfo generateApplicationInfo(Package p, int flags,
-        //    PackageUserState state) {
+        // public static ApplicationInfo generateApplicationInfo(Package p, int flags,  PackageUserState state) {
         // 其他Android版本不保证也是如此.
         Class<?> packageParser$PackageClass = Class.forName("android.content.pm.PackageParser$Package");
         Class<?> packageUserStateClass = Class.forName("android.content.pm.PackageUserState");
-        Method generateApplicationInfoMethod = packageParserClass.getDeclaredMethod("generateApplicationInfo",
-                packageParser$PackageClass,
-                int.class,
-                packageUserStateClass);
+        Method generateApplicationInfoMethod = packageParserClass.getDeclaredMethod("generateApplicationInfo", packageParser$PackageClass, int.class, packageUserStateClass);
 
         // 接下来构建需要得参数
 
@@ -106,6 +101,7 @@ public class LoadedApkClassLoaderHookHelper {
         // 万事具备!!!!!!!!!!!!!!
         ApplicationInfo applicationInfo = (ApplicationInfo) generateApplicationInfoMethod.invoke(packageParser, packageObj, 0, defaultPackageUserState);
         String apkPath = apkFile.getPath();
+
 
         applicationInfo.sourceDir = apkPath;
         applicationInfo.publicSourceDir = apkPath;

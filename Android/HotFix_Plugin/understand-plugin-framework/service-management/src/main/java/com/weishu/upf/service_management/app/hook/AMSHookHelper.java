@@ -29,31 +29,6 @@ public class AMSHookHelper {
             NoSuchMethodException, InvocationTargetException,
             IllegalAccessException, NoSuchFieldException {
 
-        //        17package android.util;
-        //        18
-        //        19/**
-        //         20 * Singleton helper class for lazily initialization.
-        //         21 *
-        //         22 * Modeled after frameworks/base/include/utils/Singleton.h
-        //         23 *
-        //         24 * @hide
-        //         25 */
-        //        26public abstract class Singleton<T> {
-        //            27    private T mInstance;
-        //            28
-        //                    29    protected abstract T create();
-        //            30
-        //                    31    public final T get() {
-        //                32        synchronized (this) {
-        //                    33            if (mInstance == null) {
-        //                        34                mInstance = create();
-        //                        35            }
-        //                    36            return mInstance;
-        //                    37        }
-        //                38    }
-        //            39}
-        //        40
-
         Class<?> activityManagerNativeClass = Class.forName("android.app.ActivityManagerNative");
 
         Field gDefaultField = activityManagerNativeClass.getDeclaredField("gDefault");
@@ -71,8 +46,12 @@ public class AMSHookHelper {
 
         // 创建一个这个对象的代理对象, 然后替换这个字段, 让我们的代理对象帮忙干活
         Class<?> iActivityManagerInterface = Class.forName("android.app.IActivityManager");
-        Object proxy = Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),
-                new Class<?>[] { iActivityManagerInterface }, new IActivityManagerHandler(rawIActivityManager));
+
+        Object proxy = Proxy.newProxyInstance(
+                Thread.currentThread().getContextClassLoader(),
+                new Class<?>[] { iActivityManagerInterface },
+                new IActivityManagerHandler(rawIActivityManager));
+
         mInstanceField.set(gDefault, proxy);
     }
 

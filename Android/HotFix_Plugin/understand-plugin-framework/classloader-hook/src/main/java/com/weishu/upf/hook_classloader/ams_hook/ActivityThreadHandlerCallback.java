@@ -1,19 +1,19 @@
 package com.weishu.upf.hook_classloader.ams_hook;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
 /**
  * @author weishu
  * @date 16/1/7
  */
-/* package */ class ActivityThreadHandlerCallback implements Handler.Callback {
+class ActivityThreadHandlerCallback implements Handler.Callback {
 
     Handler mBase;
 

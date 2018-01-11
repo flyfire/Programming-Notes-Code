@@ -30,8 +30,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.startService1:
                 startService(new Intent().setComponent(
                         new ComponentName("com.weishu.upf.demo.app2", "com.weishu.upf.demo.app2.TargetService1")));
-
                 break;
+
             case R.id.startService2:
                 startService(new Intent().setComponent(
                         new ComponentName("com.weishu.upf.demo.app2", "com.weishu.upf.demo.app2.TargetService2")));
