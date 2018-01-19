@@ -1,12 +1,13 @@
 package com.weishu.upf.service_management.app;
 
-import java.io.File;
-
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.weishu.upf.service_management.app.hook.AMSHookHelper;
 import com.weishu.upf.service_management.app.hook.BaseDexClassLoaderHookHelper;
+
+import java.io.File;
 
 /**
  * 这个类只是为了方便获取全局Context的.
@@ -16,6 +17,7 @@ import com.weishu.upf.service_management.app.hook.BaseDexClassLoaderHookHelper;
  */
 public class UPFApplication extends Application {
 
+    private static final String TAG = UPFApplication.class.getSimpleName();
     private static Context sContext;
 
     @Override
@@ -26,6 +28,7 @@ public class UPFApplication extends Application {
         try {
             // 拦截startService, stopService等操作
             AMSHookHelper.hookActivityManagerNative();
+
             Utils.extractAssets(base, "test.jar");
             File apkFile = getFileStreamPath("test.jar");
             File odexFile = getFileStreamPath("test.odex");
@@ -35,7 +38,7 @@ public class UPFApplication extends Application {
             // 解析插件中的Service组件
             ServiceManager.getInstance().preLoadServices(apkFile);
         } catch (Exception e) {
-            throw new RuntimeException("hook failed");
+            Log.e(TAG, "---------------------------------------hook failed", e);
         }
     }
 

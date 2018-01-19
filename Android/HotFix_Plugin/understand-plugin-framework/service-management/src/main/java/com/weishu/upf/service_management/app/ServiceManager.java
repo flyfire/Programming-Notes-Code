@@ -1,13 +1,5 @@
 package com.weishu.upf.service_management.app;
 
-import java.io.File;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,6 +11,14 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.weishu.upf.service_management.app.hook.AMSHookHelper;
+
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author weishu
@@ -198,12 +198,11 @@ public final class ServiceManager {
         Object defaultUserState = packageUserStateClass.newInstance();
 
         // 需要调用 android.content.pm.PackageParser#generateActivityInfo(android.content.pm.ActivityInfo, int, android.content.pm.PackageUserState, int)
-        Method generateReceiverInfo = packageParserClass.getDeclaredMethod("generateServiceInfo",
-                packageParser$ServiceClass, int.class, packageUserStateClass, int.class);
+        Method generateServiceInfo = packageParserClass.getDeclaredMethod("generateServiceInfo", packageParser$ServiceClass, int.class, packageUserStateClass, int.class);
 
         // 解析出intent对应的Service组件
         for (Object service : services) {
-            ServiceInfo info = (ServiceInfo) generateReceiverInfo.invoke(packageParser, service, 0, defaultUserState, userId);
+            ServiceInfo info = (ServiceInfo) generateServiceInfo.invoke(packageParser, service, 0, defaultUserState, userId);
             mServiceInfoMap.put(new ComponentName(info.packageName, info.name), info);
         }
     }
