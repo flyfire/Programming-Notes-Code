@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * 如果继承URLClassLoader则不需要实现这些方法
+ */
 class CustomClassLoader extends ClassLoader {
 
     public CustomClassLoader() {
