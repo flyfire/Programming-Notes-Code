@@ -10,6 +10,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 public class ApkItem {
+
     Drawable icon;
     CharSequence title;
     String versionName;
@@ -67,8 +68,7 @@ public class ApkItem {
         Object assetMag = assetMagCt.newInstance((Object[]) null);
         Class[] typeArgs = new Class[1];
         typeArgs[0] = String.class;
-        Method assetMag_addAssetPathMtd = assetMagCls.getDeclaredMethod("addAssetPath",
-                typeArgs);
+        Method assetMag_addAssetPathMtd = assetMagCls.getDeclaredMethod("addAssetPath", typeArgs);
         Object[] valueArgs = new Object[1];
         valueArgs[0] = apkPath;
         assetMag_addAssetPathMtd.invoke(assetMag, valueArgs);

@@ -38,15 +38,11 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
 
     final Handler handler = new Handler();
 
-    public InstalledFragment() {
-    }
-
-
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         ApkItem item = adapter.getItem(position);
-        if (v.getId() == R.id.button2) {
 
+        if (v.getId() == R.id.button2) {
             PackageManager pm = getActivity().getPackageManager();
             Intent intent = pm.getLaunchIntentForPackage(item.packageInfo.packageName);
             if (intent != null) {
@@ -59,6 +55,7 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
         } else if (v.getId() == R.id.button3) {
             doUninstall(item);
         }
+
     }
 
     private void doUninstall(final ApkItem item) {
@@ -96,6 +93,7 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
                 try {
                     final List<PackageInfo> infos = PluginManager.getInstance().getInstalledPackages(0);
                     final PackageManager pm = getActivity().getPackageManager();
+
                     for (final PackageInfo info : infos) {
                         handler.post(new Runnable() {
                             @Override
@@ -135,6 +133,7 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
                 if (convertView == null) {
                     convertView = LayoutInflater.from(getActivity()).inflate(R.layout.apk_item, null);
                 }
+
                 ApkItem item = getItem(position);
 
                 ImageView icon = (ImageView) convertView.findViewById(R.id.imageView);
@@ -151,9 +150,7 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
                 btn.setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public void onClick(View view) {
-                        onListItemClick(getListView(), view, position, getItemId(position));
-                    }
+                    public void onClick(View view) {onListItemClick(getListView(), view, position, getItemId(position));}
                 });
 
                 btn = (TextView) convertView.findViewById(R.id.button3);
@@ -161,9 +158,7 @@ public class InstalledFragment extends ListFragment implements ServiceConnection
                 btn.setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public void onClick(View view) {
-                        onListItemClick(getListView(), view, position, getItemId(position));
-                    }
+                    public void onClick(View view) {onListItemClick(getListView(), view, position, getItemId(position));}
                 });
 
                 return convertView;

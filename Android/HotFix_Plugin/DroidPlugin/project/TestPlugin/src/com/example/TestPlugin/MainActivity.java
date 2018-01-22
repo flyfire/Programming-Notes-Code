@@ -41,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
                         doInstall(file);
                     }
                 }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "插件安装完成", Toast.LENGTH_LONG).show();
+                    }
+                });
+
             }
         }.start();
     }
@@ -84,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                             if (intent != null) {
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 Log.i("DroidPlugin", "start " + info.packageName + "@" + intent);
-                                startActivity(intent);
                             } else {
                                 Log.e("DroidPlugin", "pm " + pm.toString() + " no find intent " + info.packageName);
                             }
