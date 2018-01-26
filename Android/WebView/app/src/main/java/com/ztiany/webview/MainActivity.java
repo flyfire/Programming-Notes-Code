@@ -1,12 +1,13 @@
 package com.ztiany.webview;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.ztiany.webview.basic.BasicUseActivity;
 import com.ztiany.webview.https.HttpsWebViewActivity;
+import com.ztiany.webview.js_bridge.JsBridgeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,5 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void openHttps(View view) {
         startActivity(new Intent(this, HttpsWebViewActivity.class));
+    }
+
+    public void openJsBridge(View view) {
+        startActivity(new Intent(this, JsBridgeActivity.class));
     }
 }

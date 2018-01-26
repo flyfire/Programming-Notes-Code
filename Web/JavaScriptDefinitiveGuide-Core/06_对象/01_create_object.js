@@ -11,7 +11,7 @@ var reg = new RegExp("js");
 
 //通过Object的create方法创建新对象
 //create方法接受两个参数，第一个参数为原型，第二个参数为可选参数，用以描述对象的属性。create方法是一个静态函数
-var obj1 = Object.create({x: 1, y: 2});//obj1继承了x和y熟悉
+var obj1 = Object.create({x: 1, y: 2});//obj1继承了x和y属性
 var obj2 = Object.create(null);//创建一个没有原型的对象
 var obj3 = Object.create(Object.prototype);//创建普通对象，等效于{}
 

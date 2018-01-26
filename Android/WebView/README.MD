@@ -12,7 +12,7 @@
 ## JsBridge
 
 - [JsBridge实现JavaScript和Java的互相调用](https://mp.weixin.qq.com/s?__biz=MzI1NjEwMTM4OA==&mid=2651231789&idx=1&sn=f11650ad0e18ddc12ece6e7559d5084c&scene=1&srcid=0513BWa7HuHjzPAeManB3w6C#rd)
-- [Android WebView：我是怎么和 JavaScript 互撩的？](http://motalks.cn/2016/08/27/Android-WebView-JavaScript-2/)
+- [Android WebView：我是怎么和 JavaScript 互撩的？](https://www.jianshu.com/p/4e1d1e045e8a)
 - [Android中Java和JavaScript交互](http://droidyue.com/blog/2014/09/20/interaction-between-java-and-javascript-in-android/)
 - [WebViewJavascriptBridge](https://github.com/gzsll/WebViewJavascriptBridge)
 - [简单方便的WebView和Javascript双向交互的框架](https://github.com/pengwei1024/JsBridge)
