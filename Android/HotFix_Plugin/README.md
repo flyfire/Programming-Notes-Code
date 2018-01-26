@@ -11,3 +11,6 @@
 - [DroidPlugin](https://github.com/DroidPluginTeam/DroidPlugin)
 	- 环境：Android2.3，Gradle2.2
 	- 版本：a45f8e23803a21c27b63a9a9d6f6a23372ff9a23
+- [Small](https://github.com/wequick/Small)
+	- 环境：Android2.3，Gradle2.2
+	- 版本：04f08ae4a2647275df9b879205bb8619eaf72a59
