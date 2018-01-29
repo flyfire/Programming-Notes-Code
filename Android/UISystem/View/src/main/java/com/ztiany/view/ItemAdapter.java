@@ -1,6 +1,8 @@
 package com.ztiany.view;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -29,6 +31,7 @@ class ItemAdapter extends RecyclerView.Adapter {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final Item item = mItems.get(position);
         Button button = (Button) holder.itemView;
@@ -36,7 +39,11 @@ class ItemAdapter extends RecyclerView.Adapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(ContentActivity.getLaunchIntent(mContext, item.mName, item.mClazz));
+                if (AppCompatActivity.class.isAssignableFrom(item.mClazz)) {
+                    mContext.startActivity(new Intent(mContext, item.mClazz));
+                } else {
+                    mContext.startActivity(ContentActivity.getLaunchIntent(mContext, item.mName, item.mClazz));
+                }
             }
         });
     }

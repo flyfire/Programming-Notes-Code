@@ -12,12 +12,14 @@ import com.ztiany.systemui.uisapmle.SystemUIActivity;
 import com.ztiany.systemui.uisapmle.SystemUIWithFragmentActivity;
 import com.ztiany.systemui.uisapmle.VisibilityFullscreenActivity;
 
+/**
+ * UI mode 示例
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         Utils.printSize(this);
     }

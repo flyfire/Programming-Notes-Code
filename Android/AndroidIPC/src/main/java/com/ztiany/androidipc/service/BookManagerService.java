@@ -56,7 +56,7 @@ public class BookManagerService extends Service {
     }
 
 
-    public class BookManager extends IBookManager.Stub {
+    private class BookManager extends IBookManager.Stub {
 
         @Override
         public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
@@ -65,15 +65,12 @@ public class BookManagerService extends Service {
 
         @Override
         public boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
-
             int check = checkCallingOrSelfPermission("com.ztiany.androidipc.IBookManager");
             if (check == PackageManager.PERMISSION_DENIED) {
                 Log.d("BookManagerService", "PERMISSION_DENIED");
                 return false;
             }
             Log.d("BookManagerService", "PERMISSION_OK");
-
-
             String[] packages = getPackageManager().getPackagesForUid(getCallingUid());
             if (packages != null && packages.length > 0) {
                 if(!packages[0].startsWith("com.ztiany")){
@@ -82,7 +79,6 @@ public class BookManagerService extends Service {
                 }
             }
             Log.d("BookManagerService", "package name right");
-
             return super.onTransact(code, data, reply, flags);
         }
 
@@ -119,9 +115,6 @@ public class BookManagerService extends Service {
 
     /**
      * add
-     *
-     * @param book
-     * @throws RemoteException
      */
     private void onNewBookAdd(Book book) throws RemoteException {
         final int N = mListeners.beginBroadcast();
@@ -139,7 +132,7 @@ public class BookManagerService extends Service {
     /**
      * 不断添加书的任务
      */
-    public class AddBookRunnable implements Runnable {
+    private class AddBookRunnable implements Runnable {
 
         int i = 4;
 
@@ -154,7 +147,6 @@ public class BookManagerService extends Service {
                         mBooks.add(book);
                     }
                     Thread.sleep(3000);
-
                     try {
                         if (book != null)
                             onNewBookAdd(book);
@@ -167,6 +159,6 @@ public class BookManagerService extends Service {
                 }
             }
         }
-
     }
+
 }

@@ -42,11 +42,11 @@ public class MessengerService extends Service {
         }
     }
 
-    public static class MessengerHandler extends Handler {
+    private static class MessengerHandler extends Handler {
 
-        public WeakReference<MessengerService> mServiceWeakReference;
+        WeakReference<MessengerService> mServiceWeakReference;
 
-        public MessengerHandler(MessengerService messengerService) {
+        MessengerHandler(MessengerService messengerService) {
             mServiceWeakReference = new WeakReference<>(messengerService);
         }
 
@@ -81,7 +81,6 @@ public class MessengerService extends Service {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
     }
 
 

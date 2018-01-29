@@ -23,6 +23,21 @@
             android:name=".ContentActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity
+            android:name=".animation.reversal.ReversalActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".dialogs.DialogsActivity"/>
+        <activity android:name=".window.RealWindowSizeActivity"/>
+        <activity android:name=".animation.circular_reveal.CircularRevealActivity"/>
+
+        <activity
+            android:name=".dialogs.DialogActivity"
+            android:label="DialogActivity"
+            android:theme="@style/AppTheme.Dialog"/>
+
+        <activity android:name=".constraint_layout.ConstraintLayoutActivity"/>
+
     </application>
 
 </manifest>

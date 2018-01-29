@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ztiany.view.view_drag_helper.ViewDragHelperSample
+<com.ztiany.view.custom.view_drag_helper.ViewDragHelperSample
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,4 +33,4 @@
         tools:ignore="ContentDescription"/>
 
 
-</com.ztiany.view.view_drag_helper.ViewDragHelperSample>
+</com.ztiany.view.custom.view_drag_helper.ViewDragHelperSample>

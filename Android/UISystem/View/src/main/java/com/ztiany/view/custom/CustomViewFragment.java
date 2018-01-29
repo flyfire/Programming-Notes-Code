@@ -2,11 +2,15 @@ package com.ztiany.view.custom;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
-import com.ztiany.view.BaseViewPagerFragment;
 import com.ztiany.view.custom.ruler.RulerView;
 
 import java.util.ArrayList;
@@ -17,9 +21,11 @@ import java.util.List;
  *         Email: ztiany3@gmail.com
  *         Date : 2017-08-05 15:44
  */
-public class CustomViewFragment extends BaseViewPagerFragment {
+public class CustomViewFragment extends Fragment {
+
 
     private List<View> mViewList = new ArrayList<>();
+    private FrameLayout mFrameLayout;
 
     private String[] titles = {
             "水平滑动",
@@ -29,7 +35,8 @@ public class CustomViewFragment extends BaseViewPagerFragment {
             "圆环",
             "尺子",
             "正方形布局",
-            "可缩放的ImageView"
+            "可缩放的ImageView",
+            "SurfaceViewSinFun"
     };
 
     @Override
@@ -43,24 +50,38 @@ public class CustomViewFragment extends BaseViewPagerFragment {
         mViewList.add(new RulerView(getContext()));
         mViewList.add(new SquareEnhanceLayout(getContext()));
         mViewList.add(new ZoomImageView(getContext()));
+        mViewList.add(new SurfaceViewSinFun(getContext()));
+        setHasOptionsMenu(true);
+    }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return mFrameLayout != null ? mFrameLayout : (mFrameLayout = new FrameLayout(getContext()));
     }
 
     @Override
-    protected PagerAdapter getAdapter() {
-        return new CustomViewBasePagerAdapter(titles);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mFrameLayout.removeAllViews();
+        mFrameLayout.addView(mViewList.get(0));
     }
 
-    private class CustomViewBasePagerAdapter extends BasePagerAdapter {
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem.OnMenuItemClickListener onMenuItemClickListener = new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                mFrameLayout.removeAllViews();
+                mFrameLayout.addView(mViewList.get(item.getItemId()));
+                return true;
+            }
+        };
 
-        CustomViewBasePagerAdapter(String[] titles) {
-            super(titles);
-        }
-
-        @Override
-        protected View getItemView(ViewGroup container, int position) {
-            return mViewList.get(position);
+        for (int i = 0; i < titles.length; i++) {
+            menu.add(Menu.NONE, i, i, titles[i]).setOnMenuItemClickListener(onMenuItemClickListener);
         }
     }
-
-
 }

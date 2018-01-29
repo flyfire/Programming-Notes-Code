@@ -1,3 +1,3 @@
-# 自定义View
+# Android View相关代码
 
-自定义相关代码。
+![](art/android.jpg)
