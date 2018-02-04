@@ -1,6 +1,8 @@
 package com.ztiany.test.activity_animation;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Explode;
 import android.transition.Fade;
@@ -9,15 +11,9 @@ import android.view.Window;
 
 import com.ztiany.test.R;
 
-/**
- * <br/>   Description：
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2016-12-23 12:58
- */
 public class AnimTwoActivity extends AppCompatActivity{
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,29 +29,24 @@ public class AnimTwoActivity extends AppCompatActivity{
                 Explode explode = new Explode();
                 explode.setDuration(1000);
                 getWindow().setEnterTransition(explode);
-
                 break;
 
             case "slide":
                 Slide slide = new Slide();
                 slide.setDuration(1000);
                 getWindow().setEnterTransition(slide);
-
                 break;
 
             case "fade":
                 Fade fade = new Fade();
                 fade.setDuration(1000);
                 getWindow().setEnterTransition(fade);
-
                 break;
 
             case "share":
                 break;
         }
-
         // 所有操作在设置内容视图之前
         setContentView(R.layout.activity_anim_two);
-
     }
 }

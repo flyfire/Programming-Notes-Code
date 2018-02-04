@@ -1,11 +1,9 @@
 package com.ztiany.test;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 
 
 /**
@@ -114,13 +112,6 @@ abstract class AbstractActivity extends AppCompatActivity {
 
     private String tag() {
         return this.getClass().getSimpleName();
-    }
-
-
-    public <T extends View> T findView(@IdRes int viewId) {
-        @SuppressWarnings("unchecked")//需要什么类型，就返回什么类型
-                T view = (T) findViewById(viewId);
-        return view;
     }
 
 }

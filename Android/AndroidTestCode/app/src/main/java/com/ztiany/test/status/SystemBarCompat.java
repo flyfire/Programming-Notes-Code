@@ -73,14 +73,14 @@ public class SystemBarCompat {
     ///////////////////////////////////////////////////////////////////////////
 
     public static void setTranslucentStatusAfterKitkat(Activity activity) {
-        if (!AppVersion.above(19)) {
+        if (!AndroidVersion.above(19)) {
             return;
         }
         setTranslucent(activity, true, false);
     }
 
     public static void setTranslucentNavigationAfterKitkat(Activity activity) {
-        if (!AppVersion.above(19)) {
+        if (!AndroidVersion.above(19)) {
             return;
         }
         setTranslucent(activity, false, true);
@@ -88,7 +88,7 @@ public class SystemBarCompat {
 
 
     public static void setTranslucentAfterKitkat(Activity activity) {
-        if (!AppVersion.above(19)) {
+        if (!AndroidVersion.above(19)) {
             return;
         }
         setTranslucent(activity, true, true);
@@ -108,7 +108,7 @@ public class SystemBarCompat {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static void setTranslucent(Activity activity, boolean status, boolean navigation) {
 
-        if (!AppVersion.atLeast(19)) {
+        if (!AndroidVersion.atLeast(19)) {
             return;
         }
 

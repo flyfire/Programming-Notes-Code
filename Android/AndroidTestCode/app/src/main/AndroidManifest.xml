@@ -23,6 +23,7 @@
         <activity android:name=".status.StatusBarActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".fragments.FragmentsActivity"/>
         <activity android:name=".fragments.ViewPagerActivity"/>
+        <activity android:name=".anr.ANRActivity"/>
 
     </application>
 

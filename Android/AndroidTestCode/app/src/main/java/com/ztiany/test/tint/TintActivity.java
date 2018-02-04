@@ -6,19 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.ztiany.test.R;
 
-/**
- * <pre>
- *
- * </pre>
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2017-01-17 17:25
- */
 
 public class TintActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

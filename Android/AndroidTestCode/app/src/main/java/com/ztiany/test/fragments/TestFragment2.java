@@ -7,15 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * <pre>
- *
- * </pre>
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2017-02-21 16:20
- */
 
 public class TestFragment2 extends AbstractFragment {
 

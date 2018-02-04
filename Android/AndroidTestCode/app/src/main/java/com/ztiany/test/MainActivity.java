@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ztiany.test.activity_animation.AnimActivity;
+import com.ztiany.test.anr.ANRActivity;
 import com.ztiany.test.fragments.FragmentsActivity;
 import com.ztiany.test.fragments.ViewPagerActivity;
 import com.ztiany.test.status.StatusBarActivity;
@@ -19,11 +20,9 @@ public class MainActivity extends AbstractActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     public void recreate(View view) {
         recreate();
     }
-
 
     public void opActivityAnim(View view) {
         startActivity(new Intent(this, AnimActivity.class));
@@ -44,8 +43,14 @@ public class MainActivity extends AbstractActivity {
     public void fragments(View view) {
         startActivity(new Intent(this, FragmentsActivity.class));
     }
+
     public void fragmentsViewPager(View view) {
         startActivity(new Intent(this, ViewPagerActivity.class));
+    }
+
+    public void makeANR(View view) {
+        startActivity(new Intent(this, ANRActivity.class));
+
     }
 }
 

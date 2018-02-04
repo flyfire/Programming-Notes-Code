@@ -5,15 +5,6 @@ import android.os.Parcelable;
 
 import com.ztiany.test.R;
 
-/**
- * <pre>
- *
- * </pre>
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2017-03-14 11:54
- */
 
 public class BeanA implements Parcelable {
 
@@ -25,6 +16,7 @@ public class BeanA implements Parcelable {
     public BeanA() {
     }
 
+    @SuppressWarnings("all")
     protected BeanA(Parcel in) {
         mName = in.readString();
         mPhone = in.readString();

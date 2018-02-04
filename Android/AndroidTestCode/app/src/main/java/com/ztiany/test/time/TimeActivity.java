@@ -10,15 +10,6 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-/**
- * <pre>
- *
- * </pre>
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2017-02-16 17:56
- */
 
 public class TimeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -46,8 +37,6 @@ public class TimeActivity extends AppCompatActivity implements DatePickerDialog.
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, this, year, month, day);
 
         datePickerDialog.show();
-
-
     }
 
     @Override

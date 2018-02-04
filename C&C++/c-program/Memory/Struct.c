@@ -10,26 +10,25 @@
 #include <mem.h>
 
 static void defineStruct();
-
 static void referenceStruct();
-
 static void structArray();
-
 static void structPointer();
-
 static void functionPointerInStruct();
+static void traverseStruct();
 
 int main() {
     //结构体示例
-    defineStruct();
+    //defineStruct();
     //引用结构体
-    referenceStruct();
+    //referenceStruct();
     //结构体数组
-    structArray();
+    //structArray();
+    //结构体数组遍历
+    traverseStruct();
     //结构体指针
-    structPointer();
+    //structPointer();
     //结构体中的函数指针
-    functionPointerInStruct();
+    //functionPointerInStruct();
     return 0;
 }
 
@@ -40,12 +39,13 @@ static void functionPointerInStruct() {
         int a;
         int b;
     };
-    extern int maxValue(int, int);
+
+    extern int maxValue(int, int);//这里声明方法，编译时自动查找
+
     int (*f)(int, int) = maxValue;
     struct Arr arr = {f, 3, 100};
     int max = arr.f(arr.a, arr.b);
     printf("max value = %d", max);
-
 }
 
 int maxValue(int a, int b) {
@@ -72,7 +72,7 @@ static void structPointer() {
     student.num = 1;
     strcpy(student.name, "李四");
     printf("%s,%d\n", sp->name, sp->num);// 使用结构体指针引用结构体的数据时，直接使用 ->符号
-    printf("%d", (*sp).num);
+    printf("%d\n", (*sp).num);
 }
 
 //定义结构体数组
@@ -97,6 +97,32 @@ static void structArray() {
     }
 }
 
+
+//结构体遍历
+static void traverseStruct() {
+
+    struct Man {
+        char name[20];
+        int age;
+    };
+
+    struct Man mans[] = {{"Jack", 20}, {"Rose", 19}};
+    //遍历结构体数组
+
+    //1.
+    struct Man *p = mans;
+    for (; p < mans + 2; p++) {
+        printf("%s,%d \n", p->name, p->age);
+    }
+
+    //2.
+    int i = 0;
+    for (; i < sizeof(mans) / sizeof(struct Man); i++) {
+        printf("%s,%d \n", mans[i].name, mans[i].age);
+    }
+}
+
+
 //访问结构体的成员
 static void referenceStruct() {
     struct Student {
@@ -115,6 +141,7 @@ static void referenceStruct() {
 
 //定义结构体
 static void defineStruct() {
+
     //数组只能存储类型相同的元素，如果需要在一个数据结果中存储不同的数据类型，可以使用结构体
     struct Student {
         //下面元素可以称为：成员列表或域表
@@ -128,7 +155,8 @@ static void defineStruct() {
 
     printf("Student size is %d \n", sizeof(struct Student));//56
 
-    //结构体中可以定义另一个结构体
+    //结构体嵌套：结构体中可以定义另一个结构体
+    //嵌套1
     struct Date {
         int month;
         int year;
@@ -137,6 +165,15 @@ static void defineStruct() {
     struct Man {
         char name[20];
         struct Date birthday;
+    };
+
+    //嵌套2
+    struct A {
+        char name[20];
+        int age;
+        struct B {
+            char name[20];
+        } t;
     };
 
     //声明结构体只是定义了一种数据模型，并没有定义变量，其本身不占内存，现在定义一个结构体的实例，才会占用内存

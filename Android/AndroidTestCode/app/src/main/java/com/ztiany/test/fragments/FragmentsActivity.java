@@ -10,15 +10,6 @@ import android.view.View;
 
 import com.ztiany.test.R;
 
-/**
- * <pre>
- *
- * </pre>
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2017-02-21 16:14
- */
 
 public class FragmentsActivity extends AppCompatActivity {
 

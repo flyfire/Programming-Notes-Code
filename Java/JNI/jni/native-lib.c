@@ -136,10 +136,34 @@ static jstring dynamicRegisterFromJni(JNIEnv *env, jobject thiz) {
     return (*env)->NewStringUTF(env, "动态注册调用成功");
 }
 
+
+//解决某些情况下中文乱码的问题，调用Java中String的构造函数来创建字符串
+jstring JNICALL dynamicRegisterFromJni2(JNIEnv *env, jobject jobj, jstring in){
+
+    //c -> jstring
+    char *c_str = "2018年的我将会蜕变";
+    //获取String的构造函数
+    jclass str_cls = (*env)->FindClass(env, "java/lang/String");
+    jmethodID constructor_mid = (*env)->GetMethodID(env, str_cls, "<init>", "([BLjava/lang/String;)V");
+
+    jbyteArray bytes = (*env)->NewByteArray(env, strlen(c_str));
+    //byte数组赋值，0->strlen(c_str)，从头到尾
+    //对等于，从c_str这个字符数组，复制到bytes这个字符数组
+    (*env)->SetByteArrayRegion(env, bytes, 0, strlen(c_str), c_str);
+
+    //字符编码jstring
+    jstring charsetName = (*env)->NewStringUTF(env, "GB2312");
+
+    //调用构造函数，返回编码之后的jstring
+    return (*env)->NewObject(env,str_cls,constructor_mid,bytes,charsetName);
+}
+
+
 //JNINativeMethod是一个结构体，这里初始化了一个JNINativeMethod数组，正是因为这个，可以动态调用任意 native 方法
 JNINativeMethod nativeMethod[] = {{"dynamicRegisterFromJni", "()Ljava/lang/String;", (void *) dynamicRegisterFromJni}};
 
-//此方法在jni库被加载时有JVM调用
+
+//此方法在jni库被加载时由JVM调用
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {
     JNIEnv *env;
     if ((*jvm)->GetEnv(jvm, (void **) &env, JNI_VERSION_1_4) != JNI_OK) {

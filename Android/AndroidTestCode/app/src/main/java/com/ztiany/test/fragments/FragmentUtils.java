@@ -20,11 +20,9 @@ public class FragmentUtils {
      */
     private static int sContainerId;
 
-
     private FragmentUtils() {
         throw new UnsupportedOperationException("FragmentUtils cannot be instantiation");
     }
-
 
     /**
      * 设置一个全局的默认容器id，当没有指定id时，则使用此id操作fragment
@@ -77,7 +75,6 @@ public class FragmentUtils {
         replace(sContainerId, fragmentManager, fragment, addToStack, transit);
     }
 
-
     public static void popBackToTop(FragmentManager fragmentManager, boolean immediate) {
         if (immediate) {
             fragmentManager.popBackStackImmediate(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -86,11 +83,9 @@ public class FragmentUtils {
         }
     }
 
-
     public static void popBackToTop(FragmentManager fragmentManager) {
         popBackToTop(fragmentManager, false);
     }
-
 
     public static <T> T requireContextImplement(Fragment fragment, Class<T> clazz) {
         if (!clazz.isInstance(fragment.getActivity())) {

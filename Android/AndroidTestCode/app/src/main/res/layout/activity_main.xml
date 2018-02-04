@@ -69,4 +69,15 @@
         android:onClick="fragmentsViewPager"
         android:text="fragmentsViewPager"
         tools:ignore="HardcodedText"/>
+
+    <Button
+        style="@style/Base.Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="makeANR"
+        android:text="makeANR"
+        tools:ignore="HardcodedText"/>
+
+
+
 </LinearLayout>

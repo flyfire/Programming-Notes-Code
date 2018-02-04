@@ -7,15 +7,6 @@ import android.util.Log;
 import android.view.WindowInsets;
 import android.widget.LinearLayout;
 
-/**
- * <pre>
- *
- * </pre>
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2017-02-17 14:46
- */
 
 public class SLinearLayout extends LinearLayout {
 
