@@ -218,22 +218,24 @@ target_link_libraries(myProject -lcomm)
 - `configure_file(<input> <output> [COPYONLY] [ESCAPE_QUOTES] [@ONLY] [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ]`：复制文件到另一个地方并修改文件内容，并在输入文件内容中替换`@VAR@`或`${VAR}`的变量值。每个变量引用将被替换为变量的当前值，如果变量的值未被定义，则为空字符串。VAR必须与cmakelist.txt中的变量保持一直，否则会生成注释。说明：
     - `CMAKE_CURRENT_BINARY_DIR`：项目根目录
     - `CMAKE_CURRENT_SOURCE_DIR`：项目构建目录
-    - `COPYONLY`：只复制文件，不替换任何东西，不能和NEWLINE_STYLE <style>一起使用
+    - `COPYONLY`：只复制文件，不替换任何东西，不能和`NEWLINE_STYLE <style>`一起使用
     - `ESCAPE_QUOTES`：禁止为 `"` 转义
     - `@ONLY`：只允许替换@VAR@包裹的变量${VAR}则不会被替换；
     - `NEWLINE_STYLE <style>`：设置换行符格式
+- `add_library(<name> [STATIC | SHARED | MODULE] [EXCLUDE_FROM_ALL] source1 [source2 ...])`：使用指定的源文件将库添加到项目。name在项目中必须是全局唯一的，STATIC，SHARED或MODULE可能会指定要创建的库的类型。
+    - MODULE库是没有链接到其他目标的插件，但可以在运行时使用类似dlopen的功能动态加载
+    - STATIC表示静态库
+    - SHARED表示动态链接库
 
 
+注意上面参数`<command>`为必填，`[command]`为选填。
 
-
-注意上门参数`<command>`为必填，`[command]`为选填。
-
-### 参数
+### 2.4 常用参数
 
 - `CMAKE_CXX_FLAGS`：是CMake传给C++编译器的编译选项，比如`set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")`
 
 
-### 其他
+### 2.5 其他
 
 - 支持gdb：需要指定 Debug 模式下开启 -g 选项
 ```
@@ -254,14 +256,3 @@ set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 - 安装和测试
 - 生成安装包
 - 文件生成器
-
-
-# cmake开发方式
-
-AndroidStudio2.2用于构建原生库的默认工具是 CMake。如果创建新的原生库，则应使用 CMake。
-
-需要下载的SDK组件：
-
-- Android 原生开发工具包 (NDK)：这套工具集允许您为 Android 使用 C 和 C++ 代码，并提供众多平台库，让您可以管理原生 Activity 和访问物理设备组件，例如传感器和触摸输入。
-- CMake：一款外部构建工具，可与 Gradle 搭配使用来构建原生库。
-- LLDB：一种调试程序，Android Studio 使用它来调试原生代码。
