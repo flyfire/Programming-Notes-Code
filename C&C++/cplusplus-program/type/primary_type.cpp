@@ -96,5 +96,6 @@ int main() {
     unsigned int vb = 1;
     int vc = va * vb;//此时va会自动转为为无符号类型的整数
 
+
     return EXIT_SUCCESS;
 }
