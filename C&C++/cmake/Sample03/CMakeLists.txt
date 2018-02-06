@@ -10,4 +10,4 @@ set(SOURCE_FILES main.c)
 add_executable(Sample03 ${SOURCE_FILES})
 
 #添加链接库
-target_link_libraries(Sample03 Lib)
+target_link_libraries(Sample03 SubLib)

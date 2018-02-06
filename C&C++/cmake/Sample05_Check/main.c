@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "config.h"
 
-#ifdef USE_MYMATH
+#ifndef HAVE_POW
     #include <Lib.h>
 #else
     #include <math.h>

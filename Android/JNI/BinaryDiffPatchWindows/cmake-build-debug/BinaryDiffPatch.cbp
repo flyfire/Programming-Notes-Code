@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="BinaryDiffPatch"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BinaryDiffPatch">
+				<Option output="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/libBinaryDiffPatch.dll" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include-fixed"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 BinaryDiffPatch"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BinaryDiffPatch/fast">
+				<Option output="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/libBinaryDiffPatch.dll" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include-fixed"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 BinaryDiffPatch/fast"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/library.cpp">
+			<Option target="BinaryDiffPatch"/>
+		</Unit>
+		<Unit filename="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/library.h">
+			<Option target="BinaryDiffPatch"/>
+		</Unit>
+		<Unit filename="E:/code/studio/my_github/Repository/C&amp;C++/BinaryDiffPatch/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

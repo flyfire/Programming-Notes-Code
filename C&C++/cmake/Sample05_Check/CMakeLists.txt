@@ -1,17 +1,16 @@
 cmake_minimum_required(VERSION 3.7)
-project(Sample04)
+project(Sample05_Check)
 
 set(CMAKE_C_STANDARD 99)
 set (MATH_VERSION_MAJOR 1)
 set (MATH_VERSION_MINOR 0)
 
-
 #包含当前目录，查找头文件
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-# 是否使用自己的 MathFunctions 库
-#option (USE_MYMATH "Use provided math implementation" OFF)
-option (USE_MYMATH "Use provided math implementation" ON)
+# 检查系统是否支持 pow 函数
+include (${CMAKE_ROOT}/Modules/CheckFunctionExists.cmake)
+check_function_exists (pow HAVE_POW)
 
 
 # 加入一个配置头文件，用于处理 CMake 对源码的设置
@@ -22,11 +21,13 @@ configure_file (
 
 
 # 是否加入 MathLib 库
-if (USE_MYMATH)
+if (NOT HAVE_POW)
     include_directories ("${PROJECT_SOURCE_DIR}/Libs")
     add_subdirectory (Libs)
     set (EXTRA_LIBS ${EXTRA_LIBS} MathLib)
-endif (USE_MYMATH)
+endif (NOT HAVE_POW)
+
+
 
 #构建
 #set(SOURCE_FILES main.c)
