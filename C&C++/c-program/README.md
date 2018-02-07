@@ -57,5 +57,5 @@
 
 ### 编译器
 
-- gcc
+- gcc：[GCC学习笔记](笔记/GCC命令.md)
 - clang
