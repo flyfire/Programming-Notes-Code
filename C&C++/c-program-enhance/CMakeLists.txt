@@ -3,5 +3,5 @@ project(c_program_enhance)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.c)
+set(SOURCE_FILES 01_array_sort.c)
 add_executable(c_program_enhance ${SOURCE_FILES})
