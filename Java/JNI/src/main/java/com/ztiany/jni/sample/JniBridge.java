@@ -10,7 +10,7 @@ public class JniBridge {
     //返回字符串
     public static native String stringFromC();
 
-    //模拟登录
+    //加法
     public native int intFromC(int a, int b);
 
     //修改每个元素后返回

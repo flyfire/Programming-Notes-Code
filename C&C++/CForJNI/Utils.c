@@ -1,12 +1,11 @@
 #include "Utils.h"
-
 #include <malloc.h>
 #include <string.h>
 
 /**
  * Java String转换为C字符串，转换后的字符串是可以修改的
  */
-char *Jstring2CString(JNIEnv *env, jstring jstr) {
+char *jstring2Cstring(JNIEnv *env, jstring jstr) {
     char *rtn = NULL;
     jclass clsstring = (*env)->FindClass(env, "java/lang/String");
     jstring strencode = (*env)->NewStringUTF(env, "UTF-8");
@@ -27,24 +26,23 @@ char *Jstring2CString(JNIEnv *env, jstring jstr) {
     return rtn;
 }
 
-/*
-//解决某些情况下中文乱码的问题，调用Java中String的构造函数来创建字符串
-jstring  dynamicRegisterFromJni2(JNIEnv *env, jstring in){
 
-    //c -> jstring
-    char *c_str = "2018年的我将会蜕变";
+//解决某些情况下可能的中文乱码的问题，调用Java中String的构造函数来创建字符串
+jstring cstring2Jstring(JNIEnv *env, char *c_str) {
+
     //获取String的构造函数
     jclass str_cls = (*env)->FindClass(env, "java/lang/String");
     jmethodID constructor_mid = (*env)->GetMethodID(env, str_cls, "<init>", "([BLjava/lang/String;)V");
 
+    //创建字节数组
     jbyteArray bytes = (*env)->NewByteArray(env, strlen(c_str));
-    //byte数组赋值，0->strlen(c_str)，从头到尾
-    //对等于，从c_str这个字符数组，复制到bytes这个字符数组
+
+    //byte数组赋值：从c_str这个字符数组，复制到bytes这个字符数组
     (*env)->SetByteArrayRegion(env, bytes, 0, strlen(c_str), c_str);
 
     //字符编码jstring
-    jstring charsetName = (*env)->NewStringUTF(env, "GB2312");
+    jstring charsetName = (*env)->NewStringUTF(env, "UTF-8");
 
     //调用构造函数，返回编码之后的jstring
-    return (*env)->NewObject(env,str_cls,constructor_mid,bytes,charsetName);
-}*/
+    return (*env)->NewObject(env, str_cls, constructor_mid, bytes, charsetName);
+}

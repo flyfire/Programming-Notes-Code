@@ -19,32 +19,32 @@ public class JNIMain {
     // gcc -Wl,--add-stdcall-alias -I "E:\DevTools\Java\JDK1.8\include" -I "E:\DevTools\Java\JDK1.8\include\win32" -shared -o native.dll native-lib.c Utils.c
     public static void main(String... args) {
         JNIMain jniMain = new JNIMain();
-        jniMain.stringFromC();
+        jniMain.encryption();
     }
 
 
     //返回字符串
-    public void stringFromC() {
+    private void stringFromC() {
         String stringFromC = JniBridge.stringFromC();
         System.out.println(stringFromC);
     }
 
     //模拟登录
-    public void intFromC() {
+    private void intFromC() {
         int a = 10;
         int b = 20;
         System.out.println("intFromC: " + (mJniBridge.intFromC(a, b)));
     }
 
     //修改每个元素后返回
-    public void addArray() {
+    private void addArray() {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         mJniBridge.addArray(arr, 100);
         System.out.println("addArray: " + Arrays.toString(arr));
     }
 
     //c语言的冒泡排序
-    public void bubbleSort() {
+    private void bubbleSort() {
         int[] originArr = initIntArr();
         System.out.println("originArr: " + Arrays.toString(originArr));
         long start = System.currentTimeMillis();
@@ -54,19 +54,19 @@ public class JNIMain {
     }
 
     //加密
-    public void encryption() {
-        String password = "Java password";
+    private void encryption() {
+        String password = "Java 哈哈->";
         String encryption = mJniBridge.encryption(password);
         System.out.println("加密 " + encryption);
     }
 
     //让C调用Java
-    public void callJava() {
+    private void callJava() {
         mJniBridge.callJava("Java message");
     }
 
     //让C抛出异常
-    public void throwError() {
+    private void throwError() {
         try {
             mJniBridge.throwError("抛出一个异常吧");
         } catch (Exception e) {
@@ -75,7 +75,7 @@ public class JNIMain {
     }
 
     //调用C动态方法注册
-    public void dynamicRegisterFromJni() {
+    private void dynamicRegisterFromJni() {
         String registerFromJni = mJniBridge.dynamicRegisterFromJni();
         System.out.println(registerFromJni);
     }
