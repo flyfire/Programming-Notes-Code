@@ -18,6 +18,21 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\bzlib.h" />
+    <ClInclude Include="..\src\bzlib_private.h" />
+    <ClInclude Include="..\src\com_ztiany_bsdiff_JniUtils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\blocksort.c" />
+    <ClCompile Include="..\src\bsdiff.cpp" />
+    <ClCompile Include="..\src\bzlib.c" />
+    <ClCompile Include="..\src\compress.c" />
+    <ClCompile Include="..\src\crctable.c" />
+    <ClCompile Include="..\src\decompress.c" />
+    <ClCompile Include="..\src\huffman.c" />
+    <ClCompile Include="..\src\randtable.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8D3EACB5-1CE1-4BD8-84A6-8B418928D161}</ProjectGuid>
     <RootNamespace>bsdiff_windows</RootNamespace>
@@ -116,21 +131,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\bsdiff_src_windows\bzlib.h" />
-    <ClInclude Include="..\..\bsdiff_src_windows\bzlib_private.h" />
-    <ClInclude Include="..\..\bsdiff_src_windows\com_ztiany_bsdiff_JniUtils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\bsdiff_src_windows\blocksort.c" />
-    <ClCompile Include="..\..\bsdiff_src_windows\bsdiff.cpp" />
-    <ClCompile Include="..\..\bsdiff_src_windows\bzlib.c" />
-    <ClCompile Include="..\..\bsdiff_src_windows\compress.c" />
-    <ClCompile Include="..\..\bsdiff_src_windows\crctable.c" />
-    <ClCompile Include="..\..\bsdiff_src_windows\decompress.c" />
-    <ClCompile Include="..\..\bsdiff_src_windows\huffman.c" />
-    <ClCompile Include="..\..\bsdiff_src_windows\randtable.c" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

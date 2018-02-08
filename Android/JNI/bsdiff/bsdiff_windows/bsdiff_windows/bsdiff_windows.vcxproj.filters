@@ -15,39 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\bsdiff_src_windows\bzlib.h">
+    <ClInclude Include="..\src\bzlib.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\bsdiff_src_windows\bzlib_private.h">
+    <ClInclude Include="..\src\bzlib_private.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\bsdiff_src_windows\com_ztiany_bsdiff_JniUtils.h">
+    <ClInclude Include="..\src\com_ztiany_bsdiff_JniUtils.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\bsdiff_src_windows\blocksort.c">
+    <ClCompile Include="..\src\blocksort.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bsdiff_src_windows\bsdiff.cpp">
+    <ClCompile Include="..\src\bsdiff.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bsdiff_src_windows\bzlib.c">
+    <ClCompile Include="..\src\bzlib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bsdiff_src_windows\compress.c">
+    <ClCompile Include="..\src\compress.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bsdiff_src_windows\crctable.c">
+    <ClCompile Include="..\src\crctable.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bsdiff_src_windows\decompress.c">
+    <ClCompile Include="..\src\decompress.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bsdiff_src_windows\huffman.c">
+    <ClCompile Include="..\src\huffman.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bsdiff_src_windows\randtable.c">
+    <ClCompile Include="..\src\randtable.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
