@@ -40,20 +40,7 @@
 ## 3 工程构建
 
 - [make makefile cmake qmake都是什么，有什么区别？](https://www.zhihu.com/question/27455963)
-
-### Make File
-
-- [Make 命令教程](http://www.ruanyifeng.com/blog/2015/02/make.html)
-- [makefile 介绍](http://wiki.ubuntu.org.cn/%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%86%99Makefile:MakeFile%E4%BB%8B%E7%BB%8D#makefile_.E4.BB.8B.E7.BB.8D)
-
-### C Make
-
-- [CMake官网教程](https://cmake.org/documentation/)
-- [CMake文档](https://cmake.org/cmake/help/v3.0/index.html#)
-- [CMake Wiki](https://cmake.org/Wiki/CMake)
-- [CMake 入门实战](http://hahack.com/codes/cmake/)
-- [CMake简要教程](http://www.jianshu.com/p/bbf68f9ddffa)
-- [使用CMake组织C++工程](https://elloop.github.io/tools/2016-04-04/learning-cmake-0)
+- [cmake](https://cmake.org/documentation/)
 
 ### 编译器
 
