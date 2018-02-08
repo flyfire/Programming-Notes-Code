@@ -1,6 +1,0 @@
-#ifndef BINARYDIFFPATCH_LIBRARY_H
-#define BINARYDIFFPATCH_LIBRARY_H
-
-void hello();
-
-#endif

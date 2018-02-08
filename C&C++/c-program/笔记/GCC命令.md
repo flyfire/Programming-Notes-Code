@@ -78,13 +78,14 @@ gcc test.o -o test  #无选项链接，将编译输出文件test.o链接成最�
 gcc test.c -O2      #使用编译优化级别2编译程序。级别为1~3，级别越大优化效果越好，但编译时间越长
 ```
 
-
-- `-shared`参数，用于编译动态链接库
+- `-shared`参数，用于编译动态链接库
 ```Shell
-`gcc -shared test.c -o libtest.so`      #将test.c 编译成动态链接库
-gcc -fPIC -shared bzip2.c bzlib.c randtable.c decompress.c compress.c crctable.c blocksort.c huffman.c bsdiff.c -o bsdiff.so #编译bsdiff库
+`gcc -shared test.c -o libtest.so`      #将test.c 编译成动态链接库
 ```
-`-fPIC`属于“Options for Code Generation Conventions”类选项，作用于编译阶段，告诉编译器产生与位置无关代码(Position-Independent Code)，则产生的代码中，没有绝对地址，全部使用相对地址，故而代码可以被加载器加载到内存的任意位置，都可以正确的执行。这正是共享库所要求的，共享库被加载时，在内存的位置不是固定的。
+
+- `-fPIC`：属于“Options for Code Generation Conventions”类选项
+`-fPIC`作用于编译阶段，告诉编译器产生与位置无关代码(Position-Independent Code)，则产生的代码中，没有绝对地址，全部使用相对地址，故而代码可以被加载器加载到内存的任意位置，都可以正确的执行。这正是共享库所要求的，共享库被加载时，在内存的位置不是固定的。
+
 
 ### 多源文件的编译方法
 
