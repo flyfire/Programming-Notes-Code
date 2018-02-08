@@ -35,4 +35,23 @@ public class JniBridge {
         System.out.println(message);
     }
 
+    /**
+     * 拆分文件
+     *
+     * @param path         路径 E:\code\studio\my_github\Repository\Java\JNI\file\size.exe
+     * @param path_pattern 拆分模式 E:\code\studio\my_github\Repository\Java\JNI\file\size_%d.exe
+     * @param file_count   拆分为几个
+     * @return 是否成功
+     */
+    public native boolean splitFile(String path, String path_pattern, int file_count);
+
+    /**
+     * 合并文件
+     *
+     * @param path         合并后的路径 E:\code\studio\my_github\Repository\Java\JNI\file\size.exe
+     * @param path_pattern 文件之前拆分的模式 E:\code\studio\my_github\Repository\Java\JNI\file\size_%d.exe
+     * @param file_count   有几个文件
+     * @return 是否成功
+     */
+    public native boolean mergeFile(String path, String path_pattern, int file_count);
 }

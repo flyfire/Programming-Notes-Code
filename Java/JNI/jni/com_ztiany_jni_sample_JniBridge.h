@@ -7,13 +7,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
 /*
  * Class:     com_ztiany_jni_sample_JniBridge
  * Method:    stringFromC
  * Signature: ()Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_ztiany_jni_sample_JniBridge_stringFromC
-  (JNIEnv *, jclass);
+        (JNIEnv *, jclass);
 
 /*
  * Class:     com_ztiany_jni_sample_JniBridge
@@ -21,7 +23,7 @@ JNIEXPORT jstring JNICALL Java_com_ztiany_jni_sample_JniBridge_stringFromC
  * Signature: (II)I
  */
 JNIEXPORT jint JNICALL Java_com_ztiany_jni_sample_JniBridge_intFromC
-  (JNIEnv *, jobject, jint, jint);
+        (JNIEnv *, jobject, jint, jint);
 
 /*
  * Class:     com_ztiany_jni_sample_JniBridge
@@ -29,7 +31,7 @@ JNIEXPORT jint JNICALL Java_com_ztiany_jni_sample_JniBridge_intFromC
  * Signature: ([II)[I
  */
 JNIEXPORT jintArray JNICALL Java_com_ztiany_jni_sample_JniBridge_addArray
-  (JNIEnv *, jobject, jintArray, jint);
+        (JNIEnv *, jobject, jintArray, jint);
 
 /*
  * Class:     com_ztiany_jni_sample_JniBridge
@@ -37,7 +39,7 @@ JNIEXPORT jintArray JNICALL Java_com_ztiany_jni_sample_JniBridge_addArray
  * Signature: ([I)V
  */
 JNIEXPORT void JNICALL Java_com_ztiany_jni_sample_JniBridge_bubbleSort
-  (JNIEnv *, jobject, jintArray);
+        (JNIEnv *, jobject, jintArray);
 
 /*
  * Class:     com_ztiany_jni_sample_JniBridge
@@ -45,7 +47,7 @@ JNIEXPORT void JNICALL Java_com_ztiany_jni_sample_JniBridge_bubbleSort
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_ztiany_jni_sample_JniBridge_encryption
-  (JNIEnv *, jobject, jstring);
+        (JNIEnv *, jobject, jstring);
 
 /*
  * Class:     com_ztiany_jni_sample_JniBridge
@@ -53,7 +55,7 @@ JNIEXPORT jstring JNICALL Java_com_ztiany_jni_sample_JniBridge_encryption
  * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_ztiany_jni_sample_JniBridge_callJava
-  (JNIEnv *, jobject, jstring);
+        (JNIEnv *, jobject, jstring);
 
 /*
  * Class:     com_ztiany_jni_sample_JniBridge
@@ -61,7 +63,12 @@ JNIEXPORT void JNICALL Java_com_ztiany_jni_sample_JniBridge_callJava
  * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_ztiany_jni_sample_JniBridge_throwError
-  (JNIEnv *, jobject, jstring);
+        (JNIEnv *, jobject, jstring);
+
+
+JNIEXPORT jboolean JNICALL Java_com_ztiany_jni_sample_JniBridge_splitFile(JNIEnv *, jobject, jstring, jstring, jint);
+
+JNIEXPORT jboolean JNICALL Java_com_ztiany_jni_sample_JniBridge_mergeFile(JNIEnv *, jobject, jstring, jstring, jint);
 
 
 #ifdef __cplusplus

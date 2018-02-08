@@ -122,12 +122,37 @@ JNIEXPORT void JNICALL Java_com_ztiany_jni_sample_JniBridge_throwError
 
 JNIEXPORT jboolean JNICALL Java_com_ztiany_jni_sample_JniBridge_splitFile
         (JNIEnv *env, jobject thiz, jstring path, jstring path_pattern, jint file_num) {
+    const char *path_c = (*env)->GetStringUTFChars(env, path, NULL);
+    const char *path_pattern_c = (*env)->GetStringUTFChars(env, path_pattern, NULL);
+    int count = file_num;
+    bool isSuccess = split_file(path_c, path_pattern_c, count);
 
+    (*env)->ReleaseStringUTFChars(env, path, path_c);
+    (*env)->ReleaseStringUTFChars(env, path_pattern, path_pattern_c);
+
+    if (isSuccess) {
+        return JNI_TRUE;
+    } else {
+        return JNI_FALSE;
+    }
 }
 
 JNIEXPORT jboolean JNICALL Java_com_ztiany_jni_sample_JniBridge_mergeFile
         (JNIEnv *env, jobject thiz, jstring path, jstring path_pattern, jint file_num) {
+    const char *path_c = (*env)->GetStringUTFChars(env, path, NULL);
+    const char *path_pattern_c = (*env)->GetStringUTFChars(env, path_pattern, NULL);
+    int count = file_num;
 
+    bool isSuccess = merge_file(path_pattern_c, count, path_c);
+
+    (*env)->ReleaseStringUTFChars(env, path, path_c);
+    (*env)->ReleaseStringUTFChars(env, path_pattern, path_pattern_c);
+
+    if (isSuccess) {
+        return JNI_TRUE;
+    } else {
+        return JNI_FALSE;
+    }
 }
 
 

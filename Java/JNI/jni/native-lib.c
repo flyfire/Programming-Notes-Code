@@ -1,5 +1,6 @@
 #include "com_ztiany_jni_sample_JniBridge.h"
 #include "Utils.h"
+#include "FileUtils.h"
 #include <string.h>
 
 /*
@@ -7,8 +8,7 @@
  * Method:    stringFromC
  * Signature: ()Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL
-Java_com_ztiany_jni_sample_JniBridge_stringFromC(JNIEnv *env, jclass thiz) {
+JNIEXPORT jstring JNICALL Java_com_ztiany_jni_sample_JniBridge_stringFromC(JNIEnv *env, jclass thiz) {
     char *str = "你好，Java";
     return (*env)->NewStringUTF(env, str);
 }
@@ -28,7 +28,8 @@ JNIEXPORT jint JNICALL Java_com_ztiany_jni_sample_JniBridge_intFromC(JNIEnv *env
  * Method:    addArray
  * Signature: ([II)[I
  */
-JNIEXPORT jintArray JNICALL Java_com_ztiany_jni_sample_JniBridge_addArray(JNIEnv *env, jobject thiz, jintArray jArray, jint add) {
+JNIEXPORT jintArray JNICALL
+Java_com_ztiany_jni_sample_JniBridge_addArray(JNIEnv *env, jobject thiz, jintArray jArray, jint add) {
 
     //获取数组的长度
     jsize length = (*env)->GetArrayLength(env, jArray);
@@ -74,8 +75,7 @@ JNIEXPORT void JNICALL Java_com_ztiany_jni_sample_JniBridge_bubbleSort(JNIEnv *e
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_ztiany_jni_sample_JniBridge_encryption(JNIEnv *env, jobject thiz, jstring jstr) {
-
-    char *cArr = Jstring2CString(env, jstr);
+    char *cArr = jstring2Cstring(env, jstr);
     const char *cHello = "hello";
     strcat(cArr, cHello);
     return (*env)->NewStringUTF(env, cArr);
@@ -120,6 +120,41 @@ JNIEXPORT void JNICALL Java_com_ztiany_jni_sample_JniBridge_throwError
     //(*env)->ThrowNew(env,(*env)->FindClass(env,"java/io/EOFException"), "Unexpected end of file");
 }
 
+JNIEXPORT jboolean JNICALL Java_com_ztiany_jni_sample_JniBridge_splitFile
+        (JNIEnv *env, jobject thiz, jstring path, jstring path_pattern, jint file_num) {
+    const char *path_c = (*env)->GetStringUTFChars(env, path, NULL);
+    const char *path_pattern_c = (*env)->GetStringUTFChars(env, path_pattern, NULL);
+    int count = file_num;
+    bool isSuccess = split_file(path_c, path_pattern_c, count);
+
+    (*env)->ReleaseStringUTFChars(env, path, path_c);
+    (*env)->ReleaseStringUTFChars(env, path_pattern, path_pattern_c);
+
+    if (isSuccess) {
+        return JNI_TRUE;
+    } else {
+        return JNI_FALSE;
+    }
+}
+
+JNIEXPORT jboolean JNICALL Java_com_ztiany_jni_sample_JniBridge_mergeFile
+        (JNIEnv *env, jobject thiz, jstring path, jstring path_pattern, jint file_num) {
+    const char *path_c = (*env)->GetStringUTFChars(env, path, NULL);
+    const char *path_pattern_c = (*env)->GetStringUTFChars(env, path_pattern, NULL);
+    int count = file_num;
+
+    bool isSuccess = merge_file(path_pattern_c, count, path_c);
+
+    (*env)->ReleaseStringUTFChars(env, path, path_c);
+    (*env)->ReleaseStringUTFChars(env, path_pattern, path_pattern_c);
+
+    if (isSuccess) {
+        return JNI_TRUE;
+    } else {
+        return JNI_FALSE;
+    }
+}
+
 
 /*
  * 动态注册的方法，Java可直接调用
@@ -133,8 +168,7 @@ static jstring dynamicRegisterFromJni(JNIEnv *env, jobject thiz) {
 }
 
 
-
-//JNINativeMethod是一个结构体，这里初始化了一个JNINativeMethod数组，正是因为这个，可以动态调用任意 native 方法
+//JNINativeMethod是一个结构体，这里初始化了一个JNINativeMethod数组，正是因为这个才可以动态调用任意 native 方法
 JNINativeMethod nativeMethod[] = {{"dynamicRegisterFromJni", "()Ljava/lang/String;", (void *) dynamicRegisterFromJni}};
 
 
@@ -152,7 +186,8 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {
     return JNI_VERSION_1_4;
 }
 
+
 //在虚拟机关闭时调用
 void JNI_OnUnload(JavaVM *vm, void *reserved) {
-
+    printf("JVM unload");
 }

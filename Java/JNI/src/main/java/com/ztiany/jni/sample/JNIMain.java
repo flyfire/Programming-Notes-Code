@@ -16,10 +16,12 @@ public class JNIMain {
     }
 
     //generate windows dll：
-    // gcc -Wl,--add-stdcall-alias -I "E:\DevTools\Java\JDK1.8\include" -I "E:\DevTools\Java\JDK1.8\include\win32" -shared -o native.dll native-lib.c Utils.c
+    //gcc -Wl,--add-stdcall-alias -I "include" -I "include\win32"  -shared -o native.dll native-lib.c Utils.c FileUtils.c
     public static void main(String... args) {
         JNIMain jniMain = new JNIMain();
         jniMain.encryption();
+        jniMain.splitFile();
+        jniMain.mergeFile();
     }
 
 
@@ -86,6 +88,20 @@ public class JNIMain {
             arr[x] = (int) (Math.random() * 10000 + 1);
         }
         return arr;
+    }
+
+    private void splitFile() {
+        //分割文件
+        final String path = "E:/code/studio/my_github/Repository/Java/JNI/file/size.exe";
+        final String pathPattern = "E:/code/studio/my_github/Repository/Java/JNI/file/size_%d.exe";
+        mJniBridge.splitFile(path, pathPattern, 3);
+    }
+
+    private void mergeFile() {
+        //合并文件
+        final String fileNewPath = "E:/code/studio/my_github/Repository/Java/JNI/file/size_new.exe";
+        final String pathPattern = "E:/code/studio/my_github/Repository/Java/JNI/file/size_%d.exe";
+        mJniBridge.mergeFile(fileNewPath, pathPattern, 3);
     }
 
 

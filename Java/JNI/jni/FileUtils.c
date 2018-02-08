@@ -22,7 +22,7 @@ bool split_file(const char *path, const char *path_pattern, const int file_num) 
         //需要分割的文件：C://a.png
         //子文件：C://a%d.png
         sprintf(patches[i], path_pattern, (i + 1));
-        LOGI("patch path:%s", patches[i]);
+        LOGI("split patch path%d:%s \n", i,patches[i]);
     }
 
     //不断读取path文件，循环写入file_num个文件中
@@ -99,7 +99,7 @@ bool merge_file(const char *path_pattern, int file_num, const char *merge_path) 
         //需要分割的文件：C://A.png
         //子文件：C://A%d.png
         sprintf(patches[i], path_pattern, (i + 1));
-        LOGI("patch path:%s", patches[i]);
+        LOGI("merge patch path%d:%s \n", i,patches[i]);
     }
 
     FILE *fpw = fopen(merge_path, "wb");

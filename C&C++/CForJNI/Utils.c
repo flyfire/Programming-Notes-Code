@@ -14,7 +14,7 @@ char *jstring2Cstring(JNIEnv *env, jstring jstr) {
     jbyteArray barr = (jbyteArray) (*env)->CallObjectMethod(env, jstr, mid, strencode);
     jsize alen = (*env)->GetArrayLength(env, barr);
     //动态的获取内在堆内存中，需要被释放
-    jbyte *ba = (*env)->GetByteArrayElements(env, barr, JNI_FALSE);
+    jbyte *ba = (*env)->GetByteArrayElements(env, barr, NULL);
 
     if (alen > 0) {
         rtn = (char *) malloc(alen + 1);         //"\0" c中字符串以\0结尾
