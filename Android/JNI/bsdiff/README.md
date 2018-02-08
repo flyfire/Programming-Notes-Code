@@ -44,7 +44,7 @@ bidiff/bspatch实现了不同版本文件的差量算法，可以从两个不同
 ---
 ## 3 Android集成bspatch
 
-参考[AndroidSample](BsdiffApp)
+参考[AndroidSample](bspatch_android)
 
 
 ---
