@@ -58,9 +58,8 @@ int main01(void) {
 }
 
 int main(void) {
-    main01();
 
-    /*char buf[] = "algjdlksajgldksjg";
+    char buf[] = "algjdlksajgldksjg";
     int i = 0;
     int n = strlen(buf);
     char *p = NULL;
@@ -95,6 +94,7 @@ int main(void) {
     //buf只是一个常量，不能修改
 
     printf("\n");
-    system("pause");*/
+    system("pause");
+
     return 0;
 }

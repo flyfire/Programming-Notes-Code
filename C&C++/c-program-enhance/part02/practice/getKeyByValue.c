@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 /*
 4. 键值对（“key = value”）字符串，在开发中经常使用
 	要求1：请自己定义一个接口，实现根据key获取.

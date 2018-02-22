@@ -62,6 +62,7 @@ void my_strcpy3(char *dst, char *src) {
 //1、判断形参指针是否为NULL
 //2、最好不要直接使用形参
 int my_strcpy4(char *dst, char *src) {
+
     if (dst == NULL || src == NULL) {
         return -1;
     }

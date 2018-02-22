@@ -11,7 +11,6 @@
 	int trimSpace(char *inbuf, char *outbuf);
 */
 
-
 /* 
 功能：获取非空字符串
 参数：
