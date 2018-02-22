@@ -21,7 +21,6 @@ static void array() {
 ```
 
 
-
 ###  数据类型的本质
 
 数据类型可以理解位创建遍历的一个模具，是固定内存块大小的别名，通过sizeof测试。
@@ -127,7 +126,7 @@ p = &iNum;
 iNum = 1;
 ```
 
-函数调用时,用n级指针(形参)改变n-1级指针(实参)的值。
+函数调用时，用`n`级指针(形参)改变`n-1`级指针(实参)的值。
 
 
 ### 2.3 理解指针必须和内存四区概念相结合
@@ -138,14 +137,15 @@ iNum = 1;
 - 内存分配方式
     - 指针做函数参数，是有输入和输出特性的。
 
-### 2.4 应用指针必须和函数调用相结合（指针做函数参数）
+函数返回普通变量和指针变量的本质是一样的，问题在于返回后的指针变量所指向的内存是还可以使用。
+
+### 2.4 应用指针必须和函数调用相结合
 
 
-指针做函数参数，问题的实质不是指针，而是看内存块。
+指针做函数参数，问题的实质不是指针，而是看指针指向的内存块。
 
 
-
-### 2.5 一级指针典型用法（指针做函数参数）
+### 2.5 一级指针典型用法
 
 
 一级指针做输入
@@ -159,7 +159,7 @@ iNum = 1;
 int geLen(char *pFileName, int *pfileLen);
 ```
 
-理清：**主调函数还是被调用函数分配内存；被调用函数是在heap/stack上分配内存。**
+理清：**是主调函数还是被调用函数分配内存；被调用函数是在heap/stack上分配内存。**
 
 ### 2.6 二级指针典型用法（指针做函数参数）
 
@@ -168,7 +168,6 @@ int geLen(char *pFileName, int *pfileLen);
 int main(int arc ,char *arg[]); 字符串数组
 int shouMatrix(int [3][4], int iLine);
 ```
-
 
 二级指针做输出
 ```c
@@ -179,20 +178,10 @@ int getData_Free(void *data);
 int getData_Free2(void **data);
 ```
 
-
-### 2.8 三级指针输出典型用法
-
-三级指针做输出
-```c
-int getFileAllLine(char ***content, int *pLine); 
-int getFileAllLine_Free(char ***content, int *pLine);
-```
-
-### 2.9 扩充
+### 2.8 扩充
 
 - 避免野指针
 - 必要时才使用`malloc/new`
-
 
 
 ---
@@ -210,27 +199,27 @@ int getFileAllLine_Free(char ***content, int *pLine);
 ```c
 // {}初始化列表
 int sample1(){	
-	//数组初始化有2种方法 默认元素个数、指定元素个数
-
+    //数组初始化有2种方法 默认元素个数、指定元素个数
     //若没有指定长度，默认不分配零
-	char buf1[] = {'a', 'b', 'c', 'd', 'e'};
-
-	//若指定长度，不够报错；buf长度多于初始化个数，会自动补充零
-	char buf2[6] = {'a', 'b', 'c', 'd', 'e'};
-	char buf3[6] = {'a', 'b', 'c', 'd', 'e'};
-	char buf4[5] = {'a', 'b', 'c', 'd', 'e'};
-
+    char buf1[] = {'a', 'b', 'c', 'd', 'e'};
+    
+    //若指定长度，不够报错；buf长度多于初始化个数，会自动补充零
+    char buf2[6] = {'a', 'b', 'c', 'd', 'e'};
+    char buf3[6] = {'a', 'b', 'c', 'd', 'e'};
+    char buf4[5] = {'a', 'b', 'c', 'd', 'e'};
+    char buf5[100] = {0};//所有元素赋值为0
+    
     //测试
-	printf("buf3:%s", buf3);//乱码，为什么？
-	system("pause");
+    printf("buf3:%s", buf3);//乱码，为什么？
+    system("pause");
 }
 
 
 int sample2(){
-	//用字符串来初始化数组，主动补0
+	//用字符数组来初始化数组，主动补0
 	char buf2[] = {'a', 'b','c','d','\0'};
 
-	//字符串常量初始化一个字符数组，会补充零
+	//字符串常量初始化一个字符数组，会自动补充零
 	char buf3[] = {"abcde"};
 	char buf4[] = "abcde";//"abcde"从字符串常量区拷贝到栈区
 	char buf5[100] = "abcde";  
@@ -238,14 +227,15 @@ int sample2(){
 
 	printf(" strlen(buf5) :%d \n", strlen(buf5));
 	printf(" sizeof(buf4) :%d \n", sizeof(buf5));
-	printf(" sizeof(buf4) :%d \n", sizeof(buf4));
+	printf(" sizeof(buf4) :%d \n", sizeof(buf4));	
 }
 ```
 
-- `strlen()`：求字符串的长度，注意字符串的长度不包含\0
-- `sizeof(类型)`：字符串类型的大小，包括\0；
-
-
+- `strlen()`：求字符串的长度，注意字符串的长度不包含`\0`
+- `sizeof(类型)`：字符串类型的大小，包括`\0`
+- `\0129`：转义字符，相当于`\n9`
+- 不要混淆空字符` `和0字符`\0`
+- 数字`0`和`'\0'`等价
 
 ### 字符串做函数参数
 
@@ -256,11 +246,18 @@ int sample2(){
 - `char *p = "abcd";`，abcd是字符串常量，不可修改
 - `char p[] = "abcd";`，abcd可修改
  
-为什么栈中的字符数组不能修改？
+为什么栈中的字符数组不能做如下修改？
+```
+int sample(){
+    char buf[] = "abce;
+    buf ++;
+}
+```
+不能，因为栈中的内存分配在编译期就已经确定了，然后栈中内存的回收也是按照这个值去回收的，而栈中的数组分配到栈中的，
+所以如果能够改变栈中数组，栈中的内存占用也会发生改变，这就导致栈中内存无法正常的回收。
 
+##### 模拟`strcpy`函数
 
-
-模拟`strcpy`函数：
 ```c
 void copy_str01(char *from, char *to){
 	for (; *from!='\0'; from++, to++){
@@ -289,7 +286,12 @@ void copy_str04(char *from, char *to){
 }
 
 //好的方式，校验+简洁
-int copy_str05_good(const char *from, char *to){
+int copy_str05_good(const char *src, char *dest){
+    
+    //不要直接使用形参
+    char *from = src;
+    char *to = dest;
+
 	if (from==NULL || to==NULL){
 		printf("func copy_str05_good() err. (from==NULL || to==NULL)\n");
 		return -1;
@@ -299,8 +301,114 @@ int copy_str05_good(const char *from, char *to){
 
 	return 0;
 }
+```
+
+指针作为函数的参数：
+
+- 判断形参指针是否为空
+- 不要直接使用形参
+
+### 一级指针(char *)常见使用错误
+
+- 对空字符串和非法字符串的判断
+```
+void copy_str(char *from, char *to){
+
+    //这样判断没有效果，使用from == NULL
+    if (*from == '\0' || *to == '\0'){
+        printf("func copy_str() err\n");
+        return;
+    }
+
+    for (; *from!='\0'; from++, to++){
+        *to = *from;
+    }
+    *to = '\0';
+}
+```
+
+- 指针的叠加会不断改变指针的方向
+```
+char *getKeyByValue(char **keyvaluebuf, char *keybuf){
+    int i = 0;
+    char *a = (char *)malloc(50);
+
+    for (; **keyvaluebuf != '\0'; i++){
+        *a++ = *(*keyvaluebuf)++;
+    }           
+
+    free(a);//释放错误
+}   
+```
+
+- 局部指针变量不要外传
+
+### const
+
+const的使用，对于指针变量：
+
+- 从左往右看，跳过类型，看修饰哪个字符
+- 如果是`*`， 说明指针指向的内存不能改变
+- 如果是指针变量，说明指针的指向不能改变，指针的值不能修改
+- 在c语言中, const是一个冒牌货，通过指针可以间接的修改const变量
 
 ```
+int main(void){
+	//const修饰一个变量为只读
+	const int a = 10;
+	//a = 100; //err
+
+	//指针变量， 指针指向的内存， 2个不同概念
+	char buf[] = "aklgjdlsgjlkds";
+
+	//从左往右看，跳过类型，看修饰哪个字符
+	//如果是*， 说明指针指向的内存不能改变
+	//如果是指针变量，说明指针的指向不能改变，指针的值不能修改
+	const char *p = buf;
+	// 等价于上面 char const *p1 = buf;
+	//p[1] = '2'; //err
+	p = "agdlsjaglkdsajgl"; //ok
+
+	char * const p2 = buf;
+	p2[1] = '3';
+	//p2 = "salkjgldsjaglk"; //err
+
+	//p3为只读，指向不能变，指向的内存也不能变
+	const char * const p3 = buf;
+
+	//如何引用另外.c中const变量，了解
+	extern const int aa; //不能再赋值，只能声明
+	printf("aa = %d\n", aa);
+
+	//const修饰的变量，定义时初始化
+
+	//在c语言中, const是一个冒牌货
+	const int b = 10;
+	//b = 100; //err
+	int *q = &b;
+	*q = 22;
+	printf("%d, %d\n", b, *q);
+
+	printf("\n");
+	system("pause");
+	return 0;
+}
+```
+
+---
+## 3 二级指针
+
+二级指针基本概念：如果一个指针变量存放的又是另一个指针变量的地址,则称这个指针变量为指向指针的指针变量。也称为“二级指针”。
+通过指针访问变量称为间接访问。由于指针变量直接指向变量，所以称为“一级指针”。而如果通过指向指针的指针变量来访问变量则构成“二级指针”。 
+
+- 二级指针输出特性(作为函数的参数)
+- 二级指针输入特性(作为函数的参数)
+
+
+---
+##  4 多维数组
+
+
 
 ---
 ## 引用
