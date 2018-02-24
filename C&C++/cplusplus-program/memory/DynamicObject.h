@@ -6,9 +6,6 @@
 
  ============================================================================
  */
-//
-// Created by Administrator on 18.1.10.
-//
 
 #ifndef CPLUSPLUS_PROGRAM_DYNAMICOBJECT_H
 #define CPLUSPLUS_PROGRAM_DYNAMICOBJECT_H
