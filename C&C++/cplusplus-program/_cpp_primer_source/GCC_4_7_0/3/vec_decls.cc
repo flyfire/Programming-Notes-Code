@@ -47,10 +47,10 @@ int main()
 	vector<int> ivec;             // ivec holds objects of type int
 	vector<Sales_item> Sales_vec; // holds Sales_items
 	
-	vector<vector<string>> file;  // vector whose elements are vectors
+	vector<vector<string>> file;  // vector whose elements are container
 	vector<vector<int>> vecOfvec; // each element is itself a vector
 	
-	// all five vectors have size 0
+	// all five container have size 0
 	cout << svec.size() << " " << ivec.size() << " "
 	     << Sales_vec.size() << " "
 	     << file.size() << " " << vecOfvec.size() << endl;
@@ -69,7 +69,7 @@ int main()
 	// again list initialization is not viable, so ordinary construction
 	vector<string> v4{10, "hi"};  // ten elements with values "hi"
 	
-	// all four vectors have size ten
+	// all four container have size ten
 	cout << v1.size() << " " << v2.size() 
 	     << " " << v3.size() << " " << v4.size() << endl;
 	

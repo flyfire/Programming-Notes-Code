@@ -30,12 +30,14 @@ void sample1() {
 }
 
 void sample2() {
+    //拼接字符串
     int val1 = 512, val2 = 1024;
     ostringstream format_message;
     format_message << "val1: " << val1 << "\n" << "val2: " << val2 << "\n";
 
     cout << "input is " << format_message.str() << endl;
 
+    //从字符串获取数字
     istringstream input_istring(format_message.str());
     string dump;
     input_istring >> dump >> val1 >> dump >> val2;

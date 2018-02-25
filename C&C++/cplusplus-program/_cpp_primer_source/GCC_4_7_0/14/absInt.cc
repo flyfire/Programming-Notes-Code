@@ -71,7 +71,7 @@ int main() {
 	if (vu == vu2)
 		cout << "as expected" << endl;
 	else {
-		cout << "something's wrong, vectors differ" << endl;
+		cout << "something's wrong, container differ" << endl;
 		for_each(vu.begin(), vu.end(), [](unsigned i) { cout << i << " "; });
 	}
 	cout << endl;

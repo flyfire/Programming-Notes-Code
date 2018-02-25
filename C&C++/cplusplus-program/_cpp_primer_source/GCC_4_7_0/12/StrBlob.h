@@ -159,7 +159,7 @@ bool eq(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 		// if they point to the same element
 		return (!r || lhs.curr == rhs.curr);
 	else
-		return false; // if they point to difference vectors, they're not equal
+		return false; // if they point to difference container, they're not equal
 }
 
 inline

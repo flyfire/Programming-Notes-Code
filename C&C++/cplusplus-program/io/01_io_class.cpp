@@ -20,7 +20,6 @@ void ioFlush();
 using namespace std;
 
 int main() {
-
     ioStatus();
     ioError();
     ioFlush();
@@ -36,7 +35,7 @@ void ioFlush() {
 void ioError() {
     int word;
     while (cin >> word) {//输入不合法则条件为false
-        //ok 操作时成功的
+        //ok 操作是成功的
         cout << "word = " << word << endl;
     }
 }

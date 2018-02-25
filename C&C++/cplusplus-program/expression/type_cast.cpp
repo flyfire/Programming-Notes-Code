@@ -29,7 +29,7 @@ int main() {
     *p_i3 = 100;//由于i3本身不是常量，所以这里的写是合法的
 
     cout << "p_i3 = " << *p_i3 << endl;//始终为：100
-    cout << "i3 = " << i3 << endl;//如果i3是const的，那么无法修改i3的值，i3始终未333
+    cout << "i3 = " << i3 << endl;//如果i3是const的，那么无法修改i3的值，i3始终未为333
 
     return EXIT_SUCCESS;
 }

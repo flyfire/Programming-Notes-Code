@@ -48,8 +48,10 @@ void writeFile(const string file) {
 void readFile(const string file) {
     ifstream ifStream(file);
     string content;
-    ifStream >> content;//每次读取一个单词
+    ifStream >> content;//每次读取一个单词，以空格为标识
     cout << content;
+    ifStream >> content;//每次读取一个单词
+    cout << content << endl;
     ifStream >> content;//每次读取一个单词
     cout << content << endl;
     ifStream.close();
