@@ -10,7 +10,23 @@
 #include <vector>
 #include <iostream>
 
+
 using namespace std;
+int sAge = 0;
+
+class A {
+private:
+    int age;
+public:
+    A() {
+        age = ++sAge;
+        cout << "create time" << age << endl;
+    }
+
+    int getAge() {
+        return age;
+    }
+};
 
 //1：创建vector
 static void createVector() {
@@ -25,10 +41,21 @@ static void createVector() {
     vector<int> vector7 = {1, 2, 3, 4, 5, 6, 7};//等价于vector5
     vector<string> vector8{10};//v8中有十个默认初始化的元素
     vector<string> vector9{10, "hi"};//v9中有十个hi
+
+    vector<A> vector10(10);
+    for (A a : vector10) {
+        cout << a.getAge() << " ";
+    }
+    vector<A> vector11 = vector10;
+    for (A a : vector11) {
+        cout << a.getAge() << " ";
+    }
+
 }
 
+
 //2：vector的操作
-static void vectorOperation() {
+void vectorOperation() {
 
     vector<int> vector1;
 
@@ -59,7 +86,7 @@ static void vectorOperation() {
 
 
 int main() {
-    //createVector();
-    vectorOperation();
+    createVector();
+//    vectorOperation();
     return EXIT_SUCCESS;
 }

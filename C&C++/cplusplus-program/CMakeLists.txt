@@ -3,5 +3,5 @@ project(cplusplus-program)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES functions/functions1.cpp)
+set(SOURCE_FILES container/vectors.cpp)
 add_executable(C__Basic ${SOURCE_FILES})
