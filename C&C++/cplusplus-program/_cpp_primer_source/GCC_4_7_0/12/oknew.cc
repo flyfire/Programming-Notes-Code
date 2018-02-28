@@ -57,7 +57,7 @@ int main()
 
 	int *p0 = new int;       // pi points to a dynamically allocated, 
 	                         // unnamed, uninitialized int 
-	delete p0;  // frees the memory to which pi points
+	delete p0;  // frees the dynamic_memory to which pi points
 
 	// named initialized variables
 	int i(1024);             // value of i is 1024
@@ -79,11 +79,11 @@ int main()
 		cout << *b << " ";
 	cout << endl;
 
-	// when we're done using the memory must delete the pointers
-	delete pi;  // frees the memory to which pi points
+	// when we're done using the dynamic_memory must delete the pointers
+	delete pi;  // frees the dynamic_memory to which pi points
 	delete ps;  // frees the string to which ps points
 	            // the string destructor frees the space used by its data
-	delete pv;  // frees the memory for the vector
+	delete pv;  // frees the dynamic_memory for the vector
 	            // which also destroys the elements in that vector
 	
 	// call get_size to determine how many ints to allocate

@@ -30,7 +30,7 @@ public:
         height = hei;
     }
 
-    // 重载 + 运算符，用于把两个 Box 对象相加
+    // 重载+号运算符，用于把两个 Box 对象相加
     Box operator+(const Box &b) {
         Box box;
         box.length = this->length + b.length;

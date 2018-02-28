@@ -48,7 +48,7 @@ public:
 	String() = default;
 
 	// cp points to a null terminated array, 
-	// allocate new memory & copy the array
+	// allocate new dynamic_memory & copy the array
 	String(const char *cp) : 
 	          sz(std::strlen(cp)), p(a.allocate(sz))
 	          { std::uninitialized_copy(cp, cp + sz, p); }
@@ -58,7 +58,7 @@ public:
 	          { std::uninitialized_copy(s.p, s.p + sz , p); }
 
 	// move constructor: copy the pointer, not the characters, 
-	// no memory allocation or deallocation
+	// no dynamic_memory allocation or deallocation
 	String(String &&s) noexcept : sz(s.size()), p(s.p) 
 	          { s.p = 0; s.sz = 0; }
 
@@ -66,12 +66,12 @@ public:
 	          { std::uninitialized_fill_n(p, sz, c); }
 
 	// allocates a new copy of the data in the right-hand operand; 
-	// deletes the memory used by the left-hand operand
+	// deletes the dynamic_memory used by the left-hand operand
 	String &operator=(const String &);
 	// moves pointers from right- to left-hand operand
 	String &operator=(String &&) noexcept;
 
-	// unconditionally delete the memory because each String has its own memory
+	// unconditionally delete the dynamic_memory because each String has its own dynamic_memory
 	~String() noexcept { if (p) a.deallocate(p, sz); }
 
 	// additional assignment operators

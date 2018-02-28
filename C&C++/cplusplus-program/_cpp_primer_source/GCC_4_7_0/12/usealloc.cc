@@ -62,11 +62,11 @@ int main()
 	while (q != p)
 		alloc.destroy(--q);  // free the strings we actually allocated
 	
-	alloc.deallocate(p, n);  // return the memory we allocated
+	alloc.deallocate(p, n);  // return the dynamic_memory we allocated
 	
 	p = alloc.allocate(n);   // allocate n unconstructed strings
 	string s;
-	q = p;                   // q points to the memory for first string
+	q = p;                   // q points to the dynamic_memory for first string
 	ifstream in("data/storyDataFile");
 	while (in >> s && q != p + n)
 		alloc.construct(q++, s); // construct only as many strings as we need
@@ -78,7 +78,7 @@ int main()
 	
 	for (q = p + size - 1; q != p; --q)
 		alloc.destroy(q);         // free the strings we allocated
-	alloc.deallocate(p, n);       // return the memory we allocated
+	alloc.deallocate(p, n);       // return the dynamic_memory we allocated
 
 	in.close();
 	in.open("data/storyDataFile");

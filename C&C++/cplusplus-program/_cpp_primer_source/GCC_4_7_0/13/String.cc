@@ -61,7 +61,7 @@ String & String::operator=(const String &rhs)
 	uninitialized_copy(rhs.p, rhs.p + rhs.sz, newp);
 
 	if (p)
-		a.deallocate(p, sz); // free the memory used by the left-hand operand
+		a.deallocate(p, sz); // free the dynamic_memory used by the left-hand operand
 	p = newp;    // p now points to the newly allocated string
 	sz = rhs.sz; // update the size
 
@@ -75,7 +75,7 @@ String & String::operator=(String &&rhs) noexcept
 	if (this != &rhs) {
 		if (p)
 			a.deallocate(p, sz);  // do the work of the destructor
-		p = rhs.p;    // take over the old memory
+		p = rhs.p;    // take over the old dynamic_memory
 		sz = rhs.sz;
 		rhs.p = 0;    // deleting rhs.p is safe
 		rhs.sz = 0;

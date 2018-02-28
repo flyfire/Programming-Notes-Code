@@ -109,7 +109,7 @@ HasPtr f(HasPtr hp) // HasPtr passed by value, so it is copied
 int main()
 { 
 	HasPtr h("hi mom!");
-	HasPtr h2 = h;  // no new memory is allocated, 
+	HasPtr h2 = h;  // no new dynamic_memory is allocated,
 	                // h and h2 share the same underlying string
 } 
 

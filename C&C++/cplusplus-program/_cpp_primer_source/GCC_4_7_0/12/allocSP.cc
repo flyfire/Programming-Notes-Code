@@ -46,7 +46,7 @@ using std::cin; using std::cout; using std::endl;
 shared_ptr<Foo> factory(T arg)
 {
 	// process arg as appropriate
-	// shared_ptr will take care of deleting this memory
+	// shared_ptr will take care of deleting this dynamic_memory
 	return make_shared<Foo>(arg); 
 }
 

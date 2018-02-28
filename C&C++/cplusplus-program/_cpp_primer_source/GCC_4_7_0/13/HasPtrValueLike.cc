@@ -60,7 +60,7 @@ using std::string;
 HasPtr& HasPtr::operator=(const HasPtr &rhs) 
 {
 	auto newp = new string(*rhs.ps);  // copy the underlying string
-	delete ps;       // free the old memory
+	delete ps;       // free the old dynamic_memory
 	ps = newp;       // copy data from rhs into this object
 	i = rhs.i;
 	return *this;    // return this object
@@ -78,4 +78,4 @@ int main()
 	HasPtr h("hi mom!");  // allocates a new copy of "hi mom!"
 	f(h);  // copy constructor copies h in the call to f
 		   // that copy is destroyed when f exits
-}  // h is destroyed on exit, which destroys its allocated memory
+}  // h is destroyed on exit, which destroys its allocated dynamic_memory

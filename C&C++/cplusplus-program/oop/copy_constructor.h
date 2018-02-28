@@ -42,7 +42,7 @@ Line::Line(const Line &obj) {
 }
 
 Line::~Line(void) {
-    std::cout << "release memory" << std::endl;
+    std::cout << "release dynamic_memory" << std::endl;
     delete ptr;
 }
 

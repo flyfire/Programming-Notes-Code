@@ -35,7 +35,6 @@ public:
 class Rectangle : public Shape {
 public:
     Rectangle(int a = 0, int b = 0) : Shape(a, b) {
-
     }
 
     //重写了area函数

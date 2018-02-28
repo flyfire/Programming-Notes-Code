@@ -61,14 +61,15 @@ int main() {
     const char *noerr = "success";
     const char *err189 = "Error: a function declaration must specify a function return type!";
     const char *errorTxt;
+
     if (false)
         errorTxt = err189;
     else
         errorTxt = noerr;
-    // remember the 1 for the terminating null
+
+    // +1是为了存放'\0'
     size_t dimension = strlen(errorTxt) + 1;
     char *errMsg = new char[dimension];
-    // copy the text for the error into errMsg
     strncpy(errMsg, errorTxt, dimension);
     cout << "errMsg= " << errMsg << endl;
     delete[] errMsg;

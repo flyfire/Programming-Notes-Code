@@ -32,13 +32,14 @@
 
 ## 3 代码列表
 
+- exceptions 异常处理
 - container 容器
 - expression 表达式
 - functions 函数
 - io io操作
 - iterators 迭代器
 - tools 数学运算、日期
-- memory 动态内存
+- dynamic_memory 动态内存
 - oop 类、对象相关
 - operator 操作符重载
 - strings 字符串
@@ -46,9 +47,7 @@
 
 ## 4 todo
 
-- 异常处理
-- 动态内存
-- 返现算法
+- 泛型算法
 - 关联容器
 - 模板
 - 标准库

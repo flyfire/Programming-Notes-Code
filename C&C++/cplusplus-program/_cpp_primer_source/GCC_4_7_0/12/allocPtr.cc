@@ -43,7 +43,7 @@ using std::cin; using std::cout; using std::endl;
 Foo* factory(T arg)
 {
 	// process arg as appropriate
-	return new Foo(arg); // caller is responsible for deleting this memory
+	return new Foo(arg); // caller is responsible for deleting this dynamic_memory
 }
 
 Foo* use_factory(T arg)
@@ -52,7 +52,7 @@ Foo* use_factory(T arg)
 	print(cout, *p);
 	cout << endl;
 	// use p
-	return p;  // caller must delete the memory
+	return p;  // caller must delete the dynamic_memory
 } 
 
 int main()
@@ -60,7 +60,7 @@ int main()
 	T arg;
 	while (cin >> arg) {
 		auto p = use_factory(arg);
-		delete p; // remember to delete the memory from use_factory
+		delete p; // remember to delete the dynamic_memory from use_factory
 	}
 	
 	return 0;

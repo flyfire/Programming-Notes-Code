@@ -35,7 +35,7 @@
 #include <utility>
 #include <initializer_list>
 
-// simplified-implementation of memory allocation strategy for a vector-like class
+// simplified-implementation of dynamic_memory allocation strategy for a vector-like class
 template <typename T>
 class Vec {
 public:

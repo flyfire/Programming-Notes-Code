@@ -35,7 +35,7 @@
 #include <utility>
 #include <initializer_list>
 
-// simplified implementation of the memory allocation strategy for a vector-like class
+// simplified implementation of the dynamic_memory allocation strategy for a vector-like class
 class StrVec {
 public:
 	// copy control members
@@ -182,10 +182,10 @@ void StrVec::reallocate()
     // we'll allocate space for twice as many elements as the current size
     auto newcapacity = size() ? 2 * size() : 1;
 
-	// allocate new memory
+	// allocate new dynamic_memory
 	auto newdata = alloc.allocate(newcapacity);
 
-	// move the data from the old memory to the new
+	// move the data from the old dynamic_memory to the new
 	auto dest = newdata;  // points to the next free position in the new array
     auto elem = elements; // points to the next element in the old array
 	for (size_t i = 0; i != size(); ++i)

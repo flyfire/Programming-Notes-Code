@@ -47,7 +47,7 @@ int main()
 	
 	unique_ptr<string> p3(new string("Trex"));
 
-	// reset deletes the memory to which p2 had pointed
+	// reset deletes the dynamic_memory to which p2 had pointed
 	// and transfers ownership from p3 to p2 
 	p2.reset(p3.release()); 
 	cout << *p2 << endl; // prints Trex
