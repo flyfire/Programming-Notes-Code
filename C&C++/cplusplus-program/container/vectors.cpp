@@ -51,6 +51,8 @@ static void createVector() {
         cout << a.getAge() << " ";
     }
 
+    vector<int> c;
+
 }
 
 
