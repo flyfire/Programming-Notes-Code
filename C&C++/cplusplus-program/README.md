@@ -33,7 +33,7 @@
 ## 3 代码列表
 
 - exceptions 异常处理
-- container 容器
+- container 容器、泛型算法、模板
 - expression 表达式
 - functions 函数
 - io io操作
@@ -47,7 +47,6 @@
 
 ## 4 todo
 
-- 泛型算法
 - 关联容器
 - 模板
 - 标准库
