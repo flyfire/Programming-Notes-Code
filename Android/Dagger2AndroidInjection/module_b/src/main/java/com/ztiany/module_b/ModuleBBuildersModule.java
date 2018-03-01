@@ -24,7 +24,8 @@ import dagger.multibindings.IntoMap;
 public abstract class ModuleBBuildersModule {
 
     /**
-     * ContributesAndroidInjector中可以再嵌套带有ContributesAndroidInjector的Module，这样一般情况下都不需要再手动写SubComponent了
+     * ContributesAndroidInjector中可以再嵌套带有ContributesAndroidInjector的Module，这样一般情况下都不需要再手动写SubComponent了，
+     * 这样写的前提条件是： If your subcomponent and its builder have no other methods or supertypes
      */
     @ActivityScope
     @ContributesAndroidInjector(modules = ModuleBModule.class)
