@@ -29,8 +29,8 @@ static void pointer() {
     int *&refPa = pA;//refPa是对指针pA的引用
     cout << "value_a address = " << pA << endl;
 
-    const int *pB = &value_a;//pA是一个指向整型常量的指针
-    int *const pC = &value_a;//pC是一个常量指针
+    const int *pB = &value_a;//pB是一个指向整型常量的指针，pB不能修改其地址所指向的值
+    int *const pC = &value_a;//pC是一个指针常量，pC不能再指向其他int变量
 }
 
 //3：const与引用
