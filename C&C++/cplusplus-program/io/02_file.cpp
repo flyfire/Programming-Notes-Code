@@ -30,6 +30,7 @@ void copy(const string file) {
     infile.open(file);
     outfile.open("copy_" + file);
     cout << "copy from " << file << " to copy_" << file << endl;
+    //rdbuf()可以实现一个流对象指向的内容用另一个流对象来输出
     outfile << infile.rdbuf();
     infile.close();
     outfile.close();

@@ -3,5 +3,5 @@ project(cplusplus-program)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES io/02_file.cpp)
+set(SOURCE_FILES stl/14_traversal_algorithm.cpp)
 add_executable(C__Basic ${SOURCE_FILES})

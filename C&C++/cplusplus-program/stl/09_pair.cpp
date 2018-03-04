@@ -2,7 +2,7 @@
  ============================================================================
  
  Author      : Ztiany
- Description : pair 类型
+ Description : 对组：pair类型
 
  ============================================================================
  */
@@ -16,7 +16,6 @@ using namespace std;
 int main() {
     //pair 类型是一种简单的模板类型，该类型在 utility 头文件中定义。
     pair<string, int> pair1("name", 21);
-
     pair<string, int> pair2 = make_pair("name", 28);
     return EXIT_SUCCESS;
 }
