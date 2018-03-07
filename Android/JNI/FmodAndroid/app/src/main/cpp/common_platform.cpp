@@ -64,7 +64,6 @@ void Common_Exit(int returnCode) {
 void Common_DrawText(const char *text) {
     char s[256];
     snprintf(s, sizeof(s), "%s\n", text);
-
     gUIString.append(s);
 }
 
@@ -145,7 +144,8 @@ extern "C"
 {
 
 
-jstring Java_com_ztiany_fmod_PlaySoundActivity_getButtonLabel(JNIEnv *env, jobject thiz, jint index) {
+jstring
+Java_com_ztiany_fmod_PlaySoundActivity_getButtonLabel(JNIEnv *env, jobject thiz, jint index) {
     return env->NewStringUTF(Common_BtnStr((Common_Button) index));
 }
 

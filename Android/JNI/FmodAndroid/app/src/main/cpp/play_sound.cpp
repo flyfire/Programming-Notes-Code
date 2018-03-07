@@ -11,7 +11,10 @@ as it plays.
 #include "fmod.hpp"
 #include "common.h"
 
+/*该函数由java子线程调用*/
 int FMOD_Main() {
+
+    /*创建一些变量用于初始化*/
     FMOD::System *system;
     FMOD::Sound *sound1, *sound2, *sound3;
     FMOD::Channel *channel = 0;
@@ -19,11 +22,10 @@ int FMOD_Main() {
     unsigned int version;
     void *extradriverdata = 0;
 
+    //初始化状态
     Common_Init(&extradriverdata);
 
-    /*
-        Create a System object and initialize
-    */
+    //Create a System object and initialize
     result = FMOD::System_Create(&system);
     ERRCHECK(result);
 
@@ -35,16 +37,19 @@ int FMOD_Main() {
                      FMOD_VERSION);
     }
 
+    //初始化，32表示32个音轨
     result = system->init(32, FMOD_INIT_NORMAL, extradriverdata);
     ERRCHECK(result);
 
+    /*创建一个声音*/
     result = system->createSound(Common_MediaPath("drumloop.wav"), FMOD_DEFAULT, 0, &sound1);
     ERRCHECK(result);
 
-    result = sound1->setMode(
-            FMOD_LOOP_OFF);    /* drumloop.wav has embedded loop points which automatically makes looping turn on, */
-    ERRCHECK(
-            result);                           /* so turn it off here.  We could have also just put FMOD_LOOP_OFF in the above CreateSound call. */
+    /* drumloop.wav has embedded loop points which automatically makes looping turn on, */
+    result = sound1->setMode(FMOD_LOOP_OFF);
+
+    /* so turn it off here.  We could have also just put FMOD_LOOP_OFF in the above CreateSound call. */
+    ERRCHECK(result);
 
     result = system->createSound(Common_MediaPath("jaguar.wav"), FMOD_DEFAULT, 0, &sound2);
     ERRCHECK(result);
@@ -52,9 +57,7 @@ int FMOD_Main() {
     result = system->createSound(Common_MediaPath("swish.wav"), FMOD_DEFAULT, 0, &sound3);
     ERRCHECK(result);
 
-    /*
-        Main loop
-    */
+    //主循环，监听Java层UI状态，播放对应的声音或者退出循环
     do {
         Common_Update();
 
@@ -77,6 +80,7 @@ int FMOD_Main() {
         ERRCHECK(result);
 
         {
+
             unsigned int ms = 0;
             unsigned int lenms = 0;
             bool playing = 0;
@@ -84,6 +88,7 @@ int FMOD_Main() {
             int channelsplaying = 0;
 
             if (channel) {
+
                 FMOD::Sound *currentsound = 0;
 
                 result = channel->isPlaying(&playing);
@@ -132,11 +137,13 @@ int FMOD_Main() {
             Common_Draw("Channels Playing %d", channelsplaying);
         }
 
+        //暂停50毫秒
         Common_Sleep(50);
-    } while (!Common_BtnPress(BTN_QUIT));
+
+    } while (!Common_BtnPress(BTN_QUIT));//只要没有退出就一直循环
 
     /*
-        Shut down
+        关闭系统，释放资源
     */
     result = sound1->release();
     ERRCHECK(result);
