@@ -11,9 +11,12 @@ android {
         versionCode 1
         versionName "1.0"
         externalNativeBuild {
+
             cmake {
-                cppFlags ""
+                //支持运行时类型和异常处理
+                cppFlags "-frtti -fexceptions"
             }
+
         }
 
         ndk {
