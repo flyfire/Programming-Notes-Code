@@ -188,20 +188,32 @@ Directory或Script中的CMake语言代码可以使用`include()`命令在包含�
 ### 2.2 CMake中预定义的变量
 
 - `CMAKE_SOURCE_DIR`：这是包含顶级CMakeLists.txt的目录，即顶级源目录
+- `ANDROID_ABI`：Android当前的构建API
 
 ### 2.3 常用命令
 
 - `set(KEY VALUE)`：用于定义变量
+
 - `unset(KEY)`：用于取消变量的定义
+
 - `${xxx-variable}`：用于引用已定义的变量，可以嵌套引用，嵌套引用从内部进行替换，例如`${outer_${inner_variable}variable}`
+
 - `message("message to display" ...)`：用于输入日志，比如`message("CMAKE_SOURCE_DIR : " ${CMAKE_SOURCE_DIR})`，message支持多种模式，比如`STATUS、WARNING：CMake`等，`message(STATUS ${PROJECT_NAME})`表示输出一个附带的信息
+
 - `project(<PROJECT-NAME> [LANGUAGES] [<language-name>...])`：给工程命名,设置项目名称并将该名称存储在PROJECT_NAME变量中
+
 - `aux_source_directory(<dir> <variable>)`：收集指定目录中所有源文件的名称，并将列表存储在提供的`<variable>`中。
+
 - `include_directories([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])`：添加头文件路径 
+
 - `link_directories(directory1 directory2 ...)`：添加库文件路径(`.so/.dll/.lib/.dylib/`)
+
 - `link_libraries(library1 <debug | optimized> library2 ...)`：添加需要链接的库文件路径，比如`link_libraries(“xxx/lib/libcommon.a”)`
-- `add_definitions(-DFOO -DBAR ...)`：将-D定义标志添加到源文件的编译中
+
+- `add_definitions(-DFOO -DBAR ...)`：将-D定义的标志添加到源文件的编译中
+
 - `find_library (<VAR> name1 [path1 path2 ...])`： 该命令用于查找库，由`<VAR>`命名的缓存条目被创建来存储该命令的结果。如果找到了库，结果将存储在变量中，除非变量被清除，否则搜索将不会重复。如果没有发现，结果将是`<VAR> -NOTFOUND`，并且下次find_library被同一个变量调用时，搜索将被再次尝试。
+
 - `target_link_libraries(<target> [item1 [item2 [...]]] [[debug|optimized|general] <item>] ...)`：设置要链接的库文件的名称，即设置二进制目标之间的依赖关系，示例如下：
 ```Shell
 # 以下写法都可以： 
@@ -214,7 +226,9 @@ target_link_libraries(myProject libcomm.so)　　#这些库名写法都可以。
 target_link_libraries(myProject comm)
 target_link_libraries(myProject -lcomm)
 ```
+
 - `add_executable(<name> [WIN32] [MACOSX_BUNDLE] [EXCLUDE_FROM_ALL] source1 [source2 ...])`：为工程生成目标文件
+
 - `configure_file(<input> <output> [COPYONLY] [ESCAPE_QUOTES] [@ONLY] [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ]`：复制文件到另一个地方并修改文件内容，并在输入文件内容中替换`@VAR@`或`${VAR}`的变量值。每个变量引用将被替换为变量的当前值，如果变量的值未被定义，则为空字符串。VAR必须与cmakelist.txt中的变量保持一直，否则会生成注释。说明：
     - `CMAKE_CURRENT_BINARY_DIR`：项目根目录
     - `CMAKE_CURRENT_SOURCE_DIR`：项目构建目录
@@ -222,17 +236,27 @@ target_link_libraries(myProject -lcomm)
     - `ESCAPE_QUOTES`：禁止为 `"` 转义
     - `@ONLY`：只允许替换@VAR@包裹的变量${VAR}则不会被替换；
     - `NEWLINE_STYLE <style>`：设置换行符格式
+
 - `add_library(<name> [STATIC | SHARED | MODULE] [EXCLUDE_FROM_ALL] source1 [source2 ...])`：使用指定的源文件将库添加到项目。name在项目中必须是全局唯一的，STATIC，SHARED或MODULE可能会指定要创建的库的类型。
     - MODULE库是没有链接到其他目标的插件，但可以在运行时使用类似dlopen的功能动态加载
     - STATIC表示静态库
     - SHARED表示动态链接库
 
+- `add_compile_options(<option> ...)`：给所有编译器添加编译指令
+
+- `set_target_properties(target1 target2 ... PROPERTIES prop1 value1 prop2 value2 ...)`：设置目标的一些属性来改变它们构建的方式。为一个目标设置属性。该命令的语法是列出所有你想要变更的文件，然后提供你想要设置的值。你能够使用任何你想要的属性/值对，并且在随后的代码中调用GET_TARGET_PROPERTY命令取出属性的值
 
 注意上面参数`<command>`为必填，`[command]`为选填。
 
 ### 2.4 常用参数
 
-- `CMAKE_CXX_FLAGS`：是CMake传给C++编译器的编译选项，比如`set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")`
+#### `CMAKE_CXX_FLAGS`和`CMAKE_C_FLAGS`
+
+是CMake传给C++编译器的编译选项，比如`set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")`，该指令的有两步操作
+- 展开已有的c++指令`${CMAKE_CXX_FLAGS}`
+- 在原有的基础上加上`-std=gnu++11`指令，标识支持c++11
+
+add_compile_options也可以添加编译指令，但是add_compile_options命令添加的编译选项是针对所有编译器的(包括c和c++编译器)，而set命令设置CMAKE_C_FLAGS或CMAKE_CXX_FLAGS变量则是分别只针对c和c++编译器的。
 
 
 ### 2.5 其他
