@@ -16,4 +16,8 @@ public class MainActivity extends AppCompatActivity {
     public void openPlaySound(View view) {
         startActivity(new Intent(this, PlaySoundActivity.class));
     }
+
+    public void openVoiceChanger(View view) {
+        startActivity(new Intent(this, VoiceChangerActivity.class));
+    }
 }

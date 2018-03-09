@@ -18,7 +18,7 @@ include_directories(${cpp_dir}/inc)
 find_library(log-lib  log)
 
 # 构建Lib
-# effects.cpp和play_sound.cpp不要同时编译，它们都由common_platform.cpp调用
-add_library(native-lib SHARED src/main/cpp/common_platform.cpp  src/main/cpp/common.cpp src/main/cpp/play_sound.cpp)
+# effects.cpp和play_sound.cpp不要同时编译，它们都由common_platform.cpp调用，是FMOD_main方法的不同实现
+add_library(native-lib SHARED src/main/cpp/common_platform.cpp  src/main/cpp/common.cpp src/main/cpp/voice_changer.cpp src/main/cpp/play_sound.cpp)
 
 target_link_libraries(native-lib  ${log-lib} android lib_fmod lib_fmodL)
