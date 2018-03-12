@@ -31,3 +31,4 @@
 - [CMake 入门实战](http://hahack.com/codes/cmake/)
 - [cmake使用教程](https://juejin.im/post/5a6f32e86fb9a01ca6031230)
 - [使用CMake组织C++工程](https://elloop.github.io/tools/2016-04-04/learning-cmake-0)
+- [cmake手册](http://www.cnblogs.com/coderfenghc/tag/cmake/)
