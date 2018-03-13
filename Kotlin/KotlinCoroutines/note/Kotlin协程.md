@@ -1,10 +1,11 @@
 ---
 #  Kotlin协程
 
-Kotlin协程以一共包括四个模块
+Kotlin协程以包括以下模块
 
-- core是kotlin协程核心基础模块，
-- reactive为各种响应式库(RxJava等)提供构建器和迭代器
+- common：common coroutines across all backends:
+- core：kotlin协程核心基础模块
+- reactive：为各种响应式库(RxJava等)提供构建器和迭代器
 - ui模块
 - integration模块
 

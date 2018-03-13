@@ -22,7 +22,7 @@ fun main(args: Array<String>) = runBlocking {
         2
     }
 
-    //await表示，当Deferred代表的协程调度完毕，会在指定的协程剩下文中调度await所在的代码块。
+    //await表示，当Deferred代表的协程调度完毕，会在指定的协程上下文中调度await所在的代码块。
     val launch = launch(coroutineContext) {
         try {
             println("3 ${result1.await() + result2.await()}")
