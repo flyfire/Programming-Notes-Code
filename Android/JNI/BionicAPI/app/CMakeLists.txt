@@ -11,8 +11,9 @@ message("------------------------cmake: " ${CMAKE_CXX_FLAGS})
 find_library(log-lib  log)
 
 add_library(native-lib SHARED
-${cpp_dir}/native-lib.c
-${cpp_dir}/bionic-api.c
+${cpp_dir}/native-lib.cpp
+${cpp_dir}/bionic-api.cpp
+${cpp_dir}/threads-api.cpp
 )
 
 target_link_libraries(native-lib  ${log-lib})
