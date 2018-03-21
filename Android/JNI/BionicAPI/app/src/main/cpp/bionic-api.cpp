@@ -5,7 +5,10 @@
 #include <android/log.h>
 #include <sys/system_properties.h>
 
-
+/**
+ * 执行shell命令
+ * @param command
+ */
 void shell(const char *command) {
     //system没有接收子进程输出的通讯通道，命令执行前主进程一个等待
     int result = system(command);
@@ -16,6 +19,10 @@ void shell(const char *command) {
     }
 }
 
+/**
+ * 执行shell命令，并打印命令结果
+ * @param command
+ */
 void shellPro(const char *command) {
     FILE *stream;
     stream = popen(command, "r");
@@ -34,9 +41,13 @@ void shellPro(const char *command) {
     }
 }
 
-int
-getSystemProperty(char *propertyName/*ro.product.model*/,
-                  char *out /*MAX SIZE = PROP_VALUE_MAX*/) {
+/**
+ *
+ * @param propertyName 属性名称，比如：ro.product.model
+ * @param out  出参，该字符数组的最大长度不会超过 PROP_VALUE_MAX
+ * @return
+ */
+int getSystemProperty(char *propertyName, char *out) {
     if (0 == __system_property_get(propertyName, out)) {
         LOGI("getSystemProperties not find  %s", propertyName);
         return 0;
@@ -45,8 +56,13 @@ getSystemProperty(char *propertyName/*ro.product.model*/,
     return 1;
 }
 
-int findSystemProperty(char *propertyName/*ro,product.model*/,
-                       char *out /*MAX SIZE = PROP_VALUE_MAX*/) {
+/**
+ *
+ * @param propertyName 属性名称，比如：ro.product.model
+ * @param out  出参，该字符数组的最大长度不会超过 PROP_VALUE_MAX
+ * @return 成功或失败
+ */
+int findSystemProperty(char *propertyName/**/, char *out) {
     //__system_property_find用于搜索系统属性，返回值在系统声明周期内有效
     const prop_info *result = __system_property_find(propertyName);
     if (NULL == result) {
@@ -64,12 +80,17 @@ int findSystemProperty(char *propertyName/*ro,product.model*/,
     }
 }
 
-/*在Android系统中，app被当作用户看待*/
+/**
+ * 在Android系统中，app被当作用户看待
+ */
 int getUID() {
+
     //获取用户ID
     uid_t uid = getuid();
+
     //获取程序组ID
     gid_t gid = getgid();
+
     //获取用户名
     const char *login = getlogin();
 

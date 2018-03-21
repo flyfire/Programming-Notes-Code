@@ -2,6 +2,15 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <cstdio>
+#include <semaphore.h>
+
+
+void test(){
+    sem_t sem;
+    int pshared = 5;
+    sem_init(&sem, pshared, 3);
+
+}
 
 //线程参数
 struct NativeWorkerArgs {
