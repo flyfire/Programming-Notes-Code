@@ -16,7 +16,6 @@ class AsyncContext : AbstractCoroutineContextElement(ContinuationInterceptor), C
          *  协程上下文，而协程上下文还可以是多个上下文的组合，应该给予每一个上下文拦截continuation的机会
          *  所以调用continuation.context.fold方法遍历，在传入的闭包中让每一个ContinuationInterceptor对continuation进行拦截
          */
-
         return UiCotinuationWrapper(continuation.context.fold(continuation) { continuation, element ->
             if (element != this && element is ContinuationInterceptor) {
                 element.interceptContinuation(continuation)

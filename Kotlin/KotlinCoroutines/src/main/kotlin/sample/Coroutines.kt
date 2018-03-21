@@ -7,21 +7,26 @@ import kotlin.coroutines.experimental.suspendCoroutine
 
 
 fun 我要开始协程啦(context: CoroutineContext = EmptyCoroutineContext, block: suspend () -> Unit) {
-    block.startCoroutine(ContextContinuation(context + AsyncContext()))
+    val c = ContextContinuation(context + AsyncContext())
+    block.startCoroutine(c)
 }
 
-suspend fun <T> 我要开始耗时操作了(block: CoroutineContext.() -> T) = suspendCoroutine<T> { continuation ->
-    log("异步任务开始前")
+suspend fun <T> 我要开始耗时操作了(block: CoroutineContext.() -> T) =
+//暂停当前协程， 转而去调用black
+        suspendCoroutine<T> { continuation ->
 
-    AsyncTask {
-        try {
-            continuation.resume(block(continuation.context))
-        } catch (e: Exception) {
-            continuation.resumeWithException(e)
+            log("异步任务开始前")
+
+            AsyncTask {
+                try {
+                    //调用resume会把结果传回到上面挂起的协程中
+                    continuation.resume(block(continuation.context))
+                } catch (e: Exception) {
+                    continuation.resumeWithException(e)
+                }
+            }.execute()
+
         }
-    }.execute()
-
-}
 
 fun 我要开始加载图片啦(url: String): ByteArray {
     log("异步任务开始前")

@@ -68,7 +68,6 @@ public interface Continuation<in T> {
 ```kotlin
 public fun <R, T> (suspend R.() -> T).startCoroutine(receiver: R, completion: Continuation<T>)
 public fun <T> (suspend  () -> T).startCoroutine(completion: Continuation<T>) {}
-public inline suspend fun <T> suspendCoroutine(crossinline block: (Continuation<T>) -> Unit): T
 ```
 
 创建一个协程，这是一个**suspend函数**添加的扩展方法
@@ -141,12 +140,14 @@ isActive表示协程是否是活跃的(没有完成也没有被取消)，corouti
 
 所谓通用的协程构建器receiver，即协程运行block都以CoroutineScope为运行环境，**这是Kotlin中带接收者的函数字面值的应用**
 ，以下面函数为例：
+
 ```kotlin
 public fun launch( context: CoroutineContext,start: CoroutineStart = CoroutineStart.DEFAULT,block: suspend CoroutineScope.() -> Unit): Job {
      //......
     return coroutine
 }
 ```
+
 上面launch的block参数指定了receiver为CoroutineScope，所以在在block的运行就行在CoroutineScope内部一样，可以访问CoroutineScope的成员属性。
 
 
@@ -192,7 +193,7 @@ public interface Deferred<out T> : Job {
 ---
 ## 7 CommonPool
 
-CommonPool是一个协程调度器，适用于计算密集型任务。当[java.util.concurrent.ForkJoinPool] 可用时，内部会使用它允许异步任务。
+CommonPool是一个协程调度器，适用于计算密集型任务。当[java.util.concurrent.ForkJoinPool] 可用时，内部会使用它运行异步任务。
 
 ---
 ## 8 Scheduled & ThreadPoolDispatcher
