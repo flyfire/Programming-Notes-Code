@@ -10,7 +10,6 @@ void shell(const char *command);
 
 void shellPro(const char *command);
 
-/* MAX SIZE = PROP_VALUE_MAX */
 int getSystemProperty(char *propertyName, char *out);
 
 int getUID();

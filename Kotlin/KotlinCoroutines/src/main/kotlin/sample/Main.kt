@@ -21,18 +21,24 @@ fun main(args: Array<String>) {
     frame.isVisible = true
 
     frame.onButtonClick {
+
         log("协程之前")
 
+        //1 开启协程
         我要开始协程啦(DownloadContext(LOGO_URL)) {
 
             log("协程开始")
 
             try {
-                val imageData = 我要开始耗时操作了 {
+                //挂起协程，开启运行下面代码块
+                val imageData = 我要开始耗时操作了{
                     我要开始加载图片啦(this[DownloadContext]!!.url)
                 }
+
+                //协程恢复，其实是在doResume中执行
                 log("拿到图片")
                 frame.setLogo(imageData)
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }

@@ -4,7 +4,7 @@ Kotlin与java的交互： Kotlin 在设计时就考虑了Java 互操作性。
 可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以很顺利地调用 Kotlin 代码。
 
 ---
-## Kotlin中调用Java
+## 1 Kotlin中调用Java
 
 - 遵循 Java 约定的 getter 和 setter 的方法（名称以 get 开头的无参数方法和以 set 开头的单参数方法）在 Kotlin 中表示为属性。
 - 如果 Java 类只有一个 setter，它在 Kotlin 中不会作为属性可见，因为 Kotlin 目前不支持只写（set-only）属性。
@@ -19,17 +19,32 @@ Kotlin与java的交互： Kotlin 在设计时就考虑了Java 互操作性。
 - Java可变参数
 
 ---
-## Java中调用Kotlin
+## 2 Java中调用Kotlin
  
-- 属性
-- 包：在 `org.foo.bar` 包内的` example.kt `文件中声明的所有的函数和属性，包括扩展函数， 都编译成一个名为 `org.foo.bar.ExampleKt `的 Java 类的静态方法
-- 实例字段：`@JvmField`
-- 静态方法
-- 可见性
-- KClass
-- 用 `@JvmName `解决签名冲突
-- 生成重载
-- 受检异常
-- 空安全性
-- 型变的泛型
-- `Nothing` 类型翻译
+ ### null字段
+ 
+ - Nullable 注解
+ - NotNull 注解
+ 
+ ### 几个常用注解
+ 
+ - `@JvmField`属性便以为java字段
+ - `@JvmStatic`对象方法便以为静态方法
+ - `@JvmName `解决签名冲突
+ - `@JvmOverloads `默认参数方法编译为多个重载方法
+ 
+ ### 包级方法
+ 
+ - 包：在 `org.foo.bar` 包内的` example.kt `文件中声明的所有的函数和属性，包括扩展函数， 都编译成一个名为 `org.foo.bar.ExampleKt `的 Java 类的静态方法
+
+ ### NoArg和AllOpen插件
+ 
+ - NoArg为data class生成无参构造方法
+ - AllOpen为标注的类去掉final，允许被继承
+ 
+ ### SAM(single abstract method)转换
+ 
+- SAM转换条件：java单一方法接口
+- 注意转换之后的实例变化。
+
+
