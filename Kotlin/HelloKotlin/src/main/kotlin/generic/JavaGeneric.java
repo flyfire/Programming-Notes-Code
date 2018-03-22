@@ -54,6 +54,7 @@ public class JavaGeneric {
         List<? extends Number> list;
         List<Integer> managerList = new ArrayList<>();
         list = managerList;
+        //Java为了保护其类型一致，禁止向List<? extends Number>添加任意对象，null除外
         //list.add(new Float(2)); //编译错误
         managerList.add(new Integer(2));//ok
     }

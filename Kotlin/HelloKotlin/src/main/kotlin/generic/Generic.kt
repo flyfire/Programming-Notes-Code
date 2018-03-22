@@ -52,6 +52,8 @@ private val box2 = Box(1)
  *       in 和 out 两词是自解释的（因为它们已经在 C# 中成功使用很长时间了）
  *
  *       总结：out，输出，表示生产者；in，进入，表示消费者
+ *
+ *       可以看出Kotlin 抛弃了Java的extend和supuer，引用了生产者和消费者的概念
  */
 
 private abstract class Source<out T> {
