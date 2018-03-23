@@ -14,6 +14,10 @@ add_library(native-lib SHARED
 ${cpp_dir}/native-lib.cpp
 ${cpp_dir}/bionic-api.cpp
 ${cpp_dir}/threads-api.cpp
+${cpp_dir}/socket-api.cpp
+${cpp_dir}/tcp.cpp
+${cpp_dir}/udp.cpp
+${cpp_dir}/local-server.cpp
 )
 
 target_link_libraries(native-lib  ${log-lib})
