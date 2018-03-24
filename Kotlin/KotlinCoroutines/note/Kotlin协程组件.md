@@ -158,6 +158,8 @@ public fun launch( context: CoroutineContext,start: CoroutineStart = CoroutineSt
 
 ```kotlin
 //作为一个适配器，用于启动顶级主协程，运行一个新的协程并且阻塞当前线程直到协程执行完毕， 当前线程可中断。
+//该runBlocking函数不是用来当作普通协程函数使用的，它的设计主要是用来桥接普通阻塞代码和挂起风格的（suspending style）的非阻塞代码的, 
+// 例如用在 main 函数中，或者用于测试用例代码中。
 public fun <T> runBlocking(context: CoroutineContext = EmptyCoroutineContext, block: suspend CoroutineScope.() -> T): T {
     //......
     return coroutine.joinBlocking()
@@ -185,6 +187,7 @@ public fun <T> async(context: CoroutineContext,start: CoroutineStart = Coroutine
 }
 
 //由协程启动函数async创建并返回，其多一个await函数，当协程执行完毕，await方法会被调用并返回值(但并不是回调方式)
+//Job是协程创建的后台任务的概念，它持有该协程的引用。Job接口实际上继承自CoroutineContext类型。一个Job有如下三种状态：新建、活动中、结束
 public interface Deferred<out T> : Job {
    public suspend fun await(): T
 }
@@ -193,7 +196,10 @@ public interface Deferred<out T> : Job {
 ---
 ## 7 CommonPool
 
-CommonPool是一个协程调度器，适用于计算密集型任务。当[java.util.concurrent.ForkJoinPool] 可用时，内部会使用它运行异步任务。
+CommonPool是一个协程调度器，适用于计算密集型任务。。它首先尝试创建一个 java.util.concurrent.ForkJoinPool (ForkJoinPool是一个可以执行
+ForkJoinTask的ExcuteService，它采用了work-stealing模式：所有在池中的线程尝试去执行其他线程创建的子任务，这样很少有线程处于空闲状态，更加高效)，
+如果不可用，就使用 java.util.concurrent.Executors 来创建一个普通的线程池： `Executors.newFixedThreadPool` 。
+```
 
 ---
 ## 8 Scheduled & ThreadPoolDispatcher

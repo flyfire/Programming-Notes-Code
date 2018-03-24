@@ -1,8 +1,9 @@
-#include <jni.h>
-#include <stdint.h>
-
 #ifndef BIONICAPI_SOCKET_API_H
 #define BIONICAPI_SOCKET_API_H
+
+#include <jni.h>
+#include <stdint.h>
+#include "common.h"
 
 int AcceptOnSocket(JNIEnv *env, jobject obj, int sd);
 
@@ -22,10 +23,7 @@ ssize_t ReceiveFromSocket(JNIEnv *env, jobject obj, int sd, char *buffer, size_t
 
 ssize_t SendToSocket(JNIEnv *env, jobject obj, int sd, const char *buffer, size_t bufferSize);
 
-
 void ThrowErrnoException(JNIEnv *env, const char *className, int errnum);
-
-void ThrowException(JNIEnv *env, const char *className, const char *message);
 
 // Max log message length
 #define MAX_LOG_MESSAGE_LENGTH 256

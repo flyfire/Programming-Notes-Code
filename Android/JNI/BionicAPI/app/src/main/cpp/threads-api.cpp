@@ -1,4 +1,4 @@
-#include "com_ztiany_bionic_JniBridge.h"
+#include "JniBridge.h"
 #include <pthread.h>
 #include <unistd.h>
 #include <cstdio>

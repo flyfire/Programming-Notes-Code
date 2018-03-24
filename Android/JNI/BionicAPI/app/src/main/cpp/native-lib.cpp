@@ -1,4 +1,4 @@
-#include "com_ztiany_bionic_JniBridge.h"
+#include "JniBridge.h"
 #include <jni.h>
 #include <android/log.h>
 #include <sys/system_properties.h>

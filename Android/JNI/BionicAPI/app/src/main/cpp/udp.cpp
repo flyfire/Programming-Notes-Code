@@ -1,4 +1,4 @@
-#include "com_ztiany_bionic_JniBridge.h"
+#include "JniBridge.h"
 #include "socket-api.h"
 #include <jni.h>
 #include <stdio.h>

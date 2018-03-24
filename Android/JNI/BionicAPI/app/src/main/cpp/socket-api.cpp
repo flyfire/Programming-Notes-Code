@@ -51,15 +51,6 @@ void LogMessage(JNIEnv *env, jobject obj, const char *format, ...) {
     }
 }
 
-//Throws a new exception using the given exception classand exception message
-void ThrowException(JNIEnv *env, const char *className, const char *message) {
-    jclass clazz = env->FindClass(className);
-    if (NULL != clazz) {
-        env->ThrowNew(clazz, message);
-        env->DeleteLocalRef(clazz);
-    }
-}
-
 //Throws a new exception using the given exception class and error message based on the error number.
 void ThrowErrnoException(JNIEnv *env, const char *className, int errnum) {
     char buffer[MAX_LOG_MESSAGE_LENGTH];

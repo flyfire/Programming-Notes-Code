@@ -17,7 +17,8 @@ ${cpp_dir}/threads-api.cpp
 ${cpp_dir}/socket-api.cpp
 ${cpp_dir}/tcp.cpp
 ${cpp_dir}/udp.cpp
-${cpp_dir}/local-server.cpp
-)
+${cpp_dir}/common.cpp
+${cpp_dir}/local-server.cpp)
+
 
 target_link_libraries(native-lib  ${log-lib})
