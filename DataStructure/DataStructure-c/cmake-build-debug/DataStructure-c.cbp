@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CircleLinkedList.c">
+			<Option target="DataStructure-c"/>
+		</Unit>
+		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CircleLinkedList.h">
+			<Option target="DataStructure-c"/>
+		</Unit>
 		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CompaniesLinkedList.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
@@ -98,7 +104,25 @@
 		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/LinkedList.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
+		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/LinkedStack.c">
+			<Option target="DataStructure-c"/>
+		</Unit>
+		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/LinkedStack.h">
+			<Option target="DataStructure-c"/>
+		</Unit>
 		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/Main.c">
+			<Option target="DataStructure-c"/>
+		</Unit>
+		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/SeqQueue.c">
+			<Option target="DataStructure-c"/>
+		</Unit>
+		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/SeqQueue.h">
+			<Option target="DataStructure-c"/>
+		</Unit>
+		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/SeqStack.c">
+			<Option target="DataStructure-c"/>
+		</Unit>
+		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/SeqStack.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
 		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CMakeLists.txt">

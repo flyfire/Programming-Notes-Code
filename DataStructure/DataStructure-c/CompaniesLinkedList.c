@@ -61,7 +61,7 @@ void Remove_CLinkList(CLinkList *list, int pos) {
 }
 
 //查找
-int Find_CLinkList(CLinkList *list, CLinkNode *data, COMPARENODE compare) {
+int Find_CLinkList(CLinkList *list, CLinkNode *data, COMPARE_CNODE compare) {
     if (list == NULL) {
         return -1;
     }
@@ -92,7 +92,7 @@ int Size_CLinkList(CLinkList *list) {
 }
 
 //打印
-void Print_CLinkList(CLinkList *list, PRINTNODE print) {
+void Print_CLinkList(CLinkList *list, PRINT_CNODE print) {
     if (list == NULL) {
         return;
     }

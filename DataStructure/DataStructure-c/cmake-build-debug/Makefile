@@ -122,6 +122,33 @@ DataStructure-c/fast:
 	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/build
 .PHONY : DataStructure-c/fast
 
+CircleLinkedList.obj: CircleLinkedList.c.obj
+
+.PHONY : CircleLinkedList.obj
+
+# target to build an object file
+CircleLinkedList.c.obj:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CircleLinkedList.c.obj
+.PHONY : CircleLinkedList.c.obj
+
+CircleLinkedList.i: CircleLinkedList.c.i
+
+.PHONY : CircleLinkedList.i
+
+# target to preprocess a source file
+CircleLinkedList.c.i:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CircleLinkedList.c.i
+.PHONY : CircleLinkedList.c.i
+
+CircleLinkedList.s: CircleLinkedList.c.s
+
+.PHONY : CircleLinkedList.s
+
+# target to generate assembly for a file
+CircleLinkedList.c.s:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CircleLinkedList.c.s
+.PHONY : CircleLinkedList.c.s
+
 CompaniesLinkedList.obj: CompaniesLinkedList.c.obj
 
 .PHONY : CompaniesLinkedList.obj
@@ -203,6 +230,33 @@ LinkedList.c.s:
 	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedList.c.s
 .PHONY : LinkedList.c.s
 
+LinkedStack.obj: LinkedStack.c.obj
+
+.PHONY : LinkedStack.obj
+
+# target to build an object file
+LinkedStack.c.obj:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedStack.c.obj
+.PHONY : LinkedStack.c.obj
+
+LinkedStack.i: LinkedStack.c.i
+
+.PHONY : LinkedStack.i
+
+# target to preprocess a source file
+LinkedStack.c.i:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedStack.c.i
+.PHONY : LinkedStack.c.i
+
+LinkedStack.s: LinkedStack.c.s
+
+.PHONY : LinkedStack.s
+
+# target to generate assembly for a file
+LinkedStack.c.s:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedStack.c.s
+.PHONY : LinkedStack.c.s
+
 Main.obj: Main.c.obj
 
 .PHONY : Main.obj
@@ -230,6 +284,60 @@ Main.c.s:
 	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/Main.c.s
 .PHONY : Main.c.s
 
+SeqQueue.obj: SeqQueue.c.obj
+
+.PHONY : SeqQueue.obj
+
+# target to build an object file
+SeqQueue.c.obj:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqQueue.c.obj
+.PHONY : SeqQueue.c.obj
+
+SeqQueue.i: SeqQueue.c.i
+
+.PHONY : SeqQueue.i
+
+# target to preprocess a source file
+SeqQueue.c.i:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqQueue.c.i
+.PHONY : SeqQueue.c.i
+
+SeqQueue.s: SeqQueue.c.s
+
+.PHONY : SeqQueue.s
+
+# target to generate assembly for a file
+SeqQueue.c.s:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqQueue.c.s
+.PHONY : SeqQueue.c.s
+
+SeqStack.obj: SeqStack.c.obj
+
+.PHONY : SeqStack.obj
+
+# target to build an object file
+SeqStack.c.obj:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqStack.c.obj
+.PHONY : SeqStack.c.obj
+
+SeqStack.i: SeqStack.c.i
+
+.PHONY : SeqStack.i
+
+# target to preprocess a source file
+SeqStack.c.i:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqStack.c.i
+.PHONY : SeqStack.c.i
+
+SeqStack.s: SeqStack.c.s
+
+.PHONY : SeqStack.s
+
+# target to generate assembly for a file
+SeqStack.c.s:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqStack.c.s
+.PHONY : SeqStack.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -239,6 +347,9 @@ help:
 	@echo ... DataStructure-c
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... CircleLinkedList.obj
+	@echo ... CircleLinkedList.i
+	@echo ... CircleLinkedList.s
 	@echo ... CompaniesLinkedList.obj
 	@echo ... CompaniesLinkedList.i
 	@echo ... CompaniesLinkedList.s
@@ -248,9 +359,18 @@ help:
 	@echo ... LinkedList.obj
 	@echo ... LinkedList.i
 	@echo ... LinkedList.s
+	@echo ... LinkedStack.obj
+	@echo ... LinkedStack.i
+	@echo ... LinkedStack.s
 	@echo ... Main.obj
 	@echo ... Main.i
 	@echo ... Main.s
+	@echo ... SeqQueue.obj
+	@echo ... SeqQueue.i
+	@echo ... SeqQueue.s
+	@echo ... SeqStack.obj
+	@echo ... SeqStack.i
+	@echo ... SeqStack.s
 .PHONY : help
 
 

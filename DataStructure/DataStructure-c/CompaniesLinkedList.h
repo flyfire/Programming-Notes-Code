@@ -17,10 +17,10 @@ typedef struct CLinkListTag {
 } CLinkList;
 
 //遍历函数指针
-typedef void(*PRINTNODE)(CLinkNode *);
+typedef void(*PRINT_CNODE)(CLinkNode *);
 
 //比较函数指针
-typedef int(*COMPARENODE)(CLinkNode *, CLinkNode *);
+typedef int(*COMPARE_CNODE)(CLinkNode *, CLinkNode *);
 
 //初始化链表
 CLinkList *Init_CLinkList();
@@ -32,13 +32,13 @@ void Insert_CLinkList(CLinkList *list, int pos, CLinkNode *data);
 void Remove_CLinkList(CLinkList *list, int pos);
 
 //查找
-int Find_CLinkList(CLinkList *list, CLinkNode *data, COMPARENODE compare);
+int Find_CLinkList(CLinkList *list, CLinkNode *data, COMPARE_CNODE compare);
 
 //返回链表大小
 int Size_CLinkList(CLinkList *list);
 
 //打印
-void Print_CLinkList(CLinkList *list, PRINTNODE print);
+void Print_CLinkList(CLinkList *list, PRINT_CNODE print);
 
 //释放链表内存
 void FreeSpace_CLinkList(CLinkList *list);

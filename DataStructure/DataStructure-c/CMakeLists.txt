@@ -8,6 +8,11 @@ set(SOURCE_FILES
         DynamicArray.c
         LinkedList.c
         CompaniesLinkedList.c
-        Main.c)
+        SeqStack.c
+        LinkedStack.c
+        SeqQueue.c
+        CircleLinkedList.c
+        Main.c
+        )
 
 add_executable(DataStructure-c ${SOURCE_FILES})
