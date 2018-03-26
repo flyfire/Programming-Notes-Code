@@ -1,8 +1,8 @@
-# Install script for directory: H:/codes/my_github/Programming/DataStructure/DataStructure-c
+# Install script for directory: E:/code/studio/my_github/Repository/DataStructure/DataStructure-c
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/DataStructure")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/DataStructure-c")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -8,124 +8,124 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug"/>
+				<Option working_dir="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="DataStructure-c">
-				<Option output="H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/DataStructure-c.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug"/>
+				<Option output="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/DataStructure-c.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/backward"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include-fixed"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include-fixed"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 DataStructure-c"/>
-					<CompileFile command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 DataStructure-c"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="DataStructure-c/fast">
-				<Option output="H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/DataStructure-c.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug"/>
+				<Option output="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/DataStructure-c.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/backward"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include-fixed"/>
-					<Add directory="H:/dev_tools/MinGW-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/include-fixed"/>
+					<Add directory="D:/DevTools/MinGw-64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.3.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 DataStructure-c/fast"/>
-					<CompileFile command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 DataStructure-c/fast"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug"/>
+				<Option working_dir="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug"/>
+				<Option working_dir="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="H:/dev_tools/MinGW-64/mingw64/bin/mingw32-make.exe -f &quot;H:/codes/my_github/Programming/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/DevTools/MinGw-64/mingw64/bin/mingw32-make.exe -f &quot;E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CircleLinkedList.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CircleLinkedList.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CircleLinkedList.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CircleLinkedList.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CompaniesLinkedList.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CompaniesLinkedList.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CompaniesLinkedList.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CompaniesLinkedList.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/DynamicArray.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/DynamicArray.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/DynamicArray.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/DynamicArray.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/LinkedList.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/LinkedList.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/LinkedList.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/LinkedList.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/LinkedStack.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/LinkedStack.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/LinkedStack.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/LinkedStack.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/Main.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/Main.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/SeqQueue.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/SeqQueue.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/SeqQueue.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/SeqQueue.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/SeqStack.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/SeqStack.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/SeqStack.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/SeqStack.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="H:/codes/my_github/Programming/DataStructure/DataStructure-c/CMakeLists.txt">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

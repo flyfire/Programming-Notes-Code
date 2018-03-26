@@ -4,15 +4,19 @@ project(DataStructure-c)
 set(CMAKE_C_STANDARD 99)
 
 
+#[[set(SOURCE_FILES
+        linear-list/DynamicArray.c
+        linear-list/LinkedList.c
+        linear-list/CompaniesLinkedList.c
+        linear-list/SeqStack.c
+        linear-list/LinkedStack.c
+        linear-list/SeqQueue.c
+        linear-list/CircleLinkedList.c
+        linear-list/Main.c
+        )]]
+
 set(SOURCE_FILES
-        DynamicArray.c
-        LinkedList.c
-        CompaniesLinkedList.c
-        SeqStack.c
-        LinkedStack.c
-        SeqQueue.c
-        CircleLinkedList.c
-        Main.c
+        tree/
         )
 
 add_executable(DataStructure-c ${SOURCE_FILES})
