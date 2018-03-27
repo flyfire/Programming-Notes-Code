@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define  MAX 20000
+#define  MAX 100
 
 long getSystemTime() {
     struct timeb tb;
@@ -97,6 +97,41 @@ void insertSort(int *arr, int size) {
     printf("insertSort count %d use time: %ld \n", size, (getSystemTime() - start));
 }
 
+/**希尔排序，对数据进行分段，然后每段运用插入排序*/
+void shellSort(int *arr, int size) {
+    long start = getSystemTime();
+
+    int step = size;
+    int i, j, k;
+
+    do {
+        step = step / 3 + 1;
+        //分成step组，每组遍历
+
+        for (i = 0; i < step; i++) {
+            printf("step = %d \n", step);
+            for (j = i + step; j < size; j += step) {
+
+                if (arr[j] < arr[j - step]) {
+
+                    int temp = arr[j];
+                    for (k = j - step; k >= 0 && temp < arr[k]; k -= step) {
+                        arr[k + step] = arr[k];
+                    }
+
+                    arr[k + step] = temp;
+                }
+
+            }
+
+        }
+
+    } while (step > 1);
+
+
+    printf("shellSort count %d use time: %ld \n", size, (getSystemTime() - start));
+
+}
 
 int main() {
 
@@ -108,7 +143,8 @@ int main() {
 
 //    bubbleSort(arr, MAX);
 //    selectSort(arr, MAX);
-    insertSort(arr, MAX);
+//    insertSort(arr, MAX);
+    shellSort(arr, MAX);
 //    printArray(arr, MAX);
 
     return EXIT_SUCCESS;
