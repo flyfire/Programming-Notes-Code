@@ -15,9 +15,14 @@ set(CMAKE_C_STANDARD 99)
         linearList/Main.c
         )]]
 
-set(SOURCE_FILES
+#二叉树
+#[[set(SOURCE_FILES
         linearList/LinkedStack.c
         tree/BinaryTree.c
-        )
+        )]]
+
+#排序
+
+set(SOURCE_FILES sort/Main.c)
 
 add_executable(DataStructure-c ${SOURCE_FILES})

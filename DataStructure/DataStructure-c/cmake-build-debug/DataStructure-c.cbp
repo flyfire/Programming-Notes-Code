@@ -80,13 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.c">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.h">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/tree/BinaryTree.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/sort/Main.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
 		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CMakeLists.txt">

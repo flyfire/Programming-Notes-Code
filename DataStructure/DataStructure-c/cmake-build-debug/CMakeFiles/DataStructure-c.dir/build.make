@@ -56,69 +56,43 @@ include CMakeFiles/DataStructure-c.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DataStructure-c.dir/flags.make
 
-CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj: CMakeFiles/DataStructure-c.dir/flags.make
-CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj: ../linearList/LinkedStack.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj"
-	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\DataStructure-c.dir\linearList\LinkedStack.c.obj   -c E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\linearList\LinkedStack.c
+CMakeFiles/DataStructure-c.dir/sort/Main.c.obj: CMakeFiles/DataStructure-c.dir/flags.make
+CMakeFiles/DataStructure-c.dir/sort/Main.c.obj: ../sort/Main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/DataStructure-c.dir/sort/Main.c.obj"
+	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\DataStructure-c.dir\sort\Main.c.obj   -c E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\sort\Main.c
 
-CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.i"
-	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\linearList\LinkedStack.c > CMakeFiles\DataStructure-c.dir\linearList\LinkedStack.c.i
+CMakeFiles/DataStructure-c.dir/sort/Main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DataStructure-c.dir/sort/Main.c.i"
+	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\sort\Main.c > CMakeFiles\DataStructure-c.dir\sort\Main.c.i
 
-CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.s"
-	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\linearList\LinkedStack.c -o CMakeFiles\DataStructure-c.dir\linearList\LinkedStack.c.s
+CMakeFiles/DataStructure-c.dir/sort/Main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DataStructure-c.dir/sort/Main.c.s"
+	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\sort\Main.c -o CMakeFiles\DataStructure-c.dir\sort\Main.c.s
 
-CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj.requires:
+CMakeFiles/DataStructure-c.dir/sort/Main.c.obj.requires:
 
-.PHONY : CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj.requires
+.PHONY : CMakeFiles/DataStructure-c.dir/sort/Main.c.obj.requires
 
-CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj.provides: CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj.requires
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj.provides.build
-.PHONY : CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj.provides
+CMakeFiles/DataStructure-c.dir/sort/Main.c.obj.provides: CMakeFiles/DataStructure-c.dir/sort/Main.c.obj.requires
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/sort/Main.c.obj.provides.build
+.PHONY : CMakeFiles/DataStructure-c.dir/sort/Main.c.obj.provides
 
-CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj.provides.build: CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj
-
-
-CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj: CMakeFiles/DataStructure-c.dir/flags.make
-CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj: ../tree/BinaryTree.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj"
-	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\DataStructure-c.dir\tree\BinaryTree.c.obj   -c E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\tree\BinaryTree.c
-
-CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.i"
-	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\tree\BinaryTree.c > CMakeFiles\DataStructure-c.dir\tree\BinaryTree.c.i
-
-CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.s"
-	D:\DevTools\MinGw-64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\tree\BinaryTree.c -o CMakeFiles\DataStructure-c.dir\tree\BinaryTree.c.s
-
-CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj.requires:
-
-.PHONY : CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj.requires
-
-CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj.provides: CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj.requires
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj.provides.build
-.PHONY : CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj.provides
-
-CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj.provides.build: CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj
+CMakeFiles/DataStructure-c.dir/sort/Main.c.obj.provides.build: CMakeFiles/DataStructure-c.dir/sort/Main.c.obj
 
 
 # Object files for target DataStructure-c
 DataStructure__c_OBJECTS = \
-"CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj" \
-"CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj"
+"CMakeFiles/DataStructure-c.dir/sort/Main.c.obj"
 
 # External object files for target DataStructure-c
 DataStructure__c_EXTERNAL_OBJECTS =
 
-DataStructure-c.exe: CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj
-DataStructure-c.exe: CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj
+DataStructure-c.exe: CMakeFiles/DataStructure-c.dir/sort/Main.c.obj
 DataStructure-c.exe: CMakeFiles/DataStructure-c.dir/build.make
 DataStructure-c.exe: CMakeFiles/DataStructure-c.dir/linklibs.rsp
 DataStructure-c.exe: CMakeFiles/DataStructure-c.dir/objects1.rsp
 DataStructure-c.exe: CMakeFiles/DataStructure-c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable DataStructure-c.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\code\studio\my_github\Repository\DataStructure\DataStructure-c\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable DataStructure-c.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\DataStructure-c.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -126,8 +100,7 @@ CMakeFiles/DataStructure-c.dir/build: DataStructure-c.exe
 
 .PHONY : CMakeFiles/DataStructure-c.dir/build
 
-CMakeFiles/DataStructure-c.dir/requires: CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj.requires
-CMakeFiles/DataStructure-c.dir/requires: CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj.requires
+CMakeFiles/DataStructure-c.dir/requires: CMakeFiles/DataStructure-c.dir/sort/Main.c.obj.requires
 
 .PHONY : CMakeFiles/DataStructure-c.dir/requires
 

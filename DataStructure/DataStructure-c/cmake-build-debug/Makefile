@@ -122,59 +122,32 @@ DataStructure-c/fast:
 	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/build
 .PHONY : DataStructure-c/fast
 
-linearList/LinkedStack.obj: linearList/LinkedStack.c.obj
+sort/Main.obj: sort/Main.c.obj
 
-.PHONY : linearList/LinkedStack.obj
-
-# target to build an object file
-linearList/LinkedStack.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj
-.PHONY : linearList/LinkedStack.c.obj
-
-linearList/LinkedStack.i: linearList/LinkedStack.c.i
-
-.PHONY : linearList/LinkedStack.i
-
-# target to preprocess a source file
-linearList/LinkedStack.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.i
-.PHONY : linearList/LinkedStack.c.i
-
-linearList/LinkedStack.s: linearList/LinkedStack.c.s
-
-.PHONY : linearList/LinkedStack.s
-
-# target to generate assembly for a file
-linearList/LinkedStack.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.s
-.PHONY : linearList/LinkedStack.c.s
-
-tree/BinaryTree.obj: tree/BinaryTree.c.obj
-
-.PHONY : tree/BinaryTree.obj
+.PHONY : sort/Main.obj
 
 # target to build an object file
-tree/BinaryTree.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj
-.PHONY : tree/BinaryTree.c.obj
+sort/Main.c.obj:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/sort/Main.c.obj
+.PHONY : sort/Main.c.obj
 
-tree/BinaryTree.i: tree/BinaryTree.c.i
+sort/Main.i: sort/Main.c.i
 
-.PHONY : tree/BinaryTree.i
+.PHONY : sort/Main.i
 
 # target to preprocess a source file
-tree/BinaryTree.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.i
-.PHONY : tree/BinaryTree.c.i
+sort/Main.c.i:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/sort/Main.c.i
+.PHONY : sort/Main.c.i
 
-tree/BinaryTree.s: tree/BinaryTree.c.s
+sort/Main.s: sort/Main.c.s
 
-.PHONY : tree/BinaryTree.s
+.PHONY : sort/Main.s
 
 # target to generate assembly for a file
-tree/BinaryTree.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.s
-.PHONY : tree/BinaryTree.c.s
+sort/Main.c.s:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/sort/Main.c.s
+.PHONY : sort/Main.c.s
 
 # Help Target
 help:
@@ -185,12 +158,9 @@ help:
 	@echo ... DataStructure-c
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... linearList/LinkedStack.obj
-	@echo ... linearList/LinkedStack.i
-	@echo ... linearList/LinkedStack.s
-	@echo ... tree/BinaryTree.obj
-	@echo ... tree/BinaryTree.i
-	@echo ... tree/BinaryTree.s
+	@echo ... sort/Main.obj
+	@echo ... sort/Main.i
+	@echo ... sort/Main.s
 .PHONY : help
 
 

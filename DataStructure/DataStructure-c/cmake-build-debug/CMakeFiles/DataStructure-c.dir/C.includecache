@@ -6,21 +6,11 @@
 
 #IncludeRegexTransform: 
 
-E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.c
-LinkedStack.h
-E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.h
-
-E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.h
-stdlib.h
--
+E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/sort/Main.c
 stdio.h
 -
-
-E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/tree/BinaryTree.c
 stdlib.h
 -
-stdio.h
+time.h
 -
-../linearList/LinkedStack.h
-E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.h
 

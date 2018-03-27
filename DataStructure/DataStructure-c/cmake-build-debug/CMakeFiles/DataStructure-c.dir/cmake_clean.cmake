@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj"
-  "CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj"
+  "CMakeFiles/DataStructure-c.dir/sort/Main.c.obj"
   "DataStructure-c.pdb"
   "DataStructure-c.exe"
   "DataStructure-c.exe.manifest"

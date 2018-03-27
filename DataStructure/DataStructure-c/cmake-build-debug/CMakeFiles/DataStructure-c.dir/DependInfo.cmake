@@ -4,8 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.c" "E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj"
-  "E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/tree/BinaryTree.c" "E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj"
+  "E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/sort/Main.c" "E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/cmake-build-debug/CMakeFiles/DataStructure-c.dir/sort/Main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
