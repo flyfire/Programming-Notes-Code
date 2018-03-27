@@ -80,49 +80,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CircleLinkedList.c">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CircleLinkedList.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.h">
 			<Option target="DataStructure-c"/>
 		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CompaniesLinkedList.c">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CompaniesLinkedList.h">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/DynamicArray.c">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/DynamicArray.h">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/LinkedList.c">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/LinkedList.h">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/LinkedStack.c">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/LinkedStack.h">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/Main.c">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/SeqQueue.c">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/SeqQueue.h">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/SeqStack.c">
-			<Option target="DataStructure-c"/>
-		</Unit>
-		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/SeqStack.h">
+		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/tree/BinaryTree.c">
 			<Option target="DataStructure-c"/>
 		</Unit>
 		<Unit filename="E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/CMakeLists.txt">

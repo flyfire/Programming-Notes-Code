@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.c
+LinkedStack.h
+E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.h
+
+E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.h
+stdlib.h
+-
+stdio.h
+-
+
+E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/tree/BinaryTree.c
+stdlib.h
+-
+stdio.h
+-
+../linearList/LinkedStack.h
+E:/code/studio/my_github/Repository/DataStructure/DataStructure-c/linearList/LinkedStack.h
+

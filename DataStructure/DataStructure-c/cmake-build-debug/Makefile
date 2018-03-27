@@ -122,221 +122,59 @@ DataStructure-c/fast:
 	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/build
 .PHONY : DataStructure-c/fast
 
-CircleLinkedList.obj: CircleLinkedList.c.obj
+linearList/LinkedStack.obj: linearList/LinkedStack.c.obj
 
-.PHONY : CircleLinkedList.obj
-
-# target to build an object file
-CircleLinkedList.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CircleLinkedList.c.obj
-.PHONY : CircleLinkedList.c.obj
-
-CircleLinkedList.i: CircleLinkedList.c.i
-
-.PHONY : CircleLinkedList.i
-
-# target to preprocess a source file
-CircleLinkedList.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CircleLinkedList.c.i
-.PHONY : CircleLinkedList.c.i
-
-CircleLinkedList.s: CircleLinkedList.c.s
-
-.PHONY : CircleLinkedList.s
-
-# target to generate assembly for a file
-CircleLinkedList.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CircleLinkedList.c.s
-.PHONY : CircleLinkedList.c.s
-
-CompaniesLinkedList.obj: CompaniesLinkedList.c.obj
-
-.PHONY : CompaniesLinkedList.obj
+.PHONY : linearList/LinkedStack.obj
 
 # target to build an object file
-CompaniesLinkedList.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CompaniesLinkedList.c.obj
-.PHONY : CompaniesLinkedList.c.obj
+linearList/LinkedStack.c.obj:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.obj
+.PHONY : linearList/LinkedStack.c.obj
 
-CompaniesLinkedList.i: CompaniesLinkedList.c.i
+linearList/LinkedStack.i: linearList/LinkedStack.c.i
 
-.PHONY : CompaniesLinkedList.i
+.PHONY : linearList/LinkedStack.i
 
 # target to preprocess a source file
-CompaniesLinkedList.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CompaniesLinkedList.c.i
-.PHONY : CompaniesLinkedList.c.i
+linearList/LinkedStack.c.i:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.i
+.PHONY : linearList/LinkedStack.c.i
 
-CompaniesLinkedList.s: CompaniesLinkedList.c.s
+linearList/LinkedStack.s: linearList/LinkedStack.c.s
 
-.PHONY : CompaniesLinkedList.s
+.PHONY : linearList/LinkedStack.s
 
 # target to generate assembly for a file
-CompaniesLinkedList.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/CompaniesLinkedList.c.s
-.PHONY : CompaniesLinkedList.c.s
+linearList/LinkedStack.c.s:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/linearList/LinkedStack.c.s
+.PHONY : linearList/LinkedStack.c.s
 
-DynamicArray.obj: DynamicArray.c.obj
+tree/BinaryTree.obj: tree/BinaryTree.c.obj
 
-.PHONY : DynamicArray.obj
+.PHONY : tree/BinaryTree.obj
 
 # target to build an object file
-DynamicArray.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/DynamicArray.c.obj
-.PHONY : DynamicArray.c.obj
+tree/BinaryTree.c.obj:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.obj
+.PHONY : tree/BinaryTree.c.obj
 
-DynamicArray.i: DynamicArray.c.i
+tree/BinaryTree.i: tree/BinaryTree.c.i
 
-.PHONY : DynamicArray.i
-
-# target to preprocess a source file
-DynamicArray.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/DynamicArray.c.i
-.PHONY : DynamicArray.c.i
-
-DynamicArray.s: DynamicArray.c.s
-
-.PHONY : DynamicArray.s
-
-# target to generate assembly for a file
-DynamicArray.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/DynamicArray.c.s
-.PHONY : DynamicArray.c.s
-
-LinkedList.obj: LinkedList.c.obj
-
-.PHONY : LinkedList.obj
-
-# target to build an object file
-LinkedList.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedList.c.obj
-.PHONY : LinkedList.c.obj
-
-LinkedList.i: LinkedList.c.i
-
-.PHONY : LinkedList.i
+.PHONY : tree/BinaryTree.i
 
 # target to preprocess a source file
-LinkedList.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedList.c.i
-.PHONY : LinkedList.c.i
+tree/BinaryTree.c.i:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.i
+.PHONY : tree/BinaryTree.c.i
 
-LinkedList.s: LinkedList.c.s
+tree/BinaryTree.s: tree/BinaryTree.c.s
 
-.PHONY : LinkedList.s
-
-# target to generate assembly for a file
-LinkedList.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedList.c.s
-.PHONY : LinkedList.c.s
-
-LinkedStack.obj: LinkedStack.c.obj
-
-.PHONY : LinkedStack.obj
-
-# target to build an object file
-LinkedStack.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedStack.c.obj
-.PHONY : LinkedStack.c.obj
-
-LinkedStack.i: LinkedStack.c.i
-
-.PHONY : LinkedStack.i
-
-# target to preprocess a source file
-LinkedStack.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedStack.c.i
-.PHONY : LinkedStack.c.i
-
-LinkedStack.s: LinkedStack.c.s
-
-.PHONY : LinkedStack.s
+.PHONY : tree/BinaryTree.s
 
 # target to generate assembly for a file
-LinkedStack.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/LinkedStack.c.s
-.PHONY : LinkedStack.c.s
-
-Main.obj: Main.c.obj
-
-.PHONY : Main.obj
-
-# target to build an object file
-Main.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/Main.c.obj
-.PHONY : Main.c.obj
-
-Main.i: Main.c.i
-
-.PHONY : Main.i
-
-# target to preprocess a source file
-Main.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/Main.c.i
-.PHONY : Main.c.i
-
-Main.s: Main.c.s
-
-.PHONY : Main.s
-
-# target to generate assembly for a file
-Main.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/Main.c.s
-.PHONY : Main.c.s
-
-SeqQueue.obj: SeqQueue.c.obj
-
-.PHONY : SeqQueue.obj
-
-# target to build an object file
-SeqQueue.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqQueue.c.obj
-.PHONY : SeqQueue.c.obj
-
-SeqQueue.i: SeqQueue.c.i
-
-.PHONY : SeqQueue.i
-
-# target to preprocess a source file
-SeqQueue.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqQueue.c.i
-.PHONY : SeqQueue.c.i
-
-SeqQueue.s: SeqQueue.c.s
-
-.PHONY : SeqQueue.s
-
-# target to generate assembly for a file
-SeqQueue.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqQueue.c.s
-.PHONY : SeqQueue.c.s
-
-SeqStack.obj: SeqStack.c.obj
-
-.PHONY : SeqStack.obj
-
-# target to build an object file
-SeqStack.c.obj:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqStack.c.obj
-.PHONY : SeqStack.c.obj
-
-SeqStack.i: SeqStack.c.i
-
-.PHONY : SeqStack.i
-
-# target to preprocess a source file
-SeqStack.c.i:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqStack.c.i
-.PHONY : SeqStack.c.i
-
-SeqStack.s: SeqStack.c.s
-
-.PHONY : SeqStack.s
-
-# target to generate assembly for a file
-SeqStack.c.s:
-	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/SeqStack.c.s
-.PHONY : SeqStack.c.s
+tree/BinaryTree.c.s:
+	$(MAKE) -f CMakeFiles\DataStructure-c.dir\build.make CMakeFiles/DataStructure-c.dir/tree/BinaryTree.c.s
+.PHONY : tree/BinaryTree.c.s
 
 # Help Target
 help:
@@ -347,30 +185,12 @@ help:
 	@echo ... DataStructure-c
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... CircleLinkedList.obj
-	@echo ... CircleLinkedList.i
-	@echo ... CircleLinkedList.s
-	@echo ... CompaniesLinkedList.obj
-	@echo ... CompaniesLinkedList.i
-	@echo ... CompaniesLinkedList.s
-	@echo ... DynamicArray.obj
-	@echo ... DynamicArray.i
-	@echo ... DynamicArray.s
-	@echo ... LinkedList.obj
-	@echo ... LinkedList.i
-	@echo ... LinkedList.s
-	@echo ... LinkedStack.obj
-	@echo ... LinkedStack.i
-	@echo ... LinkedStack.s
-	@echo ... Main.obj
-	@echo ... Main.i
-	@echo ... Main.s
-	@echo ... SeqQueue.obj
-	@echo ... SeqQueue.i
-	@echo ... SeqQueue.s
-	@echo ... SeqStack.obj
-	@echo ... SeqStack.i
-	@echo ... SeqStack.s
+	@echo ... linearList/LinkedStack.obj
+	@echo ... linearList/LinkedStack.i
+	@echo ... linearList/LinkedStack.s
+	@echo ... tree/BinaryTree.obj
+	@echo ... tree/BinaryTree.i
+	@echo ... tree/BinaryTree.s
 .PHONY : help
 
 
