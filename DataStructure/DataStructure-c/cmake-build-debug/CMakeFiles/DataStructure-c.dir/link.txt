@@ -1,3 +1,0 @@
-"E:\DevTools\CLion 2017.2.3\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\DataStructure-c.dir/objects.a
-D:\DevTools\MinGw-64\mingw64\bin\ar.exe cr CMakeFiles\DataStructure-c.dir/objects.a @CMakeFiles\DataStructure-c.dir\objects1.rsp
-D:\DevTools\MinGw-64\mingw64\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\DataStructure-c.dir/objects.a -Wl,--no-whole-archive  -o DataStructure-c.exe -Wl,--out-implib,libDataStructure-c.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\DataStructure-c.dir\linklibs.rsp
