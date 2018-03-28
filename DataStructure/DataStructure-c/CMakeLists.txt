@@ -22,7 +22,6 @@ set(CMAKE_C_STANDARD 99)
         )]]
 
 #排序
-
 set(SOURCE_FILES sort/Main.c)
 
 add_executable(DataStructure-c ${SOURCE_FILES})
