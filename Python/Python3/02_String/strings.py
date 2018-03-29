@@ -18,6 +18,9 @@ str6 = "3424234 '234234'----"
 str7 = 'hello\
 world'
 
+print("str5 = %s" % str5)
+print("str7 = %s" % str7)
+
 # 字符串运算
 str8 = str2 * 3
 str9 = str1 + str2
@@ -30,6 +33,7 @@ for s in str1:
 
 # 通过下标访问
 print(str1[0])
+print("type str[x] = %s" % type(str1[0]))
 
 # 通过下标获取的还是字符串
 print(type(str1[1]))
@@ -39,4 +43,4 @@ print(str1[1:4])
 print(str1[0:8:2])  # 2表示步长
 
 # 原始(非转义)字符串,语法R
-print(R"\n")
+print("使用R表示原始字符串 = %s" % R"\n")

@@ -1,13 +1,15 @@
 #########################
-# 演示python中的模块
+# 演示python中的模块导入
 #########################
+
 import math  # 导入模块
 from calendar import calendar  # 导入模块的一部分
 from time import *  # 导入模块内部所有元素
+import package.module_a
 
-print(time())
-print(calendar)
-print(math.fabs(-1))
+print("time() = %s" % time())
+print("calendar = ", calendar)
+print("math.fabs(-1) = %s" % math.fabs(-1))
 
 # 全局遍历与局部遍历
 a = 3

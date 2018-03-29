@@ -15,7 +15,7 @@ chars = ['a', 'b', 'c', 'd']
 for i, ch in enumerate(chars):
     print(i, ch)
 
-
+# 插入操作
 listA.append(11)  # 添加到末尾
 listA.insert(len(listA), 12)  # 插入
 

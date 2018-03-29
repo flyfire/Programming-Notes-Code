@@ -9,6 +9,11 @@
 
 
 ---
+## Python
+
+- [Python3](Python/Python3/README.md)
+
+---
 ## Kotlin
 
 - [Kotlin基础](Kotlin/HelloKotlin/README.md)

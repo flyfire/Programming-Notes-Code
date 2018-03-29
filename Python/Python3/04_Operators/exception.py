@@ -5,8 +5,9 @@
 # 一般的捕获异常
 try:
     a = 3 / 0
-except ZeroDivisionError:  # 指定要捕获的异常
+except ZeroDivisionError as error:  # 指定要捕获的异常
     a = 0
+    print("error = %s" % error)
 else:  # 没有发生异常时运行
     print("a=%d" % a)
 finally:  # 始终运行

@@ -18,7 +18,7 @@ elif inputName != name or password != inputPwd:
 else:
     print("欢迎回来")
 
-# while 语句 打印九九乘法表
+# while 语句 打印九九乘法表，while后面可以加else语句，表示while条件不满足时执行
 startRow = 1
 startColumn = 1
 while startRow <= 9:
@@ -34,3 +34,6 @@ for x in "abc":
     print(x)
 else:
     print("end")
+
+for x in range(1, 100):
+    print(x, end="")
