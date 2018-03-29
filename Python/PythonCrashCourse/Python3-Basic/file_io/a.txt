@@ -1,7 +1,0 @@
-在python，使用open函数，可以打开一个已经存在的文件，或者创建一个新文件open(文件名，访问模式)示例如下：
-
- f = open('test.txt', 'w')
-
-
-
-Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入Python 写入

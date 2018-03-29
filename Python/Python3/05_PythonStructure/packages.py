@@ -5,10 +5,14 @@
 import math  # 导入模块
 from calendar import calendar  # 导入模块的一部分
 from time import *  # 导入模块内部所有元素
-import package.module_a
+
+import pkg.module_a as ma
+import pkg.module_b as mb
 
 print("time() = %s" % time())
 print("calendar = ", calendar)
+print("module_a = ", ma.ma_a)
+print("module_b = ", mb.mb_a)
 print("math.fabs(-1) = %s" % math.fabs(-1))
 
 # 全局遍历与局部遍历

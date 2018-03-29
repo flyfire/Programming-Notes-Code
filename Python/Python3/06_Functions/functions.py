@@ -41,3 +41,15 @@ def arg(name, *numbers, **address):
 
 arg("ztiany", "139", "158", "188", beijin="故宫", changsha="橘子洲", shenzhen="白石龙")
 
+# 作用域
+g_num = 100
+
+
+def change_num():
+    global g_num  # 使用global才表示使用的时全局的g_num
+    g_num = 1
+    return
+
+
+change_num()
+print("g_num = ", g_num)
