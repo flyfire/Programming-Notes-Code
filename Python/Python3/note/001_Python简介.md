@@ -11,6 +11,7 @@ Python的作者，**Guido von Rossum**，荷兰人。1982年，Guido从阿姆斯
 
 关键点常识：
 
+- Python是一门动态的弱类型语言
 - Python的意思是蟒蛇，源于作者喜欢的一部电视剧
 - Python的作者是Guido van Rossum（龟叔）
 - Python是龟叔在1989年圣诞节期间，为了打发无聊的圣诞节而用C编写的一个编程语言
@@ -20,7 +21,8 @@ Python的作者，**Guido von Rossum**，荷兰人。1982年，Guido从阿姆斯
     - PyPy（Python实现的，支持JIT即时编译）
 - Python目前有两个版本，Python2和Python3，目前最新版分别为2.7.12和3.6，现阶段大部分公司用的是Python2
 - **Life is shot, you need Python**：人生苦短，我用Python。
-
+- 命令行：输入`import this`显示python之禅
+- 命令行：输入`import keyword`，然后输入`keyword.kwlist`显示所有关键字
 
 ---
 ## 2 Python的特点
