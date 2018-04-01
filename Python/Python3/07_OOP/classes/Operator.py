@@ -67,6 +67,10 @@ class AB:
     def __pow__(self, other):
         pass
 
+    # 布尔转换判断，如果没有实现该方法，则由len函数返回值决定
+    def __bool__(self):
+        pass
+
 
 ab1 = AB(1, 4)
 ab2 = AB(4, 5)
