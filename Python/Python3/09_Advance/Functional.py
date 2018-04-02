@@ -5,6 +5,13 @@
 from pkg.Tools import print_divider
 from functools import reduce
 
+# lambda表达式
+print_divider('lambda表达式')
+sum = lambda x, y: x + y
+max = lambda x, y: x if x > y  else y  # x if x > y  else y 是Python中的三元表达式
+print(sum(1, 2))
+print(max(100, 200))
+
 # map函数
 print_divider('map函数')
 

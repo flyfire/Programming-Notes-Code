@@ -5,11 +5,17 @@
 """
 __str__和__repr__区别在于__str__目的不在于总是尝试返回一个适用于eval()的字符串，而是返回一个很好地向人描述对象的字符串。
 而__repr__目的在于”makes an attempt to return a string that would yield an object with the same value when passed to eval()”，
-尝试让返回的字符串能够通过eval()来生成一个一样的对象。
+尝试让返回的字符串能够通过eval()来生成一个一样的对象。https://blog.csdn.net/luckytanggu/article/details/53649156
 """
 
 
 class AB:
+    # __new__至少要有一个参数cls，代表要实例化的类，此参数在实例化时由Python解释器自动提供
+    # __new__必须要有返回值，返回实例化出来的实例，这点在自己实现__new__时要特别注意，可以return父类__new__出来的实例，或者直接是object的__new__出来的实例
+    def __new__(cls, *args, **kwargs):
+        return object.__new__(cls=cls)
+
+    # __init__有一个参数self，就是这个__new__返回的实例，__init__在__new__的基础上可以完成一些其它初始化的动作，__init__不需要返回值
     def __init__(self, a, b):
         self.a = a
         self.b = b

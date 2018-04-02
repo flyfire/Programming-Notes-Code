@@ -1,5 +1,5 @@
 #########################
-# 类的继承与多继承
+# 类的继承
 #########################
 
 
@@ -44,8 +44,9 @@ class Driver:
         print("Driver ", " eat ", things)
 
 
+#########################
 # 多继承
-
+#########################
 
 class SpeedRacer(Person, Driver):
     """极速赛车手"""
@@ -53,13 +54,15 @@ class SpeedRacer(Person, Driver):
     def __init__(self, name, age):
         Person.__init__(self, name, age)
         Driver.__init__(self, 100)
+        # super().__init__(self,  age)
+        # super(SpeedRacer, self).__init__(name=name, age=age) # 推荐
 
     def eat(self, things):
-        super(SpeedRacer, self).eat("A")  # 这种方式调用第一个父类的方法，这里应该优先使用
+        super(SpeedRacer, self).eat("A")  # 这种方式调用集成的第一个父类的方法
         Driver.eat(self, things)  # 指定调用某个父类的方法
 
 
 SpeedRacer("Ztiany", 18).eat(" 香蕉 ")  # Ztiany  eat  A Driver   eat   香蕉
 sr = SpeedRacer("BaiLong", 18)
 super(SpeedRacer, sr).eat(" 苹果 ")  # BaiLong  eat   苹果
-
+print(SpeedRacer.__mro__)  # 决定方法查找顺序

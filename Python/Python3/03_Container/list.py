@@ -22,7 +22,7 @@ listA.insert(len(listA), 12)  # 插入
 # 通过extend可以将另一个集合中的元素逐一添加到列表中
 list12 = [1, 2]
 list34 = [3, 4]
-list12.extend(list34)
+list12.extend(list34)  # 接收可迭代的序列
 print(list12)
 
 # 删除

@@ -16,7 +16,21 @@ finally:  # 始终运行
 # 捕获所有的异常
 try:
     a = 4 / 0
-except:
+except:  # BaseException as e
+    a = 0
+finally:
+    print(a)
+
+# try-finally 语句
+try:
+    a = 4 / 1
+finally:
+    print(a)
+
+# 捕获多个的异常
+try:
+    a = 4 / 0
+except (IOError, NameError, ZeroDivisionError):
     a = 0
 finally:
     print(a)
@@ -32,6 +46,8 @@ finally:
 def function_name(level):
     if level < 1:
         raise Exception("Invalid level!", level)
+        # raise "哈哈"
         # 触发异常后，后面的代码就不会再执行
+
 
 function_name(0)

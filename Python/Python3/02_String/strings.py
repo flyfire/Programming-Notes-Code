@@ -25,7 +25,7 @@ print("str7 = %s" % str7)
 str8 = str2 * 3
 str9 = str1 + str2
 print("str8 = %s" % str8)
-print("str9 = %s" % str9)
+print("str9 = %s-%s" % (str9, str8))
 
 # 遍历字符串
 for s in str1:
@@ -41,6 +41,7 @@ print(type(str1[1]))
 # 字符串切片
 print(str1[1:4])
 print(str1[0:8:2])  # 2表示步长
+print(str1[-1:])
 
 # 原始(非转义)字符串,语法R
 print("使用R表示原始字符串 = %s" % R"\n")
