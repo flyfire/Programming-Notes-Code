@@ -12,7 +12,7 @@ class Car:
 
     # 构造方法
     def __init__(self, make, year):
-        self.make = make  # 实例变量
+        self.make = make  # 对象属性
         self.year = year
         self.color = "red"
         self.__address = "china"  # 私有对象属性
