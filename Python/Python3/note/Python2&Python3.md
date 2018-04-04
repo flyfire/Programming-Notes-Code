@@ -44,3 +44,13 @@ Python2中：
 Python3中：
 - range返回的range类型
 - range使用了懒加载的方式，即你找我要的时候我初始化给你
+
+---
+## 元类
+
+Python2中指定元类的方式为：
+```python
+class Foo:
+    __metaclass__ = ...
+    pass
+```

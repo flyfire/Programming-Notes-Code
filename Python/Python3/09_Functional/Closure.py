@@ -3,7 +3,7 @@
 #########################
 from pkg.Tools import print_divider
 
-# 认识闭包
+# 1 认识闭包
 print_divider("闭包")
 
 
@@ -21,7 +21,7 @@ print(curve(10))
 print(curve)  # <function curve_pre.<locals>.curve at 0x0000023BC8D651E0>
 print(curve.__closure__)  # (<cell at 0x0000023BC8D26CA8: int object at 0x0000000074E6F050>,)
 
-# 闭包应用
+# 2 闭包应用
 print_divider("闭包应用")
 
 

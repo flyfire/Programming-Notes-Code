@@ -42,5 +42,3 @@ file_a.seek(20, 0)
 print(file_a.tell())  # tell()方法告诉你文件内的当前位置
 print(file_a.read(10))
 file_a.close()
-
-

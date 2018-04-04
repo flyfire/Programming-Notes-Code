@@ -29,6 +29,7 @@ print(list(result))
 result = map(lambda x: x * x, list_x)
 print(list(result))
 result = map(lambda x, y: x * x + y, list_x, list_y)  # lambda定义了几个参数就应该传入几个参数集，以最小长度结果集进行运算
+print(list(result))
 
 # reduce函数
 print_divider('reduce函数')
