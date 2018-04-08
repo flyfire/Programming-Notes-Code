@@ -2,4 +2,14 @@
 // 正则表达式
 //========================================================================
 
-var pattern = /s$/;//创建一个正在表达式对象
+//定义正则方式一：对象
+var rg1 = new RegExp("^\\d+$");
+
+//定义正则方式二：/符号，不需要字符串的转义
+var rg2 = /^\d+$/;
+
+var s = "1234";
+var r1 = s.match(rg1);//String.match(正则)。返回的是匹配的结果（不是true或false），如果不匹配返回null
+var r2 = rg2.test(s);//正则对象的test(字符串)，匹配返回的是true，否则是false。
+console.log(r1);
+console.log(r2);
