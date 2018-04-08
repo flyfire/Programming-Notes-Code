@@ -42,39 +42,3 @@ Tools.print_divider("模式")
 print(re.findall("python", string1, re.I))
 print(re.findall("python.{1,3}", string1, re.I | re.S))
 
-# sub函数
-Tools.print_divider("sub函数")
-print(re.sub("java", "JAVA", string1, 3, re.I))  # string1中匹配java的换成JAVA，3表示最多匹配3个
-
-
-def sub_convert(value):
-    matched = value.group()
-    print(value)
-    return "---" + matched + "---"
-
-
-def convert_num(value):
-    matched = value.group()
-    num = int(matched)
-    if num > 6:
-        return str(1)
-    else:
-        return str(2)
-
-
-print(re.sub("java", sub_convert, string1, 3,
-             re.I))  # 找到string1中匹配的项后，将会调用sub_convert函数，并把匹配到的项传递给sub_convert函数，替换成sub_convert函数的返回值
-
-print(re.sub("\d", convert_num, string3))  # 替换所有数字
-
-# match，match尝试在字符串的首字母开始匹配，如果首字母没有匹配到，则返回None，匹配第一个
-Tools.print_divider("match")
-print(re.match("\d", string3))  # None
-
-# search，匹配第一个
-# group概念：group()默认获取第0组，第0组表示完整的字符串匹配
-Tools.print_divider("search")
-print(re.search("\d(.*)\d", string3))  #
-print(re.search("\d(.*)\d", string3).group(1))  #
-print(re.search("life(.*)python", string4))
-print(re.search("life(.*)python(.*)python", string4).group(0, 1, 2))  # 1代表获取第一组的内容，即第一个()匹配到的
