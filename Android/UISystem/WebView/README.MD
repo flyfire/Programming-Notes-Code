@@ -30,4 +30,8 @@
 - [AgentWeb](https://github.com/Justson/AgentWeb)
 - [Google-chromium-webview-samples](https://github.com/GoogleChrome/chromium-webview-samples)
 - [Tencent-VasSonic](https://github.com/Tencent/VasSonic)
+- [VasSonic-让你的H5页面首屏秒开](https://segmentfault.com/a/1190000010711024)
 
+## 总结
+
+- WebView中可以使用userAgent告知服务器身份
