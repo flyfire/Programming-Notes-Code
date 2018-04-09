@@ -1,5 +1,5 @@
 #########################
-#  fork(unix like)
+#  fork(only unix like)
 #########################
 
 import os
