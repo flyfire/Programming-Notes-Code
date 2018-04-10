@@ -6,6 +6,7 @@ apply plugin: AndroidAspectJXPlugin
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
+
     defaultConfig {
         applicationId "com.ztiany.transform.aspectj"
         minSdkVersion 19
@@ -13,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -23,7 +25,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleDependency
     compile 'com.android.support:appcompat-v7:26.0.1'
+    //noinspection GradleDependency
     compile 'com.android.support:design:26.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'

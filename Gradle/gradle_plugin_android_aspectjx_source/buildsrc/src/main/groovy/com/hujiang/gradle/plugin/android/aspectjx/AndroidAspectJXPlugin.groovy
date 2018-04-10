@@ -22,7 +22,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 /**
- * 一个gradle插件，用于应用transform API，通过transform对项目所有源码进行操作
+ *  一个gradle插件，用于应用transform API，通过transform对项目所有源码进行操作
  *
  * aspectj plugin,
  * @author simon
@@ -42,15 +42,16 @@ class AndroidAspectJXPlugin implements Plugin<Project> {
             compile 'org.aspectj:aspectjrt:1.8.9'
         }
 
-        project.extensions.create("aspectjx", AspectjExtension)//获取extension
+        //1 获取extension
+        project.extensions.create("aspectjx", AspectjExtension)
 
         if (project.plugins.hasPlugin(AppPlugin)) {
-            //build time trace
-            project.gradle.addListener(new TimeTrace())//构建时间统计
-
-            //register AspectTransform
+            //2  build time trace，构建时间统计
+            project.gradle.addListener(new TimeTrace())
+            //3 register AspectTransform，注册 AspectTransform
             AppExtension android = project.extensions.getByType(AppExtension)
             android.registerTransform(new AspectTransform(project))
         }
     }
+
 }

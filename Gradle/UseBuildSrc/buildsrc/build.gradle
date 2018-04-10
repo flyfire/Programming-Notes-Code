@@ -3,8 +3,13 @@ apply plugin: 'groovy'
 dependencies {
     compile gradleApi()//gradle sdk
     compile localGroovy()//groovy sdk
+    implementation 'com.android.tools.build:gradle:3.1.1'
 }
 
 repositories {
     jcenter()
+    maven { url 'https://dl.google.com/dl/android/maven2/' }
+    maven { url 'https://jitpack.io' }
+    maven{ url uri('repo') }
+    google()
 }

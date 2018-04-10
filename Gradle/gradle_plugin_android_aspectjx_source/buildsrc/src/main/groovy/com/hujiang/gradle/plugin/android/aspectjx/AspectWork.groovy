@@ -22,7 +22,7 @@ import org.gradle.api.GradleException
 import org.gradle.api.Project
 
 /**
- * 很简单，就是执行aspectj编织工作
+ * 执行aspectj编织工作
  * aspectj weave code logic here
  * @author simon
  * @version 1.0.0
@@ -35,7 +35,6 @@ class AspectWork {
     public ArrayList<File> inPath = new ArrayList<File>()
     public ArrayList<File> aspectPath = new ArrayList<File>()
     public ArrayList<File> classPath = new ArrayList<File>()
-
     public String bootClassPath
     public String sourceCompatibility
     public String targetCompatibility
@@ -81,6 +80,7 @@ class AspectWork {
         // -preserveAllLocals:
         //  Preserve all local variables during code generation (to facilitate debugging).：保存所有局部变量
 
+
         def args = [
                 "-showWeaveInfo",
                 "-encoding", encoding,
@@ -95,11 +95,11 @@ class AspectWork {
             args << '-inpath'
             args << getInPath().join(File.pathSeparator)
         }
+
         if (!getAspectPath().isEmpty()) {
             args << '-aspectpath'
             args << getAspectPath().join(File.pathSeparator)
         }
-
 
         if (ajcArgs != null && !ajcArgs.isEmpty()) {
             if (!ajcArgs.contains('-Xlint')) {
@@ -108,6 +108,7 @@ class AspectWork {
             if (!ajcArgs.contains('-warn')) {
                 args.add('-warn:none')
             }
+
             args.addAll(ajcArgs)
         } else {
             args.add('-Xlint:ignore')//为横切代码中潜在的编程错误的消息设置默认级别
@@ -115,8 +116,8 @@ class AspectWork {
         }
 
         MessageHandler handler = new MessageHandler(true);
-        Main m = new Main();
-        m.run(args as String[], handler);
+        Main m = new Main()
+        m.run(args as String[], handler)
         for (IMessage message : handler.getMessages(null, true)) {
             switch (message.getKind()) {
                 case IMessage.ABORT:
@@ -126,85 +127,84 @@ class AspectWork {
                     throw new GradleException(message.message, message.thrown)
                 case IMessage.WARNING:
                     log.warn message.message, message.thrown
-                    break;
+                    break
                 case IMessage.INFO:
                     log.info message.message, message.thrown
-                    break;
+                    break
                 case IMessage.DEBUG:
                     log.debug message.message, message.thrown
-                    break;
+                    break
             }
         }
-
         m.quit()
     }
 
 
-    public String getEncoding() {
-        return encoding;
+    String getEncoding() {
+        return encoding
     }
 
-    public void setEncoding(String encoding) {
-        this.encoding = encoding;
+    void setEncoding(String encoding) {
+        this.encoding = encoding
     }
 
-    public ArrayList<File> getInPath() {
-        return inPath;
+    ArrayList<File> getInPath() {
+        return inPath
     }
 
-    public void setInPath(ArrayList<File> inPath) {
-        this.inPath = inPath;
+    void setInPath(ArrayList<File> inPath) {
+        this.inPath = inPath
     }
 
-    public ArrayList<File> getAspectPath() {
-        return aspectPath;
+    ArrayList<File> getAspectPath() {
+        return aspectPath
     }
 
-    public void setAspectPath(ArrayList<File> aspectPath) {
-        this.aspectPath = aspectPath;
+    void setAspectPath(ArrayList<File> aspectPath) {
+        this.aspectPath = aspectPath
     }
 
-    public ArrayList<File> getClassPath() {
-        return classPath;
+    ArrayList<File> getClassPath() {
+        return classPath
     }
 
-    public void setClassPath(ArrayList<File> classPath) {
-        this.classPath = classPath;
+    void setClassPath(ArrayList<File> classPath) {
+        this.classPath = classPath
     }
 
-    public String getBootClassPath() {
-        return bootClassPath;
+    String getBootClassPath() {
+        return bootClassPath
     }
 
-    public void setBootClassPath(String bootClassPath) {
-        this.bootClassPath = bootClassPath;
+    void setBootClassPath(String bootClassPath) {
+        this.bootClassPath = bootClassPath
     }
 
-    public String getSourceCompatibility() {
-        return sourceCompatibility;
+    String getSourceCompatibility() {
+        return sourceCompatibility
     }
 
-    public void setSourceCompatibility(String sourceCompatibility) {
-        this.sourceCompatibility = sourceCompatibility;
+    void setSourceCompatibility(String sourceCompatibility) {
+        this.sourceCompatibility = sourceCompatibility
     }
 
-    public String getTargetCompatibility() {
-        return targetCompatibility;
+    String getTargetCompatibility() {
+        return targetCompatibility
     }
 
-    public void setTargetCompatibility(String targetCompatibility) {
+    void setTargetCompatibility(String targetCompatibility) {
         this.targetCompatibility = targetCompatibility;
     }
 
-    public String getDestinationDir() {
-        return destinationDir;
+    String getDestinationDir() {
+        return destinationDir
     }
 
-    public void setDestinationDir(String destinationDir) {
+    void setDestinationDir(String destinationDir) {
         this.destinationDir = destinationDir;
     }
 
-    public void setAjcArgs(List<String> ajcArgs) {
+    void setAjcArgs(List<String> ajcArgs) {
         this.ajcArgs = ajcArgs
     }
 }

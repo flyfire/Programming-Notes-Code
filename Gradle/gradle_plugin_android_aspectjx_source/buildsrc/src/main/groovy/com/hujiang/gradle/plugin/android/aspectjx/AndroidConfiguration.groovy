@@ -24,9 +24,8 @@ import org.gradle.api.GradleException
 import org.gradle.api.Project
 
 /**
- * 很简单，获取Android project的一些信息
+ * 获取Android project的一些信息
  * obtain information about the project configuration
- *
  * @author simon
  * @version 1.0.0
  * @since 2016-04-20
@@ -55,7 +54,6 @@ class AndroidConfiguration {
      * @return Collection of variants.
      */
     DomainObjectCollection<BaseVariant> getVariants() {
-        //获取app或者library的所有变种
         return hasAppPlugin ? project.android.applicationVariants : project.android.libraryVariants
     }
 
