@@ -25,9 +25,9 @@ class AspectjExtension {
 
     List<String> includeJarFilter = new ArrayList<String>()//那些组件需要进行aspectj编织
     List<String> excludeJarFilter = new ArrayList<String>()//那些组件不需要进行aspectj编织
-    List<String> ajcArgs = new ArrayList<>();//ajc编译器参数
+    List<String> ajcArgs=new ArrayList<>();//ajc编译器参数
 
-    public AspectjExtension includeJarFilter(String... filters) {
+    public AspectjExtension includeJarFilter(String...filters) {
         if (filters != null) {
             includeJarFilter.addAll(filters)
         }
@@ -35,15 +35,14 @@ class AspectjExtension {
         return this
     }
 
-    public AspectjExtension excludeJarFilter(String... filters) {
+    public AspectjExtension excludeJarFilter(String...filters) {
         if (filters != null) {
             excludeJarFilter.addAll(filters)
         }
 
         return this
     }
-
-    public AspectjExtension ajcArgs(String... ajcArgs) {
+    public AspectjExtension ajcArgs(String...ajcArgs) {
         if (ajcArgs != null) {
             this.ajcArgs.addAll(ajcArgs)
         }

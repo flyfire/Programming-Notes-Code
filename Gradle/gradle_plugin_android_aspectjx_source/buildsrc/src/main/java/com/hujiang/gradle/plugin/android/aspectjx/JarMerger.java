@@ -28,7 +28,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
- * 合并jar包
  * class description here
  *
  * @author simon
@@ -46,7 +45,7 @@ public class JarMerger {
 
     private IZipEntryFilter filter;
 
-    public JarMerger(@NonNull File jarFile) throws IOException {
+    public JarMerger(@NonNull File jarFile) {
         this.jarFile = jarFile;
     }
 
@@ -77,8 +76,7 @@ public class JarMerger {
         }
     }
 
-    private void addFolder(@NonNull File folder, @NonNull String path)
-            throws IOException, IZipEntryFilter.ZipAbortException {
+    private void addFolder(@NonNull File folder, @NonNull String path) throws IOException, IZipEntryFilter.ZipAbortException {
 
         File[] files = folder.listFiles();
         if (files != null) {
@@ -187,7 +185,7 @@ public class JarMerger {
      * Classes which implement this interface provides a method to check whether a file should
      * be added to a Jar file.
      */
-    public static interface IZipEntryFilter {
+    public interface IZipEntryFilter {
         /**
          * An exception thrown during packaging of a zip file into APK file.
          * This is typically thrown by implementations of
