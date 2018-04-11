@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         maven { url 'https://dl.google.com/dl/android/maven2/' }
         maven { url 'https://jitpack.io' }
-        maven{ url uri('repo') }
+        maven { url uri('repo') }
         google()
     }
     dependencies {
@@ -16,11 +16,15 @@ allprojects {
         jcenter()
         maven { url 'https://dl.google.com/dl/android/maven2/' }
         maven { url 'https://jitpack.io' }
-        maven{ url uri('repo') }
+        maven { url uri('repo') }
         google()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    excludeLib = ['com.android.support', 'com.android.support.constraint', 'org.aspectj'] as String[]
 }

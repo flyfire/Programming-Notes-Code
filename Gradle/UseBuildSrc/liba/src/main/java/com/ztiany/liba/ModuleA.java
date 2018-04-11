@@ -9,7 +9,11 @@ import android.util.Log;
  */
 public class ModuleA {
     private static final String TAG = ModuleA.class.getSimpleName();
+
     public static void print() {
         Log.d(TAG, "print() called");
+    }
+
+    public static void depend() {
     }
 }

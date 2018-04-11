@@ -4,12 +4,16 @@ dependencies {
     compile gradleApi()//gradle sdk
     compile localGroovy()//groovy sdk
     implementation 'com.android.tools.build:gradle:3.1.1'
+
+    def aspectjVersion = '1.8.9'
+    implementation "org.aspectj:aspectjtools:${aspectjVersion}"
+    implementation "org.aspectj:aspectjrt:${aspectjVersion}"
 }
 
 repositories {
     jcenter()
     maven { url 'https://dl.google.com/dl/android/maven2/' }
     maven { url 'https://jitpack.io' }
-    maven{ url uri('repo') }
+    maven { url uri('repo') }
     google()
 }

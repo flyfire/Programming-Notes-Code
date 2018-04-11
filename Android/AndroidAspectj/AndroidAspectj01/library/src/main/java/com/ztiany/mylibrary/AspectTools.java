@@ -30,9 +30,11 @@ public class AspectTools {
      - Before：在插入点前插入代码
      - After：在插入点后插入代码
      - Around：在插入点前后插入代码
+     - AfterThrowing
+     - AfterReturning
 
 Advance为Before和After时，切入方法的参数应该JoinPoint，而Advance为Around时，方法参数应该为ProceedingJoinPoint，ProceedingJoinPoint继承JoinPoint，多了proceed功能，
-此时如果我们不调用proceed方法，被切入的方法将不会被调用,Around和After是不能同时作用在同一个方法上的，会产生重复切入的问题。
+此时如果我们不调用proceed方法，被切入的方法将不会被调用，Around和After是不能同时作用在同一个方法上的，会产生重复切入的问题。
 
 */
 
@@ -47,7 +49,7 @@ Advance为Before和After时，切入方法的参数应该JoinPoint，而Advance�
 
     @Around("execution(* com.ztiany.androidaspectj.MainActivity.testAopAround(..))")
     public void testMainActivityAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        proceedingJoinPoint.proceed();
+//        proceedingJoinPoint.proceed();
         Log.d(proceedingJoinPoint.getThis().getClass().getSimpleName(), "testMainActivityAround() called with: joinPoint = [" + proceedingJoinPoint + "]");
     }
 

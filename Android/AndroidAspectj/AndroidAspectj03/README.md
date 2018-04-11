@@ -17,6 +17,7 @@ AspectJ是Java中用来进行AOP编程的一个框架，使用AspectJ有两种�
 AspectJ编译器能识别任何普通的Java代码，可以使用ajc编译.java文件
 
 织入方式：
+
 - 源代码织入：织入器作为编译器的一部分，处理源代码，支持经典语法和注解语法。生成的字节码符合JVM规范，需要使用ajc代替javac
 - 字节码织入：传递给织入器的是字节码。使用这种方式时，包含编译普通Java类、编译切面，织入3个步骤。
 - 加载时织入：传递给织入器的是Java类字节码、切面类，以及aop.xml配置文件。
@@ -111,13 +112,14 @@ pointcut选择基于正则的语法，Pointcuts的主要类型有：
     - 在连接点之前/之后添加额外的逻辑，例如性能分析
     - 跳过原先逻辑还执行备选的逻辑，例如缓存。只要不调用proceed()，即不执行原有的逻辑
     - 使用try-catch包裹原先逻辑，提供异常处理策略，例如事务管理
- 
+- AfterRunning: 返回通知, 在方法返回结果之后执行
+- AfterThrowing: 异常通知, 在方法抛出异常之后
+
 注意：
  
 - Advice为Before和After时，切入方法的参数应该是JoinPoint
 - Advice为Around时，方法参数应该为ProceedingJoinPoint，ProceedingJoinPoint继承JoinPoint，多了proceed功能，此时如果我们不调用proceed方法，被切入的方法将不会被调用，
 - Around和After是不能同时作用在同一个方法上的，会产生重复切入的问题。
-
 
 ---
 ## 3 Pointcuts语法
@@ -129,6 +131,7 @@ Pointcuts语法包括：
 - AspectJ通知定义语法：由通知声明、切入点定义、通知体三部分组成
 
 具体的语法内容：
+
 - 通配符
 - 类型签名语法
     - 基于注解的类型签名
@@ -169,11 +172,47 @@ execution(* com..*.*Dao.find*(..)) | com包下的所有一Dao结尾的类的一f
 
 #### cflow
 
- cflow获取的是一个控制流程。一般与其他的pointcut 进行 &&运算。
+cflow获取的是一个控制流程。一般与其他的pointcut 进行 &&运算。
 
+---
+## 4 ajc编译器参数
 
+参考[官方文档](//http://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html)
 
-todo，完成剩余部分的学习！！！
+主要参数说明：
+
+```
+        // -sourceRoots:
+        //  Find and build all .java or .aj source files under any directory listed in DirPaths. DirPaths, 找到所有的java或者.aj的编织类
+        // like classpath,
+        // is a single argument containing a list of paths to directories, delimited by the platform- specific classpath delimiter. Required by -incremental.
+
+        // -inPath:
+        //  Accept as source bytecode any .class files in the .jar files or directories on Path. ：将被编织的的类或jar文件，这个参数将决定哪些类被aspject切入
+        // The output will include these classes, possibly as woven with any applicable aspects. ：输出将包含这些类
+        // Path is a single argument containing a list of paths to zip files or directories, delimited by the platform-specific path delimiter.： 路径是一个参数包含一个zip文件或目录的路径列表,由平台特定的路径分隔符分隔
+
+        // -classpath:
+        //  Specify where to find user class files.//指定在哪里可以找到用户类文件。
+        // Path is a single argument containing a list of paths to zip files or directories, delimited by the platform-specific path delimiter.
+
+        // -aspectPath:
+        //  Weave binary aspects from jar files and directories on path into all sources.。：将jar文件和目录中的二进制方法从路径整理到所有源文件中。
+        // The aspects should have been output by the same version of the compiler.
+        // When running the output classes, the run classpath should contain all aspectPath entries. Path, like classpath, is a single argument containing a list of paths to jar files, delimited by the platform- specific classpath delimiter.
+
+        // -bootclasspath:
+        //  Override location of VM's bootclasspath for purposes of evaluating types when compiling. ：覆盖VM的引导类路径的位置，以便在编译时评估类型。
+        // Path is a single argument containing a list of paths to zip files or directories, delimited by the platform-specific path delimiter.
+
+        // -d:
+        //  Specify where to place generated .class files. If not specified, Directory defaults to the current working dir.：指定输出目录
+
+        // -preserveAllLocals:
+        //  Preserve all local variables during code generation (to facilitate debugging).：保存所有局部变量
+```
+
+可以看到，其中最重要的参数为：`-inPath`
 
 ---
 ## 引用
