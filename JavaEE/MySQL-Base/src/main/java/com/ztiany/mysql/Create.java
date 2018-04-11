@@ -13,11 +13,10 @@ public class Create {
 
     public static void main(String... args) {
         createWeatherInfo();
-        ConnectSQl.getInstance().close();
     }
 
     private static void createWeatherInfo() {
-        Connection connection = ConnectSQl.getInstance().getConnection();
+        Connection connection = JdbcUtil.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -25,10 +24,6 @@ public class Create {
                     "city varchar(100) not null," +
                     "temperature integer not null" +
                     ");");
-
-            if (!execute) {
-                return;
-            }
 
             statement.execute("insert into weather (city,temperature) values ('Austin', 48);");
             statement.execute("insert into weather (city,temperature) values ('Boton Rouge', 21);");
@@ -41,13 +36,7 @@ public class Create {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            JdbcUtil.realease(null, statement, connection);
         }
     }
 }
