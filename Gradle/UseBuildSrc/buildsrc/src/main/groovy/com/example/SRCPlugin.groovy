@@ -3,13 +3,14 @@ package com.example
 import groovy.transform.ToString
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import com.hujiang.gradle.plugin.android.aspectjx.AndroidAspectJXPlugin
 
 class SRCPlugin implements Plugin<Project> {
 
     private String compileModule
 
     SRCPlugin() {
-        println "===================================="
+        println "========================================================================"
         println("SRCPlugin initialized ${this}")
     }
 
@@ -31,33 +32,55 @@ class SRCPlugin implements Plugin<Project> {
         println("compileModule = $compileModule")
 
         boolean isRunAsApp = true
-        if (project.name != 'app' && project.name != compileModule) {
-            isRunAsApp = false
+        boolean isModularization = project.rootProject.property('isModularization').toBoolean()
+
+        if (isModularization) {//多个app
+            //当前不是app或者不是正在编译运行的module则设置为library
+            if (assembleTask.isAssemble && project.name != 'app' && project.name != compileModule) {
+                isRunAsApp = false
+            }
+        } else {//主app
+            if (project.name != 'app') {
+                isRunAsApp = false
+            }
         }
 
-        project.metaClass.RunAsApp = isRunAsApp
         println("isRunAsApp = $isRunAsApp")
-        println "===================================="
+        println "========================================================================"
 
         if (isRunAsApp) {
-
             project.apply(plugin: 'com.android.application')
             project.android.defaultConfig.applicationId = "com.ztiany.build.src.${project.name}"
-            println("depProject -------------------------start")
-
-            if (project.hasProperty("depends")) {
-                String depends = project.property("depends")
-                String[] dependsArr = depends.split(',')
-                for (String depend : dependsArr) {
-                    println(depend)
-                    project.dependencies.add('implementation', project.project(":$depend"))
-                }
+            project.apply(plugin: AndroidAspectJXPlugin)
+            project.aspectjx {
+                excludeJarFilter project.rootProject.excludeLib
             }
-            println("depProject -------------------------end")
-
         } else {
             project.apply(plugin: 'com.android.library')
         }
+
+        if (project.name == 'app') {
+            if (!isModularization && assembleTask.isAssemble) {
+                configDepends(project)
+            }
+        } else if (isRunAsApp) {
+            if (assembleTask.isAssemble) {
+                configDepends(project)
+            }
+        }
+    }
+
+    private static void configDepends(Project project) {
+        println("depProject -------------------------start")
+        if (project.hasProperty("depends")) {
+            String depends = project.property("depends")
+            String[] dependsArr = depends.split(',')
+            for (String depend : dependsArr) {
+                println(depend)
+                project.dependencies.add('implementation', project.project(":$depend"))
+            }
+        }
+        println("depProject -------------------------end")
     }
 
     @ToString
@@ -66,7 +89,6 @@ class SRCPlugin implements Plugin<Project> {
         boolean isDebug = false
         List<String> modules = new ArrayList<>()
     }
-
 
     private AssembleTask getTaskInfo(List<String> taskNames) {
         AssembleTask assembleTask = new AssembleTask()
@@ -97,7 +119,6 @@ class SRCPlugin implements Plugin<Project> {
         return assembleTask
     }
 
-
     private void fetchMainModuleName(AssembleTask assembleTask) {
         if (assembleTask.modules.size() > 0 &&
                 assembleTask.modules.get(0) != null &&
@@ -107,6 +128,7 @@ class SRCPlugin implements Plugin<Project> {
             compileModule = "app"
         }
     }
+
 }
 
 
