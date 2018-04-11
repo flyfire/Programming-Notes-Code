@@ -1,6 +1,6 @@
 package com.app.plugins.aspectj
 
-public class AspectjLibraryPlugin extends BaseAspectjPlugin {
+class AspectjLibraryPlugin extends BaseAspectjPlugin {
 
     @Override
     String getVariants() {

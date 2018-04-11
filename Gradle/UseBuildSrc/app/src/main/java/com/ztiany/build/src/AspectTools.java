@@ -25,8 +25,8 @@ public class AspectTools {
     @Before("debugTools()")
     public void onDebugToolsBefore(JoinPoint joinPoint) {
         String key = joinPoint.getSignature().toString();
-        String TAG = joinPoint.getThis().getClass().getSimpleName();
-        Log.d(TAG, "onDebugToolMethodBefore: " + key);
+        String tag = joinPoint.getThis().getClass().getSimpleName();
+        Log.d(tag, "onDebugToolMethodBefore: " + key);
     }
 
 }

@@ -1,10 +1,9 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'plugins.aspectj.lib'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 19
@@ -30,6 +29,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleDynamicVersion
     compile 'com.android.support:appcompat-v7:26.+'
-    compile 'org.aspectj:aspectjrt:1.8.9'
+    compile 'org.aspectj:aspectjrt:1.8.10'
     testCompile 'junit:junit:4.12'
 }
+

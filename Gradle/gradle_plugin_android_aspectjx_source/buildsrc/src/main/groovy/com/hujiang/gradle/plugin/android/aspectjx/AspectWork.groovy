@@ -57,7 +57,7 @@ class AspectWork {
         // is a single argument containing a list of paths to directories, delimited by the platform- specific classpath delimiter. Required by -incremental.
 
         // -inPath:
-        //  Accept as source bytecode any .class files in the .jar files or directories on Path. ：将被编制的类或jar文件
+        //  Accept as source bytecode any .class files in the .jar files or directories on Path. ：将被编织的的类或jar文件
         // The output will include these classes, possibly as woven with any applicable aspects. ：输出将包含这些类
         // Path is a single argument containing a list of paths to zip files or directories, delimited by the platform-specific path delimiter.： 路径是一个参数包含一个zip文件或目录的路径列表,由平台特定的路径分隔符分隔
 

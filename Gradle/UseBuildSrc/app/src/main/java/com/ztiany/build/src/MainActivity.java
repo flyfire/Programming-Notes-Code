@@ -9,6 +9,7 @@ import com.ztiany.libb.ModuleB;
 public class MainActivity extends AppCompatActivity {
 
     @Override
+    @DebugTools
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
