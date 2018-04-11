@@ -85,7 +85,7 @@ abstract class BaseAspectjPlugin implements Plugin<Project> {
                     -bootclasspath
                     E:\DevTools\SDK\platforms\android-26\android.jar
 
-                    采用这种方式aspect只会只用于项目自己代码，如果项目存在多个module，那么每个module都需要应用这个插件，而使用TransformAPI进行编织的话可以对项目以及项目依赖的
+                    采用这种方式aspect只会作用于项目自己代码，如果项目存在多个module，那么每个module都需要应用这个插件，而使用TransformAPI进行编织的话可以对项目以及项目依赖的
                     所有第三方库进行编织(项目很大时会比较慢)。但是一般情况下只需要对项目本身代码进行编织，
                     */
 
