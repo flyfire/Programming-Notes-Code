@@ -1,4 +1,4 @@
-package com.ztiany.mysql;
+package com.ztiany.mysql.base1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
