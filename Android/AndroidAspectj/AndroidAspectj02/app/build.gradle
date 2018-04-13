@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-//此处'plugins.aspectj.app'对应plugin项目中META-INF中的properties文件名称
-apply plugin: 'plugins.aspectj.app'
+//此处'plugins.aspectj'对应plugin项目中META-INF中的properties文件名称
+apply plugin: 'plugins.aspectj'
 
 android {
     compileSdkVersion 26
@@ -27,12 +27,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleDynamicVersion
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'org.aspectj:aspectjrt:1.8.10'
-    testCompile 'junit:junit:4.12'
-    compile project(':library')
+    implementation 'com.android.support:appcompat-v7:26.+'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'org.aspectj:aspectjrt:1.8.10'
+    testImplementation 'junit:junit:4.12'
+    implementation project(':library')
 }
 

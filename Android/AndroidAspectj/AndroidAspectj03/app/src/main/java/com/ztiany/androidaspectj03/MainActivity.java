@@ -60,10 +60,9 @@ public class MainActivity extends AppCompatActivity {
                     BaseTarget3 baseTarget3 = new BaseTarget3();
                     baseTarget3.age = 18;
                     baseTarget3.name = "Ztiany";
-                    baseTarget3.birthday = "2017-10-10";
+                    baseTarget3.birthday = "1990-11-21";
                     baseTarget3.address = "深圳";
-                    Log.d(TAG, String.format("baseTarget3.age:%d、name:%s、birthday:%s、address:%s",
-                            baseTarget3.age, baseTarget3.name, baseTarget3.birthday, baseTarget3.address));
+                    Log.d(TAG, String.format("baseTarget3.age:%d、name:%s、birthday:%s、address:%s", baseTarget3.age, baseTarget3.name, baseTarget3.birthday, baseTarget3.address));
                     break;
                 case R.id.btn_sample_7:
                     new TraceTarget1().run();

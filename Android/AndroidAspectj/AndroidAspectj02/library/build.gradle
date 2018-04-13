@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'plugins.aspectj.lib'
+apply plugin: 'plugins.aspectj'
 
 android {
     compileSdkVersion 26
@@ -26,10 +26,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleDynamicVersion
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'org.aspectj:aspectjrt:1.8.10'
-    testCompile 'junit:junit:4.12'
+    implementation 'org.aspectj:aspectjrt:1.8.10'
+    implementation 'com.android.support:appcompat-v7:26.+'
+    testImplementation 'junit:junit:4.12'
 }
 

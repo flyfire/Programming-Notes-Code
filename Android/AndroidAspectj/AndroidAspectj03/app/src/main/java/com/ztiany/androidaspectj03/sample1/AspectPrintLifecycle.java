@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 
 /**
- * Before 和After，打印Activity和Fragment所有的on开发的方法
+ * Before 和After，打印Activity和Fragment所有的on开头的方法
  *
  * @author Ztiany
  *         Email: ztiany3@gmail.com

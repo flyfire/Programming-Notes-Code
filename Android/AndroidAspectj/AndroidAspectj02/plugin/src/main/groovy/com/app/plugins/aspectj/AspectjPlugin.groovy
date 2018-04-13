@@ -1,8 +1,11 @@
 package com.app.plugins.aspectj
 
+import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.LibraryPlugin
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
+import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -12,18 +15,18 @@ import org.gradle.api.Project
  * 对所有受 aspect 影响的类进行织入。
  * 在 gradle 的编译 task 中增加额外配置，使之能正确编译运行。
  */
-abstract class BaseAspectjPlugin implements Plugin<Project> {
+class AspectjPlugin implements Plugin<Project> {
 
     void apply(Project project) {
 
         //依赖aspectjrt
         project.dependencies {
-            compile 'org.aspectj:aspectjrt:1.8.9'
+            implementation 'org.aspectj:aspectjrt:1.8.9'
         }
 
         final def log = project.logger
         //开始
-        def variants = getVariants()
+        def variants = getVariants(project)
         project.android[variants].all {
             variant ->
                 println "========================================================================Aspectj start work"
@@ -116,5 +119,20 @@ abstract class BaseAspectjPlugin implements Plugin<Project> {
         }
     }
 
-    abstract def String getVariants()
+    //https://github.com/uPhyca/gradle-android-aspectj-plugin
+    private static String getVariants(Project project) {
+        def hasAppPlugin = project.plugins.hasPlugin(AppPlugin)
+        def hasLibPlugin = project.plugins.hasPlugin(LibraryPlugin)
+        println("-----------------------------hasAppPlugin $hasAppPlugin")
+        println("-----------------------------hasLibPlugin $hasLibPlugin")
+        if (!hasAppPlugin && !hasLibPlugin) {
+            throw new GradleException("The 'com.android.application' or 'com.android.library' plugin is required.")
+        }
+        if (hasAppPlugin) {
+            return "applicationVariants"
+        } else {
+            return "libraryVariants"
+        }
+    }
+
 }

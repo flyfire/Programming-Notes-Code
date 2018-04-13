@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  *         Email: ztiany3@gmail.com
  *         Date : 2017-05-04 15:45
  */
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.CONSTRUCTOR, ElementType.METHOD})
 public @interface DebugTools {
 

@@ -17,11 +17,11 @@ import java.util.Arrays;
 /**
  * 演示：
  * <pre>
- *     使用Pointcut定义切入点，并且使用改切入点
- *     切入点之间的逻辑组合
+ *     使用Pointcut定义切入点，并且使用该切入点切入点之间的逻辑组合
  *     AfterThrowing
  *     withincode和within
  *     call和execution的区别：call捕获的JoinPoint是签名方法的调用点，而execution捕获的则是执行点
+ *     字段获取和设置切入点
  * </pre>
  *
  * @author Ztiany
@@ -108,9 +108,8 @@ public class Aspecter {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // sample 4
+    // sample 4：所有的withInSample方法，并且该方法在BaseTarget1中
     ///////////////////////////////////////////////////////////////////////////
-    //所有的withInSample方法，并且该分发在BaseTarget1中
     @Around("execution(* withInSample(..)) && within(com.ztiany.androidaspectj03.sample2.BaseTarget1)")
     public void aroundTestWithIn(ProceedingJoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
@@ -119,7 +118,7 @@ public class Aspecter {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // sample 5
+    // sample 5 异常处理
     ///////////////////////////////////////////////////////////////////////////
     @Before("call(* *..BaseTarget2.diffCallAndExecution(..))")
     public void befroeCallPoint(JoinPoint joinPoint) {
@@ -132,7 +131,7 @@ public class Aspecter {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // sample
+    // sample 6 读取和设置字段切面
     ///////////////////////////////////////////////////////////////////////////
     @Pointcut("get(int *..BaseTarget3.age)")
     public void ageGetPoint() {

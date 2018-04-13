@@ -6,9 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <pre>
- *
- * </pre>
  *
  * @author Ztiany
  *         Date : 2017-02-15 22:07

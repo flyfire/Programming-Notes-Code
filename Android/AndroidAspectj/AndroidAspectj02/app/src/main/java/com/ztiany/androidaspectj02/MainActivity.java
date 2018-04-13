@@ -1,17 +1,20 @@
 package com.ztiany.androidaspectj02;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.ztiany.library.LibActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int layoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void setupView(@Nullable Bundle savedInstanceState) {
         findViewById(R.id.app_btn_open)
                 .setOnClickListener(v -> startActivity(new Intent(this, LibActivity.class)));
     }
@@ -22,22 +25,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStop() {
+        super.onStop();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }
