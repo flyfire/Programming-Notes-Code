@@ -1,10 +1,16 @@
 package rxjava2;
 
-import io.reactivex.*;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Single;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * RxJava2中的概念
@@ -37,8 +43,8 @@ public class RxJava2ConceptMain {
 
     private static void flowableWithObservable() {
 
-        //        Flowable 对比 Observable，可观测的流，RxJava 2 当中表示这种过程的类型有两种：
-        //        分别是 Flowable 和 Observable。Flowable增加了对背压(BackPressure)的处理
+        // Flowable 对比 Observable，可观测的流，RxJava 2 当中表示这种过程的类型有两种：
+        // 分别是 Flowable 和 Observable。Flowable增加了对背压(BackPressure)的处理
 
         //对数据进行处理
         //RxJava1中的概念，现在Subscriber在订阅的时候回调给订阅者
@@ -64,7 +70,7 @@ public class RxJava2ConceptMain {
             }
         };
 
-        // RxJava2的方式，Disposable在订阅的时候回调给订阅者,Disposable的dispose方法用于取消订阅
+        // RxJava2的方式，Disposable在订阅的时候回调给订阅者，Disposable的dispose方法用于取消订阅
         Observer observer = new Observer() {
             @Override
             public void onSubscribe(Disposable d) {
