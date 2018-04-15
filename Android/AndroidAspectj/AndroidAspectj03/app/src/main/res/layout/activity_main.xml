@@ -17,7 +17,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="around"
+            android:text="around 调用拦截"
             android:textAllCaps="false"
             tools:ignore="HardcodedText"/>
 
@@ -26,7 +26,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="throw error"
+            android:text="throw error 异常处理"
             android:textAllCaps="false"
             tools:ignore="HardcodedText"/>
 
@@ -35,7 +35,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="with code in"
+            android:text="with code in 应用"
             android:textAllCaps="false"
             tools:ignore="HardcodedText"/>
 
@@ -44,7 +44,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="with in"
+            android:text="with in 应用"
             android:textAllCaps="false"
             tools:ignore="HardcodedText"/>
 
@@ -62,7 +62,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="filed get and set"
+            android:text="字段你的 getter 和 setter"
             android:textAllCaps="false"
             tools:ignore="HardcodedText"/>
 
@@ -71,7 +71,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="annotation aspect"
+            android:text="应用注解的aspect"
             android:textAllCaps="false"
             tools:ignore="HardcodedText"/>
 
@@ -80,7 +80,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cflow aspect"
+            android:text="cflow 使用"
             android:textAllCaps="false"
             tools:ignore="HardcodedText"/>
 

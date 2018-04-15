@@ -12,7 +12,7 @@ public class TraceTarget1 {
 
     private static final String TAG = TraceTarget1.class.getSimpleName();
 
-//    @DebugTrace
+    //@DebugTrace
     public TraceTarget1() {
 
     }

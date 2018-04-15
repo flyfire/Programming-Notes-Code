@@ -23,7 +23,7 @@ public class TraceAspect {
     @Pointcut("within(@com.ztiany.androidaspectj03.sample3.DebugTrace *)")
     public void withinAnnotatedClass() {}
 
-    //有synthetic标记的field和method是class内部使用的，正常的源代码里不会出现synthetic field。
+    //有synthetic标记的field和method是class内部使用的，正常的源代码里不会出现synthetic field。这里用来作为排除class内部方法的切入点
     @Pointcut("execution(!synthetic * *(..)) && withinAnnotatedClass()")
     public void methodInsideAnnotatedType() {}
 

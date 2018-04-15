@@ -3,9 +3,6 @@ package com.ztiany.compilerannotation;
 import com.ztiany.annotation.Code;
 
 /**
- * <pre>
- *
- * </pre>
  *
  * @author Ztiany
  *         Date : 2017-02-16 00:15

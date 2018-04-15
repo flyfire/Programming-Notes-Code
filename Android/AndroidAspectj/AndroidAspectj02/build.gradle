@@ -14,7 +14,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.0'
         classpath 'org.aspectj:aspectjtools:1.8.9'
-        classpath 'com.app.plugins:gradleplugin:1.0.0'
+        classpath 'com.app.plugins:gradleplugin:1.0.2'
     }
 }
 
@@ -30,22 +30,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-//MakeProject报错，加这一句：task compileJava {}
-
-ext {
-    excludeLibs = [
-            'com.android.support', 'com.android.support.constraint', 'com.android.support:support-dynamic-animation',
-            'android.arch.lifecycle', 'android.arch.persistence.room', 'android.arch.paging',
-            'org.jetbrains.kotlin', 'org.jetbrains.kotlinx', 'org.jetbrains.anko', 'androidx.core',
-            'io.reactivex', 'com.jakewharton.rxbinding', 'com.trello:rxlifecycle', 'com.jakewharton.rxrelay',
-            'com.squareup.okhttp3', 'com.squareup.retrofit2', 'com.google.code.gson', 'com.github.bumptech.glide',
-            'com.google.dagger', 'com.alibaba', 'com.squareup.leakcanary', 'com.facebook.stetho',
-            'com.jakewharton', 'com.zxy.android', 'com.danikula:videocache', 'com.ztiany.android',
-            'com.makeramen', 'de.hdodenhof', 'com.github.iwgang', 'com.romandanylyk:pageindicatorview',
-            'com.roughike:bottom-bar', 'com.eftimoff', 'com.alibaba.android', 'com.flurgle:camerakit',
-            'io.fotoapparat.fotoapparat', 'com.otaliastudios', 'com.wdullaer', 'me.drakeet.multitype',
-            'com.tencent.bugly', 'org.aspectj'
-    ] as String[]
 }
