@@ -24,7 +24,6 @@ public class GzipServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
         String data = "where \"$CATALINA_HOME\" is the root of the Tomcat installation directory. If you're seeing this page, and you don't think you should be, " +
                 "then you're either a user who has arrived at new installation of Tomcat, or you're an administrator who hasn't got his/her setup quite right. " +
                 "Providing the latter is the case, please refer to the Tomcat Documentation for more detailed setup and " +

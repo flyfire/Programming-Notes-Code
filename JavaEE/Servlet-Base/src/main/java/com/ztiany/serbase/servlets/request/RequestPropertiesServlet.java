@@ -52,7 +52,6 @@ public class RequestPropertiesServlet extends HttpServlet {
         int remotePort = request.getRemotePort();//来访者机器用的端口号(随机)
         String queryString = request.getQueryString();//查询字符串
 
-
         System.out.println(protocol);
         System.out.println(method);
         System.out.println(uri);
@@ -60,5 +59,8 @@ public class RequestPropertiesServlet extends HttpServlet {
         System.out.println(remoteAddress);
         System.out.println(remotePort);
         System.out.println(queryString);
+
+        String contextPath = request.getContextPath();//上下文路径：/ServletBase
+        System.out.println(contextPath);
     }
 }
