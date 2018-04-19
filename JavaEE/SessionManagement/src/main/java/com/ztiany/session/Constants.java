@@ -16,4 +16,9 @@ public class Constants {
 
     public static final String J_SESSION_ID = "JSESSIONID";
 
+    public static final String USER_SESSION = "user_session";
+    public static final String IMAGE_CODE = "image_code";
+
+    public static final String TOKEN = "token";
+
 }

@@ -8,6 +8,7 @@ import com.ztiany.session.utils.Utils;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,9 +60,9 @@ public class SessionApp2BuyServlet extends HttpServlet {
         resp.getWriter().write("购买成功：<a href='" + req.getContextPath() + "/servlet/SessionApp2BooksServlet'>继续购物</a>");
 
         //session的cookie生命周期为内存，这里让cookie可以保存在文件缓存中
-//        Cookie cookie = new Cookie(Constants.J_SESSION_ID, session.getId());//session cookie的固有形式
-//        cookie.setMaxAge(60 * 60 * 24);
-//        cookie.setPath(req.getContextPath());
-//        resp.addCookie(cookie);
+        Cookie cookie = new Cookie(Constants.J_SESSION_ID, session.getId());//session cookie的固有形式
+        cookie.setMaxAge(60 * 60 * 24);
+        cookie.setPath(req.getContextPath());
+        resp.addCookie(cookie);
     }
 }

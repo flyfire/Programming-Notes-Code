@@ -75,6 +75,43 @@
         </servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ImageCodeServlet</servlet-name>
+        <servlet-class>com.ztiany.session.httpsession.app3.ImageCodeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SessionApp3IndexServlet</servlet-name>
+        <servlet-class>com.ztiany.session.httpsession.app3.SessionApp3IndexServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SessionApp3LoginServlet</servlet-name>
+        <servlet-class>com.ztiany.session.httpsession.app3.SessionApp3LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SessionApp3LoginUIServlet</servlet-name>
+        <servlet-class>com.ztiany.session.httpsession.app3.SessionApp3LoginUIServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SessionApp3LogoutServlet</servlet-name>
+        <servlet-class>com.ztiany.session.httpsession.app3.SessionApp3LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SessionApp4RegisterUIServlet</servlet-name>
+        <servlet-class>com.ztiany.session.httpsession.app4.SessionApp4RegisterUIServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SessionApp4RegisterServlet</servlet-name>
+        <servlet-class>com.ztiany.session.httpsession.app4.SessionApp4RegisterServlet
+        </servlet-class>
+    </servlet>
+
 
     <!-- ============================  ============================  ============================ -->
 
@@ -136,6 +173,41 @@
     <servlet-mapping>
         <servlet-name>SessionApp2ShowCartServlet</servlet-name>
         <url-pattern>/servlet/SessionApp2ShowCartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ImageCodeServlet</servlet-name>
+        <url-pattern>/servlet/ImageCodeServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SessionApp3IndexServlet</servlet-name>
+        <url-pattern>/servlet/SessionApp3IndexServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SessionApp3LoginServlet</servlet-name>
+        <url-pattern>/servlet/SessionApp3LoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SessionApp3LoginUIServlet</servlet-name>
+        <url-pattern>/servlet/SessionApp3LoginUIServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SessionApp3LogoutServlet</servlet-name>
+        <url-pattern>/servlet/SessionApp3LogoutServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SessionApp4RegisterServlet</servlet-name>
+        <url-pattern>/servlet/SessionApp4RegisterServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SessionApp4RegisterUIServlet</servlet-name>
+        <url-pattern>/servlet/SessionApp4RegisterUIServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
