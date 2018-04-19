@@ -2,6 +2,8 @@ package com.ztiany.gradlemultidex;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
@@ -29,7 +31,18 @@ public class AppContext extends Application {
          */
 
         Log.d(TAG, "ClassLoader.getSystemClassLoader():" + ClassLoader.getSystemClassLoader());
-        Log.d(TAG, "getClassLoader():" + getClassLoader());
+        Log.d(TAG, "com/ztiany/gradlemultidex/AppContext.class():" + getClassLoader());
         Log.d(TAG, "MainActivity.class.getClassLoader():" + MainActivity.class.getClassLoader());
+
+        try {
+
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            Log.d(TAG, packageInfo.applicationInfo.sourceDir);
+            Log.d(TAG, packageInfo.applicationInfo.dataDir);
+            Log.d(TAG, packageInfo.applicationInfo.nativeLibraryDir);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

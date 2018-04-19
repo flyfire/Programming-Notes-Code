@@ -74,7 +74,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void testBug(View view) {
-        new Bug().testFix(this);
+        try {
+            new Bug().testFix(this);
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 
 }
