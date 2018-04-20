@@ -2,11 +2,16 @@
 
 
 ---
+数据结构与算法
+
+- [数据结构与算法-C](DataStructure/DataStructure-c/笔记/数据结构与算法.md)
+- [慕课网：Play-With-Algorithms-1](DataStructure/Play-With-Algorithms-1/README.md)
+
+---
 ## C&C++
 
 - [C语言基础](C&C++/c-program/README.md)
 - [C++语言基础](C&C++/cplusplus-program/README.md)
-
 
 ---
 ## Python
@@ -24,7 +29,6 @@
 ## Groovy
 
 - [Groovy程序设计](Groovy/Programming-Groovy/README.md)
-
 
 ---
 ## Android
