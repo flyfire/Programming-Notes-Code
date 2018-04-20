@@ -18,6 +18,12 @@
 
 - [Python3](Python/Python3/README.md)
 
+
+---
+## Java
+
+todo
+
 ---
 ## Kotlin
 
@@ -34,6 +40,22 @@
 ## Android
 
 - [JNI](Android/JNI/README.md)
+
+
+---
+## Gradle
+
+todo
+
+---
+## JavaEE
+
+[项目列表](JavaEE/README.md)
+
+---
+## 前端
+
+[项目列表](Web/README.md)
 
 ---
 ## 如何使用GitHub项目?
