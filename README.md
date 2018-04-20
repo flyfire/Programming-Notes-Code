@@ -5,7 +5,7 @@
 数据结构与算法
 
 - [数据结构与算法-C](DataStructure/DataStructure-c/笔记/数据结构与算法.md)
-- [慕课网：Play-With-Algorithms-1](DataStructure/Play-With-Algorithms-1/README.md)
+- [慕课网：Play-With-Algorithms-1](DataStructure/Play-with-Algorithms-1/README.md)
 
 ---
 ## C&C++
