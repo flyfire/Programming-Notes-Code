@@ -1,11 +1,15 @@
 package com.ztiany.jspbase.domain;
 
+import java.io.Serializable;
+
 /**
  * @author Ztiany
  * Email ztiany3@gmail.com
  * Date 18.4.20 23:14
  */
-public class Student {
+public class Student implements Serializable{
+
+    private static final long serialVersionUID = 432L;
 
     private String name;
     private String gender;
@@ -43,5 +47,14 @@ public class Student {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

@@ -17,7 +17,7 @@
 
     <servlet-mapping>
         <servlet-name>ErrorServlet</servlet-name>
-        <url-pattern>servlet/ErrorServlet</url-pattern>
+        <url-pattern>/servlet/ErrorServlet</url-pattern>
     </servlet-mapping>
 
     <error-page>
@@ -28,5 +28,11 @@
         <exception-type>java.lang.Exception</exception-type>
         <location>/error.jsp</location>
     </error-page>
+
+
+    <context-param>
+        <param-name>code</param-name>
+        <param-value>19901005</param-value>
+    </context-param>
 
 </web-app>
