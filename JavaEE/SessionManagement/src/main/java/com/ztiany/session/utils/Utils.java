@@ -1,5 +1,8 @@
 package com.ztiany.session.utils;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -17,6 +20,16 @@ public class Utils {
         response.setHeader("Expires", "-1");
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "no-cache");
+    }
+
+    public static void fixEncode(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        response.setContentType("text/html;charset=utf-8");
+
     }
 
 }
