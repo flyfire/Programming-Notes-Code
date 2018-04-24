@@ -20,8 +20,10 @@ public class Create {
     private static void createWeatherInfo() {
         Connection connection = JdbcUtil.getConnection();
         Statement statement = null;
+
         try {
             statement = connection.createStatement();
+
             boolean execute = statement.execute("create table weather(" +
                     "city varchar(100) not null," +
                     "temperature integer not null" +
@@ -35,6 +37,7 @@ public class Create {
             statement.execute("insert into weather (city,temperature) values ('Santa', 1);");
             statement.execute("insert into weather (city,temperature) values ('Tallahassee', 23);");
             statement.execute("insert into weather (city,temperature) values ('Shenzhen', 17);");
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
