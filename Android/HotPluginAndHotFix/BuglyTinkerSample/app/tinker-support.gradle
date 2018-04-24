@@ -8,7 +8,7 @@ def channelBackupPath = file("backup/channel/")
 /*加固后的apk存储路径*/
 def jiaguChannelBackupPath = file("backup/jiagu/")
 
-//此处填写每次构建生成的基准包目录
+//此处填写每次构建生成的基准包目录，这里不是控制生成的apk的路径，而是填写基线apk的路径。它将被patch任务读取。
 def baseApkDir = "app-0423-15-09-01"
 
 ext {
@@ -19,6 +19,7 @@ ext {
     //baseApkPath = "${tinkerBackupPath}/${baseApkDir}/app-debug.apk"
     baseApkPath = "${tinkerBackupPath}/${baseApkDir}/app-release.apk"
 
+    //开启混淆之后才会生成mapping文件，否则不会生成，如果没有开启混淆则不需要关系
     baseApkProguardMappingPath = "${tinkerBackupPath}/${baseApkDir}/app-release-mapping.txt"
     //baseApkProguardMapping = "${tinkerBackupPath}/${baseApkDir}/app-debug-mapping.txt"
 
