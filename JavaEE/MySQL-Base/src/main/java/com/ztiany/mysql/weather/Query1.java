@@ -11,7 +11,7 @@ import java.sql.Statement;
  * Email ztiany3@gmail.com
  * Date 18.4.10 23:50
  */
-public class Query {
+public class Query1 {
 
     public static void main(String... args) {
         queryAllWeatherInfo();
