@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.ztiany.diff_util.DiffUtilFragment;
 import com.ztiany.item_decoraion_index.ItemDecorationIndexFragment;
 import com.ztiany.itemtouch.GridFragment;
 import com.ztiany.itemtouch.ItemTouchListenerFragment;
@@ -64,5 +65,6 @@ public class MainActivity extends AppCompatActivity {
         LIST.add(new Item("Pager Snap Helper", SnapHelperFragment.class));
         LIST.add(new Item("ScrollView实现SwipeMenu", SwipeMenu1Fragment.class));
         LIST.add(new Item("自定义LinearLayoutManager", CustomLayoutManagerFragment.class));
+        LIST.add(new Item("DiffUtil示例", DiffUtilFragment.class));
     }
 }

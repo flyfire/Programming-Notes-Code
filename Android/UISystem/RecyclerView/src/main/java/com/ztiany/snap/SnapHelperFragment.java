@@ -2,6 +2,7 @@ package com.ztiany.snap;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,7 +36,7 @@ public class SnapHelperFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
@@ -43,6 +44,7 @@ public class SnapHelperFragment extends Fragment {
 
         recyclerView.setAdapter(
                 new RecyclerView.Adapter() {
+                    @NonNull
                     @Override
                     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                         TextView textView = new TextView(getContext());
@@ -56,7 +58,7 @@ public class SnapHelperFragment extends Fragment {
                     }
 
                     @Override
-                    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+                    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
                         TextView textView = (TextView) holder.itemView;
                         textView.setText(String.valueOf(position));
                         textView.setBackgroundColor(Color.argb(mRandom.nextInt(255), mRandom.nextInt(255), mRandom.nextInt(255), mRandom.nextInt(255)));
