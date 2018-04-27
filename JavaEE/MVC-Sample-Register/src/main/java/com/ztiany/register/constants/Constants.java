@@ -13,4 +13,5 @@ public class Constants {
     public static final String FORM_KEY_USERNAME = "username";
     public static final String FORM_KEY_PASSWORD = "password";
 
+    public static final String DB_NAME = "mvc_sample_user";
 }
