@@ -27,4 +27,7 @@ dependencies {
     compile group: 'dom4j', name: 'dom4j', version: '1.6.1'
     //xpath
     compile group: 'jaxen', name: 'jaxen', version: '1.1.6'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+
 }

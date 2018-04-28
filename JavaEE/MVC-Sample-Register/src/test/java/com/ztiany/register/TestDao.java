@@ -7,6 +7,7 @@ import com.ztiany.register.domain.User;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.ResourceBundle;
 
 /**
  * @author Ztiany
@@ -24,5 +25,11 @@ public class TestDao {
         user.setEmail("zhangxy@163.com");
         user.setBirthday(new Date());
         userDao.save(user);
+    }
+
+    @Test
+    public void testNewDao() {
+        ResourceBundle rb = ResourceBundle.getBundle("dao");
+        System.out.println(rb.getString("dao"));
     }
 }
