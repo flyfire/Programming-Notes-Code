@@ -41,7 +41,7 @@ public class Create {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JdbcUtil.realease(null, statement, connection);
+            JdbcUtil.release(null, statement, connection);
         }
     }
 }

@@ -36,7 +36,7 @@ public class SQLInjection {
         } else {
             System.out.println("账号或密码错误!");
         }
-        JdbcUtil.realease(rs, stmt, connection);
+        JdbcUtil.release(rs, stmt, connection);
     }
 
     private void login1(String username, String password) throws SQLException {
@@ -52,7 +52,7 @@ public class SQLInjection {
         } else {
             System.out.println("账号或密码错误!");
         }
-        JdbcUtil.realease(rs, preparedStatement, connection);
+        JdbcUtil.release(rs, preparedStatement, connection);
     }
 }
 

@@ -1,4 +1,6 @@
-# category于product，
+###################################
+#  一对多关系
+###################################
 
 # 1.分类表
 CREATE TABLE category (
@@ -22,7 +24,7 @@ CREATE TABLE product (
 ALTER TABLE product
   ADD FOREIGN KEY (category_id) REFERENCES category (cid);
 
-#ALTER TABLE product ADD CONSTRAINT product_fk FOREIGN KEY (category_id) REFERENCES category (cid);
+#命名方式：ALTER TABLE product ADD CONSTRAINT product_fk FOREIGN KEY (category_id) REFERENCES category (cid);
 
 # 家电
 INSERT INTO category (cid, cname) VALUES ('c001', 'home appliance');

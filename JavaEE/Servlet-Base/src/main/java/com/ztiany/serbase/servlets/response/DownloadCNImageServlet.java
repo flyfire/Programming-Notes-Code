@@ -32,7 +32,7 @@ public class DownloadCNImageServlet extends HttpServlet {
         //截取文件名
         String filename = realPath.substring(realPath.lastIndexOf(File.separator) + 1);//妮子.jpg
         LogUtils.LOG.info("下载文件名为：" + filename);
-        //通知浏览器以下载的方式打开，中文文件名文件下载有问题：文件名没有了
+        //通知浏览器以下载的方式打开，中文文件名文件下载有问题：如果不使用URL编码文件名没有了
         response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(filename, "UTF-8"));
         response.setContentType("application/octet-stream");
         //下载

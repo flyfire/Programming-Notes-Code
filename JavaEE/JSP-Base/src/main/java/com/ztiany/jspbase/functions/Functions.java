@@ -1,6 +1,8 @@
 package com.ztiany.jspbase.functions;
 
 /**
+ * 自定义EL函数
+ *
  * @author Ztiany
  * Email ztiany3@gmail.com
  * Date 18.4.21 16:35
