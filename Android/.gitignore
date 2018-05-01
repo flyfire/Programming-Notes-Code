@@ -8,3 +8,4 @@
 .externalNativeBuild
 .idea
 build
+out
