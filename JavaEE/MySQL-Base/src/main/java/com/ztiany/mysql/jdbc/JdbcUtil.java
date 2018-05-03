@@ -35,7 +35,7 @@ public class JdbcUtil {
     }
 
     //释放资源
-    public static void realease(ResultSet rs, Statement stmt, Connection conn) {
+    public static void release(ResultSet rs, Statement stmt, Connection conn) {
         try {
             if (rs != null)
                 rs.close();

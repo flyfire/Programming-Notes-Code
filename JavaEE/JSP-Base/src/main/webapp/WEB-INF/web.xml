@@ -14,10 +14,19 @@
         <servlet-name>ErrorServlet</servlet-name>
         <servlet-class>com.ztiany.jspbase.servlet.ErrorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>I18NServlet</servlet-name>
+        <servlet-class>com.ztiany.jspbase.servlet.I18NServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>ErrorServlet</servlet-name>
         <url-pattern>/servlet/ErrorServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>I18NServlet</servlet-name>
+        <url-pattern>/servlet/I18NServlet</url-pattern>
     </servlet-mapping>
 
     <error-page>

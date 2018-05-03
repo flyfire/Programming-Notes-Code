@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RequestEncodeServlet extends HttpServlet {
 
+    /*
+    post请求正文编码解决方案
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //请求
         //request中的编码取决于客户端使用的编码，更改程序默认查询的码表(对请求正文)
@@ -30,6 +33,9 @@ public class RequestEncodeServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+        System.out.println(request.getContentType());//可能为null
+        System.out.println(request.getCharacterEncoding());//可能为null
+
         //-------------------------------------华丽的分界线（关键），获取请求与写响应是不相干的
 
         //响应
@@ -38,7 +44,15 @@ public class RequestEncodeServlet extends HttpServlet {
     }
 
 
+    /*
+    get请求正文编码解决方案，get方式请求参数放在url连接后面：
+    tomcat 6 iso-8859-1
+    tomcat 7 utf-8
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println(request.getContentType());//可能为null
+        System.out.println(request.getCharacterEncoding());//可能为null
+
         String username = request.getParameter("username");//ISO-8859-1
         byte b[] = username.getBytes("ISO-8859-1");
         username = new String(b, "UTF-8");

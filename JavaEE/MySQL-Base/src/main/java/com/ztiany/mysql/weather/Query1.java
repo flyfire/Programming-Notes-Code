@@ -32,7 +32,7 @@ public class Query1 {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JdbcUtil.realease(rs, stmt, connection);
+            JdbcUtil.release(rs, stmt, connection);
         }
     }
 
