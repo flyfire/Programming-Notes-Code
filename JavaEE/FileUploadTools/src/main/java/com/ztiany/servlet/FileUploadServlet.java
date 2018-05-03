@@ -27,7 +27,7 @@ public class FileUploadServlet extends HttpServlet {
 
     private static final long serialVersionUID = 2944809556494489970L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //解决编码问题
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

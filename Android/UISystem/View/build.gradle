@@ -3,6 +3,10 @@ apply plugin: 'com.android.application'
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
@@ -11,6 +15,10 @@ buildscript {
 
 repositories {
     jcenter()
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
 }
 
 
@@ -43,7 +51,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:support-dynamic-animation:25.3.1'//minsdk 16
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.1.0'
     compile 'com.android.support:design:25.3.1'
     //https://github.com/Almeros/android-gesture-detectors
     compile project(':android-gesture-detectors')
