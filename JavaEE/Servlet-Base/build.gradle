@@ -16,7 +16,7 @@ dependencies {
     providedCompile "javax.servlet:servlet-api:2.5"
     // https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
     compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.8.3'
-// https://mvnrepository.com/artifact/commons-logging/commons-logging
+    // https://mvnrepository.com/artifact/commons-logging/commons-logging
     compile group: 'commons-logging', name: 'commons-logging', version: '1.1.1'
 
 }
