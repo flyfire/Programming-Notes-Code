@@ -54,11 +54,14 @@
             android:name=".anko.layouts.AnkoLayoutsActivity"
             android:label="Layouts"/>
         <activity
-            android:name=".anko.coroutines.CoroutinesActivity"
+            android:name=".anko.coroutines.AnkoCoroutinesActivity"
             android:label="Coroutines"/>
         <activity
             android:name=".extension.ExtensionSampleActivity"
             android:label="ExtensionSample"/>
+        <activity
+            android:name=".coroutines.CoroutinesActivity"
+            android:label="Coroutines Sample"/>
 
     </application>
 

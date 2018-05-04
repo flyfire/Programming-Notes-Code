@@ -18,7 +18,7 @@ import org.jetbrains.anko.support.v4.UI
  */
 class LayoutsSample4Fragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         return UI {
             verticalLayout {

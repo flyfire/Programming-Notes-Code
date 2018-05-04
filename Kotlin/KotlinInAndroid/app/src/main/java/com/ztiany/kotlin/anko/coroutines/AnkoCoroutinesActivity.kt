@@ -14,7 +14,7 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
  *      Email: ztiany3@gmail.com
  *      Date : 2017-07-11 23:02
  */
-class CoroutinesActivity : AppCompatActivity(), AnkoLogger {
+class AnkoCoroutinesActivity : AppCompatActivity(), AnkoLogger {
 
     private lateinit var frameLayout: LinearLayout
 

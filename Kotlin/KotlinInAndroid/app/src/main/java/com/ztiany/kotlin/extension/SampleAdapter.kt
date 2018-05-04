@@ -16,12 +16,12 @@ class SampleAdapter : RecyclerView.Adapter<SampleAdapter.Holder>() {
 
     override fun getItemCount() = 10
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder =
-            Holder(LayoutInflater.from(parent?.context).inflate(R.layout.item_extesion, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder =
+            Holder(LayoutInflater.from(parent.context).inflate(R.layout.item_extesion, parent, false))
 
-    override fun onBindViewHolder(holder: Holder?, position: Int) {
-        holder?.let {
-            it.itemView.extension_tv_name.text = "Item-$position"
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder.let {
+            it.itemView.extension_tv_name.text = "Item-${holder.adapterPosition}"
             it.itemView.extension_tv_age.text = position.toString()
         }
     }
