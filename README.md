@@ -1,8 +1,13 @@
 # 编程学习代码与笔记
 
+---
+## 网络通信
+
+- [Python笔记——网络通信基础](/Python/Python3-Base/note/017_网络通讯.md)
+
 
 ---
-数据结构与算法
+## 数据结构与算法
 
 - [数据结构与算法-C](DataStructure/DataStructure-c/笔记/数据结构与算法.md)
 - [慕课网：Play-With-Algorithms-1](DataStructure/Play-with-Algorithms-1/README.md)
@@ -50,12 +55,12 @@ todo
 ---
 ## JavaEE
 
-[项目列表](JavaEE/README.md)
+- [项目列表](JavaEE/README.md)
 
 ---
 ## 前端
 
-[项目列表](Web/README.md)
+- [项目列表](Web/README.md)
 
 ---
 ## 如何使用GitHub项目?

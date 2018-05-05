@@ -41,8 +41,10 @@
         content += "鼠标松开了<br/>";
         document.getElementById("d1").innerHTML = content;
     }
+
     //只能输入数字
     function doPress(e) {
+
         var code = e.keyCode;//键盘上数字和字母对应的ASCII码
         var content = document.getElementById("d1").innerHTML;
         content += code + "<br/>";

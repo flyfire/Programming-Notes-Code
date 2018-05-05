@@ -8,6 +8,7 @@ var str2 = "a\
                 b\
                 c\
                 ";
+
 console.log(str.length);//->12
 console.log(str2.length);//->51
 
