@@ -26,8 +26,8 @@ public class FileUploadServlet extends HttpServlet {
     private static final long serialVersionUID = 2944809556494489970L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Utils.setUTF8Encode(request, response);
 
+        Utils.setUTF8Encode(request, response);
 
         try {
             boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);

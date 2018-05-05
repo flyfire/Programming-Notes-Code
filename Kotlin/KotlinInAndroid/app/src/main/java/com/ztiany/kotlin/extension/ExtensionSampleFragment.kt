@@ -36,12 +36,12 @@ class ExtensionSampleFragment : Fragment(), AnkoLogger {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        val user = arguments.getParcelable<User>("User")
+        val user = arguments?.getParcelable<User>("User")
         info(user)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(R.layout.fragment_extension_sample, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_extension_sample, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun onActivityCreated(savedInstanceState: Bundle?) {

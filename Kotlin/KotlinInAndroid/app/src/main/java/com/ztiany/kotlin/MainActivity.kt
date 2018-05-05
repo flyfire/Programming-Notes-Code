@@ -6,8 +6,9 @@ import com.ztiany.kotlin.anko.common.AnkoCommonActivity
 import com.ztiany.kotlin.anko.common.DialogsActivity
 import com.ztiany.kotlin.anko.common.LoggerActivity
 import com.ztiany.kotlin.anko.common.intents.RawActivity
-import com.ztiany.kotlin.anko.coroutines.CoroutinesActivity
+import com.ztiany.kotlin.anko.coroutines.AnkoCoroutinesActivity
 import com.ztiany.kotlin.anko.layouts.AnkoLayoutsActivity
+import com.ztiany.kotlin.coroutines.CoroutinesActivity
 import com.ztiany.kotlin.extension.ExtensionSampleActivity
 import org.jetbrains.anko.button
 import org.jetbrains.anko.intentFor
@@ -22,32 +23,36 @@ class MainActivity : AppCompatActivity() {
 
         verticalLayout {
 
-
-            button("Android Extension") {
+            button("Android Extension 插件") {
                 onClick {
                     startActivity(intentFor<ExtensionSampleActivity>())
                 }
             }
+            button("Android 协程示例") {
+                onClick {
+                    startActivity(intentFor<CoroutinesActivity>())
+                }
+            }
 
-            button("anko Common") {
+            button("Anko Common") {
                 onClick {
                     startActivity(intentFor<AnkoCommonActivity>())
                 }
             }
 
-            button("anko Common Intents") {
+            button("Anko Common Intents") {
                 onClick {
                     startActivity(intentFor<RawActivity>())
                 }
             }
 
-            button("anko Common Dialogs") {
+            button("Anko Common Dialogs") {
                 onClick {
                     startActivity(intentFor<DialogsActivity>())
                 }
             }
 
-            button("anko Common Logger") {
+            button("Anko Common Logger") {
                 onClick {
                     startActivity(intentFor<LoggerActivity>())
                 }
@@ -61,11 +66,11 @@ class MainActivity : AppCompatActivity() {
 
             button("Anko Coroutines") {
                 onClick {
-                    startActivity(intentFor<CoroutinesActivity>())
+                    startActivity(intentFor<AnkoCoroutinesActivity>())
                 }
             }
         }
-    }
 
+    }
 
 }
