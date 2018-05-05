@@ -1,7 +1,6 @@
-#  《JavaScript权威指南第6版》学习笔记
+#  《JavaScript权威指南》第6版 (核心部分)学习笔记
 
 [原书代码](https://resources.oreilly.com/examples/9780596805531/)
-
 
 ## js原形
    
