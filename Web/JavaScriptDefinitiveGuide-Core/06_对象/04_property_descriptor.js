@@ -31,7 +31,7 @@ Object.defineProperty(o, "x", {
 });
 o.x = 4;//操作失败，不报错
 console.log(o.x);//->1
-//由于x依然是可以配置id，可以通过下面方法改变x的值
+//由于x依然是可以配置的，可以通过下面方法改变x的值
 Object.defineProperty(o, "x", {
     value: 4
 });

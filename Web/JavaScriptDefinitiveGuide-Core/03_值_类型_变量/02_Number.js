@@ -40,3 +40,14 @@ var a = 15;
 console.log(a.toString(2));//转化为二进制字符串
 console.log(a.toString(8));
 console.log(a.toString(16));
+
+
+//parseInt
+console.log(parseInt("3 abc")); //3
+console.log(parseInt(" 3.14 abc")); //3
+console.log(parseInt(" -3.14 abc")); //-3
+console.log(parseInt("0xFF")); //255
+console.log(parseFloat(".1")); //0.1
+console.log(parseInt("0.1")); //0
+console.log(parseInt(".1")); //NaN
+console.log(parseFloat("$1")); //NaN

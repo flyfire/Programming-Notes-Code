@@ -10,14 +10,14 @@ console.log(num.toPrecision(10));//->15.55500000，指定有效数字的位数�
 //========================================================================
 // parseInt，parseFloat是全局函数
 //========================================================================
-console.log(parseInt("4 abc"));
-console.log(parseInt("-12.32"));
-console.log(parseFloat("4.32 abc"));
-console.log(parseFloat("0xFF"));
+console.log(parseInt("4 abc"));//4
+console.log(parseInt("-12.32"));//-12
+console.log(parseFloat("4.32 abc"));//4.32
+console.log(parseFloat("0xFF"));//0
 
 //========================================================================
 // 对象转换为原始类型
 //========================================================================
 //对象转换为原始类型用到的方法是toString和valueOf
-console.log([1, 3, 4].toString());
-console.log(new Date().valueOf());
+console.log([1, 3, 4].toString());//1,3,4
+console.log(new Date().valueOf());//1525771638646
