@@ -14,6 +14,7 @@ function partialLeft(f/*, ...*/) {
         return f.apply(this, a);
     }
 }
+
 //这个函数的实参传递到右边
 function partialRight(f/*, ...*/) {
     var args = arguments;
@@ -23,7 +24,7 @@ function partialRight(f/*, ...*/) {
         return f.apply(this, a);
     }
 }
-//这个函数的实参被用模板，实参列表中的undefined值都被填充
+//这个函数的实参被用做模板，实参列表中的undefined值都被填充
 function partial(f/*,...*/) {
     var arg = arguments;
     return function () {
@@ -40,16 +41,15 @@ function partial(f/*,...*/) {
     }
 }
 var f = function (x, y, z) {
-    console.log(x + " " + y + " " + z);
     return x * (y - z);
 };
 
-var left = partialLeft(f, 2)(3, 4);
-var right = partialRight(f, 2)(3, 4);
-var value = partial(f, undefined, 2)(3, 4);
-console.log(left);
-console.log(right);
-console.log(value);
+var left = partialLeft(f, 2)(3, 4); //2 * (3-4)
+var right = partialRight(f, 2)(3, 4); //3 * (4-2)
+var value = partial(f, undefined, 2)(3, 4);// 3 * (2-4)
+console.log(left);//->-2
+console.log(right);//->6
+console.log(value);//->-6
 
 //partialLeft、partialRight、partial被称为不完全函数，利用这种不完全函数可以编写一些有意思的代码
 
@@ -60,10 +60,10 @@ var increment = partialLeft(sum, 1);//自增
 var cubeRoot = partialRight(Math.pow, 1 / 3);//立方根
 String.prototype.first = partial(String.prototype.charAt, 0);
 String.prototype.last = partial(String.prototype.substr, -1, 1);
-console.log(increment(1));
-console.log(cubeRoot(27));
-console.log("abc".first());
-console.log("abc".last());
+console.log(increment(1));//->2
+console.log(cubeRoot(27));//->3
+console.log("abc".first());//->a
+console.log("abc".last());//->c
 
 //利用不完全函数重写组织求平均数和标准差的代码
 var data = [1, 1, 3, 5, 5];
@@ -86,7 +86,7 @@ var sqrt = partial(Math.pow, undefined, .5);//开平方根
 var reciprocal = partial(Math.pow, undefined, -1);//倒数
 
 var mean = product(reduce(data, sum), reciprocal(data.length));//平均值
-console.log(mean);
+console.log(mean);//->3
 
 
 //========================================================================

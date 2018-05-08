@@ -14,6 +14,6 @@ function factorial(n) {
 }
 factorial[1] = 1;//初始化
 
-console.log(factorial(100));
-console.log(factorial(2));
-console.log(factorial(5));
+console.log(factorial(100));//->9.33262154439441e+157
+console.log(factorial(2));//->2
+console.log(factorial(5));//->120

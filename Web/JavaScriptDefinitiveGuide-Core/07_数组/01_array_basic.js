@@ -30,13 +30,13 @@ Object.defineProperty(a, "length", {
     writable: false
 });
 console.log(a.length);
-// a.push(2); 报错，Cannot assign to read only property 'length' of object '[object Array]'
+// a.push(2); //报错，Cannot assign to read only property 'length' of object '[object Array]'
 
 var b = [3];
 Object.freeze(b);
 b.length = 0;//无效
 console.log(b);
-// b.push(2); 报错， Can't add property 1, object is not extensible
+// b.push(2); //报错， Can't add property 1, object is not extensible
 
 
 //========================================================================
@@ -66,8 +66,8 @@ for (var i = 0, len = keys.length; i < len; i++) {
     console.log(value);
 }
 
-//使用for/in循环能够枚举继承属性名，ES规定for/in循环可以以不同的顺序遍历对象的属性，通常数组的遍历是升序的，但是不能保证这是一定的
-//很多时候应该避免使用for/in来遍历数组
+//使用for/in循环能够枚举继承属性名，ES规定for/in循环可以以不同的顺序遍历对象的属性，通常数组的遍历是升序的，
+//但是不能保证这是一定的，很多时候应该避免使用for/in来遍历数组
 for (var element in keys) {
     if (!keys.hasOwnProperty(element)) {//跳过继承的属性
         continue;

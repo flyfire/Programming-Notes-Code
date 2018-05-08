@@ -13,9 +13,10 @@
 // 实例
 //========================================================================
 
-/* 特定场景下返回带补丁的extend版本
-    修复多数IE中的bug：如果o的属性拥有一个不可枚举的同名属性，则for/in循环不会枚举对象o的可枚举属性，
-    也就是说，对象o的toString属性不会被正确的处理。 */
+/*
+ 特定场景下返回带补丁的extend版本：
+ 修复多数IE中的bug：如果o的属性拥有一个不可枚举的同名属性，则for/in循环不会枚举对象o的可枚举属性， 也就是说，对象o的toString属性不会被正确的处理。
+*/
 
 var extend = (function () { //此函数的返回值赋值给extend
     //修复前，检查是否存在bug
@@ -56,12 +57,10 @@ var extend = (function () { //此函数的返回值赋值给extend
     };
 }());
 
-/*
- 按照这种写法，patched_extend方法就不会污染到全局环境
- */
-
+// 按照这种写法，patched_extend方法就不会污染到全局环境
 var result = extend({}, {x: 1}, {y: 2, toString: 32});
-console.log(result);
-console.log(result.toString);
-console.log(Object.prototype.toString.call(result));
+console.log(result);//->{ x: 1, y: 2, toString: 32 }
+console.log(result.toString);//->32
+console.log(Object.prototype.toString.call(result));//->[object Object]
+
 

@@ -39,7 +39,7 @@ console.log(max(1, 2, 3));
 
 
 //arguments中定义了callee和caller属性，在ES5中的严格模式下，访问这两个属性都会产生类型错误
-//非严格模式下，callee代表正在执行的函数，caller是非标准的。代表调用正在执行的函数的函数
+//非严格模式下，callee代表正在执行的函数，caller是非标准的。代表调用正在执行函数的函数
 //在严格模式下：arguments是一个保留字，无法使用arguments作为形参名，或者局部遍历名，也不能给arguments赋值
 function testCallee() {
     console.log(arguments.callee);

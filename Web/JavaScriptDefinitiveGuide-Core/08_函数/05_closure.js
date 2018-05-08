@@ -26,7 +26,8 @@ function checkScope() {
 }
 
 var result = checkScope();
-console.log(result);
+console.log(result);//->local scope
+
 
 //========================================================================
 // 闭包的实现
@@ -53,7 +54,7 @@ function checkScope2() {
 }
 
 var result = checkScope2();
-console.log(result());
+console.log(result());//->local scope
 
 
 //========================================================================
@@ -66,8 +67,8 @@ var uniqueInteger = (function () {
         return counter++;
     }
 }());
-console.log(uniqueInteger());//0
-console.log(uniqueInteger());//1
+console.log(uniqueInteger());//->0
+console.log(uniqueInteger());//->1
 
 function counter() {
     var n = 0;
@@ -81,8 +82,8 @@ function counter() {
     }
 }
 var c = counter();
-console.log(c.count());//0
-console.log(c.count());//1
+console.log(c.count());//->0
+console.log(c.count());//->1
 
 //从技术角度来讲，可以将闭包合并为属性存储器方法getter和setter
 function counter2(n) {
@@ -101,8 +102,8 @@ function counter2(n) {
 }
 
 var c = counter2(1000);
-console.log(c.count);
-console.log(c.count);
+console.log(c.count);//->1000
+console.log(c.count);//->1001
 
 
 //========================================================================

@@ -11,7 +11,7 @@ function funcB(a, b) {
 
 //创建函数对象
 var funcC = new Function("var a = 10; var b = 20; return a+b;");
-console.log(funcC());
+console.log(funcC());//->30
 
 
 //嵌套函数
@@ -28,7 +28,7 @@ function outerFunc(a) {
 // 匿名函数
 //========================================================================
 outerFunc(function () {
-    console.log("I am running");
+    console.log("I am running");//->I am running
 });
 
 
@@ -37,4 +37,11 @@ outerFunc(function () {
 //========================================================================
 (function (a, b) {
     console.log(a + b);
-})(1, 2);
+})(1, 2);//->3
+
+
+//Function
+function Fa() {
+    console.log(this);//->Fa {}
+}
+new Fa();

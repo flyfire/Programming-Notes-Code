@@ -20,9 +20,10 @@ var deviations = data.map(function (p1) {
 
 var stddev = Math.sqrt(deviations.map(square).reduce(sum) / (data.length - 1));//标准偏差
 
-console.log(mean);
-console.log(deviations);
-console.log(stddev);
+console.log(mean);//->3
+console.log(deviations);//->[ -2, -2, -1, 0, 1, 2, 2 ]
+console.log(stddev);//->1.7320508075688772
+
 
 //========================================================================
 // 模拟map
@@ -42,13 +43,12 @@ var map = Array.prototype.map ? function (a, f) {
 var result = map([1, 2, 3, 4, 5], function (x) {
     return x - 1;
 });
-console.log(result);//[ 0, 1, 2, 3, 4 ]
+console.log(result);//->[ 0, 1, 2, 3, 4 ]
 
 
 //========================================================================
 // 高阶函数：所谓高阶函数就是操作函数的函数
 //========================================================================
-
 function not(f) {
     return function () {
         var result = f.apply(this, arguments);
@@ -60,4 +60,5 @@ function even(x) {
     return x % 2 === 0;
 }
 var odd = not(even);
-console.log(odd(2));
+console.log(odd(2));//->false
+
