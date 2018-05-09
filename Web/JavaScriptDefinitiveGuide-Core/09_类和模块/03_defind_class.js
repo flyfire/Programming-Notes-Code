@@ -1,12 +1,14 @@
 //========================================================================
-// 模拟定义Java类
+// 模拟定义Java类与类的继承
 //========================================================================
 var extend = (function () {
     for (var p in {toString: null}) {
         return function extend(o) {
             for (var i = 1; i < arguments.length; i++) {
                 var source = arguments[i];
-                for (var prop in source) o[prop] = source[prop];
+                for (var prop in source) {
+                    o[prop] = source[prop];
+                }
             }
             return o;
         };
@@ -15,7 +17,10 @@ var extend = (function () {
         for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i];
             // Copy all the enumerable properties
-            for (var prop in source) o[prop] = source[prop];
+            for (var prop in source) {
+                o[prop] = source[prop];
+            }
+
             for (var j = 0; j < protoprops.length; j++) {
                 prop = protoprops[j];
                 if (source.hasOwnProperty(prop)) o[prop] = source[prop];
@@ -63,4 +68,4 @@ var SimpleRange = defineClass(
 var sr = new SimpleRange(1, 100);
 console.log(sr.includes(3));//-> true
 var sr2 = SimpleRange.upto(8);
-console.log(sr2);
+console.log(sr2);//->{ f: 0, t: 8 }

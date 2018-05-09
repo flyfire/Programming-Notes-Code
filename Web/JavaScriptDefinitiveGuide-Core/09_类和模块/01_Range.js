@@ -1,13 +1,24 @@
 //========================================================================
-//
+//类与原型：Range类的实现方式1
 //========================================================================
 
+/**
+ * 传入一个原型p，返回一个新的对象，该对象的__proto__指向p
+ * @param p 原型
+ * @returns {*} 新的对象
+ */
 function inherit(p) {
-    if (p == null) throw TypeError();
-    if (Object.create)
+    if (p == null) {
+        throw TypeError();
+    }
+    if (Object.create) {
         return Object.create(p);
+    }
     var t = typeof p;
-    if (t !== "object" && t !== "function") throw TypeError();
+    if (t !== "object" && t !== "function") {
+        throw TypeError();
+    }
+
     function f() {
     }
 
@@ -39,4 +50,6 @@ range.methods = {
 var r = range(1, 3);
 r.includes(2);
 r.foreach(console.log);
-console.log(r);
+console.log(r);//->{ from: 1, to: 3 }
+console.log(r.constructor);//->[Function: Object] 即 Object
+

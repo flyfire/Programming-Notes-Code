@@ -1,5 +1,5 @@
 //========================================================================
-// 面向对象技术，实现Set集合。
+// 面向对象技术：实现Set集合。
 //========================================================================
 
 //定义构造函数
@@ -13,13 +13,18 @@ function Set() {
 Set.prototype.add = function () {
     for (var i = 0; i < arguments.length; i++) {
         var val = arguments[i];
-        var str = Set._v2s(val);                 // 转换元素为一个String，作为key查找元素
-        if (!this.values.hasOwnProperty(str)) {  // If not already in the set
-            this.values[str] = val;              // Map string to value
-            this.n++;                            // size自增
+        // 转换元素为一个String，作为key查找元素
+        var str = Set._v2s(val);
+        //判断一个对象是否有你给出名称的属性或对象。此方法无法检查该对象的原型链中是否具有该属性，该属性必须是对象本身的一个成员。
+        if (!this.values.hasOwnProperty(str)) { // 如果不存在set中
+            // 映射转换： string to value
+            this.values[str] = val;
+            // size自增
+            this.n++;
         }
     }
-    return this;                                 // 返回this用于支持链式调用
+    // 返回this用于支持链式调用
+    return this;
 };
 
 //定义remove方法用以移除元素
@@ -39,19 +44,19 @@ Set.prototype.contains = function (value) {
     return this.values.hasOwnProperty(Set._v2s(value));
 };
 
-// Return the size of the set.
+// 返回Set的size
 Set.prototype.size = function () {
     return this.n;
 };
 
-// Call function f on the specified context for each element of the set.
+// 遍历set集合，在给定的上下文中调用传入的方法，参数为set中的每个元素
 Set.prototype.foreach = function (f, context) {
     for (var s in this.values)                 // For each string in the set
         if (this.values.hasOwnProperty(s))    // Ignore inherited properties
             f.call(context, this.values[s]);  // Call f on the value
 };
 
-// 内部方法，返回js对象对于的唯一字符串
+// 内部方法，用以将任何JavaScript值和对象用唯一的字符串对应起来
 Set._v2s = function (val) {
     switch (val) {
         case undefined:
@@ -74,15 +79,16 @@ Set._v2s = function (val) {
     }
 
     // For any object, return a string. This function will return a different
-    // string for different objects, and will always return the same string
-    // if called multiple times for the same object. To do this it creates a
-    // property on o. In ES5 the property would be nonenumerable and read-only.
+    // string for different objects,
+    // 对于任何一个对象，返回一个字符串，对于不同的对象这个函数将会返回一个不同的字符串。
+    // 而对于同一个对象的多次调用，它总是返回相同的字符串
+    // 为了做到这一点，给对象o创建了一个属性，在ES5中，这个属性是不可枚举且不可读的
     function objectId(o) {
-        var prop = "|**objectid**|";   // Private property name for storing ids
-        if (!o.hasOwnProperty(prop))   // If the object has no id
-            o[prop] = Set._v2s.next++; // Assign it the next available
-        return o[prop];                // Return the id
+        var prop = "|**objectid**|";   // 私有属性用于存储id
+        if (!o.hasOwnProperty(prop))   // 如果对象没有id
+            o[prop] = Set._v2s.next++; // 将下一个值分配给它
+        return o[prop];                //返回对象的id
     }
 };
 
-Set._v2s.next = 100;    // Start assigning object ids at this value.
+Set._v2s.next = 100;    // 设置初始id 的值

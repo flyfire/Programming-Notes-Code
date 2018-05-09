@@ -80,6 +80,20 @@ console.log(p2.constructor === Object); // true
  Object.prototype是一个空对象{}，{}自然与{getName: function(){}}不等。
  */
 
+//再来看一个列子
+function A() {
+
+}
+var a = new A();
+console.log(a.constructor);//->[Function: A]
+console.log(A.prototype.constructor);//->[Function: A]
+A.prototype = Date.prototype;
+console.log(A.prototype.constructor);//->[Function: Date]
+var b = new A();
+console.log(b.constructor);//->[Function: Date]
+/*
+可以看出，当构造函数的原型被修改时，实例对象的构造函数属性将不再是原来的构造函数，而是与构造函数绑定的原型有关
+ */
 
 
 
