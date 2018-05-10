@@ -6,20 +6,25 @@
     <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
 
     <script type="text/javascript">
+
         $(function () {
             $("#btn1").click(function () {
+                //后代选择器，返回集合元素，可以直接在集合上调用方法，内部会实现隐式迭代，即把方法调用应用在每个集合的元素上
                 $("body div").css("background-color", "gold");
             });
 
             $("#btn2").click(function () {
+                //儿子选择器
                 $("body>div").css("background-color", "gold");
             });
 
             $("#btn3").click(function () {
+                //下一个兄弟选择器
                 $("#two+div").css("background-color", "gold");
             });
 
             $("#btn4").click(function () {
+                //$("prev~siblings")选取prev元素之后的所有siblings元素，返回集合元素
                 $("#one~div").css("background-color", "gold");
             });
         });

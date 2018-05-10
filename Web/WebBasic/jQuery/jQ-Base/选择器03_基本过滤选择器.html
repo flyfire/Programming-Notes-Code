@@ -16,10 +16,12 @@
             });
 
             $("#btn3").click(function () {
+                //odd：奇数
                 $("body div:odd").css("background-color", "red");
             });
 
             $("#btn4").click(function () {
+                //even：偶数
                 $("body div:even").css("background-color", "red");
             });
         });
@@ -27,6 +29,7 @@
 
 
 </head>
+
 <body>
 <input type="button" id="btn1" value="body中的第一个div元素"/>
 <input type="button" id="btn2" value="body中的最后一个div元素"/>
@@ -34,6 +37,7 @@
 <input type="button" id="btn4" value="选择body中的偶数的div"/>
 
 <hr/>
+
 <div id="one">
     <div class="mini">
         111
@@ -61,8 +65,7 @@
     </div>
 </div>
 
-<span id="four">
-			
-		</span>
+<span id="four"></span>
+
 </body>
 </html>
