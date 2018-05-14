@@ -2,8 +2,6 @@ import socket
 
 from multiprocessing import Process
 
-HTML_ROOT_DIR = ""
-
 
 def handle_client(client_socket):
     """处理客户端请求"""
