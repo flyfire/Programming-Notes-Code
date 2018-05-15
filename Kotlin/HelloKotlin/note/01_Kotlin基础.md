@@ -20,6 +20,7 @@
    - `while`
    - `when`：kotlin没有`switch`
    - 定义标签`loop1@`，标签返回`returnloop1@`
+   - `Elvis操作符?:`：示例`obj?.getSome() ?: doSomething()`，`?:`符号会在符号左边为空的情况才会进行下面的处理，不为空则不会有任何操作。
 
 ### 类型检查
 
@@ -93,7 +94,7 @@ fun range(){
 ```
 
 ---
-## 3 Kotlin默认导入
+## 3 Kotlin默认导入的包
 
 有多个包会默认导入到每个 Kotlin 文件中：
 
