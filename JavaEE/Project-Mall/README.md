@@ -42,12 +42,18 @@
 4. 配置文件：c3p0
 5. 数据库：创建数据库、创建表、导入数据
 
+### 基础功能划分
+
+按照模块划分功能：一个模块的功能由一个Servlet统一控制，一个方法对应一个模块功能，不同功能由请求参数中的op区分。
+
+
+
 ### 用户注册
 
 1. register.jsp
     - 前端校验
     - jQuery.validate创建使用
-    - CheckUsernameServlet.java
+    - Ajax校验用户名是否存在，CheckUsernameServlet.java
 2. 用户注册控制：RegisterServlet，领域对象：User
     - 表单数据->User对象使用BeanUtils，配置类型转换器
 3. 处理用户相关业务：UserService
@@ -64,9 +70,14 @@
 5. 默认页面，default.jap转发到ProductServlet，调用获取首页商品功能。
 6. 抽取header.jsp加载类别，使用ajax加载
 7. 使用Redis缓存商品类别，避免每次从MySQL查询
-8. 点击商品类别，进入具体商品类别页面并且分页展示商品
+8. 点击商品类别，进入具体商品类别列表页面并且分页展示商品
     - 先跳转到分页的ProductServlet，调用商品分页功能
     - 然后转发到product_list.jsp
+9. 列表页点击商品进入商品详情页
+    - 加入购物车功能，使用Session存储购物车中的商品
+    - 使用cookie记录商品浏览历史
+10. 由于商品类别列表页面需要展示用户浏览的历史，ProductServlet中还要根据cookie查询浏览历史
+
 
 ---
 ## 3 总结
