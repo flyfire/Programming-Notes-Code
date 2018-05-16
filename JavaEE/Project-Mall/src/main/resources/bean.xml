@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+    <bean id="adminService" class="com.ztiany.mall.service.impl.AdminServiceImpl"/>
+    <bean id="adminDao" class="com.ztiany.mall.dao.impl.AdminDaoImpl"/>
+
+</beans>
