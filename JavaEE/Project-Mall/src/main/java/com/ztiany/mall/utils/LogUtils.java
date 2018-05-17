@@ -24,4 +24,25 @@ public class LogUtils {
         LOG.error("error()...");
     }
 
+    public static void error(Object message, Throwable throwable) {
+        LOG.error(message, throwable);
+    }
+
+    public static void info(Object message, Throwable throwable) {
+        LOG.info(message, throwable);
+    }
+
+    public static void info(Object message) {
+        LOG.info(message);
+    }
+
+    public static void debug(Object message) {
+        LOG.debug(message);
+    }
+
+    public static void warn(Object message, Throwable throwable) {
+        LOG.warn(message, throwable);
+    }
+
+
 } 

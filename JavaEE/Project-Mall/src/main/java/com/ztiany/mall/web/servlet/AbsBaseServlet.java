@@ -1,7 +1,10 @@
 package com.ztiany.mall.web.servlet;
 
 import com.ztiany.mall.config.AppConfig;
+import com.ztiany.mall.exception.AppException;
+import com.ztiany.mall.utils.LogUtils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServlet;
@@ -28,9 +31,15 @@ public class AbsBaseServlet extends HttpServlet {
             Method method = clazz.getMethod(action, HttpServletRequest.class, HttpServletResponse.class);
             //4、执行相应功能方法
             method.invoke(this, req, resp);
+        } catch (NoSuchMethodException | IllegalAccessException e) {
+            LogUtils.error(this, e);
+            throw new AppException(this.getClass().getName() + " 中没有找到可用的方法：" + action);
+        } catch (InvocationTargetException e) {
+            LogUtils.error(this, e);
+            throw new AppException(this.getClass().getName() + " 调用目标方法异常：" + action);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new IllegalStateException(this.getClass().getName() + " 中没有找到可用的方法：" + action);
+            LogUtils.error(this, e);
+            throw e;
         }
     }
 

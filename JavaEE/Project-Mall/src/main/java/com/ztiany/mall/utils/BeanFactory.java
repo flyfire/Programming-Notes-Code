@@ -38,8 +38,8 @@ public class BeanFactory {
             return (T) clazz.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
+            throw new IllegalStateException("service not found: " + beanName);
         }
-        return null;
     }
 
     @SuppressWarnings("unchecked")

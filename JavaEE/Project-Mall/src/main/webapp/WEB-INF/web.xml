@@ -9,4 +9,19 @@
         <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
 
+    <error-page>
+        <location>/WEB-INF/errors/app_error.jsp</location>
+        <exception-type>com.ztiany.mall.exception.AppException</exception-type>
+    </error-page>
+
+    <error-page>
+        <location>/WEB-INF/errors/unknow_error.jsp</location>
+        <exception-type>java.lang.Exception</exception-type>
+    </error-page>
+
+    <error-page>
+        <location>/WEB-INF/errors/404.jsp</location>
+        <error-code>404</error-code>
+    </error-page>
+
 </web-app>

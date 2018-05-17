@@ -110,7 +110,7 @@
 - 添加商品、图片上传
 - frame标签：http://www.cnblogs.com/wennxxin/archive/2008/10/11/1308516.html
 - popup-layer.js 弹出层
-- struts2中<jsp:forward>跳转时报404错误的问题：http://www.cnblogs.com/wangkang0320/p/8675746.html
+- struts2中`<jsp:forward>`跳转时报404错误的问题：http://www.cnblogs.com/wangkang0320/p/8675746.html
 
 ---
 ## 3 总结
@@ -119,4 +119,4 @@
 2. 明确各层职责，各种异常的处理，是抛出还是吞掉
 3. 统一格式的字段转换，Date<->String
 4. 虽然数据结构相同、字段也相同，但是如果使用的地方不一样，就应该定义不同的实体
-
+5. 请求转发的问题：比如Servlet转发到一个jsp，那么jsp中引用的资源是相对于Servlet路径的，如果Servlet的上级路径与jsp的上级路径不一致，那么jsp中引用的资源将会失效
