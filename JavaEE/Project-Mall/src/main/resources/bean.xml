@@ -7,4 +7,7 @@
     <bean id="userDao" class="com.ztiany.mall.dao.impl.UserDaoImpl"/>
     <bean id="userService" class="com.ztiany.mall.service.impl.UserServiceImpl"/>
 
+    <bean id="product_dao" class="com.ztiany.mall.dao.impl.ProductDaoImpl"/>
+    <bean id="product_service" class="com.ztiany.mall.service.impl.ProductServiceImpl"/>
+
 </beans>

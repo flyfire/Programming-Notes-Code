@@ -48,7 +48,6 @@
 - 面向接口编程，使用配置文件控制对象的实例化
 
 
-
 ### 用户注册
 
 1. register.jsp
@@ -79,11 +78,9 @@
     - 使用cookie记录商品浏览历史
 10. 由于商品类别列表页面需要展示用户浏览的历史，ProductServlet中还要根据cookie查询浏览历史
 
-
 ###  订单
 
 1. 理解Order和OrderItem表的设计，一个Order对应多个OrderItem，查询的时候，根据orderId查询所有的订单项
-
 
 ### 在线支付
 
@@ -108,15 +105,24 @@
 
 - 管理员登录
 - 添加商品、图片上传
-- frame标签：http://www.cnblogs.com/wennxxin/archive/2008/10/11/1308516.html
+- frame标签
 - popup-layer.js 弹出层
-- struts2中`<jsp:forward>`跳转时报404错误的问题：http://www.cnblogs.com/wangkang0320/p/8675746.html
 
 ---
-## 3 总结
+##  3 运行项目
+
+- 准备tomcat
+- 开启本地redis
+- MySQL已配置好
+
+---
+## 4 总结
 
 1. 提交表单字段、数据实体、数据库字段名保持一致。
 2. 明确各层职责，各种异常的处理，是抛出还是吞掉
 3. 统一格式的字段转换，Date<->String
 4. 虽然数据结构相同、字段也相同，但是如果使用的地方不一样，就应该定义不同的实体
 5. 请求转发的问题：比如Servlet转发到一个jsp，那么jsp中引用的资源是相对于Servlet路径的，如果Servlet的上级路径与jsp的上级路径不一致，那么jsp中引用的资源将会失效
+6. 明确开发过程中的默认路径：
+    - 请求转发的两种方式的默认对应路径
+    - cookie的默认路径

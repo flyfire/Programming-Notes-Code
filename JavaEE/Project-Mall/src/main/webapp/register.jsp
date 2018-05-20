@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -59,16 +60,16 @@
                 //params：规则对应的参数值
                 //目的：对输入的username进行ajax校验
                 $.ajax({
-                    "async": false,//同步操作
-                    "url": "${pageContext.request.contextPath}/checkUsername?action=checkUsername",
-                    "data": {"username": value},
+                    "async": false,//同步调用
+                    "url": "${pageContext.request.contextPath}/AccountServlet",
+                    "data": {"username": value, "action": "checkUsername"},
                     "type": "POST",
                     "dataType": "json",
                     "success": function (data) {
                         flag = data.isExist;
                     }
                 });
-
+                console.log("--------------------------------" + flag);
                 //返回false代表该校验器不通过
                 return !flag;
             }
@@ -89,6 +90,10 @@
                         "required": true,
                         "rangelength": [6, 12],
                         "equalTo": "#password"
+                    },
+                    "name": {
+                        "required": true,
+                        "rangelength": [2, 6]
                     },
                     "email": {
                         "required": true,
@@ -111,6 +116,10 @@
                         "required": "密码不能为空",
                         "rangelength": "密码长度6-12位",
                         "equalTo": "两次密码不一致"
+                    },
+                    "name": {
+                        "required": "姓名不能为空",
+                        "rangelength": "姓名长度2-6位"
                     },
                     "email": {
                         "required": "邮箱不能为空",
@@ -184,13 +193,14 @@
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="name"
+                        <input type="text" class="form-control" id="name" name="name"
                                placeholder="请输入姓名">
                     </div>
                 </div>
 
                 <div class="form-group opt">
                     <label for="sex1" class="col-sm-2 control-label">性别</label>
+
                     <div class="col-sm-6">
                         <label class="radio-inline">
                             <input type="radio"

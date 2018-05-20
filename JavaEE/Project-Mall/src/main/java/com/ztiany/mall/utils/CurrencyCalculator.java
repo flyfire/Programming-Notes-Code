@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 public class CurrencyCalculator {
 
     public static final BigDecimal ZERO = new BigDecimal("0");
+
     private static final int SCALE = 2;
 
     private CurrencyCalculator() {

@@ -30,4 +30,40 @@ public class UserDaoImpl implements UserDao {
         return runner.query(TransactionManager.getConnection(), sql, new ScalarHandler<Long>(), username);
     }
 
+    @Override
+    public User findUserByUsername(String username) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner();
+        return queryRunner.query(TransactionManager.getConnection(), "select * from user where username = ?", new BeanHandler<>(User.class), username);
+    }
+
+    @Override
+    public void saveUser(User user) throws SQLException {
+        String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
+        QueryRunner queryRunner = new QueryRunner();
+        queryRunner.update(TransactionManager.getConnection(), sql,
+                user.getUid(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getName(),
+                user.getEmail(),
+                user.getTelephone(),
+                user.getBirthday(),
+                user.getSex(),
+                user.getState(),
+                user.getCode());
+    }
+
+    @Override
+    public User findUserByCode(String activeCode) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner();
+        return queryRunner.query(TransactionManager.getConnection(), "select * from user where code = ?", new BeanHandler<>(User.class), activeCode);
+    }
+
+    @Override
+    public void updateUserActiveState(String activeCode, int state) throws SQLException {
+        QueryRunner runner = new QueryRunner();
+        String sql = "update user set state=? where code=?";
+        runner.update(TransactionManager.getConnection(), sql, state, activeCode);
+    }
+
 }

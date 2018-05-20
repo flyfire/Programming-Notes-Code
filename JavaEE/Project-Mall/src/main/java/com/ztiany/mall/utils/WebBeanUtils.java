@@ -41,4 +41,16 @@ public class WebBeanUtils {
         BeanUtils.populate(bean, properties);
     }
 
+    public static int parsePage(String pageNum) {
+        int currentPage = 1;
+        if (pageNum != null && !pageNum.equals("")) {
+            try {
+                currentPage = Integer.parseInt(pageNum);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return currentPage;
+    }
+
 }

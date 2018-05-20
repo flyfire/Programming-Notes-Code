@@ -1,4 +1,4 @@
-package com.ztiany.mysql.weather;
+package com.ztiany.mysql.multi_table.one;
 
 import com.ztiany.mysql.jdbc.JDBCUtils;
 

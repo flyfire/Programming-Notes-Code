@@ -1,6 +1,8 @@
 package com.ztiany.mall.utils;
 
 
+import com.ztiany.mall.config.AppConfig;
+import com.ztiany.mall.service.ProductService;
 import com.ztiany.mall.service.UserService;
 import com.ztiany.mall.service.impl.UserServiceImpl;
 
@@ -18,6 +20,11 @@ public class BeanFactory {
     public static UserService getUserService() {
         final UserService s = new UserServiceImpl();//原有对象
         return proxyIt(s);
+    }
+
+    public static ProductService getProductService() {
+        final ProductService productService = getBean(AppConfig.PRODUCT_SERVICE);
+        return proxyIt(productService);
     }
 
     @SuppressWarnings("unchecked")

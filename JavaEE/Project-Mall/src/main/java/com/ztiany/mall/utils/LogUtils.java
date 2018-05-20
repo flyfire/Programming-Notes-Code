@@ -18,12 +18,6 @@ public class LogUtils {
 
     private static Log LOG = LogFactory.getLog(LogUtils.class);
 
-    private void usage() {
-        LOG.debug("debug()...");
-        LOG.info("info()...");
-        LOG.error("error()...");
-    }
-
     public static void error(Object message, Throwable throwable) {
         LOG.error(message, throwable);
     }

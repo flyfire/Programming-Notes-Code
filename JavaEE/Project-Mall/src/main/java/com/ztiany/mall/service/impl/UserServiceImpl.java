@@ -3,9 +3,9 @@ package com.ztiany.mall.service.impl;
 import com.ztiany.mall.config.AppConfig;
 import com.ztiany.mall.dao.UserDao;
 import com.ztiany.mall.domain.User;
-import com.ztiany.mall.exception.DataAccessException;
 import com.ztiany.mall.service.UserService;
 import com.ztiany.mall.utils.BeanFactory;
+import com.ztiany.mall.utils.CommonsUtils;
 import com.ztiany.mall.utils.MD5Utils;
 
 import java.sql.SQLException;
@@ -18,22 +18,48 @@ import java.sql.SQLException;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public User login(String username, String password) throws DataAccessException {
+    public User login(String username, String password) throws SQLException {
         UserDao userDao = BeanFactory.getBean(AppConfig.USER_DAO);
-        try {
-            return userDao.findUser(username, MD5Utils.md5(password));
-        } catch (SQLException e) {
-            throw new DataAccessException(e);
+        return userDao.findUser(username, MD5Utils.md5(password));
+    }
+
+    @Override
+    public User autoLogin(String username, String password) throws SQLException {
+        UserDao userDao = BeanFactory.getBean(AppConfig.USER_DAO);
+        return userDao.findUser(username, password);
+    }
+
+    @Override
+    public boolean checkUserExist(String username) throws SQLException {
+        UserDao userDao = BeanFactory.getBean(AppConfig.USER_DAO);
+        return userDao.checkUserExist(username) != 0;
+    }
+
+    @Override
+    public int register(User user) throws SQLException {
+        UserDao userDao = BeanFactory.getBean(AppConfig.USER_DAO);
+        User databaseUser = userDao.findUserByUsername(user.getUsername());
+        if (databaseUser != null) {
+            return AppConfig.USER_EXIST;
+        } else {
+            user.setUid(CommonsUtils.getUUID());
+            user.setCode(CommonsUtils.getUUID());
+            user.setPassword(MD5Utils.md5(user.getPassword()));
+            user.setState(AppConfig.NO_ACTIVE);
+            userDao.saveUser(user);
+            return AppConfig.SUCCESS;
         }
     }
 
     @Override
-    public boolean checkUserExist(String username) throws DataAccessException {
+    public int active(String activeCode) throws SQLException {
         UserDao userDao = BeanFactory.getBean(AppConfig.USER_DAO);
-        try {
-            return userDao.checkUserExist(username) != 0;
-        } catch (SQLException e) {
-            throw new DataAccessException(e);
+        User databaseUser = userDao.findUserByCode(activeCode);
+        if (databaseUser != null) {
+            userDao.updateUserActiveState(activeCode, AppConfig.ACTIVATED);
+            return AppConfig.SUCCESS;
+        } else {
+            return AppConfig.ACTIVE_CODE_NOT_MATCH;
         }
     }
 

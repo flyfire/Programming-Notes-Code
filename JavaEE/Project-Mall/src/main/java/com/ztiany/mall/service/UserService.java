@@ -1,7 +1,8 @@
 package com.ztiany.mall.service;
 
 import com.ztiany.mall.domain.User;
-import com.ztiany.mall.exception.DataAccessException;
+
+import java.sql.SQLException;
 
 /**
  * @author Ztiany
@@ -10,7 +11,14 @@ import com.ztiany.mall.exception.DataAccessException;
  */
 public interface UserService {
 
-    User login(String username, String password) throws DataAccessException;
+    User login(String username, String password) throws SQLException;
 
-    boolean checkUserExist(String username) throws DataAccessException;
+    User autoLogin(String username, String password) throws SQLException;
+
+    boolean checkUserExist(String username) throws SQLException;
+
+    int register(User user) throws SQLException;
+
+    int active(String activeCode) throws SQLException;
+
 }

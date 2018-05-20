@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * JDBC规范：自定义数据源，实现SQL连接池
  * <pre>
- *     这里利用的保证模式，使用动态代理也是可以实现的。
+ *     这里利用的包装模式，使用动态代理也是可以实现的。
  * </pre>
  */
 public class CustomConnection extends ConnectionAdapter {
