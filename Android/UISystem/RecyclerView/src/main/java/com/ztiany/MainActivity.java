@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.ztiany.diff_util.AsyncListDifferFragment;
 import com.ztiany.diff_util.DiffUtilFragment;
 import com.ztiany.item_decoraion_index.ItemDecorationIndexFragment;
 import com.ztiany.itemtouch.GridFragment;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setContentInsetStartWithNavigation(0);
         if (getSupportActionBar() != null) {
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        mRecyclerView = (RecyclerView) findViewById(R.id.activity_main);
+
+        mRecyclerView = findViewById(R.id.activity_main);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         setAdapter();
     }
@@ -66,5 +68,6 @@ public class MainActivity extends AppCompatActivity {
         LIST.add(new Item("ScrollView实现SwipeMenu", SwipeMenu1Fragment.class));
         LIST.add(new Item("自定义LinearLayoutManager", CustomLayoutManagerFragment.class));
         LIST.add(new Item("DiffUtil示例", DiffUtilFragment.class));
+        LIST.add(new Item("AsyncListDiffer示例", AsyncListDifferFragment.class));
     }
 }
