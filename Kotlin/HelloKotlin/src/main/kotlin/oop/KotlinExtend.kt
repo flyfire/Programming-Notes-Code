@@ -122,6 +122,21 @@ private class ExtendF {
     }
 }
 
+private fun <T> T?.safeSelf(): T? = this
+
+private fun <T> T?.doIfNull(action: () -> Unit) {
+    if (this == null) {
+        action()
+    }
+}
+
+private fun testDoIfNull() {
+    val string: String? = null
+    println(string.safeSelf() ?: "aa")
+    string.doIfNull {
+        println("abc")
+    }
+}
 
 fun main(args: Array<String>) {
     testSwap()
@@ -130,4 +145,6 @@ fun main(args: Array<String>) {
     println(c.toString())
     val list = listOf(3, 3)
     println(list.lastIndex)
+
+    testDoIfNull()
 }

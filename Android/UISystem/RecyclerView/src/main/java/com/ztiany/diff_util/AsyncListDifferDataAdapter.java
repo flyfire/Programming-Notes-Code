@@ -2,6 +2,7 @@ package com.ztiany.diff_util;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.recyclerview.extensions.AsyncListDiffer;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 
 import com.ztiany.recyclerview.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,18 +19,15 @@ import java.util.List;
  * Email: ztiany3@gmail.com
  * Date : 2018-04-25 16:46
  */
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataHolder> {
-
-    private List<TestBean> mTestBeans;
+public class AsyncListDifferDataAdapter extends RecyclerView.Adapter<AsyncListDifferDataAdapter.DataHolder> {
 
     public static final String KEY_IMAGE = "key_image";
     public static final String KEY_DES = "key_des";
 
-    DataAdapter(List<TestBean> testBeans) {
-        mTestBeans = testBeans;
-        if (mTestBeans == null) {
-            mTestBeans = new ArrayList<>();
-        }
+    private AsyncListDiffer<TestBean> mAsyncListDiffer;
+
+    AsyncListDifferDataAdapter() {
+        mAsyncListDiffer = new AsyncListDiffer<>(this, new DiffItemCallback());
     }
 
     @NonNull
@@ -41,7 +38,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DataHolder holder, int position) {
-        TestBean testBean = mTestBeans.get(position);
+        TestBean testBean = getTestBeans().get(position);
 
         holder.mDes.setText(testBean.getDes());
         holder.mId.setText(String.valueOf(testBean.getId()));
@@ -84,11 +81,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataHolder> {
 
     @Override
     public int getItemCount() {
-        return mTestBeans == null ? 0 : mTestBeans.size();
-    }
-
-    public void setNewData(List<TestBean> newData) {
-        mTestBeans = newData;
+        List<TestBean> beans = getTestBeans();
+        return beans == null ? 0 : beans.size();
     }
 
     static class DataHolder extends RecyclerView.ViewHolder {
@@ -106,7 +100,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataHolder> {
     }
 
     public List<TestBean> getTestBeans() {
-        return mTestBeans;
+        return mAsyncListDiffer.getCurrentList();
+    }
+
+    public void submitList(List<TestBean> testBeans) {
+        mAsyncListDiffer.submitList(testBeans);
     }
 
 }

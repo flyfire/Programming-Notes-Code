@@ -1,12 +1,9 @@
 package com.ztiany.diff_util;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,19 +23,13 @@ import java.util.List;
  * Email: 1169654504@qq.com
  * Date : 2018-01-03 16:21
  */
-public class DiffUtilFragment extends Fragment {
+public class AsyncListDifferFragment extends Fragment {
 
-    private DataAdapter mAdapter;
-    private HandlerThread mHandlerThread = new HandlerThread("diff");
-    private Handler mHandler;
-    private Handler mUIHandler;
+    private AsyncListDifferDataAdapter mAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHandlerThread.start();
-        mHandler = new Handler(mHandlerThread.getLooper());
-        mUIHandler = new Handler();
     }
 
     @Nullable
@@ -54,8 +45,9 @@ public class DiffUtilFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        mAdapter = new DataAdapter(DataSource.getDataSource(getContext()));
+        mAdapter = new AsyncListDifferDataAdapter();
         recyclerView.setAdapter(mAdapter);
+        mAdapter.submitList(DataSource.getDataSource(getContext()));
 
         view.findViewById(R.id.btn_add).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +69,8 @@ public class DiffUtilFragment extends Fragment {
                 doChange();
             }
         });
+
+
     }
 
 
@@ -86,24 +80,18 @@ public class DiffUtilFragment extends Fragment {
         final List<TestBean> newBeans = new ArrayList<>(testBeans);
 
         TestBean element = new TestBean();
+
         element.setId((newBeans.size() + 1));
+
         element.setDes(DataSource.randomDes());
+
         if (DataSource.randomBoolean()) {
             element.setDrawableId(DataSource.randomDrawable(getContext()));
         }
+
         newBeans.add(1, element);
 
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                //step 2 通过DiffCallback就按差异
-                //第二个参数代表是否检测Item的移动，改为false算法效率更高，按需设置，我们这里是true。
-                final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallback(testBeans, newBeans), true);
-
-                dispatchToAdapter(diffResult, newBeans);
-            }
-        });
-
+        mAdapter.submitList(newBeans);
     }
 
 
@@ -125,13 +113,7 @@ public class DiffUtilFragment extends Fragment {
         }
         newBeans.set(index, newBean);
 
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallback(testBeans, newBeans));
-                dispatchToAdapter(diffResult, newBeans);
-            }
-        });
+        mAdapter.submitList(newBeans);
     }
 
     private void doDelete() {
@@ -140,32 +122,7 @@ public class DiffUtilFragment extends Fragment {
 
         newBeans.remove(DataSource.randomInt(3));
 
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallback(testBeans, newBeans));
-                dispatchToAdapter(diffResult, newBeans);
-            }
-        });
+        mAdapter.submitList(newBeans);
     }
 
-    private void dispatchToAdapter(final DiffUtil.DiffResult diffResult, final List<TestBean> newBeans) {
-        mUIHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                //step 3 调用dispatchUpdatesTo方法
-                diffResult.dispatchUpdatesTo(mAdapter);
-
-                //step adapter设置新的数据集
-                mAdapter.setNewData(newBeans);
-            }
-        });
-    }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mHandlerThread.quit();
-    }
 }
