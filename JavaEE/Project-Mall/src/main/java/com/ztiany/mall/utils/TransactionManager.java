@@ -6,11 +6,11 @@ import java.sql.SQLException;
 /**
  * 事务管理器：管理链接和所有事务
  */
-final class TransactionManager {
+public final class TransactionManager {
 
     private static ThreadLocal<Connection> tl = new ThreadLocal<>();
 
-    private static Connection getConnection() {
+    public static Connection getConnection() {
         Connection conn = tl.get();//从当前线程上获取链接
         if (conn == null) {
             conn = C3P0Util.getConnection();
