@@ -21,12 +21,10 @@ import java.util.List;
  */
 public class AsyncListDifferDataAdapter extends RecyclerView.Adapter<AsyncListDifferDataAdapter.DataHolder> {
 
-
     public static final String KEY_IMAGE = "key_image";
     public static final String KEY_DES = "key_des";
 
     private AsyncListDiffer<TestBean> mAsyncListDiffer;
-
 
     AsyncListDifferDataAdapter() {
         mAsyncListDiffer = new AsyncListDiffer<>(this, new DiffItemCallback());

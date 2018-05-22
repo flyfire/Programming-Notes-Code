@@ -80,11 +80,15 @@ public class AsyncListDifferFragment extends Fragment {
         final List<TestBean> newBeans = new ArrayList<>(testBeans);
 
         TestBean element = new TestBean();
+
         element.setId((newBeans.size() + 1));
+
         element.setDes(DataSource.randomDes());
+
         if (DataSource.randomBoolean()) {
             element.setDrawableId(DataSource.randomDrawable(getContext()));
         }
+
         newBeans.add(1, element);
 
         mAdapter.submitList(newBeans);

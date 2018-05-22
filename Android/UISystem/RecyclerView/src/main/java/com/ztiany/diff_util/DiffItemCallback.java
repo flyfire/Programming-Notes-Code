@@ -12,7 +12,7 @@ public class DiffItemCallback extends DiffUtil.ItemCallback<TestBean> {
 
     @Override
     public boolean areItemsTheSame(TestBean oldItem, TestBean newItem) {
-        return oldItem.getId() == oldItem.getId();
+        return oldItem.getId() == newItem.getId();
     }
 
     @Override
