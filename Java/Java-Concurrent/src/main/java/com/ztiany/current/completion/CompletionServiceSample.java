@@ -48,12 +48,13 @@ public class CompletionServiceSample {
         // 按照完成顺序,打印结果
         for (int i = 0; i < taskSize; i++) {
             try {
+                //take 获取并移除表示下一个已完成任务的 Future，如果目前不存在这样的任务，则等待。
                 System.out.println(completionService.take().get());
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        // 所有任务已经完成,关闭线程池
+        // 所有任务已经完成，关闭线程池
         System.out.println("all over.");
         System.out.println("time：" + (System.currentTimeMillis() - start));
         executor.shutdown();
