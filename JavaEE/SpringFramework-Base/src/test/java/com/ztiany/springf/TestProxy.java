@@ -8,9 +8,7 @@ import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
 /**
- * @author Ztiany
- * Email ztiany3@gmail.com
- * Date 18.5.23 23:44
+ * 代理测试
  */
 public class TestProxy {
 

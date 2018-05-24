@@ -14,6 +14,9 @@ import org.springframework.core.io.ClassPathResource;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
+/**
+ * 配置文件测试
+ */
 public class TestConfig {
 
     private ApplicationContext applicationContext;

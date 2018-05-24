@@ -5,7 +5,7 @@ package com.ztiany.springf.aop;
  * Email ztiany3@gmail.com
  * Date 18.5.24 0:37
  */
-public interface TestAOPService {
+public interface AOPService {
 
     void save();
 
