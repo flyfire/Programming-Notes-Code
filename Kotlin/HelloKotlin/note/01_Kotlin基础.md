@@ -7,7 +7,8 @@
 
    - 可变使用`var`
    - 常量使用`val`
-   - 成员变量必须显式指定初始值，否则需要使用*lateinit*修饰变量，lateinit不能用于基本类型和可空类型
+   - 成员变量必须显式指定初始值，否则需要使用`lateinit`修饰变量，lateinit不能用于基本类型和可空类型
+   - const：在companion对象或顶级作用域中可以使用 `const val` 定义字面常量，支持基本类型和String
     
 ### 条件表达式
 

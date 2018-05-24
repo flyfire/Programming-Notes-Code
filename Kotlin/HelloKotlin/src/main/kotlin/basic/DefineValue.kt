@@ -27,4 +27,11 @@ fun main(args: Array<String>) {
 private class ClassA {
     //延迟初始化
     lateinit var value: Date
+
+    companion object {
+        const val VALUE = 1
+    }
+
 }
+
+const val GLOBAL_VALUE = 1

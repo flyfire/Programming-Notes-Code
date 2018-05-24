@@ -4,6 +4,13 @@ Kotlin主要是由俄罗斯圣彼得堡的JetBrains开发团队所发展出来�
 Kotlin是一门**静态的强类型编程语言**，可以运行在JVM上，但不限于JVM。Kotlin与所有基于 Java的框架完全兼容，
 应用领域有**服务端开发、Android开发、Kotlin For JavaScript、Kotlin Native**，可以说是全栈语言。
 
+- Kotlin Script，直接运行.kts文件
+- gradle脚本
+- web开发
+- javaFX
+- 前端开发，编译为JavaScript
+- native，与c代码交互，不依赖JVM
+
 ---
 ## 1 文档与资料
 
@@ -11,12 +18,10 @@ Kotlin是一门**静态的强类型编程语言**，可以运行在JVM上，但�
 - [官方：Kotlin协程](https://github.com/Kotlin/kotlinx.coroutines)
 - [官方：kotlin-examples](https://github.com/JetBrains/kotlin-examples)
 - [Kotlin中文站](https://www.kotlincn.net/)
-- [Kotlin-Tutorials-视频教程](https://github.com/enbandari/Kotlin-Tutorials)
 - [kymjs：Kotlin Primer](https://kymjs.com/code/2017/02/03/01/)
-- [Kotlin 知识梳理系列文章](http://www.jianshu.com/p/f9e78d6c54bd)
 - [EasyKotlin](https://github.com/JackChan1999/EasyKotlin)
 - [EasyKotlin-All](https://github.com/EasyKotlin)
-- 《Kotlin实战》
+- [《Kotlin实战》](https://panxl6.gitbooks.io/kotlin-in-action-in-chinese/content/introduction.html)
 
 ---
 ## 2 Android

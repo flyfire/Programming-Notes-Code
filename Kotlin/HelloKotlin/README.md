@@ -4,18 +4,18 @@
 
 ### 基础笔记
 
-1. [Kotlin资料](note/00_Kotlin入门.md)
+1. [Kotlin资料](note/00_Kotlin简介.md)
 2. [Kotlin基础](note/01_Kotlin基础.md)
 3. [面向对象](note/02_面向对象.md)
 4. [函数与表达式](note/03_函数与lambda.md)
 5. [Kotlin特性](note/04_Advance.md)
 6. [Kotlin与java相互操作](note/05_与Java互相操作.md)
-7. [API学习](note/API.md)
+7. [API学习](note/Kotlin常用API.md)
 8. [Kotlin标准库](note/Kotlin标准库.md) 
 
 ## 知识点
 
-- [Unit和Nothing区别](note/Unit和Nothing.md)
+- [Unit和Nothing区别](note/Kotlin知识点-Unit和Nothing.md)
 
 ---
 ## 2 知识点归纳

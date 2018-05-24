@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
     samInJava.addTask(lambda)
     samInJava.addTask(lambda)
 
-    //以下调用下面代码会是一个新的转换，所以下面代码无法把lambda remove掉
+    //以下调用下面代码是，参数lambda会应用一个新的转换，所以下面代码无法把lambda remove掉
     samInJava.removeTask(lambda)
     samInJava.removeTask(lambda)
     samInJava.removeTask(lambda)

@@ -45,6 +45,6 @@ Kotlin与java的交互： Kotlin 在设计时就考虑了Java 互操作性。
  ### SAM(single abstract method)转换
  
 - SAM转换条件：java单一方法接口
-- 注意转换之后的实例变化。
+- 注意转换之后的实例变化：调用Java方法时，如果传入一个lambda，lambda会被转换为Runnable类型，每一次调用都会有一次新的转换，这种变换即SAM
 
 
