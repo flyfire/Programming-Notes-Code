@@ -1,6 +1,6 @@
 package com.ztiany.springf.aop;
 
-public class TestAOPServiceImpl implements TestAOPService {
+public class AOPServiceImpl implements AOPService {
 
     @Override
     public void save() {

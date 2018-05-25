@@ -7,27 +7,20 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop.xsd
-        http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/jee
-        http://www.springframework.org/schema/jee/spring-jee.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 准备工作: 导入aop(约束)命名空间 -->
     <!-- 1.配置目标对象 -->
-    <bean name="service" class="com.ztiany.springf.aop.TestAOPServiceImpl"/>
+    <bean name="service" class="com.ztiany.springf.aop.AOPServiceImpl"/>
     <!-- 2.配置通知对象 -->
-    <bean name="advice" class="com.ztiany.springf.aop.TestAdvice"/>
+    <bean name="advice" class="com.ztiany.springf.aop.Advice"/>
     <!-- 3.配置将通知织入目标对象 -->
     <aop:config>
 
         <!--切入点-->
         <aop:pointcut id="pc"
-                      expression="execution(* com.ztiany.springf.aop.TestAOPServiceImpl.*(..))"/>
+                      expression="execution(* com.ztiany.springf.aop.AOPServiceImpl.*(..))"/>
 
         <aop:aspect ref="advice">
 

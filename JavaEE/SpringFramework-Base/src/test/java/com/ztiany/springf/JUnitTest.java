@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNotNull;
  * Email ztiany3@gmail.com
  * Date 18.5.23 23:28
  */
-//帮我们创建容器
+//创建容器
 @RunWith(SpringJUnit4ClassRunner.class)
 //指定创建容器时使用哪个配置文件
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
