@@ -1,5 +1,6 @@
 import javassist.ClassPool
 import javassist.CtClass
+import javassist.CtMethod
 
 group 'me.ztiany.javassist'
 version '1.0'
@@ -30,13 +31,36 @@ buildscript {
 def doJavassistWork(JavaCompile javaCompile, Project project) {
     println "doJavassistWork"
     ClassPool pool = ClassPool.getDefault()
-    //CtClass cc = pool.get("test.Rectangle")
+    println javaCompile.destinationDir.toString()
+    pool.appendClassPath(javaCompile.destinationDir.toString())
+    CtClass cc = pool.get("me.ztiany.javassist.Main")
+    cc.defrost()
     //cc.setSuperclass(pool.get("test.Point"))
-    //cc.writeFile()
+    def method = cc.getDeclaredMethod("hello")
+    println method
+    method.insertBefore("System.out.println(123);")
+    cc.writeFile(javaCompile.destinationDir.toString() + "/")
 }
 
 
 allprojects {
+
+    apply plugin: 'idea'
+
+    idea {
+        module {
+            outputDir file('build/classes/java/main')
+            testOutputDir file('build/classes/java/test')
+        }
+    }
+
+    if (project.convention.findPlugin(JavaPluginConvention)) {
+        // Change the output directory for the main and test source sets back to the old path
+        sourceSets.main.output.classesDir = new File(buildDir, "classes/java/main")
+        sourceSets.test.output.classesDir = new File(buildDir, "classes/java/test")
+    }
+
+
     afterEvaluate { project ->
         project.tasks.each {
             if (it.name == "compileJava") {
