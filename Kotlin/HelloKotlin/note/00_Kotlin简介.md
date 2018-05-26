@@ -22,6 +22,7 @@ Kotlin是一门**静态的强类型编程语言**，可以运行在JVM上，但�
 - [EasyKotlin](https://github.com/JackChan1999/EasyKotlin)
 - [EasyKotlin-All](https://github.com/EasyKotlin)
 - [《Kotlin实战》](https://panxl6.gitbooks.io/kotlin-in-action-in-chinese/content/introduction.html)
+- 《Atomic Kotlin》
 
 ---
 ## 2 Android
@@ -36,3 +37,4 @@ Kotlin是一门**静态的强类型编程语言**，可以运行在JVM上，但�
 
 - [awesome-kotlin](https://github.com/KotlinBy/awesome-kotlin)
 - [awesome-kotlin-cn](https://github.com/kymjs/awesome-kotlin-cn)
+- [Atomic Kotlin Source](https://github.com/BruceEckel/AtomicKotlinExamples)
