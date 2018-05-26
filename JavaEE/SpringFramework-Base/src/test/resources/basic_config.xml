@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    - Bean元素:使用该元素描述需要spring容器管理的对象
+    - class属性:被管理对象的完整类名
+    - name属性：给被管理的对象起个名字，获得对象时根据该名称获得对象
+    - id属性：与name属性一样，但名称不可重复，不能使用特殊字符，所以尽量使用name属性
+    -->
+    <bean name="user1" class="com.ztiany.springf.test.basic.User" scope="prototype"/>
+
+    <import resource="factory.xml"/>
+    <import resource="injector.xml"/>
+
+</beans>
