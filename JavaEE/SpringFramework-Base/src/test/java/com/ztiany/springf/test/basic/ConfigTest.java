@@ -1,5 +1,8 @@
 package com.ztiany.springf.test.basic;
 
+import com.ztiany.springf.test.basic.domain.CollectionBean;
+import com.ztiany.springf.test.basic.domain.User;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * 配置文件测试
  */
-public class TestConfig {
+public class ConfigTest {
 
     private ApplicationContext applicationContext;
 
@@ -42,9 +45,16 @@ public class TestConfig {
 
     @Test
     public void testScope() {
+        //No qualifying bean of type 'com.ztiany.springf.test.basic.User' available: expected single matching bean but found 8: user1,user2,user3,user4,user5,user6,user7,user8
+        //当存在多个相同类型的对象在容器中时，不能使用下面方法
+        //User user = applicationContext.getBean(User.class);
+        //System.out.println(user);
+
         User user1First = (User) applicationContext.getBean("user1");
         User user1Second = (User) applicationContext.getBean("user1");
         assertNotEquals(user1First, user1Second);
+        System.out.println(user1First);
+        System.out.println(user1Second);
     }
 
     @Test

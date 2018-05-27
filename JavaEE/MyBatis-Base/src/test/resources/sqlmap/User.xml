@@ -6,7 +6,7 @@
 <!--  namespace="test" 用于精确定位内部的sql语句，防止冲突 -->
 <mapper namespace="test">
 
-    <!--resultType为自动映射，要求返回值和表的列名一一对应-->
+    <!--resultType会自动映射，要求返回值和表的列名一一对应-->
     <select id="findUserById" parameterType="Integer" resultType="me.ztiany.mybatis.pojo.User">
         SELECT *
         FROM MyBatis_user

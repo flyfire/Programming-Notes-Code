@@ -9,7 +9,7 @@
 
 
     <!-- set方式注入: -->
-    <bean name="user5" class="com.ztiany.springf.test.basic.User">
+    <bean name="user5" class="com.ztiany.springf.test.basic.domain.User">
         <!--值类型注入: 为User对象中名为name的属性注入tom作为值 -->
         <property name="name" value="tom"/>
         <property name="age" value="18"/>
@@ -18,14 +18,14 @@
     </bean>
 
     <!-- 将car对象配置到容器中 -->
-    <bean name="car" class="com.ztiany.springf.test.basic.Car">
+    <bean name="car" class="com.ztiany.springf.test.basic.domain.Car">
         <property name="name" value="兰博基尼"/>
         <property name="color" value="黄色"/>
     </bean>
 
     <!-- ============================================================ -->
     <!-- 构造函数注入 -->
-    <bean name="user6" class="com.ztiany.springf.test.basic.User">
+    <bean name="user6" class="com.ztiany.springf.test.basic.domain.User">
         <!-- name属性: 构造函数的参数名 -->
         <!-- index属性: 构造函数的参数索引 -->
         <!-- type属性: 构造函数的参数类型-->
@@ -41,7 +41,7 @@
             |-值类型: p:属性名="值"
             |-对象类型: p:属性名-ref="bean名称"
      -->
-    <bean name="user7" class="com.ztiany.springf.test.basic.User" p:name="jack" p:age="20"
+    <bean name="user7" class="com.ztiany.springf.test.basic.domain.User" p:name="jack" p:age="20"
           p:car-ref="car">
     </bean>
 
@@ -50,7 +50,7 @@
     <!--
         spel注入: spring Expression Language spring 表达式语言
      -->
-    <bean name="user8" class="com.ztiany.springf.test.basic.User">
+    <bean name="user8" class="com.ztiany.springf.test.basic.domain.User">
         <property name="name" value="#{user6.name}"/>
         <property name="age" value="#{user6.age}"/>
         <!-- 引用类型不能使用 spel -->
@@ -59,7 +59,7 @@
     <!-- ============================================================= -->
 
     <!-- 复杂类型注入：array，list，map，properties -->
-    <bean name="collection_bean" class="com.ztiany.springf.test.basic.CollectionBean">
+    <bean name="collection_bean" class="com.ztiany.springf.test.basic.domain.CollectionBean">
 
         <!-- 如果数组中只准备注入一个值(对象)，直接使用value|ref即可
              <property name="arr" value="tom" ></property>

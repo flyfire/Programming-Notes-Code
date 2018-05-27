@@ -1,4 +1,4 @@
-package com.ztiany.springf.test.basic;
+package com.ztiany.springf.test.basic.domain;
 
 import java.util.Arrays;
 import java.util.List;

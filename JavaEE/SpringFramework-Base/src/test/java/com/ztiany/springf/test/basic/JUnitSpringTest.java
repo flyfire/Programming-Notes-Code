@@ -1,5 +1,7 @@
 package com.ztiany.springf.test.basic;
 
+import com.ztiany.springf.test.basic.domain.User;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,9 +20,9 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 //指定创建容器时使用哪个配置文件
 @ContextConfiguration(locations = "classpath:basic_config.xml")
-public class TestJUnit {
+public class JUnitSpringTest {
 
-    //将名为user的对象注入到u变量中
+    //将名为user的对象注入到mUser变量中
     @Resource(name = "user1")
     private User mUser;
 

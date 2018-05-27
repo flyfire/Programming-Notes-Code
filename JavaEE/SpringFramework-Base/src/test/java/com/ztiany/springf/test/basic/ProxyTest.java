@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * 代理测试
  */
-public class TestProxy {
+public class ProxyTest {
 
     public interface FakeService {
         void save(String name);

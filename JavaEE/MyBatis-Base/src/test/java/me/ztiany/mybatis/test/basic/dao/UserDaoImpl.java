@@ -17,15 +17,28 @@ public class UserDaoImpl implements UserDao {
     }
 
     //通过用户ID查询一个用户
+    @Override
     public User selectUserById(Integer id) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         return sqlSession.selectOne("test.findUserById", id);
     }
 
     //通过用户名称模糊查询
+    @Override
     public List<User> selectUserByUsername(Integer id) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        return sqlSession.selectList("test.findUserById", id);
+        List<User> userList = sqlSession.selectList("test.findUserById", id);
+        sqlSession.close();
+        return userList;
     }
 
+    //插入用户
+    @Override
+    public Integer insertUser(User user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        int lastInsertId = sqlSession.insert("test.insertUser", user);
+        sqlSession.commit();
+        sqlSession.close();
+        return lastInsertId;
+    }
 }

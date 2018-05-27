@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 //演示JDBC模板
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:jdbc.xml")
-public class TestJDBC {
+public class JDBCTest {
 
     @Resource(name = "userDao")
     private UserDao mUserDao;

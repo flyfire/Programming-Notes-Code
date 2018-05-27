@@ -1,4 +1,4 @@
-package com.ztiany.springf.test.basic;
+package com.ztiany.springf.test.basic.domain;
 
 public class Car {
 

@@ -16,8 +16,8 @@ import javax.annotation.Resource;
 //帮我们创建容器
 @RunWith(SpringJUnit4ClassRunner.class)
 //指定创建容器时使用哪个配置文件
-@ContextConfiguration(locations = "classpath:aspectj_aop.xml")
-public class TestAOP {
+@ContextConfiguration(locations = "classpath:aspectj_annotation_aop.xml")
+public class AOPAnnotationTest {
 
     @Resource(name = "service")
     private AOPService mAOPService;

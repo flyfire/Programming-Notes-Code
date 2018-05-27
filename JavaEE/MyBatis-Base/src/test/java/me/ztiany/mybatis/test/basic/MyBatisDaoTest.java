@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Date;
 
 import me.ztiany.mybatis.pojo.User;
 import me.ztiany.mybatis.test.basic.dao.UserDao;
@@ -21,21 +22,37 @@ import me.ztiany.mybatis.test.basic.dao.UserDaoImpl;
  */
 public class MyBatisDaoTest {
 
-    private SqlSessionFactory sqlSessionFactory;
+    private UserDao mUserDao;
 
     @Before
     public void before() throws Exception {
         //加载核心配置文件
         InputStream in = Resources.getResourceAsStream("sqlMapConfig_Basic.xml");
         //创建SqlSessionFactory
-        sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+        mUserDao = new UserDaoImpl(sqlSessionFactory);
     }
 
     @Test
     public void testDao() {
-        UserDao userDao = new UserDaoImpl(sqlSessionFactory);
-        User user = userDao.selectUserById(10);
+        User user = mUserDao.selectUserById(10);
         System.out.println(user);
+    }
+
+    @Test
+    public void testInsert() {
+        //执行Sql语句
+        User user = new User();
+        user.setUsername("谭咏麟");
+        user.setBirthday(new Date());
+        user.setAddress("香港");
+        user.setSex("男");
+
+        //返回插入后，影响的行数
+        int insert = mUserDao.insertUser(user);
+
+        System.out.println("insert: " + insert);
+        System.out.println("last insert user: " + user.getId());
     }
 
 }

@@ -1,4 +1,6 @@
-package com.ztiany.springf.test.basic;
+package com.ztiany.springf.test.basic.factroy;
+
+import com.ztiany.springf.test.basic.domain.User;
 
 public class UserFactory {
 
