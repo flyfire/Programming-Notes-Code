@@ -4,13 +4,40 @@ version '1.0'
 apply plugin: 'java'
 apply plugin: 'war'
 
+//根据SQL生成POJO、Mapper、和xml映射文件
+apply plugin: "com.thinkimi.gradle.MybatisGenerator"
+
 sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.thinkimi.gradle:mybatis-generator-plugin:2.0"
+    }
+}
+configurations {
+    mybatisGenerator
+}
+
+mybatisGenerator {
+    verbose = true
+    configFile = 'src/main/resources/generatorConfig.xml'
+}
 
 repositories {
     jcenter()
     mavenCentral()
     maven { url 'https://jitpack.io' }
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+
 }
+
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
@@ -93,5 +120,6 @@ dependencies {
       // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
       compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.1'
     */
+
 
 }
