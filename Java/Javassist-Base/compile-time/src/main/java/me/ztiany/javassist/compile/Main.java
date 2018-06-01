@@ -1,4 +1,4 @@
-package me.ztiany.javassist;
+package me.ztiany.javassist.compile;
 
 
 /**
@@ -11,7 +11,6 @@ public class Main {
         System.out.println("Main.main");
         new Main().hello();
     }
-
 
     public void hello() {
 
