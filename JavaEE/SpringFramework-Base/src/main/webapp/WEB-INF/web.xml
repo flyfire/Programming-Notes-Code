@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <!-- 可以让spring容器随项目的启动而创建,随项目的关闭而销毁 -->
+    <!-- 可以让spring容器随项目的启动而创建，随项目的关闭而销毁 -->
     <listener>
         <!--WebApplicationContextUtils-->
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
