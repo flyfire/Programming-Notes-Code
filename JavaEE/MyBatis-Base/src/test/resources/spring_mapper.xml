@@ -26,11 +26,10 @@
     <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 核心配置文件的位置 -->
-        <!-- 加载多个可以改为*.xml -->
         <property name="configLocation" value="classpath:sqlMapConfig_Mapper_Spring.xml"/>
     </bean>
 
-    <!-- Mapper动态代理开发 -->
+    <!-- Mapper动态代理开发，自动扫描 -->
     <bean name="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
         <property name="mapperInterface" value="me.ztiany.mybatis.test.basic.mapper.UserMapper"/>

@@ -9,4 +9,9 @@
         <package name="me.ztiany.mybatis.pojo"/>
     </typeAliases>
 
+    <!--如果Spring中配置了mapper的位置 或者 设置mapper自动扫描，则可以省略-->
+    <mappers>
+        <package name="me.ztiany.mybatis.test.basic.mapper"/>
+    </mappers>
+
 </configuration>
