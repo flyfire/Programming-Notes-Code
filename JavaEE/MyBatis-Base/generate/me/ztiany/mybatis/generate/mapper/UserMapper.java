@@ -1,4 +1,4 @@
-package me.ztiany.mybatis.generate.pojo;
+package me.ztiany.mybatis.generate.mapper;
 
 import java.util.List;
 import me.ztiany.mybatis.generate.pojo.User;

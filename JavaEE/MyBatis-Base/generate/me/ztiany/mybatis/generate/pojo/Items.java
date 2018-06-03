@@ -1,12 +1,8 @@
-package me.ztiany.mvc.pojo;
+package me.ztiany.mybatis.generate.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Items implements Serializable {
-
-    private static final long serialVersionUID = 42L;
-
+public class Items {
     private Integer id;
 
     private String name;
@@ -18,14 +14,6 @@ public class Items implements Serializable {
     private Date createtime;
 
     private String detail;
-
-    public Items(Integer id, String name, Float price, Date createtime, String detail) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.createtime = createtime;
-        this.detail = detail;
-    }
 
     public Integer getId() {
         return id;

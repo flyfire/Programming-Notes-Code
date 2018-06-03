@@ -1,28 +1,34 @@
 package me.ztiany.mvc.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import me.ztiany.mvc.pojo.Items;
+import me.ztiany.mvc.pojo.QueryVo;
+import me.ztiany.mvc.service.ItemService;
 
 /**
- * 商品管理，ItemController初始化一次
+ * 商品管理，ItemController只会被初始化一次
  */
 @Controller
 public class ItemController {
 
+    private final ItemService itemService;
 
-    //入门程序 第一   包类 + 类包 + 方法名
+    @Autowired
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
+    }
+
     @RequestMapping(value = "/item/itemlist.action")
     public ModelAndView itemList() {
-
-        // 创建页面需要显示的商品数据
+        /*
+          // 创建页面需要显示的商品数据
         List<Items> list = new ArrayList<>();
         list.add(new Items(1, "1华为 荣耀8", 2399f, new Date(), "质量好！1"));
         list.add(new Items(2, "2华为 荣耀8", 2399f, new Date(), "质量好！2"));
@@ -35,10 +41,44 @@ public class ItemController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("itemList", list);
         //mav.setViewName("/WEB-INF/jsp/itemList.jsp");
-        //视图解析器配置了前缀后缀
+        //Spring配置的视图解析器可以设置前缀后缀
+        mav.setViewName("itemList");
+         */
+
+        List<Items> list = itemService.selectItemsList();
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("itemList", list);
         mav.setViewName("itemList");
 
         return mav;
     }
+
+
+    //去修改页面 入参 id
+    @RequestMapping(value = "/itemEdit.action")
+    public ModelAndView toEdit(Integer id) {
+        //查询一个商品
+        Items items = itemService.selectItemsById(id);
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("item", items);
+        mav.setViewName("editItem");
+
+        return mav;
+    }
+
+    //提交修改页面 入参  为 Items对象
+    @RequestMapping(value = "/updateItem.action")
+    //public ModelAndView updateItem(Items items){
+    public ModelAndView updateItem(QueryVo vo) {
+
+        itemService.updateItemsById(vo.getItems());
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("success");
+
+        return mav;
+    }
+
 
 }

@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 18.6.2
-  Time: 20:50
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>SpringMVC sample index</title>
+</head>
+<body>
+
+<a href="${pageContext.request.contextPath}/item/itemlist.action">ItemList</a>
+<a href="${pageContext.request.contextPath}/user/userlist.action">UserList</a>
+
+</body>
 </html>

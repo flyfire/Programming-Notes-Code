@@ -8,12 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import me.ztiany.mvc.service.UserService;
 
-/**
- * 商品管理，ItemController初始化一次
- */
 @Controller
 public class UserController {
-
 
     private final UserService mUserService;
 
