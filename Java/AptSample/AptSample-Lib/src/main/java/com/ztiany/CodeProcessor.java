@@ -56,8 +56,7 @@ public class CodeProcessor extends AbstractProcessor {
             try {
                 generateCode(element, code, clazz);
             } catch (IOException x) {
-                processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
-                        x.toString());
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, x.toString());
                 return false;
             }
         }
@@ -69,13 +68,14 @@ public class CodeProcessor extends AbstractProcessor {
 
         JavaFileObject f = mFiler.createSourceFile(clazz.getQualifiedName() + SUFFIX);
         mMessager.printMessage(Diagnostic.Kind.NOTE, "Creating " + f.toUri());
+
         try (Writer w = f.openWriter()) {
             String pack = clazz.getQualifiedName().toString();//获取类的全限定名
             PrintWriter pw = new PrintWriter(w);
             pw.println("package " + pack.substring(0, pack.lastIndexOf('.')) + ";"); //生成包
-            pw.println("\n class " + clazz.getSimpleName() + "Autogenerate {");//写类
-            pw.println("\n    protected " + clazz.getSimpleName() + "Autogenerate() {}");//构造方法
-            pw.println("    protected final void message() {");//生成一个message方法
+            pw.println("\npublic class " + clazz.getSimpleName() + "Autogenerate {");//写类
+            pw.println("\n    public " + clazz.getSimpleName() + "Autogenerate() {}");//构造方法
+            pw.println("    public final void message() {");//生成一个message方法
             pw.println("\n//" + element);
             pw.println("//" + ca);
             pw.println("\n        System.out.println(\"author:" + ca.author() + "\");");
@@ -84,5 +84,6 @@ public class CodeProcessor extends AbstractProcessor {
             pw.println("}");
             pw.flush();
         }
+
     }
 }

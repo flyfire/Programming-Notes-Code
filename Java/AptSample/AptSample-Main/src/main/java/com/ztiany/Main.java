@@ -2,14 +2,20 @@ package com.ztiany;
 
 import com.ztiany.runtimeannotation.ClassInfo;
 import com.ztiany.runtimeannotation.User;
+import com.ztiany.compilerannotation.UseCodeAutogenerate;
 
 public class Main {
 
     public static void main(String... args) {
-        processUserAnnotation(new User());
+        useRuntimeAnnotation(new User());
+        userAPT();
     }
 
-    private static void processUserAnnotation(Object object) {
+    private static void userAPT() {
+        new UseCodeAutogenerate().message();
+    }
+
+    private static void useRuntimeAnnotation(Object object) {
         if (object instanceof User) {
             User user = (User) object;
 
