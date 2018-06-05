@@ -26,17 +26,13 @@
     <bean name="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 核心配置文件的位置 -->
-        <!-- 加载多个可以使用 *.xml 匹配所有 -->
-        <property name="configLocation" value="classpath:sqlMapConfig_Mapper_Spring.xml"/>
-        <!--使用下面配置mapper文件，则configLocation指定的配置文件就不需要配置mapper文件位置了-->
-        <!--<property name="mapperLocations" value="classpath:*_mapper.xml" />-->
+        <property name="configLocation" value="classpath:sqlMapConfig_Mapper_SpringDao.xml"/>
     </bean>
 
     <!-- 原始Dao -->
     <bean name="userDao" class="me.ztiany.mybatis.test.spring.dao.UserDaoImpl">
         <property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
     </bean>
-
 
 
 </beans>

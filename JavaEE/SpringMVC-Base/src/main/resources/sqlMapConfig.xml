@@ -6,7 +6,7 @@
 <configuration>
 
     <typeAliases>
-        <package name="me.ztiany.mybatis.pojo"/>
+        <package name="me.ztiany.mvc.pojo"/>
     </typeAliases>
 
 </configuration>

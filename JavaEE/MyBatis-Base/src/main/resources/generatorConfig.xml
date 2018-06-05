@@ -38,7 +38,7 @@
                 targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
        -->
         <javaModelGenerator targetPackage="me.ztiany.mybatis.generate.pojo"
-                            targetProject=".\src\main\java">
+                            targetProject=".\generate">
             <!-- enableSubPackages：是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
             <!-- 从数据库返回的值被清理前后的空格 -->
@@ -50,8 +50,8 @@
                     或者只使用Mapper接口+Annotation， 所以，如果 javaClientGenerator配置中配置了需要生成XML的话，这个元素就必须配置
                     targetPackage/targetProject:同javaModelGenerator
          -->
-        <sqlMapGenerator targetPackage="me.ztiany.mybatis.generate.pojo"
-                         targetProject=".\src\main\resources">
+        <sqlMapGenerator targetPackage="me.ztiany.mybatis.generate.mapper"
+                         targetProject=".\generate">
             <!-- enableSubPackages：是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
@@ -65,8 +65,8 @@
            注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
        -->
         <javaClientGenerator
-            type="XMLMAPPER" targetPackage="me.ztiany.mybatis.generate.pojo"
-            targetProject=".\src\main\java">
+            type="XMLMAPPER" targetPackage="me.ztiany.mybatis.generate.mapper"
+            targetProject=".\generate">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
@@ -78,6 +78,7 @@
         -->
         <table tableName="mybatis_user" domainObjectName="User"/>
         <table tableName="mybatis_orders" domainObjectName="Order"/>
+        <table tableName="mybatis_items" domainObjectName="Items"/>
 
         <!-- 有些表的字段需要指定java类型
          <table schema="" tableName="user">

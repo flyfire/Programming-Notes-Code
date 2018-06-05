@@ -16,7 +16,7 @@ Date: 2015-04-09 16:03:53
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `orders`
+-- Table structure for `MyBatis_orders`
 -- ----------------------------
 DROP TABLE IF EXISTS `MyBatis_orders`;
 CREATE TABLE `MyBatis_orders` (
@@ -40,14 +40,14 @@ CREATE TABLE `MyBatis_orders` (
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
--- Records of orders
+-- Records of MyBatis_orders
 -- ----------------------------
 INSERT INTO `MyBatis_orders` VALUES ('3', '1', '1000010', '2015-02-04 13:22:35', NULL);
 INSERT INTO `MyBatis_orders` VALUES ('4', '1', '1000011', '2015-02-03 13:22:41', NULL);
 INSERT INTO `MyBatis_orders` VALUES ('5', '10', '1000012', '2015-02-12 16:13:23', NULL);
 
 -- ----------------------------
--- Table structure for `user`
+-- Table structure for `MyBatis_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `MyBatis_user`;
 CREATE TABLE `MyBatis_user` (
@@ -67,7 +67,7 @@ CREATE TABLE `MyBatis_user` (
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
--- Records of user
+-- Records of MyBatis_user
 -- ----------------------------
 INSERT INTO `MyBatis_user` VALUES ('1', '王五', NULL, '2', NULL);
 INSERT INTO `MyBatis_user` VALUES ('10', '张三', '2014-07-10', '1', '北京市');
@@ -76,3 +76,24 @@ INSERT INTO `MyBatis_user` VALUES ('22', '陈小明', NULL, '1', '河南郑州')
 INSERT INTO `MyBatis_user` VALUES ('24', '张三丰', NULL, '1', '河南郑州');
 INSERT INTO `MyBatis_user` VALUES ('25', '陈小明', NULL, '1', '河南郑州');
 INSERT INTO `MyBatis_user` VALUES ('26', '王五', NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for `MyBatis_items`
+-- ----------------------------
+DROP TABLE IF EXISTS `MyBatis_items`;
+CREATE TABLE `MyBatis_items` (
+  id         INT(11) PRIMARY KEY AUTO_INCREMENT,
+  name       VARCHAR(32)  NOT NULL,
+  price      FLOAT(10, 1) NOT NULL,
+  detail     TEXT,
+  pic        VARCHAR(64),
+  createtime DATETIME
+);
+
+-- ----------------------------
+-- Records of MyBatis_items
+-- ----------------------------
+INSERT INTO `MyBatis_items` VALUES (NULL, '小米6', 3021.1, '拍人更美！', NULL, NULL);
+INSERT INTO `MyBatis_items` VALUES (NULL, 'HuaWei', 15310.2, '质量好！1', NULL, NULL);
+INSERT INTO `MyBatis_items` VALUES (NULL, '三星X9', 10445.3, '质量好！2', NULL, NULL);
+INSERT INTO `MyBatis_items` VALUES (NULL, '1华为 荣耀8', 2399.3, '质量好！3', NULL, NULL);
