@@ -21,6 +21,7 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 /**
+ * APT API 测试
  * <pre>
  *  方法的调用顺序
  *          init
@@ -30,8 +31,8 @@ import javax.tools.Diagnostic;
  * </pre>
  *
  * @author Ztiany
- *         Date : 2017-02-15 22:33
- *         Email: ztiany3@gmail.com
+ * Date : 2017-02-15 22:33
+ * Email: ztiany3@gmail.com
  */
 public class SamplePrintProcessor extends AbstractProcessor {
 
@@ -52,7 +53,6 @@ public class SamplePrintProcessor extends AbstractProcessor {
         Types typeUtils = processingEnv.getTypeUtils();//Types中包含用于操作TypeMirror的工具方法
         super.init(processingEnv);
     }
-
 
     /**
      * 该方法返回字符串的集合表示该处理器用于处理那些注解
