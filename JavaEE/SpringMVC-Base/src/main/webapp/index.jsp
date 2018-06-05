@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/item/itemlist.action">ItemList</a>
-<a href="${pageContext.request.contextPath}/user/userlist.action">UserList</a>
+<a href="${pageContext.request.contextPath}/item/itemList.action">ItemList</a>
+<a href="${pageContext.request.contextPath}/user/userList.action">UserList</a>
 
 </body>
 </html>
