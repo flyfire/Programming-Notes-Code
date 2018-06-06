@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-
     <!-- Spring监听器 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -45,7 +44,7 @@
         <!--
                 1.  /*  拦截所有jsp  js png .css，全拦截，建议不使用
                 2.  *.action *.do 拦截以do action 结尾的请求
-                3.  /  拦截所有 （不包括jsp，包含.js .png.css)
+                3.  /  拦截所有 （不包括jsp，包含.js .png .css)
         -->
         <url-pattern>*.action</url-pattern>
     </servlet-mapping>

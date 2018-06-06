@@ -5,11 +5,11 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--mvc核心配置文件-->
 
@@ -43,6 +43,30 @@
             </list>
         </property>
     </bean>
+
+
+    <!-- SpringMVC 异常处理器 -->
+    <bean class="me.ztiany.mvc.exception.CustomExceptionResolver"/>
+
+    <!-- 文件上传解析器，id必须为：multipartResolver -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 上传图片的大小： 5M  = 1024*1024*5-->
+        <property name="maxUploadSize" value="5000000"/>
+    </bean>
+
+    <!-- SpringMVC的拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--**表示拦截所有-->
+            <mvc:mapping path="/**"/>
+            <bean class="me.ztiany.mvc.interceptor.Interceptor1"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="me.ztiany.mvc.interceptor.Interceptor2"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 
 </beans>

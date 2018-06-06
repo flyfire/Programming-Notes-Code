@@ -3,7 +3,10 @@ package me.ztiany.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -25,7 +28,7 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @RequestMapping(value = "/item/itemlist.action")
+    @RequestMapping(value = "/item/itemList.action")
     public ModelAndView itemList() {
         /*
           // 创建页面需要显示的商品数据
@@ -55,7 +58,7 @@ public class ItemController {
     }
 
 
-    //去修改页面 入参 id
+    @SuppressWarnings("all")
     @RequestMapping(value = "/itemEdit.action")
     public ModelAndView toEdit(Integer id) {
         //查询一个商品
@@ -68,7 +71,6 @@ public class ItemController {
         return mav;
     }
 
-    //提交修改页面 入参  为 Items对象
     @RequestMapping(value = "/updateItem.action")
     //public ModelAndView updateItem(Items items){
     public ModelAndView updateItem(QueryVo vo) {
@@ -77,6 +79,26 @@ public class ItemController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("success");
 
+        return mav;
+    }
+
+
+    //json数据交互
+    @RequestMapping(value = "/json.action")
+    public @ResponseBody
+    Items json(@RequestBody Items items) {
+
+        return items;
+    }
+
+    //RestFul风格的开发
+    @RequestMapping(value = "/itemEdit/{id}.action")
+    @SuppressWarnings("all")
+    public ModelAndView restFulToEdit(@PathVariable Integer id) {
+        Items items = itemService.selectItemsById(id);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("item", items);
+        mav.setViewName("editItem");
         return mav;
     }
 

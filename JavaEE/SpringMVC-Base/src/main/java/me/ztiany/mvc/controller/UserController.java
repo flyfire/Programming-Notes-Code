@@ -4,7 +4,10 @@ package me.ztiany.mvc.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 import me.ztiany.mvc.service.UserService;
 
@@ -19,7 +22,7 @@ public class UserController {
     }
 
     //入门程序 第一   包类 + 类包 + 方法名
-    @RequestMapping(value = "/user/userlist.action")
+    @RequestMapping(value = "/user/userList.action")
     public ModelAndView itemList() {
         ModelAndView mav = new ModelAndView();
 
@@ -27,6 +30,20 @@ public class UserController {
         mav.setViewName("userList");
 
         return mav;
+    }
+
+
+    //去登陆的页面
+    @RequestMapping(value = "/user/login.action", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
+    //指定登录操作
+    @RequestMapping(value = "/user/login.action", method = RequestMethod.POST)
+    public String login(String username, HttpSession httpSession) {
+        httpSession.setAttribute("USER_SESSION", username);
+        return "redirect:/item/itemList.action";
     }
 
 }
