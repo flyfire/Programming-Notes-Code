@@ -1,10 +1,15 @@
 package me.ztiany.mvc.controller;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -15,14 +20,38 @@ import java.io.File;
 @Controller
 public class UploadController {
 
-    //提交修改页面 入参  为 Items对象
+    //files 要和文件表单name相同
     @RequestMapping(value = "/upload/uploadFile.action")
-    public String uploadFile(MultipartFile pictureFile) {
+    public String uploadFile(MultipartFile[] files, HttpServletRequest request) throws IOException {
 
-        System.out.println(pictureFile.getOriginalFilename());
-        System.out.println(new File(".").getAbsolutePath());
-        //pictureFile.transferTo();
+        //直接使用：ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("WEB-INF/image")也可以
+        //要求 idea 以非 exploded 发布才能获取到此路径
+        String realPath = request.getServletContext().getRealPath("WEB-INF/image");
+        File path = new File(realPath);
+        if (!path.exists()) {
+            path.mkdirs();
+        }
 
-        return "redirect:success";
+        //H:\dev_tools\tomcat\apache-tomcat-8.5.4\bin\.
+        System.out.println("------------------" + new File(".").getAbsolutePath());
+        //H:\dev_tools\tomcat\apache-tomcat-8.5.4\webapps\springmvc\WEB-INF\image
+        System.out.println("------------------" + realPath);
+
+        for (MultipartFile multipartFile : files) {
+            String originalFilename = multipartFile.getOriginalFilename();
+            System.out.println("------------------" + originalFilename);
+            String extension = FilenameUtils.getExtension(originalFilename);
+            File file = new File(realPath, UUID.randomUUID().toString() + "." + extension);
+            System.out.println("save file path------- " + file.getAbsolutePath());
+
+            multipartFile.transferTo(file);
+        }
+
+        return "redirect:/common/success.action";
+    }
+
+    @RequestMapping(value = "/upload/uploadPage.action")
+    public String uploadPage() {
+        return "upload";
     }
 }

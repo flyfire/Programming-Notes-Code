@@ -19,6 +19,9 @@ public class Items implements Serializable {
 
     private String detail;
 
+    public Items() {
+    }
+
     public Items(Integer id, String name, Float price, Date createtime, String detail) {
         this.id = id;
         this.name = name;
@@ -73,5 +76,17 @@ public class Items implements Serializable {
 
     public void setDetail(String detail) {
         this.detail = detail == null ? null : detail.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Items{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", pic='" + pic + '\'' +
+                ", createtime=" + createtime +
+                ", detail='" + detail + '\'' +
+                '}';
     }
 }

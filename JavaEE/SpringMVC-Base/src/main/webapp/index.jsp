@@ -6,8 +6,20 @@
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/item/itemList.action">ItemList</a>
-<a href="${pageContext.request.contextPath}/user/userList.action">UserList</a>
+<ul>
+    <li>
+        <a href="${pageContext.request.contextPath}/item/itemList.action">ItemList</a>
+    </li>
+    <li>
+        <a href="${pageContext.request.contextPath}/user/userList.action">UserList</a>
+    </li>
+    <li>
+        <a href="${pageContext.request.contextPath}/upload/uploadPage.action">uploadFile</a>
+    </li>
+    <li>
+        <a href="${pageContext.request.contextPath}/user/json/login.action">请求json</a>
+    </li>
+</ul>
 
 </body>
 </html>
