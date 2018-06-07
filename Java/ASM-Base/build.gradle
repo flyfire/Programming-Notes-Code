@@ -1,19 +1,25 @@
 group 'me.ztiany'
 version '1.0'
 
-apply plugin: 'java'
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
 
-sourceCompatibility = 1.8
+    apply plugin: 'idea'
 
-repositories {
-    mavenCentral()
-    jcenter()
+    idea {
+        module {
+            outputDir file('build/classes/java/main')
+            testOutputDir file('build/classes/java/test')
+        }
+    }
+
+    if (project.convention.findPlugin(JavaPluginConvention)) {
+        // Change the output directory for the main and test source sets back to the old path
+        sourceSets.main.output.classesDir = new File(buildDir, "classes/java/main")
+        sourceSets.test.output.classesDir = new File(buildDir, "classes/java/test")
+    }
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'commons-io:commons-io:2.5'
-    compile 'org.ow2.asm:asm:5.1'
-    compile 'org.ow2.asm:asm-commons:5.1'
-    compile 'com.squareup.okio:okio:1.11.0'
-}
