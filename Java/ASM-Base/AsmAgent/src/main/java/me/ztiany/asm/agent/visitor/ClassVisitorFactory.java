@@ -1,4 +1,4 @@
-package me.ztiany.asm.agent;
+package me.ztiany.asm.agent.visitor;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;

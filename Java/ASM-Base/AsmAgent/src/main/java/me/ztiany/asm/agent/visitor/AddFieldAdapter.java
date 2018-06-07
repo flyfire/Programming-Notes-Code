@@ -1,10 +1,13 @@
-package me.ztiany.asm.agent;
+package me.ztiany.asm.agent.visitor;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 
 import static org.objectweb.asm.Opcodes.ASM5;
 
+/**
+ * 给类添加一个字段
+ */
 public class AddFieldAdapter extends ClassVisitor {
 
     private int fAcc;

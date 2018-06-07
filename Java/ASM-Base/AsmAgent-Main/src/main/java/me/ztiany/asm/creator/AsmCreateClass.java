@@ -1,16 +1,19 @@
-package me.ztiany.asm;
+package me.ztiany.asm.creator;
 
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.util.TraceClassVisitor;
+
+import java.io.PrintWriter;
 
 import static jdk.internal.org.objectweb.asm.Opcodes.*;
 
 /**
- * @author ztiany
- * Email: ztiany3@gmail.com
+ * 类的创建：构建一个新的类
  */
 public class AsmCreateClass {
 
     public static void main(String... args) throws ClassNotFoundException {
+
         final byte[] aClass = createClass();
 
         Class exampleClass = new ClassLoader() {
@@ -33,29 +36,31 @@ public class AsmCreateClass {
             int compareTo(Object o);
         }
          */
-        ClassWriter cw = new ClassWriter(0);
 
-        cw.visit(V1_5, ACC_PUBLIC + ACC_ABSTRACT + ACC_INTERFACE,
+        ClassWriter cw = new ClassWriter(0);
+        PrintWriter printWriter = new PrintWriter(System.out);
+        TraceClassVisitor cv = new TraceClassVisitor(cw, printWriter);
+
+        cv.visit(V1_5, ACC_PUBLIC + ACC_ABSTRACT + ACC_INTERFACE,
                 "pkg/Comparable",
                 null,
                 "java/lang/Object",
                 null);
 
-        cw.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, "LESS", "I",
+        cv.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, "LESS", "I",
                 null, -1).visitEnd();
-        cw.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, "EQUAL", "I",
+        cv.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, "EQUAL", "I",
                 null, 0).visitEnd();
-        cw.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, "GREATER", "I",
+        cv.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, "GREATER", "I",
                 null, 1).visitEnd();
 
-        cw.visitMethod(ACC_PUBLIC + ACC_ABSTRACT, "compareTo",
+        cv.visitMethod(ACC_PUBLIC + ACC_ABSTRACT, "compareTo",
                 "(Ljava/lang/Object;)I", null, null).visitEnd();
 
-        cw.visitEnd();
+        cv.visitEnd();
 
         return cw.toByteArray();
     }
-
 
 }
 

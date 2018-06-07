@@ -11,8 +11,11 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+
     compile 'commons-io:commons-io:2.5'
+    compile 'com.squareup.okio:okio:1.11.0'
+
     compile 'org.ow2.asm:asm:5.1'
     compile 'org.ow2.asm:asm-commons:5.1'
-    compile 'com.squareup.okio:okio:1.11.0'
+    compile 'org.ow2.asm:asm-util:5.1'
 }

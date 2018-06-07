@@ -1,24 +1,23 @@
-package me.ztiany.asm;
+package me.ztiany.asm.parser;
 
 import org.objectweb.asm.*;
 
 import java.io.IOException;
 
-import static org.objectweb.asm.Opcodes.ASM5;
 
 /**
- * 这里没有使用 ClassWriter ，不需要把方法转发到下一个执行链
+ * 类的解析：遍历一个类的结构
  */
-public class ClassPrinter extends ClassVisitor {
+public class AsmClassPrinter extends ClassVisitor {
 
     public static void main(String... args) throws IOException {
-        ClassPrinter cp = new ClassPrinter();
+        AsmClassPrinter cp = new AsmClassPrinter();
         ClassReader cr = new ClassReader("java.lang.Runnable");
         cr.accept(cp, 0);
     }
 
-    private ClassPrinter() {
-        super(ASM5);
+    private AsmClassPrinter() {
+        super(Opcodes.ASM5);
     }
 
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
