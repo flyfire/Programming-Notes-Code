@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
 /**
- * 代理测试
+ * 演示 Proxy 和 CGLib 代理
  */
 public class ProxyTest {
 

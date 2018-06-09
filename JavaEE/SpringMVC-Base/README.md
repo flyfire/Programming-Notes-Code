@@ -1,4 +1,4 @@
-# SpringMVC 入门学习
+# SpringMVC 入门
 
 ---
 ## 1 代码说明

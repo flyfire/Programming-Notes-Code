@@ -19,10 +19,12 @@ buildscript {
         classpath "gradle.plugin.com.thinkimi.gradle:mybatis-generator-plugin:2.0"
     }
 }
+
+//MybatisGenerator的配置
 configurations {
     mybatisGenerator
 }
-
+//MybatisGenerator的配置，指定配置文件位置
 mybatisGenerator {
     verbose = true
     configFile = 'src/main/resources/generatorConfig.xml'
@@ -54,14 +56,6 @@ dependencies {
     /*MyBatis整合Spring*/
     // https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
     compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.2.2'
-
-    /*
-     //MyBatis需要的依赖
-      // https://mvnrepository.com/artifact/cglib/cglib
-      compile group: 'cglib', name: 'cglib', version: '2.2.2'
-      // https://mvnrepository.com/artifact/org.javassist/javassist
-      compile group: 'org.javassist', name: 'javassist', version: '3.17.1-GA'
-      */
 
     /*Spring*/
     // https://mvnrepository.com/artifact/org.springframework/

@@ -1,9 +1,7 @@
 package com.ztiany.springf.test.aop;
 
 /**
- * @author Ztiany
- * Email ztiany3@gmail.com
- * Date 18.5.24 0:37
+ * 服务接口
  */
 public interface AOPService {
 

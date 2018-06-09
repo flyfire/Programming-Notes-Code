@@ -9,6 +9,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--==================================Spring JDBC 模板演示==================================-->
 
     <!-- 指定spring读取db.properties配置 -->
     <context:property-placeholder location="classpath:db.properties"/>
@@ -28,7 +29,6 @@
 
     <!-- 3.将UserDao放入spring容器 -->
     <bean name="userDao" class="com.ztiany.springf.test.jdbc.UserDaoImpl">
-        <!-- <property name="jt" ref="jdbcTemplate" ></property> -->
         <property name="dataSource" ref="dataSource"/>
     </bean>
 

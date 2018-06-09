@@ -15,6 +15,8 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd ">
 
+    <!--==================================Spring AOP 事务配置==================================-->
+
 
     <!-- 指定spring读取db.properties配置 -->
     <context:property-placeholder location="classpath:db.properties"/>
@@ -53,9 +55,10 @@
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <!-- 以方法为单位，指定方法应用什么事务属性
-                isolation:隔离级别
-                propagation:传播行为
-                read-only:是否只读
+                        - isolation：隔离级别
+                        - propagation：传播行为
+                        - read-only：是否只读
+                        - save*：表示以save开头的方法都应用这个事务
              -->
             <tx:method name="save*" isolation="REPEATABLE_READ" propagation="REQUIRED"
                        read-only="false"/>
@@ -79,15 +82,16 @@
         </tx:attributes>
     </tx:advice>
 
-    <!-- 配置织入 -->
+    <!-- 配置织入事务通知 -->
     <aop:config>
+
         <!-- 配置切点表达式 -->
         <aop:pointcut expression="execution(* com.ztiany.springf.test.tx.AccountServiceImpl2.*(..))"
                       id="txPc"/>
 
         <!-- 配置切面 : 通知+切点
-                 advice-ref:通知的名称
-                 pointcut-ref:切点的名称
+                - advice-ref：通知的名称
+                - pointcut-ref：切点的名称
          -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPc"/>
     </aop:config>

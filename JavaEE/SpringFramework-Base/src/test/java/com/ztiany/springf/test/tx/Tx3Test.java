@@ -18,8 +18,6 @@ public class Tx3Test {
 
     @Test
     public void fun1() {
-
         as.transfer(1, 2, 100d);
-
     }
 }

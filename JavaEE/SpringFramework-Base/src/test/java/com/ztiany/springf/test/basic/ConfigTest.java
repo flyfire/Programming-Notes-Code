@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * 配置文件测试
+ * Spring 手动加载配置文件，手动从容器中获取对象。
  */
 public class ConfigTest {
 

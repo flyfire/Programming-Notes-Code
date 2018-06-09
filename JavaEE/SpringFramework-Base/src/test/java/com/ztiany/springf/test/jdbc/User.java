@@ -1,12 +1,6 @@
 package com.ztiany.springf.test.jdbc;
 
-/*
-create table springf_test_user (
-    id int(20) NOT NULL AUTO_INCREMENT,
-    name varchar(50) DEFAULT NULL,
-    primary key (id)
-);
- */
+
 public class User {
 
     private Integer id;
@@ -32,6 +26,5 @@ public class User {
     public String toString() {
         return "User [id=" + id + ", name=" + name + "]";
     }
-
 
 }
