@@ -7,7 +7,7 @@ import rx.functions.Func1;
  * @author ztiany
  *         Email: ztiany3@gmail.com
  */
-public class Map {
+public class MapTransform {
 
     public static void main(String... args) {
         Observable.just(new HttpResult<String>())
