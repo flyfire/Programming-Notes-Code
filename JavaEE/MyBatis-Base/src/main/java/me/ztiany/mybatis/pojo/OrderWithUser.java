@@ -1,7 +1,7 @@
 package me.ztiany.mybatis.pojo;
 
 /**
- * 仅为演示多表查询
+ * 仅为演示多表查询(Orders本身不应该定义User)
  *
  * @author Ztiany
  * Email ztiany3@gmail.com

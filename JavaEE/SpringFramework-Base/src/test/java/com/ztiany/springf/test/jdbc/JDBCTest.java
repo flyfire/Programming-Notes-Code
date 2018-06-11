@@ -22,7 +22,6 @@ public class JDBCTest {
 
     @Test
     public void testJdbcTemplate() throws Exception {
-
         //准备连接池
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         dataSource.setDriverClass("com.mysql.jdbc.Driver");

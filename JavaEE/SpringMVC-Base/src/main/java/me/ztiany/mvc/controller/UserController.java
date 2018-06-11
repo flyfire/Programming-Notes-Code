@@ -5,10 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
+import me.ztiany.mvc.pojo.User;
 import me.ztiany.mvc.service.UserService;
 
 @Controller
@@ -32,6 +36,18 @@ public class UserController {
         return mav;
     }
 
+    //去登陆的页面
+    @RequestMapping(value = "/user/json/login.action", method = RequestMethod.GET)
+    public @ResponseBody
+    User loginJson() {
+        User user = new User();
+        user.setAddress("深圳");
+        user.setBirthday(new Date());
+        user.setId(3);
+        user.setSex("男");
+        user.setUsername("Ztiany");
+        return user;
+    }
 
     //去登陆的页面
     @RequestMapping(value = "/user/login.action", method = RequestMethod.GET)
@@ -39,7 +55,7 @@ public class UserController {
         return "login";
     }
 
-    //指定登录操作
+    //登录操作
     @RequestMapping(value = "/user/login.action", method = RequestMethod.POST)
     public String login(String username, HttpSession httpSession) {
         httpSession.setAttribute("USER_SESSION", username);

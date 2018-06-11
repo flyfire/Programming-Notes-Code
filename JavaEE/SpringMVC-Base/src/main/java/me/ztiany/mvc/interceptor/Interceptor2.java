@@ -10,17 +10,15 @@ public class Interceptor2 implements HandlerInterceptor {
 
     public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) {
         System.out.println("方法前 2");
-        return false;
+        return true;
     }
 
     public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3) {
         System.out.println("方法后 2");
-
     }
 
     public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3) {
         System.out.println("页面渲染后 2");
-
     }
 
 

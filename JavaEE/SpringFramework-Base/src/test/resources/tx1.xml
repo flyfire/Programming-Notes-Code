@@ -8,6 +8,9 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--==================================Spring 事务配置==================================-->
+
+
     <!-- 指定spring读取db.properties配置 -->
     <context:property-placeholder location="classpath:db.properties"/>
 

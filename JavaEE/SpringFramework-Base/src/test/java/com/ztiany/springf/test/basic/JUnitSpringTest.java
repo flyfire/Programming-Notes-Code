@@ -12,9 +12,7 @@ import javax.annotation.Resource;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * @author Ztiany
- * Email ztiany3@gmail.com
- * Date 18.5.23 23:28
+ * 使用 Spring 提供的测试框架，简化Spring 单元测试
  */
 //创建容器
 @RunWith(SpringJUnit4ClassRunner.class)

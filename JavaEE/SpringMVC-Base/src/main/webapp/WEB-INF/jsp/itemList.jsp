@@ -9,38 +9,33 @@
     <title>查询商品列表</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/item/queryItem.action" method="post">
-    查询条件：
-    <table width="100%" border=1>
+
+<h1>商品列表</h1>
+
+<table width="100%" border=1 cellpadding="0" cellspacing="0">
+    <tr>
+        <td>商品名称</td>
+        <td>商品价格</td>
+        <td>生产日期</td>
+        <td>商品描述</td>
+        <td>操作</td>
+    </tr>
+
+    <c:forEach items="${itemList }" var="item">
         <tr>
-            <td><input type="submit" value="查询"/></td>
+            <td>${item.name }</td>
+            <td>${item.price }</td>
+            <td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+            <td>${item.detail }</td>
+
+            <td>
+                <a href="${pageContext.request.contextPath }/item/itemEdit.action?id=${item.id}">修改</a>
+            </td>
         </tr>
-    </table>
-    商品列表：
-    <table width="100%" border=1>
-        <tr>
-            <td>商品名称</td>
-            <td>商品价格</td>
-            <td>生产日期</td>
-            <td>商品描述</td>
-            <td>操作</td>
-        </tr>
-        <c:forEach items="${itemList }" var="item">
-            <tr>
-                <td>${item.name }</td>
-                <td>${item.price }</td>
-                <td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                <td>${item.detail }</td>
+    </c:forEach>
 
-                <td>
-                    <a href="${pageContext.request.contextPath }/itemEdit.action?id=${item.id}">修改</a>
-                </td>
+</table>
 
-            </tr>
-        </c:forEach>
-
-    </table>
-</form>
 </body>
 
 </html>

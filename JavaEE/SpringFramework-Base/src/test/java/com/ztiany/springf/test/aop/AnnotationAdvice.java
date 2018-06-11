@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-//通知类
+//注解式通知类
 @Aspect
 public class AnnotationAdvice {
 

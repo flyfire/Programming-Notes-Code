@@ -20,7 +20,7 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 
 /**
- * 本身是一个包装类，默认适配器
+ * 一个包装类
  */
 public class ConnectionAdapter implements Connection {
 

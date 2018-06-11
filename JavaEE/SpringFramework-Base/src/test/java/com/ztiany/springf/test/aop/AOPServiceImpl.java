@@ -1,5 +1,8 @@
 package com.ztiany.springf.test.aop;
 
+/**
+ * 该服务实现将被AOP切入功能
+ */
 public class AOPServiceImpl implements AOPService {
 
     @Override

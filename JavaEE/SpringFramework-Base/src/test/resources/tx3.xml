@@ -11,6 +11,7 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+    <!--==================================Spring AOP 注解式事务配置==================================-->
 
     <!-- 指定spring读取db.properties配置 -->
     <context:property-placeholder location="classpath:db.properties"/>
@@ -47,6 +48,5 @@
 
     <!-- 开启使用注解管理aop事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
-
 
 </beans>

@@ -22,8 +22,10 @@ public class TestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1 获得servletContext对象
         ServletContext sc = getServletContext();
-        //2.从Sc中获得ac容器
-        WebApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(sc);
+        //2 从Sc中获得ac容器
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(sc);
+        //3 从 webApplicationContext 获取容器中的bean
+        //webApplicationContext.getBean()
     }
 
     @Override

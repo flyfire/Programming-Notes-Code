@@ -52,7 +52,8 @@
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 上传图片的大小： 5M  = 1024*1024*5-->
-        <property name="maxUploadSize" value="5000000"/>
+        <property name="maxUploadSize" value="50000000"/>
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
     <!-- SpringMVC的拦截器 -->

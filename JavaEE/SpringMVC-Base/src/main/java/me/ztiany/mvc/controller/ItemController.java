@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 import me.ztiany.mvc.pojo.Items;
-import me.ztiany.mvc.pojo.QueryVo;
 import me.ztiany.mvc.service.ItemService;
 
 /**
@@ -59,9 +58,8 @@ public class ItemController {
 
 
     @SuppressWarnings("all")
-    @RequestMapping(value = "/itemEdit.action")
+    @RequestMapping(value = "item/itemEdit.action")
     public ModelAndView toEdit(Integer id) {
-        //查询一个商品
         Items items = itemService.selectItemsById(id);
 
         ModelAndView mav = new ModelAndView();
@@ -71,17 +69,12 @@ public class ItemController {
         return mav;
     }
 
-    @RequestMapping(value = "/updateItem.action")
-    //public ModelAndView updateItem(Items items){
-    public ModelAndView updateItem(QueryVo vo) {
-
-        itemService.updateItemsById(vo.getItems());
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("success");
-
-        return mav;
+    @RequestMapping(value = "item/updateItem.action")
+    public String updateItem(Items items) {
+        System.out.println(items);
+        itemService.updateItemsById(items);
+        return "redirect:/common/success.action";
     }
-
 
     //json数据交互
     @RequestMapping(value = "/json.action")
