@@ -10,4 +10,5 @@ import kotlinx.android.parcel.Parcelize
  */
 
 @Parcelize
+@SuppressLint("ParcelCreator")
 data class User(val firstName: String, val lastName: String) : Parcelable
