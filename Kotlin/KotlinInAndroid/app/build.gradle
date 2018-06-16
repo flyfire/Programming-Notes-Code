@@ -28,7 +28,7 @@ android {
     }
 }
 
-
+//开启实验性功能，比如：@Parcelize
 androidExtensions {
     experimental = true
 }
