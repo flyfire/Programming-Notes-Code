@@ -12,6 +12,6 @@
 
     <!--开启自动装配-->
     <!--<context:component-scan> 与 @ComponentScan注解作用相同-->
-    <context:component-scan base-package="me.ztiany.test"/>
+    <context:component-scan base-package="me.ztiany.bean.autowiring"/>
 
 </beans>

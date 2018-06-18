@@ -1,4 +1,5 @@
 rootProject.name = 'SpringInAction'
 include 'Chapter02'
 include 'Chapter03'
+include 'Chapter04'
 
