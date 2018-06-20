@@ -15,7 +15,7 @@ ext {
             springContext   : 'org.springframework:spring-context:4.3.17.RELEASE',
 
             springWebmvc    : 'org.springframework:spring-webmvc:4.3.17.RELEASE',
-            csprinWeb       : 'org.springframework:spring-web:4.3.17.RELEASE',
+            springWeb       : 'org.springframework:spring-web:4.3.17.RELEASE',
 
             springAop       : 'org.springframework:spring-aop:4.3.17.RELEASE',
             springAspects   : 'org.springframework:spring-aspects:4.3.17.RELEASE',

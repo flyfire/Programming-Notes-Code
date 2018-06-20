@@ -18,5 +18,8 @@ dependencies {
     compile springLibs.springContext
     compile springLibs.springWeb
     compile springLibs.springWebmvc
+    compile springLibs.springAop
+    compile springLibs.springAspects
+    compile springLibs.aspectJweaver
     testCompile springLibs.springTest
 }
