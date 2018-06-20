@@ -16,7 +16,7 @@
 1.  [调试PDB](note/014_调试.md)
 1.  [进程](note/015_进程.md)
 1.  [多线程](note/016_多线程.md)
-1.  [网络通信](note/017_1_网络通讯.md)
+1.  [网络通信](note/017_Python网络编程.md)
 1.  [标准库](note/标准库.md)
 1.  [Python2](note/Python2&Python3.md)
 
