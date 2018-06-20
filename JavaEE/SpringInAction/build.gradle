@@ -5,10 +5,8 @@ apply from: 'config.gradle'
 
 allprojects {
     repositories {
-        jcenter()
         mavenCentral()
-        maven { url 'https://dl.google.com/dl/android/maven2/' }
-        maven { url 'https://jitpack.io' }
+        jcenter()
     }
 }
 
