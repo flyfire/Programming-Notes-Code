@@ -1,7 +1,6 @@
 ext {
 
-    def androidLibrariesVersion = "27.1.0"
-    def android_plugin_version = '3.1.0'
+    def androidLibrariesVersion = "27.1.1"
 
     androidLibraries = [
             androidCompatV4        : "com.android.support:support-v4:${androidLibrariesVersion}",
@@ -29,10 +28,10 @@ ext {
             paging                 : "android.arch.paging:runtime:1.0.0",
             pagingRxJava2          : "android.arch.paging:rxjava2:1.0.0-alpha1",
             //navigation
-            navigationFragment     : "android.arch.navigation:navigation-fragment:1.0.0-alpha01",
-            navigationUI           : "android.arch.navigation:navigation-ui:1.0.0-alpha01",
+            navigationUI           : "android.arch.navigation:navigation-ui:1.0.0-alpha02",
+            navigationFragment     : "android.arch.navigation:navigation-fragment:1.0.0-alpha02",
             //WorkManager
-            WorkManager            : "android.arch.work:work-runtime:1.0.0-alpha01"
+            WorkManager            : "android.arch.work:work-runtime:1.0.0-alpha03"
     ]
 
 
@@ -40,11 +39,12 @@ ext {
 
     kotlinLibraries = [
             //Kotlin
-            kotlinStdlib    : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            kotlinReflect   : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
-            kotlinCoroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.3',//协程库
-            kotlinAndroidCoroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5",
-            androidKTX      : "androidx.core:core-ktx:0.3"
+            kotlinStdlib           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            kotlinReflect          : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
+            kotlinCoroutines       : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5',
+            kotlinAndroidCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5",
+            androidKTX             : "androidx.core:core-ktx:0.3",
+            anko                   : "org.jetbrains.anko:anko:0.10.5"
     ]
 
     def retrofitVersion = '2.3.0'
@@ -83,7 +83,6 @@ ext {
             //===================================Utils=========================================
             //Timber
             timber                    : "com.jakewharton.timber:timber:4.5.1",
-
     ]
 
 }
