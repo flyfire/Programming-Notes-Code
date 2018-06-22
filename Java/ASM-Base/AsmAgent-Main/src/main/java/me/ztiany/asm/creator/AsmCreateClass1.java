@@ -10,7 +10,7 @@ import static jdk.internal.org.objectweb.asm.Opcodes.*;
 /**
  * 类的创建：构建一个新的类
  */
-public class AsmCreateClass {
+public class AsmCreateClass1 {
 
     public static void main(String... args) throws ClassNotFoundException {
 
@@ -27,6 +27,7 @@ public class AsmCreateClass {
     }
 
     private static byte[] createClass() {
+
         /*
         package pkg;
         public interface Comparable  {
@@ -54,8 +55,14 @@ public class AsmCreateClass {
         cv.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, "GREATER", "I",
                 null, 1).visitEnd();
 
-        cv.visitMethod(ACC_PUBLIC + ACC_ABSTRACT, "compareTo",
-                "(Ljava/lang/Object;)I", null, null).visitEnd();
+        /*添加一个方法*/
+        cv.visitMethod(
+                ACC_PUBLIC + ACC_ABSTRACT,
+                "compareTo",
+                "(Ljava/lang/Object;)I",
+                null,
+                null)
+                .visitEnd();
 
         cv.visitEnd();
 

@@ -16,4 +16,13 @@ public class AsmAgentMain {
         System.out.println(user);
     }
 
+    public static void _main(String... args) throws Error {
+      /*
+      java6：
+      VirtualMachine.attach()
+        VirtualMachine.loadAgent("xxx.jar");
+        VirtualMachine vm = VirtualMachine.attach();
+        vm.loadAgent(jarFilePath, args);*/
+    }
+
 }
