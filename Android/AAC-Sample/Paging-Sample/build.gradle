@@ -1,11 +1,10 @@
 apply plugin: 'com.android.application'
-//apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion "27.0.3"
 
     defaultConfig {
@@ -37,11 +36,13 @@ android {
 
 
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
 
     implementation androidLibraries.androidCompatV4
+
     implementation androidLibraries.androidCompatV7
     implementation androidLibraries.androidRecyclerView
     implementation androidLibraries.constraintLayout
@@ -56,15 +57,9 @@ dependencies {
     implementation androidLibraries.room
     kapt androidLibraries.roomApt
     implementation androidLibraries.roomRxJava2
-//    implementation androidLibraries.roomGuava
 
     implementation androidLibraries.paging
     implementation androidLibraries.pagingRxJava2
-
-//    implementation androidLibraries.navigationFragment
-//    implementation androidLibraries.navigationUI
-
-//    implementation androidLibraries.WorkManager
 
     implementation kotlinLibraries.kotlinStdlib
     implementation kotlinLibraries.kotlinReflect
@@ -74,13 +69,13 @@ dependencies {
 
     implementation thirdDependencies.rxJava2
     implementation thirdDependencies.rxAndroid2
-    implementation(thirdDependencies.rxLifecycle2){
+    implementation(thirdDependencies.rxLifecycle2) {
         transitive false
     }
-    implementation (thirdDependencies.rxLifecycleAndroid2){
+    implementation(thirdDependencies.rxLifecycleAndroid2) {
         transitive false
     }
-    implementation (thirdDependencies.rxLifecycleComponents2){
+    implementation(thirdDependencies.rxLifecycleComponents2) {
         transitive false
     }
 

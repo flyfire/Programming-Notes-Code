@@ -2,9 +2,7 @@ package me.ztiany.asm.sample;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.lang.reflect.Method;
 
-import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Label;
@@ -33,37 +31,6 @@ public class HelloGeneratorClass implements Opcodes {
         }
     }
 
-    /**
-     * AOP测试
-     */
-    public static void main_(String[] args) {
-        try {
-            byte[] data = generatorHelloClass();
-
-            ClassWriter cw = new ClassWriter(0);
-            ClassReader cr = new ClassReader(data);
-            cr.accept(new AopClassAdapter(ASM5, cw), ClassReader.SKIP_DEBUG);
-
-            data = cw.toByteArray();
-
-            SampleClassLoader sampleClassLoader = new SampleClassLoader();
-            Class<?> helloClass = sampleClassLoader.defineClass("com.shanhy.demo.asm.hello.Hello", data);
-            Object obj = helloClass.newInstance();
-            Method method = helloClass.getMethod("display", null);
-            method.invoke(obj, null);
-
-            method = helloClass.getMethod("testList", null);
-            Object result = method.invoke(obj, null);
-            System.out.println(result);
-
-            Class<?> stuClass = Thread.currentThread().getContextClassLoader().loadClass("com.shanhy.demo.asm.example.StudentServiceImpl");
-            obj = stuClass.newInstance();
-            method = stuClass.getMethod("print", String.class);
-            System.out.println(method.invoke(obj, "单单"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * 使用构造Hello类class字节码，package中的Hello.java只是代码原型，
@@ -76,7 +43,7 @@ public class HelloGeneratorClass implements Opcodes {
         FieldVisitor fv;
         MethodVisitor mv;
 
-        cw.visit(V1_7, ACC_PUBLIC + ACC_SUPER, "com/shanhy/demo/asm/hello/Hello", null, "java/lang/Object", null);
+        cw.visit(V1_7, ACC_PUBLIC + ACC_SUPER, "me/Hello", null, "java/lang/Object", null);
 
         cw.visitSource("Hello.java", null);
 
@@ -93,7 +60,7 @@ public class HelloGeneratorClass implements Opcodes {
         {
             mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
             mv.visitCode();
-            Label l0 = new Label();//标签，比如 a: ，用于break，goto语法
+            Label l0 = new Label();//Label表示标签，比如 a: ，用于break，goto语法
             mv.visitLabel(l0);
             mv.visitVarInsn(ALOAD, 0);
             mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
@@ -190,7 +157,10 @@ public class HelloGeneratorClass implements Opcodes {
         }
 
         {
-            mv = cw.visitMethod(ACC_PUBLIC + ACC_VARARGS, "testMapList", "(Z[Ljava/util/Map;)Ljava/util/List;",
+            mv = cw.visitMethod(
+                    ACC_PUBLIC + ACC_VARARGS,
+                    "testMapList",
+                    "(Z[Ljava/util/Map;)Ljava/util/List;",
                     "(Z[Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;)Ljava/util/List<Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;>;",
                     null);
             mv.visitCode();
