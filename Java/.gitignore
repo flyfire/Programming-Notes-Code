@@ -47,3 +47,5 @@ build
 .idea/
 cmake-build*/
 out
+target/
+*.iml
