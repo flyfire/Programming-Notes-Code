@@ -13,7 +13,7 @@ import java.util.Map;
 public class ReferenceQueueMain {
 
     private static ReferenceQueue<byte[]> rq = new ReferenceQueue<>();
-    private static int _1M = 1024 * 1024;
+    private static final int _1M = 1024 * 1024;
 
     public static void main(String... args) {
         Object value = new Object();
@@ -24,8 +24,9 @@ public class ReferenceQueueMain {
         for (int i = 0; i < 10000; i++) {
             byte[] bytes = new byte[_1M];
             //在对象被GC的同时，会把该对象的包装类即weakReference放入到ReferenceQueue里面
-            WeakReference<byte[]> weakReference = new WeakReference<>(bytes, rq);
-            map.put(weakReference, value);
+            //PhantomReference<byte[]> reference = new PhantomReference<>(bytes, rq);
+            WeakReference<byte[]> reference = new WeakReference<>(bytes, rq);
+            map.put(reference, value);
         }
 
         System.out.println("map.size->" + map.size());
@@ -37,11 +38,10 @@ public class ReferenceQueueMain {
 
             try {
                 int cnt = 0;
-                WeakReference<byte[]> k;
+                Reference<? extends byte[]> remove;
 
-                Reference<? extends byte[]> remove = rq.remove();
-                while ((k = (WeakReference) remove) != null) {
-                    System.out.println((cnt++) + "回收了:" + k + " and it get = " + remove.get());//null
+                while ((remove = rq.remove()) != null) {
+                    System.out.println((cnt++) + "回收了:" + remove);//null
                 }
 
             } catch (InterruptedException e) {
