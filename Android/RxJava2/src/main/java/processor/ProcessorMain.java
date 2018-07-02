@@ -43,6 +43,7 @@ public class ProcessorMain {
                 System.out.println("ProcessorMain.onComplete");
             }
         });
+
         behaviorProcessor.onNext("A");
         behaviorProcessor.onNext("B");
         behaviorProcessor.onNext("C");
@@ -51,6 +52,18 @@ public class ProcessorMain {
 
 
         //之后的订阅者在订阅了发生了错误的behaviorProcessor后，只会收到一个Error事件
+        behaviorProcessor.subscribe(
+                s -> System.out.println("Second onNext -- " + s),
+                throwable -> System.out.println("Second onError -- " + throwable),
+                () -> System.out.println("Second onComplete")
+        );
+
+        behaviorProcessor.subscribe(
+                s -> System.out.println("Second onNext -- " + s),
+                throwable -> System.out.println("Second onError -- " + throwable),
+                () -> System.out.println("Second onComplete")
+        );
+
         behaviorProcessor.subscribe(
                 s -> System.out.println("Second onNext -- " + s),
                 throwable -> System.out.println("Second onError -- " + throwable),
