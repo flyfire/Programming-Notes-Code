@@ -7,8 +7,8 @@ import io.reactivex.processors.BehaviorProcessor;
 
 /**
  * @author Ztiany
- *         Email ztiany3@gmail.com
- *         Date 17.7.13 0:16
+ * Email ztiany3@gmail.com
+ * Date 17.7.13 0:16
  */
 public class ProcessorMain {
 
@@ -43,14 +43,30 @@ public class ProcessorMain {
                 System.out.println("ProcessorMain.onComplete");
             }
         });
+
         behaviorProcessor.onNext("A");
         behaviorProcessor.onNext("B");
         behaviorProcessor.onNext("C");
         behaviorProcessor.onNext("D");
-        behaviorProcessor.onError(new RuntimeException("test error"));
-
+        //behaviorProcessor.onError(new RuntimeException("test error"));
+        behaviorProcessor.onNext("E");
 
         //之后的订阅者在订阅了发生了错误的behaviorProcessor后，只会收到一个Error事件
+        behaviorProcessor.subscribe(
+                s -> {
+                    System.out.println("Second onNext -- " + s);
+                    int a = 3 / 0;
+                },
+                throwable -> System.out.println("Second onError -- " + throwable),
+                () -> System.out.println("Second onComplete")
+        );
+
+        behaviorProcessor.subscribe(
+                s -> System.out.println("Second onNext -- " + s),
+                throwable -> System.out.println("Second onError -- " + throwable),
+                () -> System.out.println("Second onComplete")
+        );
+
         behaviorProcessor.subscribe(
                 s -> System.out.println("Second onNext -- " + s),
                 throwable -> System.out.println("Second onError -- " + throwable),
