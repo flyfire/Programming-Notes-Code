@@ -8,8 +8,8 @@ todo
 ---
 ## 数据结构与算法
 
-- [数据结构与算法-C](DataStructure/DataStructure-c/笔记/数据结构与算法.md)
-- [慕课网：Play-With-Algorithms-1](DataStructure/Play-with-Algorithms-1/README.md)
+- [数据结构与算法-C](http://72df4c66.wiz03.com/share/s/1OTQNC2rEQoF2SSa6c0VIC9-2uxYIC1PXQKm28lVhy00Y5Qj)
+- [慕课网：算法与数据结构](DataStructure/Play-with-Algorithms/README.md)
 
 ---
 ## C&C++
@@ -21,7 +21,6 @@ todo
 ## Python
 
 - [Python3](Python/Python3-Base/README.md)
-
 
 ---
 ## Java

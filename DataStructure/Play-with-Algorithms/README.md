@@ -1,11 +1,15 @@
-# Play-with-Algorithms——Java，C++算法与数据结构
+# [imooc-算法与数据结构](http://coding.imooc.com/class/71.html) 学习笔记
+
+课程源代码地址：[Play-with-Algorithms](https://github.com/liuyubobobo/Play-with-Algorithms)
+
+## 内容
 
 算法思想：
+
 - 分治算法
 - 贪心算法
 - 动态规划
 - 递归搜索
-
 
 第二章：排序基础
 
@@ -94,8 +98,3 @@
 	9-4 负权边和Bellman-Ford算法
 	9-5 实现Bellman-Ford算法
 	9-6 更多和最短路径相关的思考
-	
-## 引用
-
-- [Play-with-Algorithms](https://github.com/liuyubobobo/Play-with-Algorithms)
-- [算法与数据结构](http://coding.imooc.com/class/71.html)
