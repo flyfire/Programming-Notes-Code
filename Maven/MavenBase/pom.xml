@@ -13,7 +13,6 @@
     <name>MavenBase</name>
     <description>maven项目示例</description>
 
-
     <!-- 依赖管理 -->
     <dependencies>
 
@@ -32,9 +31,10 @@
             <scope>provided</scope>
         </dependency>
 
-
     </dependencies>
 
+
+    <!-- 构建配置 -->
     <build>
 
         <!-- 配置插件 -->
@@ -76,5 +76,6 @@
         </plugins>
 
     </build>
+
 
 </project>
