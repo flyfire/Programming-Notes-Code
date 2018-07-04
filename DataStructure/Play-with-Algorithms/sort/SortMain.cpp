@@ -31,8 +31,6 @@ void insertSort(T *arr, int length) {
     }
 }
 
-
-
 int main() {
     int *arr = SortTextHelper::generateRandomArray(100, 10, 200);
     SortTextHelper::printArray(arr, 100);

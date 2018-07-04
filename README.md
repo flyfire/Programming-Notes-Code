@@ -8,19 +8,17 @@ todo
 ---
 ## 数据结构与算法
 
-- [数据结构与算法-C](http://72df4c66.wiz03.com/share/s/1OTQNC2rEQoF2SSa6c0VIC9-2uxYIC1PXQKm28lVhy00Y5Qj)
-- [慕课网：算法与数据结构](DataStructure/Play-with-Algorithms/README.md)
+todo
 
 ---
 ## C&C++
 
-- [C语言基础](C&C++/c-program/README.md)
-- [C++语言基础](C&C++/cplusplus-program/README.md)
+todo
 
 ---
 ## Python
 
-- [Python3](Python/Python3-Base/README.md)
+todo
 
 ---
 ## Java
@@ -30,19 +28,17 @@ todo
 ---
 ## Kotlin
 
-- [Kotlin基础](Kotlin/HelloKotlin/README.md)
-- [Kotlin协程](Kotlin/KotlinCoroutines/README.md)
-- [Kotlin Android开发](Kotlin/KotlinInAndroid/README.md)
+todo
 
 ---
 ## Groovy
 
-- [Groovy程序设计](Groovy/Programming-Groovy/README.md)
+todo
 
 ---
 ## Android
 
-- [JNI](Android/JNI/README.md)
+todo
 
 
 ---
@@ -53,12 +49,12 @@ todo
 ---
 ## JavaEE
 
-- [项目列表](JavaEE/README.md)
+todo
 
 ---
 ## 前端
 
-- [项目列表](Web/README.md)
+todo
 
 ---
 ## 如何使用GitHub项目?

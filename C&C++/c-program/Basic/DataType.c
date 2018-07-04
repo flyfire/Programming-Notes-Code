@@ -1,31 +1,31 @@
 /*
  ============================================================================
  Author      : Ztiany
- Description : CÓïÑÔµÄÊı¾İÀàĞÍ
+ Description : Cè¯­è¨€çš„æ•°æ®ç±»å‹
  ============================================================================
  */
 
-#include <stdio.h>//ÉùÃ÷Í·ÎÄ¼ş£¬¼´Ó¦ÓÃ³ÌĞò½Ó¿Ú£¬ÀàËÆJavaµÄµ¼°ü
-#include <stdbool.h>//Ö§³Ö²¼¶ûÀàĞÍµÄÍ·ÎÄ¼ş
+#include <stdio.h>//å£°æ˜å¤´æ–‡ä»¶ï¼Œå³åº”ç”¨ç¨‹åºæ¥å£ï¼Œç±»ä¼¼Javaçš„å¯¼åŒ…
+#include <stdbool.h>//æ”¯æŒå¸ƒå°”ç±»å‹çš„å¤´æ–‡ä»¶
 
-#define A 1.3//¶¨Òå³£Á¿
+#define A 1.3//å®šä¹‰å¸¸é‡
 
-const int days[3] = {1, 2, 3};//const¶¨Òå³£Á¿¸üÁé»î£¬¿ÉÒÔ¶¨ÒåÊı×é
+const int days[3] = {1, 2, 3};//constå®šä¹‰å¸¸é‡æ›´çµæ´»ï¼Œå¯ä»¥å®šä¹‰æ•°ç»„
 
-void dataType();//Èç¹ûº¯ÊıĞ´ÔÚmainºóÃæ£¬ĞèÒªÔÚmainº¯ÊıÇ°ÃæÏÈÉùÃ÷Õâ¸öº¯Êı
+void dataType();//å¦‚æœå‡½æ•°å†™åœ¨mainåé¢ï¼Œéœ€è¦åœ¨mainå‡½æ•°å‰é¢å…ˆå£°æ˜è¿™ä¸ªå‡½æ•°
 void memoryAddress();
 
-//C³ÌĞòÒ»¶¨ÊÇ´ÓÖ÷º¯Êı¿ªÊ¼Ö´ĞĞµÄ£¬mainº¯ÊıµÄ·µ»ØÖµÎªintÀàĞÍ.
+//Cç¨‹åºä¸€å®šæ˜¯ä»ä¸»å‡½æ•°å¼€å§‹æ‰§è¡Œçš„ï¼Œmainå‡½æ•°çš„è¿”å›å€¼ä¸ºintç±»å‹.
 int main() {
-    dataType();//Êı¾İÀàĞÍÓëÊı¾İÀàÏÂ´óĞ¡
-    memoryAddress();//»ñÈ¡ÄÚ´æµØÖ·
+    dataType();//æ•°æ®ç±»å‹ä¸æ•°æ®ç±»ä¸‹å¤§å°
+    memoryAddress();//è·å–å†…å­˜åœ°å€
     return 1;
 }
 
 
 void dataType() {
 
-    //CÓïÑÔÖĞµÄÊı¾İÀàĞÍ
+    //Cè¯­è¨€ä¸­çš„æ•°æ®ç±»å‹
     char c = 'c';
     short hd = 1233;
     int d = 12312312;
@@ -35,12 +35,12 @@ void dataType() {
     unsigned long uld = 3333;
     float f = 1212.132121F;
     double lf = 232.222222222;
-    bool flag = false;    //²¼¶ûÀàĞÍ£¬c99Ìí¼Ó
-    _Bool b1 = 1;//c99Ìí¼Ó
-    _Bool b2 = 0;//c99Ìí¼Ó
+    bool flag = false;    //å¸ƒå°”ç±»å‹ï¼Œc99æ·»åŠ 
+    _Bool b1 = 1;//c99æ·»åŠ 
+    _Bool b2 = 0;//c99æ·»åŠ 
 
 
-    //´òÓ¡±äÁ¿
+    //æ‰“å°å˜é‡
     printf("%c\n", c);
     printf("%ld\n", sld);
     printf("%ld\n", uld);
@@ -54,19 +54,19 @@ void dataType() {
     printf("%f\n", f);
     printf("%lf\n", lf);
 
-    //´òÓ¡Êı¾İÀàĞÍµÄ³¤¶È
-    printf("×Ö·ûµÄ³¤¶ÈÊÇ:%zd\n", sizeof(char));
-    printf("shortµÄ³¤¶ÈÊÇ:%zd\n", sizeof(short));
-    printf("intµÄ³¤¶ÈÊÇ:%zd\n", sizeof(int));
-    printf("longµÄ³¤¶ÈÊÇ:%zd\n", sizeof(long));
-    printf("long longµÄ³¤¶ÈÊÇ:%zd\n", sizeof(long long));
-    printf("floatµÄ³¤¶ÈÊÇ:%zd\n", sizeof(float));
-    printf("doubleµÄ³¤¶ÈÊÇ:%zd\n", sizeof(double));
-    printf("³£Á¿A=%f", A);
+    //æ‰“å°æ•°æ®ç±»å‹çš„é•¿åº¦
+    printf("å­—ç¬¦çš„é•¿åº¦æ˜¯:%zd\n", sizeof(char));
+    printf("shortçš„é•¿åº¦æ˜¯:%zd\n", sizeof(short));
+    printf("intçš„é•¿åº¦æ˜¯:%zd\n", sizeof(int));
+    printf("longçš„é•¿åº¦æ˜¯:%zd\n", sizeof(long));
+    printf("long longçš„é•¿åº¦æ˜¯:%zd\n", sizeof(long long));
+    printf("floatçš„é•¿åº¦æ˜¯:%zd\n", sizeof(float));
+    printf("doubleçš„é•¿åº¦æ˜¯:%zd\n", sizeof(double));
+    printf("å¸¸é‡A=%f", A);
 }
 
 
-//»ñÈ¡Óë´òÓ¡ÄÚ´æµØÖ·
+//è·å–ä¸æ‰“å°å†…å­˜åœ°å€
 void memoryAddress() {
     int cc = 3;
     printf("%p\n", &cc);

@@ -1,17 +1,17 @@
 /*
  ============================================================================
  Author      : Ztiany
- Description : CÓïÑÔµÄÔËËã·û
+ Description : Cè¯­è¨€çš„è¿ç®—ç¬¦
  ============================================================================
  */
 
-void bitOperation();//Î»ÔËËã
+void bitOperation();//ä½è¿ç®—
 void printInt(char name, int x);
 
 #include <stdio.h>
 
 int main(void) {
-    //Î»ÔËËã
+    //ä½è¿ç®—
     bitOperation();
     return 1;
 }
@@ -39,7 +39,7 @@ void bitOperation() {
 }
 
 void printInt(char name, int x) {
-    printf("Êı¾İ%cµÄÖµÎª%d \n", name, x);
+    printf("æ•°æ®%cçš„å€¼ä¸º%d \n", name, x);
 }
 
 
