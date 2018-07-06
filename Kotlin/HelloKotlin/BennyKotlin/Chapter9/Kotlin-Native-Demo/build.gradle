@@ -1,0 +1,35 @@
+group 'net.println.kotlin.chapter9'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+
+        maven {
+            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+        }
+    }
+
+    dependencies{
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.1"
+    }
+}
+
+apply plugin: "konan"
+
+konanInterop {
+    kotliner {
+        defFile "kotliner.def"
+        includeDirs "src/c"
+        pkg "cn.kotliner.native"
+    }
+}
+
+konanArtifacts{
+    Kotliner {
+        inputFiles fileTree("src/kotlin")
+        useInterop "kotliner"
+        nativeLibrary file("src/c/cn_kotliner.bc")
+        target "macbook"
+    }
+}
