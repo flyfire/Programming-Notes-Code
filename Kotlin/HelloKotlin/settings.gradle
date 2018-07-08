@@ -1,7 +1,7 @@
 rootProject.name = 'HelloKotlin'
 include 'KotlinBasic'
 
-for (def i in 1..8) {
+for (def i in 1..7) {
     include ":Chapter$i"
     project(":Chapter$i").projectDir = new File("BennyKotlin/Chapter$i")
 }

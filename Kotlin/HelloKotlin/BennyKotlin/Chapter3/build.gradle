@@ -4,16 +4,6 @@ version '1.0-SNAPSHOT'
 apply plugin: 'application'
 mainClassName = "net.println.kotlin.chapter3.CalcKt"
 
-buildscript {
-    ext.kotlin_version = '1.1.0'
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -25,6 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.kotlin_version}")
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.kotlin_version}"
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

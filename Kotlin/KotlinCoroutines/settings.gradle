@@ -1,2 +1,4 @@
 rootProject.name = 'KotlinCoroutines'
+include "Coroutines-Core"
+include "BennyKotlinCoroutines"
 

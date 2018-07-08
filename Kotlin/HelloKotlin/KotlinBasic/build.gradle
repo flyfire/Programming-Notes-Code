@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+sourceSets{
+    main.kotlin.srcDirs += "src/main/libraries"
+}
+
 dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.kotlin_version}")
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.kotlin_version}"

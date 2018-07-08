@@ -4,11 +4,12 @@ package cn.kotliner.kotlin
  * Created by benny on 5/29/17.
  */
 fun main(args: Array<String>) {
+
     html {
         "id"("HtmlId")
-        "head"{
-            "id"("headId")
-        }
+
+        "head"{ "id"("headId") }
+
         body {
             id="bodyId"
             `class` = "bodyClass"
@@ -19,10 +20,7 @@ fun main(args: Array<String>) {
             }
         }
 
-        "div"{
-
-        }
-
+        "div"{}
 
     }.render().let(::println)
 }
