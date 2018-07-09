@@ -7,15 +7,6 @@ import javax.swing.tree.TreeNode
 
 
 /**
- *内联函数
- *
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.6.3 11:21
- */
-
-
-/**
  *
  * 内联函数：
  *

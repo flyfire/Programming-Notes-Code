@@ -19,10 +19,6 @@ import java.util.*
  *         https://www.kotlincn.net/docs/reference/generics.html
  *         https://blog.kotliner.cn/2017/06/26/kotlin-generics/
  *         https://kymjs.com/code/2017/06/06/01/
- *
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.5.30 17:16
  */
 
 //1 泛型：与Java 类似，Kotlin 中的类也可以有类型参数

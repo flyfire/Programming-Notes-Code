@@ -1,16 +1,8 @@
 package me.ztiany.functions
 
-/**
- *函数
- *
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.6.2 23:20
- */
 
-/**
- * 函数声明
- */
+
+/** 函数声明 */
 private fun sum(x: Int, y: Int): Int {
     return x + y
 }
@@ -18,7 +10,9 @@ private fun sum(x: Int, y: Int): Int {
 /**
  * 中缀表示法：
  *
- * 在满足以下条件时,函数也可以通过中缀符号进行调用：它们是成员函数或者是扩展函数 　只有一个参数 使用infix关键词进行标记
+ * 在满足以下条件时,函数也可以通过中缀符号进行调用：它们是成员函数或者是扩展函数且只有一个参数，使用infix关键词进行标记，
+ * 具体条件：**1，成员函数或扩展函数；2，只有一个参数；3，用`infix` 关键字标注**，
+ * 应用场景： DSL
  */
 private infix fun Int.pow(x: Int): Int {
     return Math.pow(this.toDouble(), x.toDouble()).toInt()

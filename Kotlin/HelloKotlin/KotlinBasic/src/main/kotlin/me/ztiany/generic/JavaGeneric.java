@@ -5,8 +5,10 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * Java 泛型
+ *
  * @author ztiany
- *         Email: ztiany3@gmail.com
+ * Email: ztiany3@gmail.com
  */
 public class JavaGeneric {
 
@@ -117,7 +119,6 @@ public class JavaGeneric {
 
 
     //5 弊端
-
     //假设有一个泛型接口 Source<T>，该接口中不存在任何以 T 作为参数的方法，只是方法返回 T 类型值：
     private interface Source<T> {
         T nextT();

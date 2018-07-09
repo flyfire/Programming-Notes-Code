@@ -5,3 +5,4 @@ for (def i in 1..7) {
     include ":Chapter$i"
     project(":Chapter$i").projectDir = new File("BennyKotlin/Chapter$i")
 }
+

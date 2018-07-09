@@ -1,12 +1,6 @@
 package me.ztiany.functions
 
-/**
- *函数引用
- *
- *@author Ztiany
- *      Email: 1169654504@qq.com
- *      Date : 2018-03-20 16:15
- */
+/** 函数引用   */
 fun main(args: Array<String>) {
 
     //包级函数引用
