@@ -33,7 +33,6 @@ private fun strLiteral() {
     |Involve me and I learn.
     |(Benjamin Franklin)
     """
-
     println()
     println(table.trimMargin())
 
@@ -66,7 +65,16 @@ private fun strTemplate() {
                 """
 }
 
+private fun splitSample() {
+    val list1 = "12.345-6.A".split("\\.".toRegex())
+    println(list1)
+    val list2 = "12.345-6.A".split(".","-")
+    println(list2)
+}
+
+
 fun main(args: Array<String>) {
     accessStr()
     strLiteral()
+    splitSample()
 }
