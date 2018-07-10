@@ -115,8 +115,6 @@ private class ExtendF {
     }
 }
 
-private fun <T> T?.safeSelf(): T? = this
-
 private fun <T> T?.doIfNull(action: () -> Unit) {
     if (this == null) {
         action()
@@ -125,10 +123,23 @@ private fun <T> T?.doIfNull(action: () -> Unit) {
 
 private fun testDoIfNull() {
     val string: String? = null
-    println(string.safeSelf() ?: "aa")
+    println(string ?: "aa")
     string.doIfNull {
         println("abc")
     }
+}
+
+private fun test() {
+    //给Int添加
+    val sum = fun Int.(other: Int): Int = this + other
+    1.sum(2)
+    //给String添加
+    val add = fun String.(o: String): String = this + o
+    fun testAdd() {
+        val result = add.invoke("A", "B")
+        println(result)//"AB"
+    }
+    "A".add("B")
 }
 
 fun main(args: Array<String>) {
@@ -138,6 +149,5 @@ fun main(args: Array<String>) {
     println(c.toString())
     val list = listOf(3, 3)
     println(list.lastIndex)
-
     testDoIfNull()
 }
