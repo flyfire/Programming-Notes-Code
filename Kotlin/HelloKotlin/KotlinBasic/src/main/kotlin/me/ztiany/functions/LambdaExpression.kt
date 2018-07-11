@@ -138,15 +138,11 @@ fun autoExecute() {
 /**
  * 带接收者的函数字面值：
  *
- *      Kotlin 提供了使用指定的接收者对象用函数字面值的功能。
- *      在函数字面值的函数体中，可以调用该接收者对象上的方法而无需任何额外的限定符。
- *      这类似于扩展函数，它允你在函数体内访问接收者对象的成员。 其用法的最重要的示例之一是
+ *      Kotlin 提供了一种能力, 调用一个函数字面值时, 可以指定一个 接收者对象(receiver object).
+ *      在这个函数字面值的函数体内部, 你可以调用接收者对象的方法, 而不必指定任何限定符. 这种能力与扩展函数很类似,
+ *      在扩展函数的函数体中, 你也可以访问接收者对象的成员
  */
 private fun testExtend() {
-
-    //扩展
-    val sum = fun Int.(other: Int): Int = this + other
-    1.sum(2)
 
     //当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。
     class HTML {
@@ -166,12 +162,4 @@ private fun testExtend() {
         // 带接收者的 lambda 由此开始
         body()   // 省略HTML直接调用该接收者对象的一个方法
     }
-}
-
-//给String添加带接收者的函数字面值
-private val add = fun String.(o: String): String = this + o
-
-private fun testAdd() {
-    val result = add.invoke("A", "B")
-    println(result)//"AB"
 }

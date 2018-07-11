@@ -16,6 +16,14 @@ private fun log(tag: String, target: OutputStream, message: Any?) {
 //柯里化函数
 private fun logA(tag: String) = fun(target: OutputStream) = fun(message: Any?) = target.write("[$tag] $message\n".toByteArray())
 
+private fun logAA(tag: String): (target: OutputStream) -> (message: Any?) -> Unit {
+    return fun(target: OutputStream): (message: Any?) -> Unit {
+        return fun(message: Any?) {
+            target.write("[$tag] $message\n".toByteArray())
+        }
+    }
+}
+
 //Function3表示任意该类型的函数
 private fun <P1, P2, P3, R> Function3<P1, P2, P3, R>.curried() = fun(p1: P1) = fun(p2: P2) = fun(p3: P3) = this(p1, p2, p3)
 
