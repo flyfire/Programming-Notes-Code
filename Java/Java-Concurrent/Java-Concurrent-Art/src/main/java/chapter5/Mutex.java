@@ -63,8 +63,8 @@ public class Mutex implements Lock {
     }
 
 
-    private static final int OCCUPY_STATUS = 1;
-    private static final int LEISURE_STATUS = 0;
+    private static final int OCCUPY_STATUS = 1;//锁状态
+    private static final int LEISURE_STATUS = 0;//释放状态
     private final Sync mSync = new Sync();
 
     public boolean isLock() {
@@ -129,7 +129,7 @@ public class Mutex implements Lock {
         }
 
         /**
-         * 释放锁，将状态设置为0，此方法被AbstractQueuedSynchronizer框架调用
+         * 释放锁，将状态设置为0，此方法被AbstractQueuedSynchronizer 框架调用
          */
         @Override
         protected boolean tryRelease(int arg) {
