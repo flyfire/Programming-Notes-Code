@@ -2,7 +2,7 @@
 
 - Chapter1：HelloWorld
 - Chapter2：数据类型
-- Chapter3：程序结构
+- Chapter3：程序结构，导出可执行程序
 - Chapter4：面向对象
 - Chapter5：高阶函数
 - Chapter6：DSL

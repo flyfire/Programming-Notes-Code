@@ -1,7 +1,8 @@
-package me.ztiany.advance
+package me.ztiany.operators
 
 
 /** 解构声明   Destructuring Declaration：
+ *
  *      有些时候, 能够将一个对象 解构(destructure) 为多个变量, 将会很方便，
  *      这种语法称为 解构声明(destructuring declaration). 一个解构声明会一次性创建多个变量
  *
@@ -55,4 +56,17 @@ private fun structDeclarations() {
         (key, value) ->
         "$key->$value"
     })
+}
+
+data class NameComponents(val name: String, val extension: String)
+
+fun splitFilename(fullName: String): NameComponents {
+    val result = fullName.split('.', limit = 2)
+    return NameComponents(result[0], result[1])
+}
+
+fun main(args: Array<String>) {
+    val (name, ext) = splitFilename("example.kt")
+    println(name)
+    println(ext)
 }

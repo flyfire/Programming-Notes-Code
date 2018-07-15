@@ -4,12 +4,6 @@ import java.lang.Integer.parseInt
 import java.nio.file.Files
 import java.nio.file.Paths
 
-/**
- *Kotlin的异常
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.6.7 23:42
- */
 
 /**
  * 异常：kotlin 中所有异常类都是 Throwable 类的子孙类。 每个异常都有消息、堆栈回溯信息和可选的原因。

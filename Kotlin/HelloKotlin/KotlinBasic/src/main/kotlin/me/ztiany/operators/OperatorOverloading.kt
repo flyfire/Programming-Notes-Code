@@ -1,5 +1,7 @@
 package me.ztiany.operators
 
+import java.math.BigDecimal
+
 /**
  *操作符重载
  *
@@ -33,9 +35,31 @@ private data class Point(val x: Int, val y: Int)
 
 private operator fun Point.unaryMinus() = Point(-x, -y)//给Point定义取反操作符，这里可以访问Point内部值
 
+private operator fun Point.plus(other: Point): Point {
+    return Point(x + other.x, y + other.y)
+}
+
+private operator fun Point.times(scale: Double): Point {
+    return Point((x * scale).toInt(), (y * scale).toInt())
+}
+
+private operator fun Char.times(count: Int): String {
+    return toString().repeat(count)
+}
+
+private operator fun BigDecimal.inc() = this + BigDecimal.ONE
+
+
 fun main(args: Array<String>) {
+    println("------------------------------------------")
     val point = Point(10, 20)
     println(-point)
+    println("------------------------------------------")
+    println('a' * 3)
+    println("------------------------------------------")
+    var bd = BigDecimal.ZERO
+    println(++bd)
+
 }
 
 

@@ -1,12 +1,6 @@
 package me.ztiany.functions
 
-/**
- *函数复合：组合多个函数成一个新的函数
- *
- *@author Ztiany
- *      Email: 1169654504@qq.com
- *      Date : 2018-03-20 16:29
- */
+/** 函数复合：组合多个函数成一个新的函数 */
 
 //f(g(x))   m(x) = f(g(x))
 val add5 = { i: Int -> i + 5 } // g(x)

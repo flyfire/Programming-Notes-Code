@@ -43,7 +43,7 @@ private fun <T> noinlineLock(lock: Lock, body: () -> T): T {
 /*
  * 禁用内联：
  *
- *     1，如果只想被（作为参数）传给一个内联函数的 lambda 表达式中只有一些被内联，可以用 noinline 修饰符标记 一些函数参数
+ *     1，如果传给一个内联函数的参数是 lambda 表达式，而且想要控制某些 lambda 参数不被内联，可以用 noinline 修饰符标记哪些不想被内联的函数
  *     2，可以内联的 lambda 表达式只能在内联函数内部调用或者作为可内联的参数传递， 但是 noinline 的可以以任何我们喜欢的方式操作：存储在字段中、传送它等等。
  *     3，需要注意的是，如果一个内联函数没有可内联的函数参数并且没有具体化的类型参数，编译器会产生一个警告，因为内联这样的函数很可能并无益处
  *     （如果你确认需要内联，则可以用 @Suppress("NOTHING_TO_INLINE") 注解关掉该警告）。
@@ -93,6 +93,14 @@ private fun inlineReturn2() {
     }
 }
 
+//名函数默认使用局部返回，fun 就近原则
+private fun inlineReturn3(people: List<String>) {
+    people.forEach(fun(s) {
+        if (s == "Alice") return
+        println("$s is not Alice")
+    })
+}
+
 /**
  * crossinline：
  *
@@ -110,8 +118,8 @@ private inline fun crossinlineSample(crossinline body: () -> Unit) {
 
 /**
  * 具体化的类型参数：
- *
- *      有时候我们需要访问一个作为参数传给我们的一个类型
+ *      有时候我们需要访问一个作为参数传给我们的一个类型，这时可以使用具体化的类型参数：`reified`，
+ *      使用 reified 修饰代码类型参数的函数，在函数体内，可以像使用实际类型那样使用类型参数声明，因为它将会被内联。
  */
 private fun <T> TreeNode.findParentOfType1(clazz: Class<T>): T? {
     //在这里我们向上遍历一棵树并且检查每个节点是不是特定的类型。 这都没有问题，但是调用处不是很优雅
@@ -150,6 +158,7 @@ private fun testfindParentOfType() {
  */
 
 private class Pa {}
+
 private class Pb {}
 
 private fun getPa(): Pa {

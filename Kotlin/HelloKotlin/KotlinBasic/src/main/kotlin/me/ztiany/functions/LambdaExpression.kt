@@ -3,17 +3,8 @@ package me.ztiany.functions
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
 
-/**
- *lambda表达式
- *
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.6.3 0:26
- */
 
-/**
- * 高阶函数：高阶函数是将函数用作参数或返回值的函数。
- */
+/** 高阶函数：高阶函数是将函数用作参数或返回值的函数。 */
 private fun <T> lock(lock: Lock, body: () -> T): T {
     lock.lock()
     try {

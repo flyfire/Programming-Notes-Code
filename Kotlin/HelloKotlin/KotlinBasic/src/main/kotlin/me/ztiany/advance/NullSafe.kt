@@ -1,13 +1,6 @@
 package me.ztiany.advance
 
 /**
- *空安全
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.6.7 23:30
- */
-
-/**
  * 可空类型与非空类型：Kotlin 的类型系统旨在消除来自代码空引用的危险，也称为《十亿美元的错误》。
  *
  * 许多编程语言（包括 Java）中最常见的陷阱之一是访问空引用的成员，导致空引用异常。在 Java 中，

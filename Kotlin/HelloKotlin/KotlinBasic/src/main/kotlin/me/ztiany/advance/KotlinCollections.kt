@@ -1,12 +1,5 @@
 package me.ztiany.advance
 
-/**
- *集合
- *
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.6.5 22:25
- */
 
 
 /**

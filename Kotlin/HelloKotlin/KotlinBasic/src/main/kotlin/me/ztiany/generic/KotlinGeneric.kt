@@ -1,6 +1,5 @@
 package me.ztiany.generic
 
-import org.omg.CORBA.Object
 import java.util.*
 
 
@@ -130,7 +129,7 @@ private fun fill(dest: Array<in String>, value: String) {
 }
 
 /**
- * 星投影(暂时没有理解)：
+ * 星投影：
  *
  *          有时你想说，你对类型参数一无所知，但仍然希望以安全的方式使用它。 这里的安全方式是定义泛型类型的这种投影，
  *          该泛型类型的每个具体实例化将是该投影的子类型。
@@ -241,17 +240,17 @@ private fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T> where T :
 
 8  Kotlin集合中的泛型
 
-public interface Iterable<out T>
+    public interface Iterable<out T>
 
-public interface ListIterator<out T> : Iterator<T>
-public interface Collection<out E> : Iterable<E>
-public interface MutableIterable<out T> : Iterable<T>
+    public interface ListIterator<out T> : Iterator<T>
+    public interface Collection<out E> : Iterable<E>
+    public interface MutableIterable<out T> : Iterable<T>
 
-public interface List<out E> : Collection<E>
-public interface Set<out E> : Collection<E>
-public interface MutableCollection<E> : Collection<E>, MutableIterable<E>
+    public interface List<out E> : Collection<E>
+    public interface Set<out E> : Collection<E>
+    public interface MutableCollection<E> : Collection<E>, MutableIterable<E>
 
-public interface MutableList<E> : List<E>, MutableCollection<E>
-public interface MutableSet<E> : Set<E>, MutableCollection<E>
+    public interface MutableList<E> : List<E>, MutableCollection<E>
+    public interface MutableSet<E> : Set<E>, MutableCollection<E>
 
  */

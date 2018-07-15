@@ -50,7 +50,6 @@ private fun testAddress() {
 }
 
 
-
 /**
  * 幕后字段：Kotlin 中类不能有字段。然而当使用自定义访问器时，有时有一个幕后字段（backing field）有时是必要的。
  *                 为此 Kotlin 提供 一个自动幕后字段，它可通过使用 field 标识符访问，
@@ -67,7 +66,7 @@ private class BackingField {
                 field = value//field表示counter，field标识符只能用在属性的访问器内。
         }
 
-    // 既然字段和属性的差别主要是可见性，那么其实我们完全可以自己实现字段，也即幕后属性。
+    //既然字段和属性的差别主要是可见性，那么其实我们完全可以自己实现字段，也即幕后属性。
     //幕后属性：这里 _table 就是我们实现的“字段”，也叫幕后属性
     private var _table: Map<String, Int>? = null
 
@@ -81,7 +80,6 @@ private class BackingField {
 }
 
 
-
 /**
  * 编译期常量：已知值的属性可以使用 const 修饰符标记为 编译期常量。 这些属性需要满足以下要求：
  *
@@ -90,7 +88,6 @@ private class BackingField {
  *3，没有自定义 getter
  */
 private const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
-
 
 
 /**
@@ -102,5 +99,13 @@ private const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 private class TestLateinit {
     //声明一个延迟初始化的属性
     lateinit var subject: String
+
+    var custom: String
+        get() {
+            return "A"
+        }
+        set(value) {
+
+        }
 }
 

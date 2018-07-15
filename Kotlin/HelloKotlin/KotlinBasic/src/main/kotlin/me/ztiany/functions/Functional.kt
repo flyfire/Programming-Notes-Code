@@ -2,11 +2,7 @@ package me.ztiany.functions
 
 import java.io.File
 
-/**
- *
- * @author ztiany
- *          Email: ztiany3@gmail.com
- */
+/**函数式编程*/
 fun main(args: Array<String>) {
     //统计一个文件中所有字符串的个数
     File("build.gradle")

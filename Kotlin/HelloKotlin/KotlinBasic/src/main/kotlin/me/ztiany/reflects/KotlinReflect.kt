@@ -3,18 +3,19 @@ package me.ztiany.reflects
 import kotlin.reflect.KClass
 import kotlin.reflect.jvm.javaGetter
 
-
 /**
  *反射：反射是这样的一组语言和库功能，它允许在运行时自省你的程序的结构。
  *         Kotlin 让语言中的函数和属性做为一等公民、并对其自省（即在运行时获悉一个名称或者一个属性或函数的类型）
  *         与简单地使用函数式或响应式风格紧密相关。
+ *
+ * Kotlin 的反射有两套 API，因为最终都是编译为字节码，所以 Java 反射 API 通用适用于 Koitlin，另一套是 Kotlin 提供的反射 API。 kotlin的反射功能是一个独立的模块，如果需要使用则需要引入这个模块，模块中核心类包括：
  *
  * kotlin的反射功能是一个独立的模块，如果需要使用则需要引入这个模块，模块中核心类包括：
  *
  *      KTypes
  *      KClasses
  *      KProperties
- *      KCallables
+ *      KCallables：是函数和属性的超接口
  *
  * 内容：
  *
@@ -40,8 +41,10 @@ private fun classReference() {
     //绑定的类引用
     //通过使用对象作为接收者，可以用相同的 ::class 语法获取指定对象的类的引用
     val str = "ABC"
+
     println(str::class)
     println(str::class.java)
+
 }
 
 
@@ -148,6 +151,13 @@ private fun bindingFunctionAndPropertyReference() {
     println(lengthProp.get())   // 输出“3”
 
     //比较绑定的类型和相应的未绑定类型的引用。 绑定的可调用引用有其接收者“附加”到其上，因此接收者的类型不再是参数
+
+    /*绑定非绑定*/
+    val str = "ABC"
+    val kFunction1 = str::get
+    kFunction1.invoke(0)
+    val kFunction2 = String::get
+    kFunction2.invoke(str, 0)
 }
 
 

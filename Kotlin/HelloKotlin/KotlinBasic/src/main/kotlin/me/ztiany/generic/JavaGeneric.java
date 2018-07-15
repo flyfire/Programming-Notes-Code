@@ -132,7 +132,7 @@ public class JavaGeneric {
     }
 
     //为了修正这一点，我们必须声明对象的类型为 Source<? extends Object>，这是毫无意义的，
-    // 因为我们可以像以前一样在该对象上调用所有相同的方法，所以更复杂的类型并没有带来价值。但编译器并不知道。
+    //因为我们可以像以前一样在该对象上调用所有相同的方法，所以更复杂的类型并没有带来价值。但编译器并不知道。
     private void sourceSample2(Source<String> strs) {
         Source<? extends Object> objects = strs;
     }
