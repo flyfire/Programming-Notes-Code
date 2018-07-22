@@ -1,0 +1,4 @@
+rootProject.name = 'Play-with-Data-Structures'
+include 'Arrays'
+include 'Stacks-Queues'
+

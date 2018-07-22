@@ -1,10 +1,12 @@
 # imooc-算法与数据结构 学习笔记
 
+---
 ## 1 相关连接
 
 - 课程地址：[imooc-算法与数据结构](http://coding.imooc.com/class/71.html) 
 - 课程源代码地址：[Play-with-Algorithms](https://github.com/liuyubobobo/Play-with-Algorithms)
 
+---
 ## 2 课程内容
 
 算法思想：
