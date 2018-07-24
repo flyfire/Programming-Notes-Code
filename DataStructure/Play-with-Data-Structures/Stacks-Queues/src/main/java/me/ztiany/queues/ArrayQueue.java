@@ -11,7 +11,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
     private Array<E> mArray;
 
-    ArrayQueue() {
+    public ArrayQueue() {
         mArray = new Array<>();
     }
 

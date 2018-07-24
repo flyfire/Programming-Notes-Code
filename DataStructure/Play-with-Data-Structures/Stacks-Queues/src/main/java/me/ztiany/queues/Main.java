@@ -44,6 +44,7 @@ public class Main {
     }
 
     // 测试使用q运行opCount个enqueueu和dequeue操作所需要的时间，单位：秒
+    @SuppressWarnings("all")
     private static double testQueue(Queue<Integer> q, int opCount) {
         long startTime = System.nanoTime();
         Random random = new Random();
