@@ -15,9 +15,22 @@ import me.ztiany.queues.Queue;
 public class Main {
 
     public static void main(String... args) {
-        testLinkedList_Origin();
-        testLinkedList();
-        testAllQueue();
+        //testLinkedList_Origin();
+        //testLinkedList();
+        testLinkedListQueue();
+        //testAllQueue();
+    }
+
+    private static void testLinkedListQueue() {
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+        for (int i = 0; i < 20; i++) {
+            linkedListQueue.enqueue(i);
+        }
+        System.out.println(linkedListQueue);
+        for (int i = 0; i < 5; i++) {
+            linkedListQueue.dequeue();
+        }
+        System.out.println(linkedListQueue);
     }
 
     private static void testLinkedList() {
