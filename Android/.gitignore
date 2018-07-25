@@ -19,3 +19,4 @@ local.properties
 repo/
 app/backup
 *.hprof
+.project
