@@ -9,3 +9,13 @@
 .idea
 build
 out
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+local.properties
+repo/
+app/backup
+*.hprof
