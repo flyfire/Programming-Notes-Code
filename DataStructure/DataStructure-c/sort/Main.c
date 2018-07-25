@@ -169,7 +169,7 @@ void quickSort(int *arr, int start, int end) {
             while (i < j && arr[i] < temp) {
                 i++;
             }
-            //填坑，左边的那个数入坑，此时右边的职责可以往左一步
+            //填坑，左边的那个数入坑，此时右边的指针可以往左一步
             if (i < j) {
                 arr[j] = arr[i];
                 j--;
@@ -190,7 +190,7 @@ void quickSortTest(int *arr, int start, int end) {
 }
 
 
-//合并算法 从小到大
+//合并算法：从小到大
 void merge(int arr[], int start, int end, int mid, int *temp) {
     int i_start = start;
     int i_end = mid;
@@ -312,13 +312,13 @@ void heapSortTest(int *arr, int size) {
 int main() {
     int *arr = createArray();
 
-//    bubbleSort(arr, MAX);
-//    selectSort(arr, MAX);
-//    insertSort(arr, MAX);
-//    shellSort(arr, MAX);
-//    quickSortTest(arr, 0, MAX - 1);
-//    mergeSortTest();
-//    heapSortTest(arr, MAX);
+//    bubbleSort(arr, MAX); //冒泡排序
+//    selectSort(arr, MAX); //选择排序
+//    insertSort(arr, MAX); //插入排序
+//    shellSort(arr, MAX);  //希尔排序
+//    quickSortTest(arr, 0, MAX - 1);   //快速排序
+//    mergeSortTest();  //归并排序
+//    heapSortTest(arr, MAX);   //调用排序
 //    printArray(arr, MAX);
     return EXIT_SUCCESS;
 }
