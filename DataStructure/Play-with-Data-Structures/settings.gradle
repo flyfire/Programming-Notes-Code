@@ -3,4 +3,5 @@ include 'Arrays'
 include 'Stacks-Queues'
 include 'LinkedList'
 include 'LinkedList-Recursion'
+include 'Binary-Search-Tree'
 
