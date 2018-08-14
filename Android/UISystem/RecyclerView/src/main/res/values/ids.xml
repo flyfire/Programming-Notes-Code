@@ -3,5 +3,6 @@
 
     <item name="container" type="id"/>
     <item name="recycler_view" type="id"/>
+    <item name="base_item_tag_view_id" type="id"/>
 
 </resources>

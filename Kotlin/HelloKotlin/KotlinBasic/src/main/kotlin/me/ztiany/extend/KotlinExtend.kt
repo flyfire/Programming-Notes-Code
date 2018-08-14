@@ -1,5 +1,7 @@
 package me.ztiany.extend
 
+import kotlin.reflect.KProperty
+
 
 /**
  *Kotlin扩展：Kotlin 同 C# 类似，能够扩展一个类的新功能而无需继承该类或使用像装饰者这样的任何类型的设计模式。这通过叫做扩展的特殊声明完成。
@@ -129,6 +131,22 @@ private fun testDoIfNull() {
     }
 }
 
+
+private class Delegate {
+
+    private lateinit var name: String
+
+    operator fun getValue(thisRef: Int?, property: KProperty<*>): String {
+        if (!::name.isInitialized) {
+            name = "i am int"
+        }
+        return name
+    }
+
+}
+
+val Int.name: String  by Delegate()
+
 private fun test() {
     //给Int添加
     val sum = fun Int.(other: Int): Int = this + other
@@ -150,4 +168,6 @@ fun main(args: Array<String>) {
     val list = listOf(3, 3)
     println(list.lastIndex)
     testDoIfNull()
+
+    println(1.name)
 }

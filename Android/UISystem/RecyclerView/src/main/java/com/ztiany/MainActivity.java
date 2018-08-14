@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.ztiany.adapter_list.ListFragment;
+import com.ztiany.adapter_list.RecyclerFragment;
 import com.ztiany.diff_util.AsyncListDifferFragment;
 import com.ztiany.diff_util.DiffUtilFragment;
 import com.ztiany.item_decoraion_index.ItemDecorationIndexFragment;
@@ -69,5 +71,7 @@ public class MainActivity extends AppCompatActivity {
         LIST.add(new Item("自定义LinearLayoutManager", CustomLayoutManagerFragment.class));
         LIST.add(new Item("DiffUtil示例", DiffUtilFragment.class));
         LIST.add(new Item("AsyncListDiffer示例", AsyncListDifferFragment.class));
+        LIST.add(new Item("Adapter对比 ListView", ListFragment.class));
+        LIST.add(new Item("Adapter对比 RecyclerView", RecyclerFragment.class));
     }
 }
