@@ -30,6 +30,7 @@ abstract class BaseFragment<out P: BasePresenter<BaseFragment<P>>>: IMvpView<P>,
         }.flatMap {
             it.flatMap { it.arguments }.asSequence()
         }.first {
+            //jvmErasure：返回表示在JVM上将此类型擦除到的运行时类的KClass实例
             it.type?.jvmErasure?.isSubclassOf(IPresenter::class) ?: false
         }.let {
             return it.type!!.jvmErasure.primaryConstructor!!.call() as P
