@@ -1,7 +1,6 @@
 package com.ztiany.adapter.list;
-
 import android.content.Context;
-import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,17 +20,19 @@ import java.util.List;
 @SuppressWarnings("unused")
 public abstract class BaseListAdapter<T, VH extends ViewHolder> extends BaseAdapter implements DataManager<T> {
 
-    protected Context mContext;
+    protected final Context mContext;
     private final static int ITEM_ID = R.id.base_item_tag_view_id;
     private DataManager<T> mDataManager;
+    private final LayoutInflater mLayoutInflater;
 
-    public BaseListAdapter(Context context) {
+    public BaseListAdapter(@NonNull Context context) {
         this(context, null);
     }
 
     @SuppressWarnings("all")
     public BaseListAdapter(Context context, List<T> data) {
         this.mContext = context;
+        mLayoutInflater = LayoutInflater.from(context);
         mDataManager = new ListDataManagerImpl<>(data, this);
     }
 
@@ -50,10 +51,8 @@ public abstract class BaseListAdapter<T, VH extends ViewHolder> extends BaseAdap
     public View getView(int position, View convertView, ViewGroup parent) {
         VH viewHolder;
         int type = getItemViewType(position);
-        int layoutId = getLayoutId(type);
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(layoutId, parent, false);
-            viewHolder = onCreateViewHolder(convertView, type);
+            viewHolder = onCreateViewHolder(mLayoutInflater, parent, type);
             viewHolder.mItemView.setTag(ITEM_ID, viewHolder);
         } else {
             viewHolder = (VH) convertView.getTag(ITEM_ID);
@@ -61,14 +60,14 @@ public abstract class BaseListAdapter<T, VH extends ViewHolder> extends BaseAdap
         viewHolder.setPosition(position);
         viewHolder.setType(type);
         T item = getItem(position);
-        bindData(viewHolder, item);
+        onBindData(viewHolder, item);
         return viewHolder.mItemView;
     }
 
     @SuppressWarnings("all")
-    protected abstract void bindData(VH viewHolder, T item);
+    protected abstract void onBindData(VH viewHolder, T item);
 
-    protected abstract VH onCreateViewHolder(View convertView, int type);
+    protected abstract VH onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup parent, int type);
 
     @Override
     public int getItemViewType(int position) {
@@ -80,9 +79,6 @@ public abstract class BaseListAdapter<T, VH extends ViewHolder> extends BaseAdap
         return super.getViewTypeCount();
     }
 
-    @SuppressWarnings("all")
-    @LayoutRes
-    protected abstract int getLayoutId(int type);
 
     ///////////////////////////////////////////////////////////////////////////
     // DataManager

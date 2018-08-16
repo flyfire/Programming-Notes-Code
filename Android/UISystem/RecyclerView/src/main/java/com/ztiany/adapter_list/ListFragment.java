@@ -44,7 +44,7 @@ public class ListFragment extends BaseListFragment {
     @Override
     protected void modifyFirst() {
         Person item = mAdapter.getItem(0);
-        item.setName("湛大帅");
+        item.setName("大帅哥");
         mAdapter.notifyDataSetChanged();
     }
 
@@ -81,9 +81,9 @@ public class ListFragment extends BaseListFragment {
             super(context);
         }
 
-        @SuppressLint("SetTextI18n")
         @Override
-        protected void bindData(SmartViewHolder viewHolder, Person item) {
+        @SuppressLint("SetTextI18n")
+        protected void onBindData(SmartViewHolder viewHolder, Person item) {
             TextView nameTv = viewHolder.helper().getView(R.id.nameTv);
             TextView addressTv = viewHolder.helper().getView(R.id.addressTv);
             nameTv.setText("姓名：" + item.getName() + " ID: " + item.getId());
@@ -91,14 +91,10 @@ public class ListFragment extends BaseListFragment {
         }
 
         @Override
-        protected SmartViewHolder onCreateViewHolder(View convertView, int type) {
-            return new SmartViewHolder(convertView);
+        protected SmartViewHolder onCreateViewHolder(LayoutInflater layoutInflater, ViewGroup parent, int type) {
+            return new SmartViewHolder(layoutInflater.inflate(R.layout.adapter_item, parent, false));
         }
 
-        @Override
-        protected int getLayoutId(int type) {
-            return R.layout.adapter_item;
-        }
     }
 
 

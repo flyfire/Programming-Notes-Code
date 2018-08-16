@@ -1,4 +1,4 @@
-package me.ztiany.nio_vs_bio;
+package me.ztiany.io_nio;
 
 import java.io.IOException;
 import java.net.InetAddress;

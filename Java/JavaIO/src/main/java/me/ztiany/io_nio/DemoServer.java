@@ -1,4 +1,4 @@
-package me.ztiany.nio_vs_bio;
+package me.ztiany.io_nio;
 
 import java.io.BufferedReader;
 import java.io.IOException;
