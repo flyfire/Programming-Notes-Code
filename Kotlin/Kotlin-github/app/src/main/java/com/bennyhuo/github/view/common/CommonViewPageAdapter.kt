@@ -18,7 +18,18 @@ class CommonViewPageAdapter(fragmentManager: FragmentManager) : FragmentPagerAda
         return fragmentPages.size
     }
 
+    /*在这里，通过返回 POSITION_NONE 解决界面刷新问题*/
     override fun getItemPosition(fragment: Any): Int {
+        /*
+        problem
+            0-all
+            0-my 1-all
+            0-my
+       fix
+            0-all
+            0-my(POSITION_NONE remove) 1-all
+            0-all
+         */
         for ((index, page) in fragmentPages.withIndex()){
             if(fragment == page.fragment){
                 return index

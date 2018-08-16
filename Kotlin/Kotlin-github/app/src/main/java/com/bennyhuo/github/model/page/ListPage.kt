@@ -4,7 +4,8 @@ import com.bennyhuo.common.log.logger
 import retrofit2.adapter.rxjava.GitHubPaging
 import rx.Observable
 
-abstract class ListPage<DataType>: DataProvider<DataType> {
+/** 分页逻辑封装 */
+abstract class ListPage<DataType> : DataProvider<DataType> {
     companion object {
         const val PAGE_SIZE = 20
     }
@@ -26,6 +27,7 @@ abstract class ListPage<DataType>: DataProvider<DataType> {
                 data
             }
 
+    /**如果已经加载了三页，那么刷新的时候就一次性刷三页*/
     fun loadFromFirst(pageCount: Int = currentPage) =
             Observable.range(1, pageCount)
                     .concatMap {
