@@ -14,6 +14,7 @@ fun <T> async(context: CoroutineContext = CommonPool, block: suspend () -> T): D
 }
 
 fun runBlocking(block: suspend () -> Unit) {
+    println("runBlocking-> $block  ${block.hashCode()}")
     val eventQueue = BlockingQueueDispatcher()
     val context = DispatcherContext(eventQueue)
     BlockingCoroutine(context, eventQueue, block).joinBlocking()

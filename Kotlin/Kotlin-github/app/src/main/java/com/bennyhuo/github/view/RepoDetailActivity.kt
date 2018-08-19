@@ -1,11 +1,14 @@
 package com.bennyhuo.github.view
 
 import android.os.Bundle
+import com.apollographql.apollo.rx.RxApollo
 import com.bennyhuo.experimental.coroutines.awaitOrError
 import com.bennyhuo.experimental.coroutines.launchUI
 import com.bennyhuo.github.R
 import com.bennyhuo.github.network.GraphQLService
+import com.bennyhuo.github.network.apolloClient
 import com.bennyhuo.github.network.entities.Repository
+import com.bennyhuo.github.network.graphql.entities.RepositoryIssueCountQuery
 import com.bennyhuo.github.network.services.ActivityService
 import com.bennyhuo.github.network.services.RepositoryService
 import com.bennyhuo.github.utils.*
@@ -141,8 +144,8 @@ class RepoDetailActivity: BaseDetailSwipeFinishableActivity() {
 
                 })
 
-//        val watcher = apolloClient.query(RepositoryIssueCountQuery(repository.name, repository.owner.login)).watcher()
-//        RxApollo.from(watcher)
+        val watcher = apolloClient.query(RepositoryIssueCountQuery(repository.name, repository.owner.login)).watcher()
+        RxApollo.from(watcher)
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe {

@@ -27,6 +27,7 @@ abstract class AbstractCoroutine<T>(override val context: CoroutineContext, bloc
         get() = state.get() is State.Complete<*>
 
     override fun resume(value: T) {
+        println("AbstractCoroutine $this ->resume->value = $value")
         val currentState = state.getAndSet(State.Complete(value))
         when (currentState) {
             is State.CompleteHandler<*> -> {
@@ -36,6 +37,7 @@ abstract class AbstractCoroutine<T>(override val context: CoroutineContext, bloc
     }
 
     override fun resumeWithException(exception: Throwable) {
+        println("AbstractCoroutine $this ->resumeWithException->exception = $exception")
         val currentState = state.getAndSet(State.Complete<T>(null, exception))
         when (currentState) {
             is State.CompleteHandler<*> -> {
@@ -47,14 +49,24 @@ abstract class AbstractCoroutine<T>(override val context: CoroutineContext, bloc
     suspend fun join() {
         val currentState = state.get()
         when (currentState) {
-            is State.InComplete -> return joinSuspend()
-            is State.Complete<*> -> return
+            is State.InComplete -> {
+                println("AbstractCoroutine join currentState = $currentState")
+                val ret = joinSuspend()
+                println("AbstractCoroutine join ret=$ret")
+                return ret
+            }
+            is State.Complete<*> -> {
+                println("AbstractCoroutine join currentState = $currentState")
+                return
+            }
             else -> throw IllegalStateException("Invalid State: $currentState")
         }
     }
 
     private suspend fun joinSuspend() = suspendCoroutine<Unit> { continuation ->
-        doOnCompleted { t, throwable -> continuation.resume(Unit) }
+        doOnCompleted { t, throwable ->
+            println("joinSuspend continuation = $continuation")
+            continuation.resume(Unit) }
     }
 
     protected fun doOnCompleted(block: (T?, Throwable?) -> Unit) {

@@ -44,7 +44,7 @@ fun showError(t: Throwable) {
 fun main(args: Array<String>) = runBlocking {
 //    useCallback()
 //    wrappedInSuspendFunction()
-//    useCoroutine()
+    useCoroutine()
 //    useTraditionalForLoop()
 //    useExtensionForEach()
     timeCost()
