@@ -3,9 +3,10 @@ package com.ztiany.progress.imageloader;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -18,9 +19,9 @@ import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-class GlideImageLoader implements ImageLoader {
+import java.util.concurrent.ExecutionException;
 
-    private static final String TAG = GlideImageLoader.class.getSimpleName();
+class GlideImageLoader implements ImageLoader {
 
     private boolean canFragmentLoadImage(Fragment fragment) {
         return fragment.isResumed() || fragment.isAdded() || fragment.isVisible();
@@ -61,18 +62,28 @@ class GlideImageLoader implements ImageLoader {
         requestBuilder.into(new InnerImageTarget(imageView, url, loadListener));
     }
 
+
     @Override
-    public void removeListener(String url) {
+    public void removeAllListener(String url) {
         ProgressManager.getInstance().removeListener(url);
+    }
+
+    @Override
+    public void addListener(@NonNull String url, @NonNull ProgressListener progressListener) {
+        ProgressManager.getInstance().addLoadListener(url, progressListener);
+    }
+
+    @Override
+    public void setListener(String url, ProgressListener progressListener) {
+        ProgressManager.getInstance().setListener(url, progressListener);
     }
 
     private class InnerImageTarget extends ImageViewTarget<Drawable> {
 
         private final LoadListener<Drawable> mLoadListener;
 
-        InnerImageTarget(ImageView view, String url, LoadListener<Drawable> loadListener) {
+        InnerImageTarget(ImageView view, @SuppressWarnings("unused") String url, LoadListener<Drawable> loadListener) {
             super(view);
-            ProgressManager.getInstance().setLoadListener(url, loadListener);
             mLoadListener = loadListener;
         }
 
@@ -203,13 +214,45 @@ class GlideImageLoader implements ImageLoader {
 
     @Override
     public void loadBitmap(Context context, Source source, boolean cache, final LoadListener<Bitmap> bitmapLoadListener) {
-        String url = source.mUrl;
-        if (url != null) {
-            ProgressManager.getInstance().setLoadListener(url, bitmapLoadListener);
+        loadBitmap(context, source, cache, 0, 0, bitmapLoadListener);
+    }
+
+    @Override
+    public void loadBitmap(Fragment fragment, Source source, boolean cache, LoadListener<Bitmap> bitmapLoadListener) {
+        loadBitmap(fragment, source, cache, 0, 0, bitmapLoadListener);
+    }
+
+    @Override
+    public void loadBitmap(Fragment fragment, Source source, boolean cache, int width, int height, LoadListener<Bitmap> bitmapLoadListener) {
+        loadBitmapInternal(Glide.with(fragment), source, cache, width, height, bitmapLoadListener);
+    }
+
+    @Override
+    public Bitmap loadBitmap(Context context, Source source, boolean cache, int width, int height) {
+        RequestBuilder<Bitmap> requestBuilder = Glide.with(context).asBitmap();
+        requestBuilder = setToRequest(requestBuilder, source);
+        if (width > 0 && height > 0) {
+            try {
+                return requestBuilder.submit(width, height).get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                return requestBuilder.submit().get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
         }
+        return null;
+    }
 
-        RequestManager requestManager = Glide.with(context);
+    @Override
+    public void loadBitmap(Context context, Source source, boolean cache, int width, int height, LoadListener<Bitmap> bitmapLoadListener) {
+        loadBitmapInternal(Glide.with(context), source, cache, width, height, bitmapLoadListener);
+    }
 
+    private void loadBitmapInternal(RequestManager requestManager, Source source, boolean cache, int width, int height, LoadListener<Bitmap> bitmapLoadListener) {
         RequestOptions requestOptions = new RequestOptions();
         if (cache) {
             requestOptions.skipMemoryCache(false);
@@ -218,6 +261,10 @@ class GlideImageLoader implements ImageLoader {
             requestOptions.skipMemoryCache(true);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.NONE);
         }
+        if (width > 0 && height > 0) {
+            requestOptions.override(width, height);
+        }
+
         RequestBuilder<Bitmap> requestBuilder = requestManager.asBitmap().apply(requestOptions);
         requestBuilder = setToRequest(requestBuilder, source);
         requestBuilder.into(new SimpleTarget<Bitmap>() {
@@ -239,6 +286,23 @@ class GlideImageLoader implements ImageLoader {
         });
     }
 
+    @Override
+    public void clear(Context context) {
+        Glide.get(context).clearDiskCache();
+    }
+
+    @Override
+    public void clear(View view) {
+        Context context = view.getContext();
+        if (context != null) {
+            Glide.with(context).clear(view);
+        }
+    }
+
+    @Override
+    public void clear(Fragment fragment, View view) {
+        Glide.with(fragment).clear(view);
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Build request
@@ -281,7 +345,6 @@ class GlideImageLoader implements ImageLoader {
             requestOptions.error(displayConfig.getErrorPlaceholder());
         }
         if (displayConfig.getErrorDrawable() != null) {
-            Log.d(TAG, "buildRequestOptions() called with: displayConfig = [" + displayConfig + "]");
             requestOptions.error(displayConfig.getErrorDrawable());
         }
 
@@ -290,7 +353,6 @@ class GlideImageLoader implements ImageLoader {
         }
 
         if (displayConfig.getLoadingDrawable() != null) {
-            Log.d(TAG, "buildRequestOptions() called with: displayConfig = [" + displayConfig + "]");
             requestOptions.placeholder(displayConfig.getLoadingDrawable());
         }
         return requestOptions;

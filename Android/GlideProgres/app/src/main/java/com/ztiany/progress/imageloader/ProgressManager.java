@@ -3,11 +3,17 @@ package com.ztiany.progress.imageloader;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.annotation.UiThread;
+
+import com.ztiany.progress.Checker;
+import com.ztiany.progress.StringChecker;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -18,22 +24,11 @@ final class ProgressManager {
     private static volatile ProgressManager mProgressManager;
     private static final int DEFAULT_REFRESH_TIME = 200;
 
-    private int mRefreshTime = DEFAULT_REFRESH_TIME;//进度刷新时间(单位ms),避免高频率调用
-    private final Map<String, LoadListener> mResponseListeners;
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
+    private final Map<String, List<WeakReference<ProgressListener>>> mMultiResponseListeners;
+    private final Map<String, WeakReference<ProgressListener>> mExclusiveResponseListeners;
     private final ResponseProgressInterceptor mInterceptor;
-    private final Handler mHandler;
-
-    private void notifyProgress(String url, final long contentLength, final long currentBytes, final float percent, final boolean isFinish) {
-        final LoadListener loadListener = mResponseListeners.get(url);
-        if (loadListener != null) {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    loadListener.onProgress(contentLength, currentBytes, percent, isFinish);
-                }
-            });
-        }
-    }
+    private int mRefreshTime = DEFAULT_REFRESH_TIME;//进度刷新时间(单位ms)，避免高频率调用
 
     static ProgressManager getInstance() {
         if (mProgressManager == null) {
@@ -47,10 +42,8 @@ final class ProgressManager {
     }
 
     private ProgressManager() {
-        this.mHandler = new Handler(Looper.getMainLooper());
-        //https://stackoverflow.com/questions/2255950/is-there-java-util-concurrent-equivalent-for-weakhashmap
-        //A synchronized WeakHashMap may be constructed using the Collections.synchronizedMap method.
-        mResponseListeners = Collections.synchronizedMap(new WeakHashMap<String, LoadListener>());
+        mMultiResponseListeners = new HashMap<>();
+        mExclusiveResponseListeners = new HashMap<>();
         this.mInterceptor = new ResponseProgressInterceptor();
     }
 
@@ -58,23 +51,114 @@ final class ProgressManager {
         return builder.addNetworkInterceptor(mInterceptor);
     }
 
+    @UiThread
+    private void notifyResponseProgress(String url, ProgressInfo progressInfo) {
+        //multi
+        List<WeakReference<ProgressListener>> weakReferences = mMultiResponseListeners.get(url);
+        if (!Checker.isEmpty(weakReferences)) {
+            for (WeakReference<ProgressListener> weakReference : weakReferences) {
+                ProgressListener progressListener = weakReference.get();
+                if (progressListener != null) {
+                    progressListener.onProgress(url, progressInfo);
+                }
+            }
+        }
+        //Exclusive
+        WeakReference<ProgressListener> listenerWeakReference = mExclusiveResponseListeners.get(url);
+        if (listenerWeakReference != null) {
+            ProgressListener progressListener = listenerWeakReference.get();
+            if (progressListener != null) {
+                progressListener.onProgress(url, progressInfo);
+            }
+        }
+    }
+
+    @UiThread
+    private void notifyResponseError(String url, long id, Exception e) {
+        //multi
+        List<WeakReference<ProgressListener>> weakReferences = mMultiResponseListeners.get(url);
+        if (!Checker.isEmpty(weakReferences)) {
+            for (WeakReference<ProgressListener> weakReference : weakReferences) {
+                ProgressListener progressListener = weakReference.get();
+                if (progressListener != null) {
+                    progressListener.onError(id, url, e);
+                }
+            }
+        }
+        //Exclusive
+        WeakReference<ProgressListener> listenerWeakReference = mExclusiveResponseListeners.get(url);
+        if (listenerWeakReference != null) {
+            ProgressListener progressListener = listenerWeakReference.get();
+            if (progressListener != null) {
+                progressListener.onError(id, url, e);
+            }
+        }
+    }
+
     /**
      * 设置每次被调用的间隔时间,单位毫秒
      */
     void setRefreshTime(int refreshTime) {
+        if (refreshTime < 0) {
+            throw new IllegalArgumentException("the refreshTime must be >= 0");
+        }
         mRefreshTime = refreshTime;
     }
 
     ///////////////////////////////////////////////////////////////////////////
     //listener
     ///////////////////////////////////////////////////////////////////////////
-    void setLoadListener(String url, LoadListener listener) {
-        mResponseListeners.put(url, listener);
+    @UiThread
+    void addLoadListener(String url, ProgressListener listener) {
+        //check
+        if (StringChecker.isEmpty(url)) {
+            throw new NullPointerException("url cannot be null");
+        }
+        if (listener == null) {
+            throw new NullPointerException("ProgressListener cannot be null");
+        }
+
+        List<WeakReference<ProgressListener>> progressListeners = mMultiResponseListeners.get(url);
+        //make list if need
+        if (progressListeners == null) {
+            progressListeners = new ArrayList<>();
+            mMultiResponseListeners.put(url, progressListeners);
+        }
+        //add direct
+        if (progressListeners.isEmpty()) {
+            progressListeners.add(new WeakReference<>(listener));
+        } else {
+            //Prevent duplication
+            boolean containers = false;
+            for (WeakReference<ProgressListener> progressListener : progressListeners) {
+                if (progressListener.get() == progressListener) {
+                    containers = true;
+                    break;
+                }
+            }
+            if (!containers) {
+                progressListeners.add(new WeakReference<>(listener));
+            }
+        }
     }
 
-    void removeListener(String url) {
-        mResponseListeners.remove(url);
+    @UiThread
+    public void setListener(String url, ProgressListener progressListener) {
+        if (StringChecker.isEmpty(url)) {
+            throw new NullPointerException("url cannot be null");
+        }
+        if (progressListener == null) {
+            mExclusiveResponseListeners.remove(url);
+        } else {
+            mExclusiveResponseListeners.put(url, new WeakReference<>(progressListener));
+        }
     }
+
+    @UiThread
+    void removeListener(String url) {
+        mMultiResponseListeners.remove(url);
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////
     //ResponseProgressInterceptor
@@ -93,13 +177,22 @@ final class ProgressManager {
             final String key = response.request().url().toString();
             ProgressResponseBody progressResponseBody = new ProgressResponseBody(response.body(), mRefreshTime) {
                 @Override
-                void onProgress(long contentLength, long currentBytes, float percent, boolean isFinish) {
-                    notifyProgress(key, contentLength, currentBytes, percent, isFinish);
+                void onProgress(ProgressInfo progressInfo) {
+                    runOnUIThread(() -> notifyResponseProgress(key, progressInfo));
+                }
+
+                @Override
+                protected void onError(long id, Exception e) {
+                    runOnUIThread(() -> notifyResponseError(key, id, e));
                 }
             };
-            return response.newBuilder()
-                    .body(progressResponseBody).build();
+            return response.newBuilder().body(progressResponseBody).build();
         }
+    }
+
+    private void runOnUIThread(Runnable runnable) {
+        /*make sure it run on ui thread*/
+        mHandler.post(runnable);
     }
 
 }

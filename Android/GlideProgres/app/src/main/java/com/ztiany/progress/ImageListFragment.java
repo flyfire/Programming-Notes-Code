@@ -18,6 +18,7 @@ import com.ztiany.progress.imageloader.DisplayConfig;
 import com.ztiany.progress.imageloader.ImageLoader;
 import com.ztiany.progress.imageloader.ImageLoaderFactory;
 import com.ztiany.progress.imageloader.LoadListenerAdapter;
+import com.ztiany.progress.imageloader.ProgressListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -63,16 +64,18 @@ public class ImageListFragment extends Fragment {
         private final ImageView image;
         private final TextView text;
         private final LoadListenerAdapter<Drawable> mLoadListenerAdapter;
+        private final ProgressListener mProgressListener;
 
+        @SuppressLint("SetTextI18n")
         ProgressViewHolder(View root) {
             super(root);
             image = root.findViewById(R.id.image);
             text = root.findViewById(R.id.text);
+
+            mProgressListener = (url, progressInfo) ->
+                    text.setText(progressInfo.getContentLength() + "--" + progressInfo.getCurrentBytes() + "--" + progressInfo.getProgress() + "--" + progressInfo.isFinished()+"++"+progressInfo.getId());
+
             mLoadListenerAdapter = new LoadListenerAdapter<Drawable>() {
-                @Override
-                public void onProgress(long contentLength, long currentBytes, float percent, boolean isFinish) {
-                    text.setText(contentLength + "--" + currentBytes + "--" + percent + "--" + isFinish);
-                }
 
                 @SuppressLint("SetTextI18n")
                 @Override
@@ -96,7 +99,9 @@ public class ImageListFragment extends Fragment {
         }
 
         void bind(String url) {
+            text.setTextSize(10);
             text.setText("");
+            mImageLoader.setListener(url, mProgressListener);
             mImageLoader.display(ImageListFragment.this, image, url, mDisplayConfig, mLoadListenerAdapter);
         }
     }
