@@ -13,6 +13,7 @@ import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.jvm.jvmErasure
 
 abstract class BaseFragment<out P: BasePresenter<BaseFragment<P>>>: IMvpView<P>,Fragment() {
+
     override val presenter: P
 
     init {
@@ -25,12 +26,14 @@ abstract class BaseFragment<out P: BasePresenter<BaseFragment<P>>>: IMvpView<P>,
             var thisClass: KClass<*> = this@BaseFragment::class
             while (true){
                 yield(thisClass.supertypes)
+                //jvmErasure：返回表示在JVM上将此类型擦除到的运行时类的KClass实例
                 thisClass = thisClass.supertypes.firstOrNull()?.jvmErasure?: break
             }
         }.flatMap {
+            //arguments 表示类型参数
             it.flatMap { it.arguments }.asSequence()
         }.first {
-            //jvmErasure：返回表示在JVM上将此类型擦除到的运行时类的KClass实例
+            //KTypeProjection 表示类型投影
             it.type?.jvmErasure?.isSubclassOf(IPresenter::class) ?: false
         }.let {
             return it.type!!.jvmErasure.primaryConstructor!!.call() as P
