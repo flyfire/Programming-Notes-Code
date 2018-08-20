@@ -21,6 +21,7 @@ abstract class CommonListAdapter<T>(@LayoutRes val itemResId: Int) : RecyclerVie
     }
 
     init {
+        //item有自己的id
         setHasStableIds(true)
     }
 

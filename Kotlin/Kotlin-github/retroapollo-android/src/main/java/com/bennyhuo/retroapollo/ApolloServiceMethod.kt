@@ -9,8 +9,8 @@ import java.lang.reflect.ParameterizedType
 
 class ApolloServiceMethod<T : Any>(private val retroApollo: RetroApollo,
                                    val method: Method,
-                                   private val buildBuilderMethod: Method,
-                                   private val buildQueryMethod: Method,
+                                   private val buildBuilderMethod: Method,//GraphQL->RepositoryIssueCountQuery.builder
+                                   private val buildQueryMethod: Method,//GraphQL->
                                    private val fieldSetters: List<Method>,
                                    private val callAdapter: CallAdapter<Any, T>) {
 

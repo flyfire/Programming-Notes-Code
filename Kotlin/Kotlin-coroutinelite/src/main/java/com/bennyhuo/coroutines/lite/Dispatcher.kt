@@ -15,6 +15,7 @@ private object CommonPoolDispatcher: Dispatcher {
     }
 
     override fun dispatch(block: () -> Unit) {
+        println("CommonPoolDispatcher-->block = $block ${block.hashCode()}")
         executor.submit(block)
     }
 }
@@ -30,6 +31,7 @@ open class DispatcherContext(private val dispatcher: Dispatcher) : AbstractCorou
             }), dispatcher)
 }
 
+/*自己的拦截器*/
 private class DispatchedContinuation<T>(val delegate: Continuation<T>, val dispatcher: Dispatcher) : Continuation<T>{
     override val context = delegate.context
 

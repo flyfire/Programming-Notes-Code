@@ -46,15 +46,15 @@ class AppBarLayoutBehavior(context: Context, attrs: AttributeSet?) : Coordinator
     private fun initializeProperties(child: View, appBarLayout: AppBarLayout){
         if(targetHeight != INVALID_VALUE || child.height == 0) return
 
-        targetHeight = appBarLayout.height - appBarLayout.totalScrollRange - targetTop * 2
+        targetHeight = appBarLayout.height - appBarLayout.totalScrollRange - targetTop * 2//折叠后的高度，targetTop 理解为padding
         targetWidth = child.width * targetHeight / child.height
-        originalWidth = child.width
-        originalHeight = child.height
+        originalWidth = child.width//原始宽度
+        originalHeight = child.height//原始高度
 
         if(originalLeft == INVALID_VALUE){
-            originalLeft = child.x.toInt()
+            originalLeft = child.x.toInt()//没有配置 x
         } else {
-            child.x = originalLeft.toFloat()
+            child.x = originalLeft.toFloat()//配置了 x
         }
 
         if(originalTop == INVALID_VALUE){
@@ -64,7 +64,8 @@ class AppBarLayoutBehavior(context: Context, attrs: AttributeSet?) : Coordinator
         }
 
         if(targetLeft == INVALID_VALUE){
-            targetLeft = (originalLeft + (originalWidth - targetWidth) * child.pivotX / originalWidth).toInt()
+            targetLeft = (originalLeft + (originalWidth - targetWidth) * child.pivotX / originalWidth).toInt()//需要考虑锚点
+            println("child.pivotX = ${child.pivotX}, originalWidth=$originalWidth")//pivotX不是比例，相对于View的像素值
         }
 
         if(targetTop == INVALID_VALUE){
@@ -84,7 +85,7 @@ class AppBarLayoutBehavior(context: Context, attrs: AttributeSet?) : Coordinator
 
     override fun onDependentViewChanged(parent: CoordinatorLayout, child: View, dependency: View): Boolean {
         (dependency as? AppBarLayout)?.let {
-            val offsetRatio = (it.height - it.bottom).toFloat() / it.totalScrollRange
+            val offsetRatio = (it.height - it.bottom).toFloat() / it.totalScrollRange//往上推动了多少
             child.x += totalOffsetX * (offsetRatio - this.offsetRatio)
             child.y += totalOffsetY * (offsetRatio - this.offsetRatio)
 
