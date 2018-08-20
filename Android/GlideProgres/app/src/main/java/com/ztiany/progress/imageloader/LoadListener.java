@@ -2,12 +2,13 @@ package com.ztiany.progress.imageloader;
 
 public interface LoadListener<T> {
 
-    void onLoadStart();
+    default void onLoadStart() {
+    }
 
-    void onLoadSuccess(T bitmap);
+    default void onLoadSuccess(T resource) {
+    }
 
-    void onProgress(long contentLength, long currentBytes, float percent, boolean isFinish);
-
-    void onLoadFail();
+    default void onLoadFail() {
+    }
 
 }
