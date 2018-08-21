@@ -117,7 +117,7 @@ public final class RxJavaCallAdapterFactory2 extends CallAdapter.Factory {
 
     @Override
     public CallAdapter<?, ?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
-        Class<?> rawType = getRawType(returnType);
+        Class<?> rawType = getRawType(returnType);//Observable/Single/Completable
         boolean isSingle = rawType == Single.class;
         boolean isCompletable = rawType == Completable.class;
         if (rawType != Observable.class && !isSingle && !isCompletable) {
@@ -138,8 +138,8 @@ public final class RxJavaCallAdapterFactory2 extends CallAdapter.Factory {
                     + " as " + name + "<Foo> or " + name + "<? extends Foo>");
         }
 
-        Type observableType = getParameterUpperBound(0, (ParameterizedType) returnType);
-        Class<?> rawObservableType = getRawType(observableType);
+        Type observableType = getParameterUpperBound(0, (ParameterizedType) returnType);//Observable<HttpResult<String>> -> HttpResult<String>
+        Class<?> rawObservableType = getRawType(observableType);//Observable<HttpResult<String>> -> HttpResult
         Log.d("RxJava", "observableType: " + observableType);
         Log.d("RxJava", "rawObservableType: " + rawObservableType);
 
@@ -171,7 +171,6 @@ public final class RxJavaCallAdapterFactory2 extends CallAdapter.Factory {
             isBody = true;
         }
 
-        return new RxJavaCallAdapter2(responseType, schedulerSubscribeOn, schedulerObserveOn, isAsync, isResult, isBody, isPaging, isSingle,
-                false);
+        return new RxJavaCallAdapter2(responseType, schedulerSubscribeOn, schedulerObserveOn, isAsync, isResult, isBody, isPaging, isSingle, false);
     }
 }

@@ -13,6 +13,8 @@ import org.jetbrains.anko.support.v4.nestedScrollView
 import kotlin.concurrent.thread
 
 /**
+ * dsl 和 xml 性能对比
+ *
  * Created by benny on 7/9/17.
  */
 class PerformanceFragment : Fragment() {
@@ -24,7 +26,7 @@ class PerformanceFragment : Fragment() {
             inflater.inflate(R.layout.activity_login, container, false)
             System.nanoTime()
 
-            fun cost(tag: String, block: ()->Unit){
+            fun cost(tag: String, block: () -> Unit) {
                 System.gc()
                 System.gc()
                 val start = System.nanoTime()
@@ -54,20 +56,20 @@ class PerformanceFragmentUI : AnkoComponent<PerformanceFragment> {
 
                 imageView {
                     imageResource = R.mipmap.ic_launcher
-                }.lparams(width = wrapContent, height = wrapContent){
+                }.lparams(width = wrapContent, height = wrapContent) {
                     gravity = Gravity.CENTER_HORIZONTAL
                 }
-                themedTextView("GitHub", R.style.detail_title){
+                themedTextView("GitHub", R.style.detail_title) {
                     textColor = R.color.colorPrimary
-                }.lparams(width = wrapContent, height = wrapContent){
+                }.lparams(width = wrapContent, height = wrapContent) {
                     gravity = Gravity.CENTER_HORIZONTAL
                 }
-                themedTextView("By Bennyhuo", R.style.detail_description){
+                themedTextView("By Bennyhuo", R.style.detail_description) {
                     textColor = R.color.colorPrimary
-                }.lparams(width = wrapContent, height = wrapContent){
+                }.lparams(width = wrapContent, height = wrapContent) {
                     gravity = Gravity.CENTER_HORIZONTAL
                 }
-                themedTextView(R.string.open_source_licenses, R.style.detail_description){
+                themedTextView(R.string.open_source_licenses, R.style.detail_description) {
                     textColor = R.color.colorPrimary
 
 //                    onClick {
@@ -82,10 +84,10 @@ class PerformanceFragmentUI : AnkoComponent<PerformanceFragment> {
 //                            }
 //                        }.show()
 //                    }
-                }.lparams(width = wrapContent, height = wrapContent){
+                }.lparams(width = wrapContent, height = wrapContent) {
                     gravity = Gravity.CENTER_HORIZONTAL
                 }
-            }.lparams(width = wrapContent, height = wrapContent){
+            }.lparams(width = wrapContent, height = wrapContent) {
                 gravity = Gravity.CENTER
             }
         }
