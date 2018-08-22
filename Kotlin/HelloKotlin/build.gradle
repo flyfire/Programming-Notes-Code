@@ -2,11 +2,14 @@ group = "com.ztiany"
 version = "1.0"
 
 buildscript {
-    ext.kotlin_version = '1.2.30'
+
+    ext.kotlin_version = '1.2.60'
+
     repositories {
         jcenter()
         mavenCentral()
     }
+
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
@@ -14,5 +17,12 @@ buildscript {
     }
 }
 
+subprojects {
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
 
 
