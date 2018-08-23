@@ -2,19 +2,13 @@ package understanding
 
 import kotlinx.coroutines.experimental.*
 
-/**
- *
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.12.18 23:43
- */
+/** 理解Suspend函数 */
 fun main(args: Array<String>) {
     //asyncCallbackSample() //传统异步回调方式
     //asyncReturnSample1() // 协程异步返回方式1
-    asyncReturnSample2() // 协程异步返回方式2
-    //coroutinesSwitch() // 感受协程中暂停方法的多入口，每次暂停到恢复都可以切换到不同的调度线程
+    //asyncReturnSample2() // 协程异步返回方式2
+    coroutinesSwitch() // 感受协程中暂停方法的多入口，每次暂停到恢复都可以切换到不同的调度线程
 }
-
 
 /**执行耗时操作*/
 private fun queryDatabase(): String {
@@ -54,7 +48,7 @@ private fun coroutinesSwitch() {
         delay(1000L)  // 过1秒后, 计时器线程会resume协程
 
         // 7. 计时器线程恢复了协程,此时已经运行在计时器线程了
-        println("${Thread.currentThread().name}: 4")
+        println("${Thread.currentThread().name}: 4")//kotlinx.coroutines.DefaultExecutor
     }
 
     // 5. 刚那个的协程不要我(主线程)干活了, 所以我继续之前的执行

@@ -10,12 +10,13 @@ interface Callback {
     fun onSuccess(result: String)
     fun onError(e: Throwable)
 }
+
 /*传统异步编程如果重构为协程*/
 fun loadAsync(callback: Callback) {
     thread {
         try {
             Thread.sleep(1000)
-            if(Math.random() > 0.5f){
+            if (Math.random() > 0.5f) {
                 callback.onSuccess("HelloWorld")
             } else {
                 throw IllegalStateException("This is a Demonstration Error.")

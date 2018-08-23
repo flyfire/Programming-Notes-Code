@@ -8,15 +8,10 @@ import kotlin.coroutines.experimental.suspendCoroutine
 
 
 fun main(args: Array<String>) {
-    //sample1()
-    sample2()
+    sample()
 }
 
-fun sample2() {
-
-}
-
-private fun sample1() {
+private fun sample() {
     println("1 before coroutine")
 
     launchWithContext(FilePath("test.zip") + CommonPool) {
@@ -56,14 +51,11 @@ private suspend fun <T> CompletableFuture<T>.await(): T {
 }
 
 
-/**带有 Receiver 的协程：不仅可以传入一个独立的函数作为协程的代码块，还可以将一个对象的方法传入，
- * 也就是说，我们完全可以在启动协程的时候为它指定一个 receiver*/
+/** 带有 Receiver 的协程：不仅可以传入一个独立的函数作为协程的代码块，还可以将一个对象的方法传入，也就是说，我们完全可以在启动协程的时候为它指定一个 receiver*/
 private fun <T> launch(receiver: T, context: CoroutineContext, block: suspend T.() -> Unit) =
         block.startCoroutine(receiver, StandaloneCoroutine(context))
 
-/**函数用于在执行的协程上下文中调度block
- * suspend CoroutineContext.() -> Unit表示带接收者的函数字面值，即该函数由字面值对象调用，在函数体内访问接收者对象的成员
- */
+/** 函数用于在执行的协程上下文中调度block，suspend CoroutineContext.() -> Unit表示带接收者的函数字面值，即该函数由字面值对象调用，在函数体内访问接收者对象的成员*/
 private fun launchWithContext(context: CoroutineContext, block: suspend CoroutineContext.() -> Unit) {
     launch(context, context, block)
 }

@@ -58,8 +58,8 @@ private fun asyncCalcMd5(path: String, block: suspend () -> Unit) {
     val continuation = object : Continuation<Unit> {
 
         override val context: CoroutineContext
-                //这里添加了CommonPool
-                //协程上下文可以使用+运算符来组合。右侧的上下文替换左侧上下文的相关条目。比如调度器被替换
+        //这里添加了CommonPool
+        //协程上下文可以使用+运算符来组合。右侧的上下文替换左侧上下文的相关条目。比如调度器被替换
             get() = FilePath(path) + CommonPool
 
         override fun resume(value: Unit) {
@@ -84,8 +84,8 @@ open class Pool(val pool: ForkJoinPool) : AbstractCoroutineContextElement(Contin
 
     //该方法需要返回用于包装原始Continuation的新的Continuation
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> =
-            //下面这段代码是要查找其他拦截器，并保证能调用它们的拦截方法
-            //这里返回了一个PoolContinuation，PoolContinuation使用CommPool进行协程调度
+    //下面这段代码是要查找其他拦截器，并保证能调用它们的拦截方法
+    //这里返回了一个PoolContinuation，PoolContinuation使用CommPool进行协程调度
             PoolContinuation(pool, continuation.context.fold(continuation,
                     { cont, element ->
                         //如果element不是当前Pool并且是一个拦截器，那么就拦截
@@ -96,9 +96,7 @@ open class Pool(val pool: ForkJoinPool) : AbstractCoroutineContextElement(Contin
                     }))
 }
 
-/**
- * 代表一个协程执行段
- */
+/**  代表一个协程执行段 */
 class PoolContinuation<in T>(val pool: ForkJoinPool, val continuation: Continuation<T>) : Continuation<T> by continuation {
 
     override fun resume(value: T) {

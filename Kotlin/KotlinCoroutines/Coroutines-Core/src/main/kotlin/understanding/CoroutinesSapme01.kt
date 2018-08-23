@@ -4,7 +4,7 @@ import java.util.concurrent.Executors
 import kotlin.coroutines.experimental.*
 
 //====================================================================
-//深入理解 Kotlin Coroutine 1 ：https://blog.kotliner.cn/2017/01/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Kotlin%20Coroutine/
+//深入理解 Kotlin Coroutine ：https://blog.kotliner.cn/tags/Coroutine/
 //====================================================================
 
 //一个线程池
@@ -12,16 +12,15 @@ private val executor = Executors.newSingleThreadScheduledExecutor { Thread(it, "
 
 /**
 执行结果：
-   1 before coroutine
-   2 in coroutine. Before suspend.
-   3 in suspend block.
-   4 after coroutine
-   5 calc md5 for test.zip.----------------------------------
+1 before coroutine
+2 in coroutine. Before suspend.
+3 in suspend block.
+4 after coroutine
+5 calc md5 for test.zip.----------------------------------
 
-   6 in coroutine. After suspend. result = 1513701367927  Thread[coroutine-scheduler,5,main]
-   7 resume: kotlin.Unit Thread[coroutine-scheduler,5,main]
-   8 after resume.
-
+6 in coroutine. After suspend. result = 1513701367927  Thread[coroutine-scheduler,5,main]
+7 resume: kotlin.Unit Thread[coroutine-scheduler,5,main]
+8 after resume.
  */
 fun main(args: Array<String>) {
 
@@ -43,7 +42,7 @@ fun main(args: Array<String>) {
             //这个表达式当中的操作就对应异步的耗时操作了
             executor.submit {
                 //执行耗时任务
-                val filePath = continuation.context[FilePath.MyKey]!!
+                val filePath = continuation.context[FilePath]!!
                 val path = filePath.path//test.zip
                 val md5 = calcMd5(path)
                 //将结果传了出去，传给suspendCoroutine 的返回值也即 result，这时候协程继续执行，打印 result 结束。
@@ -65,12 +64,21 @@ fun main(args: Array<String>) {
 }
 
 /**
- *协程上下文，用来存放我们需要的信息，可以灵活的自定义，
- *这里AbstractCoroutineContextElement的参数为FilePath，作为覆盖父类中的key属性
+ *协程上下文，用来存放我们需要的信息，可以灵活的自定义，这里AbstractCoroutineContextElement的参数为FilePath，作为覆盖父类中的key属性
  */
-class FilePath(val path: String) : AbstractCoroutineContextElement(FilePath/*其实传递的是MyKey*/) {
-    //这里创建了一个Key类型的伴生对象,Key上定义的实际泛型类型为FilePath，则通过该Key获取的Element就是FilePath类型
+class FilePath(val path: String) : AbstractCoroutineContextElement(FilePath/*其实传递的是MyKey，这是Kotlin提供的语法糖*/) {
+    //这里创建了一个Key类型的伴生对象，Key上定义的实际泛型类型为FilePath，则通过该Key获取的Element就是FilePath类型
     companion object MyKey : CoroutineContext.Key<FilePath>
+}
+
+/** 语法糖*/
+private open class Parent(open val r: Runnable)
+
+private class Child : Parent(Child) {
+    companion object key : Runnable {
+        override fun run() {
+        }
+    }
 }
 
 

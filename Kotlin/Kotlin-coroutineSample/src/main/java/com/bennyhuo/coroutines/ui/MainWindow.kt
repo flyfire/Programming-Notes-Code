@@ -14,7 +14,6 @@ class MainWindow: JFrame(){
 
     fun init(){
         button = JButton("Click me")
-
         contentPane.add(button, BorderLayout.NORTH)
     }
 

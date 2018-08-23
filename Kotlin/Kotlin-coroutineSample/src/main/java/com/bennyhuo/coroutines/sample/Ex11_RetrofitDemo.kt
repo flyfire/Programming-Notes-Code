@@ -12,7 +12,7 @@ import retrofit2.http.Path
 import kotlin.coroutines.experimental.suspendCoroutine
 
 //region common
-val gitHubServiceApi by lazy {
+private val gitHubServiceApi by lazy {
     val retrofit = retrofit2.Retrofit.Builder()
             .baseUrl("https://api.github.com")
             .addConverterFactory(GsonConverterFactory.create())
@@ -42,15 +42,16 @@ fun showError(t: Throwable) {
 //endregion
 
 fun main(args: Array<String>) = runBlocking {
-//    useCallback()
-//    wrappedInSuspendFunction()
-    useCoroutine()
-//    useTraditionalForLoop()
-//    useExtensionForEach()
-    timeCost()
+    //useCallback()
+    //wrappedInSuspendFunction()
+    //useCoroutine()
+    //useTraditionalForLoop()
+    //useExtensionForEach()
+    //timeCost()
 }
 
 fun useCallback() {
+
     gitHubServiceApi.getUserCallback("bennyhuo").enqueue(object : Callback<User> {
         override fun onFailure(call: Call<User>, t: Throwable) {
             showError(t)
@@ -94,7 +95,7 @@ suspend fun useCoroutine() {
     }.join()
 }
 
-suspend fun useTraditionalForLoop(){
+suspend fun useTraditionalForLoop() {
     launch {
         for (login in listOf("JakeWharton", "abreslav", "yole", "elizarov")) {
             try {
@@ -107,7 +108,7 @@ suspend fun useTraditionalForLoop(){
     }.join()
 }
 
-suspend fun useExtensionForEach(){
+suspend fun useExtensionForEach() {
     launch {
         listOf("JakeWharton", "abreslav", "yole", "elizarov")
                 .forEach {
@@ -121,7 +122,8 @@ suspend fun useExtensionForEach(){
     }.join()
 }
 
-suspend fun timeCost(){
+
+suspend fun timeCost() {
     launch {
         cost {
             listOf("JakeWharton", "abreslav", "yole", "elizarov")
@@ -139,7 +141,7 @@ suspend fun timeCost(){
     }.join()
 }
 
-inline fun <T> cost(block: ()-> T): T {
+inline fun <T> cost(block: () -> T): T {
     val start = System.currentTimeMillis()
     val result = block()
     val cost = System.currentTimeMillis() - start
