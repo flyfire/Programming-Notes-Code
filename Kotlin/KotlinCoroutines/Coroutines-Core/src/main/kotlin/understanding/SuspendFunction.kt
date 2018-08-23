@@ -95,12 +95,7 @@ private fun asyncReturnSample2() = runBlocking {
         println("5 得到数据回到主线程协程$data")
     }
     println("4 主携程继续执行.....2.")
-    val time = System.currentTimeMillis()
-    while (System.currentTimeMillis() - time < (5000)) {
-        println("wait. ")
-    }
 }
-
 
 //====================================================================
 //  传统方式的异步回调

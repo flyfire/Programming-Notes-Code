@@ -19,6 +19,7 @@ import kotlin.coroutines.experimental.CoroutineContext
 private val job: Job = Job()
 
 /**
+ *https://github.com/dmytrodanylyk/coroutine-recipes
  *
  *@author Ztiany
  *      Email: ztiany3@gmail.com
