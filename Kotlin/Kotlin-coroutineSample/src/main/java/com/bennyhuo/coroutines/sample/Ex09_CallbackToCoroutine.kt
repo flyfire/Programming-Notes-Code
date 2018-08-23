@@ -10,7 +10,7 @@ interface Callback {
     fun onSuccess(result: String)
     fun onError(e: Throwable)
 }
-
+/*传统异步编程如果重构为协程*/
 fun loadAsync(callback: Callback) {
     thread {
         try {

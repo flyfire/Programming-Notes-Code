@@ -1,8 +1,8 @@
 # [基于 GitHub 深度讲解 Kotlin 1.2 高级特性与框架设计](https://coding.imooc.com/class/232.html)
 
-Github 登录流程：
+## Github 登录流程
 
-![](./github.jpg)
+![](./images/github.jpg)
 
 - 申请 github app id
 - 鉴权：
@@ -16,4 +16,8 @@ Github 登录流程：
 - github 分页 api，分页链接放在 header 中
 
 
+## AppBarLayoutBehavior  计算图解
 
+![](./images/header_behavior_1.png)
+
+![](./images/header_behavior_2.png)
