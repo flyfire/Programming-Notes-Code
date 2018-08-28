@@ -23,7 +23,6 @@
 # 3 关于Dagger2在Android上的扩展
 
 ```
-    def daggerVersion = "2.11-rc2"
     compile "com.google.dagger:dagger:$daggerVersion"
     compile "com.google.dagger:dagger-android:$daggerVersion"
     compile "com.google.dagger:dagger-android-support:$daggerVersion"

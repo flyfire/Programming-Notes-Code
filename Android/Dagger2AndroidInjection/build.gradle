@@ -1,14 +1,16 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.1.4'
     }
 }
 
 allprojects {
     repositories {
+        google()
         jcenter()
     }
 }
@@ -18,7 +20,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    def daggerVersion = "2.11"
+    def daggerVersion = "2.16"
     dagger = "com.google.dagger:dagger:$daggerVersion"
     daggerAndroid = "com.google.dagger:dagger-android:$daggerVersion"
     daggerAndroidSupport = "com.google.dagger:dagger-android-support:$daggerVersion"
