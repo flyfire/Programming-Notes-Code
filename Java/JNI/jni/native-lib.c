@@ -171,9 +171,11 @@ static jstring dynamicRegisterFromJni(JNIEnv *env, jobject thiz) {
 //JNINativeMethod是一个结构体，这里初始化了一个JNINativeMethod数组，正是因为这个才可以动态调用任意 native 方法
 JNINativeMethod nativeMethod[] = {{"dynamicRegisterFromJni", "()Ljava/lang/String;", (void *) dynamicRegisterFromJni}};
 
+JavaVM *cached_jvm;//缓存JavaVM指针
 
 //此方法在jni库被加载时由JVM调用
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {
+    cached_jvm = jvm;  /* cache the JavaVM pointer */
     JNIEnv *env;
     if ((*jvm)->GetEnv(jvm, (void **) &env, JNI_VERSION_1_4) != JNI_OK) {
         return -1;
@@ -186,8 +188,14 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {
     return JNI_VERSION_1_4;
 }
 
+JNIEnv *JNU_GetEnv() {
+    JNIEnv *env;
+    (*cached_jvm)->GetEnv(cached_jvm, (void **) &env, JNI_VERSION_1_2);
+    return env;
+}
 
-//在虚拟机关闭时调用
-void JNI_OnUnload(JavaVM *vm, void *reserved) {
+
+//在虚拟机卸载该库时调用
+JNIEXPORT void JNICALL JNI_OnUnload(JavaVM *vm, void *reserved) {
     printf("JVM unload");
 }
