@@ -1,67 +1,26 @@
-# 代码仓库 & 学习笔记
+# Code Repository
+
+Repository for [Programming-Notes](https://github.com/Ztiany/Programming-Notes)
+
+## List
+
+- C&C++
+- DataStructure
+- Python
+- Java
+- Kotlin
+- Groovy
+- Android
+- Gradle
+- JavaEE
+- Web(front end)
 
 ---
-## 网络通信
-
-todo
-
----
-## 数据结构与算法
-
-todo
-
----
-## C&C++
-
-todo
-
----
-## Python
-
-todo
-
----
-## Java
-
-todo
-
----
-## Kotlin
-
-todo
-
----
-## Groovy
-
-todo
-
----
-## Android
-
-todo
-
-
----
-## Gradle
-
-todo
-
----
-## JavaEE
-
-todo
-
----
-## 前端
-
-todo
-
----
-## 如何使用GitHub项目?
+## 如何学习 GitHub 项目?
 
 - 仔细看README
 - 查看Wiki
-- 查看分支(特别是GoogleSample项目)
+- 查看分支
 
 ---
 ## 如何解决问题?
@@ -71,4 +30,4 @@ todo
 - Debug
 - 从源码分析
 - Google
-- stackoverflow
+- StackOverflow

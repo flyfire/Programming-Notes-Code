@@ -3,5 +3,5 @@ project(c-program)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES function/MainFunction.c)
+set(SOURCE_FILES Function/MainFunction.c)
 add_executable(C_Program ${SOURCE_FILES})
