@@ -12,7 +12,7 @@
 - Sample04：自定义编译选项
 - Sample05：构建时检查系统环境
 
-[CMake学习笔记](CMake笔记.md)
+[CMake学习笔记](https://github.com/Ztiany/Programming-Notes/blob/master/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7-cmake%E5%AD%A6%E4%B9%A0.md)
 
 ---
 ## 引用
