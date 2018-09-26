@@ -1,6 +1,10 @@
 package me.ztiany.reflects
 
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
+import java.util.*
 import kotlin.reflect.KClass
+import kotlin.reflect.jvm.javaField
 import kotlin.reflect.jvm.javaGetter
 
 /**
@@ -160,4 +164,21 @@ private fun bindingFunctionAndPropertyReference() {
     kFunction2.invoke(str, 0)
 }
 
+class LiveData<T>
+class Resource<T>
+class SalesPlanModel
 
+class A {
+    val pendingSalesPlanList: LiveData<Resource<List<SalesPlanModel>>> = LiveData()
+}
+
+fun main(args: Array<String>) {
+    println(getType(A::pendingSalesPlanList.javaField!!.genericType))
+}
+
+private fun getType(type: Type): Type {
+    if (type !is ParameterizedType) {
+        return type
+    }
+    return getType(type.actualTypeArguments[0])
+}

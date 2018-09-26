@@ -6,6 +6,7 @@ buildscript {
     ext.kotlin_version = '1.2.60'
 
     repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         jcenter()
         mavenCentral()
     }
@@ -20,6 +21,7 @@ buildscript {
 subprojects {
 
     repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         jcenter()
         mavenCentral()
     }
