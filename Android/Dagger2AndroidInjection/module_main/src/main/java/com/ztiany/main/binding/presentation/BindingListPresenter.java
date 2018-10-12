@@ -14,7 +14,6 @@ import javax.inject.Inject;
  */
 public class BindingListPresenter implements Contract.Presenter {
 
-
     private Contract.View mBindingListView;
 
     @Inject
@@ -28,7 +27,6 @@ public class BindingListPresenter implements Contract.Presenter {
     public void setView(Contract.View bindingListView) {
         mBindingListView = bindingListView;
     }
-
 
     @Override
     public void start() {
