@@ -1,6 +1,0 @@
-group 'me.ztiany'
-version '1.0'
-
-dependencies{
-    compile project(":Stacks-Queues")
-}
