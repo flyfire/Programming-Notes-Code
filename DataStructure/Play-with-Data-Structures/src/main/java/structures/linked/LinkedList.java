@@ -14,7 +14,7 @@ public class LinkedList<E> {
     private Node dummyNode;//虚拟头节点，仅用于标识头节点，使用虚拟结点可以统一结点操作
     private int size;
 
-    LinkedList() {
+    public LinkedList() {
         dummyNode = new Node(null, null);
         size = 0;
     }

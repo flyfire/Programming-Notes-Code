@@ -12,7 +12,7 @@ public class ArrayStack<E> implements Stack<E> {
 
     private Array<E> mArray;
 
-    ArrayStack() {
+    public ArrayStack() {
         mArray = new Array<>();
     }
 

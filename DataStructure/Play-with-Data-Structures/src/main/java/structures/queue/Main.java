@@ -10,8 +10,8 @@ import java.util.Random;
 public class Main {
 
     public static void main(String... args) {
-//        testQueue(new ArrayQueue<>());
-//        testQueue(new LoopQueue<>());
+        //testQueue(new ArrayQueue<>());
+        //testQueue(new LoopQueue<>());
         testPerformance();
     }
 

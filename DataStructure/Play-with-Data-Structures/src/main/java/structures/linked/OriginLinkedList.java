@@ -20,10 +20,13 @@ public class OriginLinkedList<E> {
     }
 
     public void addFirst(E e) {
-        //Node newHead = new Node(e);
-        //newHead.next = head;
-        //head = newHead;
         head = new Node(e, head);
+        /*
+        等价于
+            Node newHead = new Node(e);
+            newHead.next = head;
+            head = newHead;
+        */
         size++;
     }
 

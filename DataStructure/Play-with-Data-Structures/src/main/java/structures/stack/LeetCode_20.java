@@ -20,6 +20,14 @@ public class LeetCode_20 {
 
     public boolean isValid(String s) {
 
+        if (s == null) {
+            return false;
+        }
+
+        if (s.isEmpty()) {
+            return true;
+        }
+
         ArrayStack<Character> mStack = new ArrayStack<>();
 
         if (s.length() % 2 != 0) {
@@ -38,9 +46,11 @@ public class LeetCode_20 {
                 }
                 mStack.push(temp);
             } else {
+                //如果有匹配到，就可以出栈了
                 if (check(mStack.peek(), temp)) {
                     mStack.pop();
                 } else {
+                    //没有匹配到就先入栈
                     mStack.push(temp);
                 }
             }

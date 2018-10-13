@@ -59,6 +59,7 @@ public class LoopQueue<E> implements Queue<E> {
         size--;
         front = (front + 1) % data.length;
 
+        /*缩容*/
         if (size <= getCapacity() / 4 && getCapacity() / 2 != 0) {
             resize(getCapacity() / 2);
         }
@@ -85,7 +86,6 @@ public class LoopQueue<E> implements Queue<E> {
 
     @Override
     public String toString(){
-
         StringBuilder res = new StringBuilder();
         res.append(String.format("Queue: size = %d , capacity = %d\n", size, getCapacity()));
         res.append("front [");
