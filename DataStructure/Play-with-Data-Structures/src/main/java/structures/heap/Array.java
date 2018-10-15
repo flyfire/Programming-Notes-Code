@@ -7,6 +7,7 @@ import java.util.Objects;
  *
  * @param <E>
  */
+@SuppressWarnings("all")
 public class Array<E> {
 
     private E[] data;
