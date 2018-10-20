@@ -15,14 +15,14 @@ public class Main {
 
     public static void main(String... args) {
         System.out.println("AVLTree---------------------------------------------------------------");
-        printWords("files/pride-and-prejudice.txt", "傲慢与偏见");
+        printWords();
         System.out.println("testAVL_BST---------------------------------------------------------------");
-        testAVL_BST("files/pride-and-prejudice.txt", "傲慢与偏见");
+        testAVL_BST();
     }
 
-    private static void printWords(String path, String name) {
+    private static void printWords() {
         ArrayList<String> words = new ArrayList<>();
-        FileOperation.readFile(path, words);
+        FileOperation.readFile("files/pride-and-prejudice.txt", words);
         AVLTree<String, Integer> avlTree = new AVLTree<>();
 
         long start = System.nanoTime();
@@ -35,7 +35,7 @@ public class Main {
             }
         }
 
-        System.out.println(name + " 单词量：" + avlTree.size());
+        System.out.println("傲慢与偏见" + " 单词量：" + avlTree.size());
         System.out.println("pride 出现 " + avlTree.get("pride") + "次");
         System.out.println("prejudice 出现 " + avlTree.get("prejudice") + "次");
         System.out.println("isBTS  " + avlTree.isBTS());
@@ -53,9 +53,9 @@ public class Main {
     }
 
 
-    private static void testAVL_BST(String path, String name) {
+    private static void testAVL_BST() {
         ArrayList<String> words = new ArrayList<>();
-        FileOperation.readFile(path, words);
+        FileOperation.readFile("files/pride-and-prejudice.txt", words);
         Collections.sort(words);
 
         //------------------------------------------------------------------------avl

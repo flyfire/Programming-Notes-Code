@@ -21,3 +21,6 @@
 10. segment_tree：线段树
 11. trip：前缀数、字典树
 12. union_find：并查集
+13. avl：AVL树
+14. red_black_tree：红黑树
+15. hash：哈希表
