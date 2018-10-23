@@ -112,32 +112,32 @@ void insertSort(int *arr, int size) {
 void shellSort(int *arr, int size) {
     long start = getSystemTime();
 
-    int step = size;
+    int increment = size;
     int i, j, k;
 
     do {
-        step = step / 3 + 1;
+        increment = increment / 3 + 1;
         //分成step组，每组遍历
 
-        for (i = 0; i < step; i++) {
-            printf("step = %d \n", step);
-            for (j = i + step; j < size; j += step) {
+        for (i = 0; i < increment; i++) {
+            printf("increment = %d \n", increment);
+            for (j = i + increment; j < size; j += increment) {
 
-                if (arr[j] < arr[j - step]) {
+                if (arr[j] < arr[j - increment]) {
 
                     int temp = arr[j];
-                    for (k = j - step; k >= 0 && temp < arr[k]; k -= step) {
-                        arr[k + step] = arr[k];
+                    for (k = j - increment; k >= i && temp < arr[k]; k -= increment) {
+                        arr[k + increment] = arr[k];
                     }
 
-                    arr[k + step] = temp;
+                    arr[k + increment] = temp;
                 }
 
             }
 
         }
 
-    } while (step > 1);
+    } while (increment > 1);
 
 
     printf("shellSort count %d use time: %ld \n", size, (getSystemTime() - start));
