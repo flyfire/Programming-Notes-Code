@@ -2,7 +2,7 @@
  ============================================================================
 
  Author      : Ztiany
- Description : Ö¸Õë»ù±¾¸ÅÄî
+ Description : æŒ‡é’ˆåŸºæœ¬æ¦‚å¿µ
 
  ============================================================================
  */
@@ -27,24 +27,24 @@ int main() {
     return 0;
 }
 
-//³£Á¿ÓëÖ¸Õë
+//å¸¸é‡ä¸æŒ‡é’ˆ
 static void constPointer() {
     int a = 4;
     const int b = 5;
 
-    //³£Á¿Ö¸Õë:Ö¸Ïò³£Á¿µÄÖ¸Õë£¬²»ÄÜÍ¨¹ı*cpb1¸øbÔÙ´Î¸³Öµ
+    //å¸¸é‡æŒ‡é’ˆ:æŒ‡å‘å¸¸é‡çš„æŒ‡é’ˆï¼Œä¸èƒ½é€šè¿‡*cpb1ç»™bå†æ¬¡èµ‹å€¼
     int const *cpb1 = &b;
     const int *cpb2 = &b;
 
-    //Ö¸Õë³£Á¿,pc²»ÄÜÔÙÖ¸ÏòÆäËûÖµ
+    //æŒ‡é’ˆå¸¸é‡,pcä¸èƒ½å†æŒ‡å‘å…¶ä»–å€¼
     int* const pc = &a;
 
-    //Ö¸Ïò³£Á¿µÄ³£Ö¸Õë£º
+    //æŒ‡å‘å¸¸é‡çš„å¸¸æŒ‡é’ˆï¼š
     const int* const cpca = &a;
     const int* const cpcab = &b;
 }
 
-//»ñÈ¡×î´óÖµ
+//è·å–æœ€å¤§å€¼
 static void swapMax() {
     int a, b, *p1, *p2;
     //https://stackoverflow.com/questions/3420629/what-is-the-difference-between-sscanf-or-atoi-to-convert-a-string-to-an-integer
@@ -54,17 +54,17 @@ static void swapMax() {
     if (a < b) {
         swap(p1, p2);
     }
-    printf("½Ï´óµÄÊıÎª %d, ½ÏĞ¡µÄÊıÎª %d\n", a, b);
+    printf("è¾ƒå¤§çš„æ•°ä¸º %d, è¾ƒå°çš„æ•°ä¸º %d\n", a, b);
 }
 
-//Ìæ»»Á½¸öÕûÊıµÄÖµ
+//æ›¿æ¢ä¸¤ä¸ªæ•´æ•°çš„å€¼
 static void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-//»ñÈ¡×î´óÖµ
+//è·å–æœ€å¤§å€¼
 static void findMax() {
     int *p1, *p2, a, b;
     scanf("%d %d", &a, &b);
@@ -74,11 +74,11 @@ static void findMax() {
         p1 = &b;
         p2 = &a;
     }
-    printf("½Ï´óµÄÊıÎª %d, ½ÏĞ¡µÄÊıÎª %d\n", *p1, *p2);
+    printf("è¾ƒå¤§çš„æ•°ä¸º %d, è¾ƒå°çš„æ•°ä¸º %d\n", *p1, *p2);
 }
 
 
-//Ö¸ÕëµÄ´óĞ¡
+//æŒ‡é’ˆçš„å¤§å°
 static void pointerSize() {
     int *pi[10];
     char *pc[10];
@@ -93,21 +93,21 @@ static void pointerSize() {
 
     struct Student student = {1, "Ztiany", "China", 001};
 
-    printf("int *p[10]µÄsize = %d\n", sizeof(pi));//8*10=80
-    printf("char *p[10]µÄsize = %d\n", sizeof(pc));//8*10=80
-    printf("float *p[10]µÄsize = %d\n", sizeof(pf));//8*10=80
-    printf("double *p[10]µÄsize = %d\n", sizeof(pd));//8*10=80
-    printf("studentµÄsize = %d\n", sizeof(student));//32
-    printf("&studentµÄsize = %d\n", sizeof(&student));//8
+    printf("int *p[10]çš„size = %d\n", sizeof(pi));//8*10=80
+    printf("char *p[10]çš„size = %d\n", sizeof(pc));//8*10=80
+    printf("float *p[10]çš„size = %d\n", sizeof(pf));//8*10=80
+    printf("double *p[10]çš„size = %d\n", sizeof(pd));//8*10=80
+    printf("studentçš„size = %d\n", sizeof(student));//32
+    printf("&studentçš„size = %d\n", sizeof(&student));//8
 }
 
-//¶¨ÒåÓëÊ¹ÓÃÖ¸Õë
+//å®šä¹‰ä¸ä½¿ç”¨æŒ‡é’ˆ
 static void pointerSample() {
     int a = 4;
-    //È¡aµÄµØÖ·¸³Öµ¸øÖ¸ÕëaP
+    //å–açš„åœ°å€èµ‹å€¼ç»™æŒ‡é’ˆaP
     int *pa = &a;
-    printf("Ö¸Õë aP µÄµØÖ·= %p\n", pa);
-    printf("Ö¸Õë aP µÄÖµ = %d\n", *pa);
-    *pa = 7;//È¡aPµÄµØÖ·¸³Öµ£¬Ò²¾ÍÊÇ¸øa¸³Öµ
-    printf("±äÁ¿ a = %d\n", a);
+    printf("æŒ‡é’ˆ pa çš„åœ°å€= %p\n", pa);
+    printf("æŒ‡é’ˆ pa çš„å€¼ = %d\n", *pa);
+    *pa = 7;//å– pa çš„åœ°å€èµ‹å€¼ï¼Œä¹Ÿå°±æ˜¯ç»™aèµ‹å€¼
+    printf("å˜é‡ a = %d\n", a);
 }

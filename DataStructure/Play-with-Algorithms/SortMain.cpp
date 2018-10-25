@@ -1,15 +1,23 @@
-#include "SortTestHelper.h"
-#include "SelectionSort.h"
-#include "InsertSort.h"
-#include "Student.h"
-#include "ShellSort.h"
-#include "BubbleSort.h"
-#include "MergeSort.h"
-#include "QuickSort.h"
+/*
+ ============================================================================
+
+ Author      : Ztiany
+ Description : 排序初级
+
+ ============================================================================
+ */
+
+#include "sort-basic/SortTestHelper.h"
+#include "sort-basic/SelectionSort.h"
+#include "sort-basic/InsertSort.h"
+#include "sort-basic/Student.h"
+#include "sort-basic/ShellSort.h"
+#include "sort-basic/BubbleSort.h"
+#include "sort-basic/MergeSort.h"
+#include "sort-basic/QuickSort.h"
+#include "sort-basic/QuickSort3Ways.h"
 
 void testSort(int *arr, int n) {
-
-
 //    int *arrCopy5 = SortTextHelper::copyIntArray(arr, n);
 //    SortTextHelper::testSort("bubbleSort  Sort", bubbleSort, arrCopy5, n);
 //    delete[] arrCopy5;

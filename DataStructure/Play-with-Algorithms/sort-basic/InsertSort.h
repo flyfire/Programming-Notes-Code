@@ -25,6 +25,7 @@ void insertionSortV1(T *arr, int length) {
     }
 }
 
+/**插入排序，O(n^2)，插入排序每次有机会提前结束第二次循环，优化：把swap操作简化为赋值操作。*/
 template<typename T>
 void insertionSortV2(T *arr, int length) {
     int j;
@@ -52,7 +53,6 @@ void insertionSort(T arr[], int l, int r) {
         }
         arr[j] = e;
     }
-    return;
 }
 
 #endif //PLAY_WITH_ALGORITHMS_INSERTSORT_H

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-namespace SortTextHelper {
+namespace SortTestHelper {
 
     /**
      * 在堆中创建一个整型数组

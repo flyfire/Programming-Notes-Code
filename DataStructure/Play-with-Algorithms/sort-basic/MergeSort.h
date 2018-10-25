@@ -2,7 +2,7 @@
  ============================================================================
  
  Author      : Ztiany
- Description : 归并排序
+ Description : 归并排序（递归、迭代算法）
 
  ============================================================================
  */
@@ -83,7 +83,7 @@ void mergeSort(T *arr, int size) {
     recursionMergeV2(arr, 0, size - 1);
 }
 
-
+/*自底向上的归并排序算法*/
 template<typename T>
 void mergeSortBU(T *arr, int size) {
     /*sz 表示每组元素的个数，初始个数为 1*/
@@ -100,9 +100,31 @@ void mergeSortBU(T *arr, int size) {
                     5 3 6 4//第一个两组，0 - 1 - 3
                     7 1 8 2//第二个两组，4 - 5 - 7
             */
-            merge(arr, i, i + sz - 1, min(i + sz + sz - 1, size - 1));
+            merge(arr, i, i + sz - 1, std::min(i + sz + sz - 1, size - 1));
         }
     }
 }
+
+// 使用自底向上的归并排序算法
+template<typename T>
+void mergeSortBUO(T arr[], int n) {
+
+    // Merge Sort Bottom Up 优化
+    // 对于小数组, 使用插入排序优化
+    for (int i = 0; i < n; i += 16) {
+        insertionSort(arr, i, std::min(i + 15, n - 1));
+    }
+
+    for (int sz = 16; sz < n; sz += sz) {
+        for (int i = 0; i < n - sz; i += sz + sz) {
+            // 对于arr[mid] <= arr[mid+1]的情况,不进行merge
+            if (arr[i + sz - 1] > arr[i + sz]) {
+                merge(arr, i, i + sz - 1, std::min(i + sz + sz - 1, n - 1));
+            }
+        }
+    }
+
+}
+
 
 #endif //PLAY_WITH_ALGORITHMS_MERGESORT_H
