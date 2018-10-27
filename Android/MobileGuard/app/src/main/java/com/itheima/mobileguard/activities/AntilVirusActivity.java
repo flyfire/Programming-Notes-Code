@@ -42,7 +42,7 @@ public class AntilVirusActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acitivity_antivirus);
-		//³õÊ¼»¯²Ù×÷
+		//åˆå§‹åŒ–æ“ä½œ
 		pm =getPackageManager();
 		packageNames = new ArrayList<String>();
 		iv_antivirus_scan = (ImageView) findViewById(R.id.iv_antivirus_scan);
@@ -60,15 +60,15 @@ public class AntilVirusActivity extends Activity {
 			String desc = null;
 			switch (msg.what) {
 			case BEGIN:
-				tv_antivirus_status.setText("ÕıÔÚ³õÊ¼»¯8ºËĞÄ²¡¶¾¿âÒıÇæ...");
+				tv_antivirus_status.setText("æ­£åœ¨åˆå§‹åŒ–8æ ¸å¿ƒç—…æ¯’åº“å¼•æ“...");
 				break;
 			case SCANING:
 				info = (ScanInfo) msg.obj;
 				desc = info.desc;
 				child = new TextView(AntilVirusActivity.this);
-				tv_antivirus_status.setText("ÕıÔÚÉ¨Ãè"+info.appName);
+				tv_antivirus_status.setText("æ­£åœ¨æ‰«æ"+info.appName);
 				if(desc == null){
-					child.setText(info.appName+":É¨Ãè°²È«");
+					child.setText(info.appName+":æ‰«æå®‰å…¨");
 				}else{
 					child.setTextColor(Color.RED);
 					child.setText(info.appName+desc);
@@ -78,12 +78,12 @@ public class AntilVirusActivity extends Activity {
 				break;
 			case FINISH:
 				iv_antivirus_scan.clearAnimation();
-				tv_antivirus_status.setText("É¨ÃèÍê±Ï");
+				tv_antivirus_status.setText("æ‰«æå®Œæ¯•");
 				if(packageNames.size() > 0){
 					bt_clear.setClickable(true);
-					Toast.makeText(getApplicationContext(), "É¨Ãèµ½"+packageNames.size()+"¸ö²¡¶¾,½¨ÒéÁ¢¼´Çå³ı", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "æ‰«æåˆ°"+packageNames.size()+"ä¸ªç—…æ¯’,å»ºè®®ç«‹å³æ¸…é™¤", Toast.LENGTH_LONG).show();
 				}else{
-					Toast.makeText(getApplicationContext(), "¹§Ï²Äú£¬ÄúµÄÊÖ»úÃ»ÓĞÈÎºÎ²¡¶¾", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "æ­å–œæ‚¨ï¼Œæ‚¨çš„æ‰‹æœºæ²¡æœ‰ä»»ä½•ç—…æ¯’", Toast.LENGTH_LONG).show();
 				}
 				break;
 			}
@@ -91,15 +91,15 @@ public class AntilVirusActivity extends Activity {
 	 };
 	 
 	 public void startScan(View v){
-		 //¿ªÆô¶¯»­
+		 //å¼€å¯åŠ¨ç”»
 		 iv_antivirus_scan.startAnimation(a);
 		 ll_antivirus_details.removeAllViews();
-		 //»ñÈ¡ËùÓĞµÄ°üµÄĞÅÏ¢
-		//²¡¶¾²éÉ±ÊÇºÄÊ±µÄ²Ù×÷ ×ÓÏß³ÌÖĞÖ´ĞĞ
+		 //è·å–æ‰€æœ‰çš„åŒ…çš„ä¿¡æ¯
+		//ç—…æ¯’æŸ¥æ€æ˜¯è€—æ—¶çš„æ“ä½œ å­çº¿ç¨‹ä¸­æ‰§è¡Œ
 		new Thread(){
 			public void run(){
 				Message msg = Message.obtain();
-				msg.what = BEGIN;//¿ªÊ¼É¨Ãè
+				msg.what = BEGIN;//å¼€å§‹æ‰«æ
 				handler.sendMessage(msg);
 				List<PackageInfo>  infos =  pm.getInstalledPackages(0);
 				pb_antivirus.setMax(infos.size());
@@ -111,10 +111,10 @@ public class AntilVirusActivity extends Activity {
 						return;
 					}
 					pb_antivirus.setProgress(process++);
-					//»ñÈ¡³ÌĞòµÄmd5Âë
+					//è·å–ç¨‹åºçš„md5ç 
 					temp = MD5Utils.getFileMd5Code(info.applicationInfo.sourceDir);
 					System.out.println(info.applicationInfo.loadLabel(pm).toString()+":"+temp);
-					//ÅĞ¶Ï¸Ä³ÌĞòÊÇ·ñÊÇ²¡¶¾
+					//åˆ¤æ–­æ”¹ç¨‹åºæ˜¯å¦æ˜¯ç—…æ¯’
 					temp = AntiVirusDao.check(getApplicationContext(), temp);
 					 msg = Message.obtain();
 					msg.what = SCANING;
@@ -125,7 +125,7 @@ public class AntilVirusActivity extends Activity {
 					handler.sendMessage(msg);
 					
 				}
-				//forÑ­»·Íê±Ï·¢ËÍÏûÏ¢
+				//forå¾ªç¯å®Œæ¯•å‘é€æ¶ˆæ¯
 				 msg = Message.obtain();
 				msg.what = FINISH;
 				handler.sendMessage(msg);

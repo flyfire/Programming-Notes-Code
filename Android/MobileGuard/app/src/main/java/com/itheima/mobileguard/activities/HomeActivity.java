@@ -3,16 +3,11 @@ package com.itheima.mobileguard.activities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -37,10 +32,10 @@ public class HomeActivity extends Activity {
 	
 	private GridView gv_home_function;
 	private SharedPreferences sp;
-	// ¾Å´ó¹¦ÄÜ
-	private String[] items = { "ÊÖ»ú·ÀµÁ", "Í¨Ñ¶ÎÀÊ¿", "Èí¼ş¹Ü¼Ò", "½ø³Ì¹ÜÀí", "Á÷Á¿Í³¼Æ", "ÊÖ»úÉ±¶¾",
-			"»º´æÇåÀí", "¸ß¼¶¹¤¾ß", "ÉèÖÃÖĞĞÄ" };
-	// ¾Å´ó¹¦ÄÜÍ¼Æ¬id
+	// ä¹å¤§åŠŸèƒ½
+	private String[] items = { "æ‰‹æœºé˜²ç›—", "é€šè®¯å«å£«", "è½¯ä»¶ç®¡å®¶", "è¿›ç¨‹ç®¡ç†", "æµé‡ç»Ÿè®¡", "æ‰‹æœºæ€æ¯’",
+			"ç¼“å­˜æ¸…ç†", "é«˜çº§å·¥å…·", "è®¾ç½®ä¸­å¿ƒ" };
+	// ä¹å¤§åŠŸèƒ½å›¾ç‰‡id
 	private int[] icons = { R.drawable.safe, R.drawable.callmsgsafe,
 			R.drawable.app_selector, R.drawable.taskmanager,
 			R.drawable.netmanager, R.drawable.trojan, R.drawable.sysoptimize,
@@ -61,7 +56,7 @@ public class HomeActivity extends Activity {
 	}
 
 	
-	// ³õÊ¼»¯
+	// åˆå§‹åŒ–
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,23 +68,23 @@ public class HomeActivity extends Activity {
 	
 		
 		
-	//¿ªÆôÁ÷Ã¥ÊØ»¤
+	//å¼€å¯æµæ°“å®ˆæŠ¤
 		Intent intent = new Intent(this,GuardServer1.class);
 		startService(intent);
-		//¿ªÆôÁ÷Ã¥ÊØ»¤
+		//å¼€å¯æµæ°“å®ˆæŠ¤
 		Intent keep= new Intent(this,KeepLifeService.class);
 		startService(keep);
 		
-		// »ñÈ¡SharedPreference
+		// è·å–SharedPreference
 		sp = getSharedPreferences("config", MODE_PRIVATE);
-		// ÏÔÊ¾¹¦ÄÜÌõÄ¿
+		// æ˜¾ç¤ºåŠŸèƒ½æ¡ç›®
 		gv_home_function = (GridView) findViewById(R.id.gv_home_function);
-		// ×¢²á¹¦ÄÜµã»÷ÊÂ¼ş
+		// æ³¨å†ŒåŠŸèƒ½ç‚¹å‡»äº‹ä»¶
 		gv_home_function.setOnItemClickListener(new MyOnItemClickListener());
 	}
 
 	/**
-	 * ĞŞ¸Ä·ÀµÁ¹¦ÄÜµÄÃû×Ö ¼´Ê±ÉúĞ§
+	 * ä¿®æ”¹é˜²ç›—åŠŸèƒ½çš„åå­— å³æ—¶ç”Ÿæ•ˆ
 	 */
 	@Override
 	protected void onStart() {
@@ -97,20 +92,20 @@ public class HomeActivity extends Activity {
 		super.onStart();
 	}
 
-	// ¶¨Òåµã»÷ÊÂ¼ş
+	// å®šä¹‰ç‚¹å‡»äº‹ä»¶
 	private class MyOnItemClickListener implements OnItemClickListener {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			Intent intent;
 			switch (position) {
 			case 0:
-				// 0 Î»ÖÃÊÇÊÖ»ú·ÀµÁ ÉèÖÃÏàÓ¦µÄµã»÷ÊÂ¼ş
-				// ÅĞ¶ÏÓÃ»§ÊÇ·ñÉèÖÃÁËÃÜÂë
+				// 0 ä½ç½®æ˜¯æ‰‹æœºé˜²ç›— è®¾ç½®ç›¸åº”çš„ç‚¹å‡»äº‹ä»¶
+				// åˆ¤æ–­ç”¨æˆ·æ˜¯å¦è®¾ç½®äº†å¯†ç 
 				String passowrd = sp.getString("password", "");
-				// Ã»ÓĞÉèÖÃÃÜÂë
+				// æ²¡æœ‰è®¾ç½®å¯†ç 
 				if (TextUtils.isEmpty(passowrd)) {
-					showSetupPasswordDialog();// µ¯³öÉèÖÃÃÜÂë¶Ô»°¿ò
-				} else {// ÉèÖÃ¹ıÃÜÂë
+					showSetupPasswordDialog();// å¼¹å‡ºè®¾ç½®å¯†ç å¯¹è¯æ¡†
+				} else {// è®¾ç½®è¿‡å¯†ç 
 					showEnterPasswordDialog(passowrd);
 				}
 				break;
@@ -142,8 +137,8 @@ public class HomeActivity extends Activity {
 				intent = new Intent(HomeActivity.this,AtoolsActivity.class);
 				startActivity(intent);
 				break;
-			case 8://½øÈëÉèÖÃÖĞĞÄ
-				//½øÈëÉèÖÃÖĞĞÄ
+			case 8://è¿›å…¥è®¾ç½®ä¸­å¿ƒ
+				//è¿›å…¥è®¾ç½®ä¸­å¿ƒ
 				intent	 = new Intent(HomeActivity.this,SettingActivity.class);
 				startActivity(intent);
 				break;
@@ -153,14 +148,14 @@ public class HomeActivity extends Activity {
 		}
 	}
 
-	private AlertDialog dialog;// ÏíÔªÄ£Ê½
+	private AlertDialog dialog;// äº«å…ƒæ¨¡å¼
 	private EditText et_home_setupPassowrd;
 	private EditText et_home_confirmPassowrd;
 	private EditText et_home_enterPassowrd;
 	private Button bt_home_ok;
 	private Button bt_home_cancel;
 
-	// µ¯³öÉèÖÃÃÜÂëµÄ¶Ô»°¿ò
+	// å¼¹å‡ºè®¾ç½®å¯†ç çš„å¯¹è¯æ¡†
 	public void showSetupPasswordDialog() {
 		AlertDialog.Builder builder = new Builder(this);
 		View view = View
@@ -172,20 +167,20 @@ public class HomeActivity extends Activity {
 				.findViewById(R.id.et_home_confirmpassword);
 		bt_home_ok = (Button) view.findViewById(R.id.bt_home_ok);
 		bt_home_cancel = (Button) view.findViewById(R.id.bt_home_cancel);
-		// ¸ø°´Å¥×¢²áµã»÷ÊÂ¼ş
+		// ç»™æŒ‰é’®æ³¨å†Œç‚¹å‡»äº‹ä»¶
 		bt_home_ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// ÏÖ»ñÈ¡ÓÃ»§µÄÊäÈë
+				// ç°è·å–ç”¨æˆ·çš„è¾“å…¥
 				String newPassword = et_home_setupPassowrd.getText().toString();
 				String confirmPassowrd = et_home_confirmPassowrd.getText()
 						.toString();
 				if (TextUtils.isEmpty(newPassword)
 						|| TextUtils.isEmpty(confirmPassowrd)) {
-					UiUtils.showToast(HomeActivity.this, "ÃÜÂëºÍÈ·ÈÏÃÜÂë¶¼±ØĞëÊäÈë");
+					UiUtils.showToast(HomeActivity.this, "å¯†ç å’Œç¡®è®¤å¯†ç éƒ½å¿…é¡»è¾“å…¥");
 					return;
 				}
 				if (!newPassword.equals(confirmPassowrd)) {
-					UiUtils.showToast(HomeActivity.this, "Á½´ÎÊäÈë²»Ò»ÖÂ");
+					UiUtils.showToast(HomeActivity.this, "ä¸¤æ¬¡è¾“å…¥ä¸ä¸€è‡´");
 					return;
 				}
 				Editor editor = sp.edit();
@@ -195,14 +190,14 @@ public class HomeActivity extends Activity {
 				dialog.dismiss();
 			}
 		});
-		bt_home_cancel.setOnClickListener(new OnClickListener() {// È¡ÏûÁËÉèÖÃ
+		bt_home_cancel.setOnClickListener(new OnClickListener() {// å–æ¶ˆäº†è®¾ç½®
 					public void onClick(View v) {
 						dialog.dismiss();
 					}
 				});
 	}
 
-	// µ¯³öÊäÈëÃÜÂëµÄ¶Ô»°¿ò
+	// å¼¹å‡ºè¾“å…¥å¯†ç çš„å¯¹è¯æ¡†
 	private void showEnterPasswordDialog(final String password) {
 		AlertDialog.Builder builder = new Builder(this);
 		View view = View.inflate(this, R.layout.dialog_home_enterpssword, null);
@@ -211,26 +206,26 @@ public class HomeActivity extends Activity {
 				.findViewById(R.id.et_home_enterpassword);
 		bt_home_ok = (Button) view.findViewById(R.id.bt_home_ok);
 		bt_home_cancel = (Button) view.findViewById(R.id.bt_home_cancel);
-		// ¸ø°´Å¥×¢²áµã»÷ÊÂ¼ş
+		// ç»™æŒ‰é’®æ³¨å†Œç‚¹å‡»äº‹ä»¶
 		bt_home_ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// ÏÖ»ñÈ¡ÓÃ»§µÄÊäÈë
+				// ç°è·å–ç”¨æˆ·çš„è¾“å…¥
 				String enterPassword = et_home_enterPassowrd.getText()
 						.toString();
 				if (TextUtils.isEmpty(enterPassword)) {
-					UiUtils.showToast(HomeActivity.this, "ÇëÊäÈëÃÜÂë");
+					UiUtils.showToast(HomeActivity.this, "è¯·è¾“å…¥å¯†ç ");
 					return;
-				} else {// Ğ£ÑéÃÜÂë
+				} else {// æ ¡éªŒå¯†ç 
 					if (password.equals(MD5Utils.MD5Encode(enterPassword))) {
 						loadLostFindActivity();
 						dialog.dismiss();
 					} else {
-						UiUtils.showToast(HomeActivity.this, "ÃÜÂë´íÎó");
+						UiUtils.showToast(HomeActivity.this, "å¯†ç é”™è¯¯");
 					}
 				}
 			}
 		});
-		bt_home_cancel.setOnClickListener(new OnClickListener() {// È¡ÏûÁËÉèÖÃ
+		bt_home_cancel.setOnClickListener(new OnClickListener() {// å–æ¶ˆäº†è®¾ç½®
 					public void onClick(View v) {
 						dialog.dismiss();
 					}
@@ -242,7 +237,7 @@ public class HomeActivity extends Activity {
 		this.startActivity(intent);
 	}
 
-	// ×Ô¶¨ÒåÊÊÅäÆ÷
+	// è‡ªå®šä¹‰é€‚é…å™¨
 	private class GVBaseAdapterea extends BaseAdapter {
 		public int getCount() {
 			return items.length;

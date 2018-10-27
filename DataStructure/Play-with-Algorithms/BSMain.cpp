@@ -49,7 +49,7 @@ static void testBST1() {
 
 static void testBST2() {
     // 我们使用文本量更小的共产主义宣言进行试验
-    string filename = R"(D:\code\my_github\Programming\DataStructure\Play-with-Algorithms\tools\communist.txt)";
+    string filename = "../tools/communist.txt"
     vector<string> words;
     if (FileOps::readFile(filename, words)) {
         cout << "There are totally " << words.size() << " words in " << filename << endl;

@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.itheima.mobileguard"
-        minSdkVersion 10
+        minSdkVersion 19
         targetSdkVersion 22
     }
 
@@ -15,6 +15,15 @@ android {
             minifyEnabled true
             proguardFiles 'proguard-project.txt'
         }
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 

@@ -18,23 +18,23 @@ public class LostSetup2Activity extends BaseLostSetupActivity {
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_lostfindsetup2);
-			//»ñÈ¡Í¨»°·şÎñ
+			//è·å–é€šè¯æœåŠ¡
 			tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 			simNumber = tm.getSimSerialNumber();
 			iv_setup2 = (ImageView) findViewById(R.id.iv_setup2);
-			//ÅĞ¶ÁÓÃ»§Ê¹ÓÃÉèÖÃ°ó¶¨ÁËSIM
+			//åˆ¤è¯»ç”¨æˆ·ä½¿ç”¨è®¾ç½®ç»‘å®šäº†SIM
 			String sim = sp.getString("sim", "");
-			//¸üĞÂ½çÃæ
-			if(TextUtils.isEmpty(sim)){//Ã»ÓĞ°ó¶¨sim
+			//æ›´æ–°ç•Œé¢
+			if(TextUtils.isEmpty(sim)){//æ²¡æœ‰ç»‘å®šsim
 				iv_setup2.setImageResource(R.drawable.unlock);
-			}else{//°ó¶¨¹ıÁË
+			}else{//ç»‘å®šè¿‡äº†
 				iv_setup2.setImageResource(R.drawable.lock);
 			}
 		}
 		
 		public void bindSIMCrad(View v){
 			String sim = sp.getString("sim", "");
-			if(TextUtils.isEmpty(sim)){//Ã»ÓĞ°ó¶¨sim
+			if(TextUtils.isEmpty(sim)){//æ²¡æœ‰ç»‘å®šsim
 				Editor editor = sp.edit();
 				if(simNumber == null){
 					simNumber = "1KS932SL9DLJ099";
@@ -42,13 +42,13 @@ public class LostSetup2Activity extends BaseLostSetupActivity {
 				editor.putString("sim",simNumber);
 				editor.commit();
 				iv_setup2.setImageResource(R.drawable.lock);
-				Toast.makeText(this, "°ó¶¨³É¹¦", Toast.LENGTH_SHORT).show();
-			}else{//°ó¶¨¹ıÁË
+				Toast.makeText(this, "ç»‘å®šæˆåŠŸ", Toast.LENGTH_SHORT).show();
+			}else{//ç»‘å®šè¿‡äº†
 				Editor editor = sp.edit();
 				editor.putString("sim","");
 				editor.commit();
 				iv_setup2.setImageResource(R.drawable.unlock);
-				Toast.makeText(this, "½â°ó³É¹¦", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "è§£ç»‘æˆåŠŸ", Toast.LENGTH_SHORT).show();
 			}
 		}
 		
@@ -65,21 +65,21 @@ public class LostSetup2Activity extends BaseLostSetupActivity {
 		}
 		
 		/**
-		 * ½øÈëÏÂÒ»¸ö½çÃæ
+		 * è¿›å…¥ä¸‹ä¸€ä¸ªç•Œé¢
 		 */
 		@Override
 		public void showNext() {
-//			ÅĞ¶ÏÓÃ»§ÊÇ·ñ°ó¶¨ÁËsim¿¨ Ã»ÓĞ²¡¶¾²»ÄÜµ½ÏÂÒ»¸ö½çÃæ
+//			åˆ¤æ–­ç”¨æˆ·æ˜¯å¦ç»‘å®šäº†simå¡ æ²¡æœ‰ç—…æ¯’ä¸èƒ½åˆ°ä¸‹ä¸€ä¸ªç•Œé¢
 			String sim = sp.getString("sim", "");
 			if(TextUtils.isEmpty(sim)){
-				Toast.makeText(this, "ÇëÏÈ°ó¶¨SIM¿¨", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "è¯·å…ˆç»‘å®šSIMå¡", Toast.LENGTH_LONG).show();
 				return;
 			}
 			startActivityAndFinishSelf(LostSetup3Activity.class);
 		}
 
 		/**
-		 * ·µ»ØÉÏÒ»¸öActivity
+		 * è¿”å›ä¸Šä¸€ä¸ªActivity
 		 */
 		@Override
 		public void showPrevious() {

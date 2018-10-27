@@ -1,9 +1,5 @@
 package com.itheima.mobileguard.activities;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,7 +11,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.StatFs;
 import android.text.format.Formatter;
 import android.view.Gravity;
 import android.view.View;
@@ -44,6 +39,10 @@ import com.itheima.mobileguard.engine.AppInfoParser;
 import com.itheima.mobileguard.utils.DensityUtil;
 import com.stericson.RootTools.RootTools;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class AppManagerActivity extends Activity implements OnClickListener {
 
 	private TextView tv_appmanager_systeminfo;
@@ -55,15 +54,15 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	private PackageUninstallReceiver receiver;
 	private AppInfoAdapter adapter;
 	/**
-	 * Liveview ÖĞ ±»µã»÷µÄÌõÄ¿Ëø°üº¬µÄÄÚÈİ
+	 * Liveview ä¸­ è¢«ç‚¹å‡»çš„æ¡ç›®é”åŒ…å«çš„å†…å®¹
 	 */
 	private AppInfo appInfo;
 	/**
-	 * ÏµÍ³Ó¦ÓÃ
+	 * ç³»ç»Ÿåº”ç”¨
 	 */
 	private List<AppInfo> systemAppInfos;
 	/**
-	 * ÓÃ»§µÄÓ¦ÓÃ
+	 * ç”¨æˆ·çš„åº”ç”¨
 	 */
 	private List<AppInfo> userAppInfos;
 
@@ -76,7 +75,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 		ll_appManager_loading = (LinearLayout) findViewById(R.id.ll_appmanamger_loading);
 		tv_appmanager_appcount = (TextView) findViewById(R.id.tv_appmanager_appcount);
 
-		// ×¢²á¹ã²¥
+		// æ³¨å†Œå¹¿æ’­
 		receiver = new PackageUninstallReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
@@ -90,7 +89,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// µÃµ½·µ»ØµÄListViewÖĞµÄitemµÄ°üº¬µÄ¶ÔÏó
+				// å¾—åˆ°è¿”å›çš„ListViewä¸­çš„itemçš„åŒ…å«çš„å¯¹è±¡
 				Object obj = lv_appinfo.getItemAtPosition(position);
 				appInfo = (AppInfo) obj;
 				if (obj != null && obj instanceof AppInfo) {
@@ -109,17 +108,17 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 					ll_share.setOnClickListener(AppManagerActivity.this);
 					ll_start.setOnClickListener(AppManagerActivity.this);
 					ll_setting.setOnClickListener(AppManagerActivity.this);
-					// »ñÈ¡µ±Ç°±»µã»÷µÄViewÔÚÆÁÄ»ÉÏµÄÎ»ÖÃ
+					// è·å–å½“å‰è¢«ç‚¹å‡»çš„Viewåœ¨å±å¹•ä¸Šçš„ä½ç½®
 					int[] location = new int[2];
 					view.getLocationInWindow(location);
 
 					dismissPopupWindow();
-					// -2 -2 Ê±°ü¹üÄÚÈİ
+					// -2 -2 æ—¶åŒ…è£¹å†…å®¹
 					popupWindow = new PopupWindow(contentView, -2, -2);
-					// PopupWindowÄ¬ÈÏÊÇÃ»ÓĞ±³¾°É«µÄ µ«ÊÇÒª²¥·Å¶¯»­±ØĞëÒªÓĞ±³¾°É« ËùÒÔÉèÖÃÒ»¸öÍ¸Ã÷µÄ±³¾°É«
+					// PopupWindowé»˜è®¤æ˜¯æ²¡æœ‰èƒŒæ™¯è‰²çš„ ä½†æ˜¯è¦æ’­æ”¾åŠ¨ç”»å¿…é¡»è¦æœ‰èƒŒæ™¯è‰² æ‰€ä»¥è®¾ç½®ä¸€ä¸ªé€æ˜çš„èƒŒæ™¯è‰²
 					popupWindow.setBackgroundDrawable(new ColorDrawable(
 							Color.TRANSPARENT));
-					// ÉèÖÃ¶¯»­
+					// è®¾ç½®åŠ¨ç”»
 					AlphaAnimation aa = new AlphaAnimation(0.5f, 1.0f);
 					aa.setDuration(200);
 					aa.setRepeatCount(0);
@@ -146,24 +145,24 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
 
-				dismissPopupWindow();// ÍÏ¶¯Ê±Òş²Øpopup
+				dismissPopupWindow();// æ‹–åŠ¨æ—¶éšè—popup
 
 				if (userAppInfos != null && systemAppInfos != null) {
 					/*
 					 * if(firstVisibleItem <= userAppInfos.size()){
 					 * tv_appmanager_appcount
-					 * .setText("ÓÃ»§³ÌĞò"+userAppInfos.size()+"¸ö"); }else
+					 * .setText("ç”¨æˆ·ç¨‹åº"+userAppInfos.size()+"ä¸ª"); }else
 					 * if(view.getFirstVisiblePosition() >= userAppInfos.size()
 					 * -1 ){
-					 * tv_appmanager_appcount.setText("ÏµÍ³³ÌĞò"+systemAppInfos
-					 * .size()+"¸ö"); }
+					 * tv_appmanager_appcount.setText("ç³»ç»Ÿç¨‹åº"+systemAppInfos
+					 * .size()+"ä¸ª"); }
 					 */
 					if (firstVisibleItem >= (userAppInfos.size() + 1)) {
-						tv_appmanager_appcount.setText("ÏµÍ³³ÌĞò£º"
-								+ systemAppInfos.size() + "¸ö");
+						tv_appmanager_appcount.setText("ç³»ç»Ÿç¨‹åºï¼š"
+								+ systemAppInfos.size() + "ä¸ª");
 					} else {
-						tv_appmanager_appcount.setText("ÓÃ»§³ÌĞò£º"
-								+ userAppInfos.size() + "¸ö");
+						tv_appmanager_appcount.setText("ç”¨æˆ·ç¨‹åºï¼š"
+								+ userAppInfos.size() + "ä¸ª");
 					}
 				}
 			}
@@ -171,7 +170,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * »ñÈ¡ÏµÍ³ºÍsd¿¨µÄ¿ÉÓÃ¿Õ¼ä ²¢¸³Öµ¸ø¶ÔÓ¦¿Ø¼ş
+	 * è·å–ç³»ç»Ÿå’Œsdå¡çš„å¯ç”¨ç©ºé—´ å¹¶èµ‹å€¼ç»™å¯¹åº”æ§ä»¶
 	 */
 	private void fillInfo() {
 		File sdFile = Environment.getExternalStorageDirectory();
@@ -187,15 +186,15 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 //		System.out.println(blockSize);
 //		System.out.println(blockCount);
 //		System.out.println(availCount);
-		// ¸ñÊ½»¯
+		// æ ¼å¼åŒ–
 		String sd = Formatter.formatFileSize(this, sdFreeSpace);
 		String system = Formatter.formatFileSize(this, systemFreeSpace);
-		tv_appmanager_sdinfo.setText("SD¿¨¿ÉÓÃ¿Õ¼ä" + sd);
-		tv_appmanager_systeminfo.setText("ÏµÍ³¿ÉÓÃ¿Õ¼ä" + system);
+		tv_appmanager_sdinfo.setText("SDå¡å¯ç”¨ç©ºé—´" + sd);
+		tv_appmanager_systeminfo.setText("ç³»ç»Ÿå¯ç”¨ç©ºé—´" + system);
 	}
 
 	/**
-	 * ÏûÏ¢´¦ÀíÆ÷
+	 * æ¶ˆæ¯å¤„ç†å™¨
 	 */
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
@@ -209,12 +208,12 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 				adapter.notifyDataSetChanged();
 			}
 
-			System.out.println("À´ÁË");
+			System.out.println("æ¥äº†");
 		}
 	};
 
 	/**
-	 * Êı¾İÊÊÅäÆ÷
+	 * æ•°æ®é€‚é…å™¨
 	 */
 	private class AppInfoAdapter extends BaseAdapter {
 		public int getCount() {
@@ -248,13 +247,13 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 			if (position == 0) {
 				TextView tv = new TextView(getApplicationContext());
 				tv.setBackgroundColor(Color.GRAY);
-				tv.setText("ÓÃ»§³ÌĞò" + userAppInfos.size() + "¸ö");
+				tv.setText("ç”¨æˆ·ç¨‹åº" + userAppInfos.size() + "ä¸ª");
 				tv.setTextColor(Color.WHITE);
 				return tv;
 			} else if (position == userAppInfos.size() + 1) {
 				TextView tv = new TextView(getApplicationContext());
 				tv.setBackgroundColor(Color.GRAY);
-				tv.setText("ÏµÍ³³ÌĞò" + systemAppInfos.size() + "¸ö");
+				tv.setText("ç³»ç»Ÿç¨‹åº" + systemAppInfos.size() + "ä¸ª");
 				tv.setTextColor(Color.WHITE);
 				return tv;
 			}
@@ -289,9 +288,9 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 			holder.tv_appsize.setText(Formatter.formatFileSize(
 					AppManagerActivity.this, appInfo.getAppSize()));
 			if (appInfo.isInRom()) {
-				holder.tv_appcategory.setText("ÊÖ»úÄÚ´æ");
+				holder.tv_appcategory.setText("æ‰‹æœºå†…å­˜");
 			} else {
-				holder.tv_appcategory.setText("SD¿¨");
+				holder.tv_appcategory.setText("SDå¡");
 			}
 			return view;
 		}
@@ -299,7 +298,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * View³ÖÓĞÕß ÓÃÀ´¼Ç×¡¿Ø¼şµÄ×Ó¿Ø¼ş
+	 * ViewæŒæœ‰è€… ç”¨æ¥è®°ä½æ§ä»¶çš„å­æ§ä»¶
 	 * 
 	 * @author Administrator
 	 * 
@@ -312,7 +311,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * ¼ÓÔØAPPµÄĞÅÏ¢
+	 * åŠ è½½APPçš„ä¿¡æ¯
 	 */
 	public void loadAppInfos() {
 		Animation a = AnimationUtils.loadAnimation(this, R.anim.loading);
@@ -346,7 +345,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onDestroy() {
 		dismissPopupWindow();
-		// ·´×¢²á¹ã²¥
+		// åæ³¨å†Œå¹¿æ’­
 		unregisterReceiver(receiver);
 		receiver = null;
 		super.onDestroy();
@@ -356,18 +355,18 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		int id = v.getId();
 		switch (id) {
-		case R.id.ll_start:// Æô¶¯
+		case R.id.ll_start:// å¯åŠ¨
 			startApplication();
 			break;
-		case R.id.ll_share:// ·ÖÏí
+		case R.id.ll_share:// åˆ†äº«
 			shareApp();
 			System.out.println("lai le a ");
 			break;
-		case R.id.ll_uninstall:// Ğ¶ÔØ
+		case R.id.ll_uninstall:// å¸è½½
 			System.out.println("lai le a ");
 			uninstallApplication();
 			break;
-		case R.id.ll_setting:// ÏêÏ¸ÉèÖÃ
+		case R.id.ll_setting:// è¯¦ç»†è®¾ç½®
 			showAppSetting();
 			System.out.println("lai le a ");
 			break;
@@ -384,13 +383,13 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * É¾³ıÒ»¸ö³ÌĞò Ğ¶ÔØ³É¹¦ºóĞèÒªË¢ĞÂ½çÃæ ×¢²á¹ã²¥
+	 * åˆ é™¤ä¸€ä¸ªç¨‹åº å¸è½½æˆåŠŸåéœ€è¦åˆ·æ–°ç•Œé¢ æ³¨å†Œå¹¿æ’­
 	 */
 	private void uninstallApplication() {
 
 		boolean b = appInfo.isUserApp();
 		if (b) {
-			// ÓÃ»§³ÌĞò Õı³£Ğ¶ÔØ
+			// ç”¨æˆ·ç¨‹åº æ­£å¸¸å¸è½½
 			Intent intent = new Intent();
 			intent.setAction(Intent.ACTION_VIEW);
 			intent.setAction(Intent.ACTION_DELETE);
@@ -398,14 +397,14 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 			intent.setData(Uri.parse("package:" + appInfo.getPackageName()));
 			startActivity(intent);
 		} else {
-			if (!RootTools.isRootAvailable()) {// ÊÖ»úÃ»ÓĞroot
-				Toast.makeText(this, "Ğ¶ÔØÏµÍ³Ó¦ÓÃĞèÒª£Ò£Ï£Ï£ÔÈ¨ÏŞ", Toast.LENGTH_SHORT)
+			if (!RootTools.isRootAvailable()) {// æ‰‹æœºæ²¡æœ‰root
+				Toast.makeText(this, "å¸è½½ç³»ç»Ÿåº”ç”¨éœ€è¦ï¼²ï¼¯ï¼¯ï¼´æƒé™", Toast.LENGTH_SHORT)
 						.show();
 				return;
 			}
 			try {
 				if (!RootTools.isAccessGiven()) {
-					Toast.makeText(this, "ÇëÏÈ¸ø¸ÃÓ¦ÓÃ·ÖÅärootÈ¨ÏŞ", Toast.LENGTH_LONG)
+					Toast.makeText(this, "è¯·å…ˆç»™è¯¥åº”ç”¨åˆ†é…rootæƒé™", Toast.LENGTH_LONG)
 							.show();
 					return;
 				}
@@ -424,30 +423,30 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * Í¨¹ı¶ÌĞÅ·ÖÏí¸ÃÓ¦ÓÃ
+	 * é€šè¿‡çŸ­ä¿¡åˆ†äº«è¯¥åº”ç”¨
 	 */
 	private void shareApp() {
 		Intent intent = new Intent();
 		intent.setAction(Intent.ACTION_SEND);
 		intent.addCategory(Intent.CATEGORY_DEFAULT);
 		intent.putExtra(Intent.EXTRA_TEXT,
-				"·ÖÏíÒ»¸öÓ¦ÓÃ¸øÄã£¬Õâ¸öÓ¦ÓÃºÜ²»´í:" + appInfo.getAppName()
-						+ "ÏÂÔØÂ·¾¶£ºhttps://play.google.com/store/apps/details?id="
+				"åˆ†äº«ä¸€ä¸ªåº”ç”¨ç»™ä½ ï¼Œè¿™ä¸ªåº”ç”¨å¾ˆä¸é”™:" + appInfo.getAppName()
+						+ "ä¸‹è½½è·¯å¾„ï¼šhttps://play.google.com/store/apps/details?id="
 						+ appInfo.getPackageName());
 		intent.setType("text/plain");
 		startActivity(intent);
 	}
 
 	/**
-	 * Æô¶¯Ò»¸öapplication
+	 * å¯åŠ¨ä¸€ä¸ªapplication
 	 */
 	public void startApplication() {
 		PackageManager pm = getPackageManager();
-		// Í¨¹ı°ü¹ÜÀíÆ÷£¬´«Èë°üÃû £¬»ñÈ¡Æô¶¯´Ë°ü¶ÔÓ¦µÄapplicationµÄÒâÍ¼
+		// é€šè¿‡åŒ…ç®¡ç†å™¨ï¼Œä¼ å…¥åŒ…å ï¼Œè·å–å¯åŠ¨æ­¤åŒ…å¯¹åº”çš„applicationçš„æ„å›¾
 		Intent intent = pm.getLaunchIntentForPackage(appInfo.getPackageName());
-		// ÓĞµÄapplicationÃ»ÓĞ½çÃæ ËùÒÔÓĞ¿ÉÄÜintentÎªnull
+		// æœ‰çš„applicationæ²¡æœ‰ç•Œé¢ æ‰€ä»¥æœ‰å¯èƒ½intentä¸ºnull
 		if (intent == null) {
-			Toast.makeText(this, "¸Ã³ÌĞòÃ»ÓĞ½çÃæ", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "è¯¥ç¨‹åºæ²¡æœ‰ç•Œé¢", Toast.LENGTH_SHORT).show();
 		} else {
 			startActivity(intent);
 		}
@@ -456,7 +455,7 @@ public class AppManagerActivity extends Activity implements OnClickListener {
 	private class PackageUninstallReceiver extends BroadcastReceiver {
 
 		public void onReceive(Context context, Intent intent) {
-			// Ö»ÒªÓĞÓ¦ÓÃ±»Ğ¶ÔØÁË ¾ÍË¢ĞÂ½çÃæ
+			// åªè¦æœ‰åº”ç”¨è¢«å¸è½½äº† å°±åˆ·æ–°ç•Œé¢
 			System.out.println("ddsssssssssssssssssssssssssssssss"
 					+ intent.getAction() + intent.getDataString());
 			loadAppInfos();

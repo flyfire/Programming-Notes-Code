@@ -1,5 +1,9 @@
 package com.itheima.mobileguard;
 
+import android.app.Application;
+import android.os.Build;
+import android.os.Environment;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -9,16 +13,12 @@ import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
 import java.util.Date;
 
-import android.app.Application;
-import android.os.Build;
-import android.os.Environment;
-
 /**
- * Ò»¸öÓ¦ÓÃ³ÌĞòÖ»»á³õÊ¼»¯Ò»¸öapplication¶ÔÏó£¬¸Ã¶ÔÏó´ú±í¸ÃÓ¦ÓÃ³ÌĞò
- * Î¬»¤µÄÊÇµ±Ç°Ó¦ÓÃ³ÌĞòµÄÈ«²¿×´Ì¬
- * µ¥Ò»ÊµÀı µ¥Ì¨Ä£Ê½
+ * ä¸€ä¸ªåº”ç”¨ç¨‹åºåªä¼šåˆå§‹åŒ–ä¸€ä¸ªapplicationå¯¹è±¡ï¼Œè¯¥å¯¹è±¡ä»£è¡¨è¯¥åº”ç”¨ç¨‹åº
+ * ç»´æŠ¤çš„æ˜¯å½“å‰åº”ç”¨ç¨‹åºçš„å…¨éƒ¨çŠ¶æ€
+ * å•ä¸€å®ä¾‹ å•å°æ¨¡å¼
  * 
- * Çåµ¥ÎÄ¼şĞèÒªÅäÖÃ
+ * æ¸…å•æ–‡ä»¶éœ€è¦é…ç½®
  * 
  * @author Administrator
  *
@@ -26,7 +26,7 @@ import android.os.Environment;
 public class MobileGuardApplication extends Application {
 
 /**
- * Ó¦ÓÃ³ÌĞòÔÚµÚÒ»´Î±»´´½¨µÄÊ±ºòµ÷ÓÃµÄ·½·¨£¬ÔÚÈÎºÎÆä¶ÔÏó´´½¨Ö®Ç°Ö´ĞĞµÄÂß¼­
+ * åº”ç”¨ç¨‹åºåœ¨ç¬¬ä¸€æ¬¡è¢«åˆ›å»ºçš„æ—¶å€™è°ƒç”¨çš„æ–¹æ³•ï¼Œåœ¨ä»»ä½•å…¶å¯¹è±¡åˆ›å»ºä¹‹å‰æ‰§è¡Œçš„é€»è¾‘
  */
 	public void onCreate() {
 		Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler());
@@ -35,18 +35,18 @@ public class MobileGuardApplication extends Application {
 	
 	private class MyExceptionHandler implements UncaughtExceptionHandler{
 		/**
-		 * µ±·¢ËÍÁËÎ´²¶»ñµ½Òì³£Ê±£¬²»ÄÜ×èÖ¹ĞéÄâ»úµÄÍÆ³ö£¬Ö»ÄÜÔÚĞéÄâ»úÍË³öÖ®Ç°°ÑexceptionĞÅÏ¢¼ÇÂ¼ÏÂÀ´
-		 * ·½±ã³ÌĞòÔ±ĞŞ¸´bug
+		 * å½“å‘é€äº†æœªæ•è·åˆ°å¼‚å¸¸æ—¶ï¼Œä¸èƒ½é˜»æ­¢è™šæ‹Ÿæœºçš„æ¨å‡ºï¼Œåªèƒ½åœ¨è™šæ‹Ÿæœºé€€å‡ºä¹‹å‰æŠŠexceptionä¿¡æ¯è®°å½•ä¸‹æ¥
+		 * æ–¹ä¾¿ç¨‹åºå‘˜ä¿®å¤bug
 		 */
 		public void uncaughtException(Thread thread, Throwable ex) {
-			//°ÑÒ»³¡ĞÅÏ¢±£´æµ½±¾µØ
+			//æŠŠä¸€åœºä¿¡æ¯ä¿å­˜åˆ°æœ¬åœ°
 			try {
 				Date date = new Date();
 				File file = new File(Environment.getExternalStorageDirectory(),"exception.log");
 				PrintWriter pw = new PrintWriter(new FileWriter(file,true),true);
-				System.out.println("³öÏÖÁËÒì³££¬µ«ÊÇ±»¸ç²¶»ñÁË");
-				//¸÷ÖÖ³§ÉÌµÄbuildµÄÊÇÊµÏÖ¿ÉÄÜ²»Ò»Ñù£¬ÓĞµÄ×Ö¶Î¿ÉÄÜÃ»ÓĞ£¬ËùÒÔÍ¨¹ı·´Éä°ÑÓĞµÄ×Ö¶Î¶¼¼ÇÂ¼ÏÂÀ´
-				//build´ú±íÓÃ»§Ê¹ÓÃÊÖ»úµÄ¸÷ÖÖĞÅÏ¢ ºÍÉè±¸µÄ¸÷ÖÖĞÅÏ¢
+				System.out.println("å‡ºç°äº†å¼‚å¸¸ï¼Œä½†æ˜¯è¢«å“¥æ•è·äº†");
+				//å„ç§å‚å•†çš„buildçš„æ˜¯å®ç°å¯èƒ½ä¸ä¸€æ ·ï¼Œæœ‰çš„å­—æ®µå¯èƒ½æ²¡æœ‰ï¼Œæ‰€ä»¥é€šè¿‡åå°„æŠŠæœ‰çš„å­—æ®µéƒ½è®°å½•ä¸‹æ¥
+				//buildä»£è¡¨ç”¨æˆ·ä½¿ç”¨æ‰‹æœºçš„å„ç§ä¿¡æ¯ å’Œè®¾å¤‡çš„å„ç§ä¿¡æ¯
 				Field[] fields = Build.class.getDeclaredFields();
 				StringBuilder sb = new StringBuilder();
 				pw.println(date.toLocaleString());
@@ -56,9 +56,9 @@ public class MobileGuardApplication extends Application {
 				}
 				ex.printStackTrace(pw);
 				pw.close();
-				//ÔçËÀÔç³¬Éú É±ËÀ×Ô¼ºµÄ½ø³Ì ÏµÍ³»áÈÏÎªµÄÊ±ÒâÍâÖÕÖ¹ ÖØĞÂÆô¶¯¸Ã½ø³Ì
+				//æ—©æ­»æ—©è¶…ç”Ÿ æ€æ­»è‡ªå·±çš„è¿›ç¨‹ ç³»ç»Ÿä¼šè®¤ä¸ºçš„æ—¶æ„å¤–ç»ˆæ­¢ é‡æ–°å¯åŠ¨è¯¥è¿›ç¨‹
 				android.os.Process.killProcess(android.os.Process.myPid());
-				//Ô­µØ¸´»î
+				//åŸåœ°å¤æ´»
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -66,14 +66,14 @@ public class MobileGuardApplication extends Application {
 	}
 
 	private class MyExecptionHandler implements UncaughtExceptionHandler{
-		//µ±Ïß³Ì³öÏÖÁËÎ´²¶»ñµÄÒì³£Ö´ĞĞµÄ·½·¨¡£
-		//²»ÄÜ×èÖ¹javaĞéÄâ»úÍË³ö£¬Ö»ÊÇÔÚjvmÍË³öÖ®Ç°£¬ ÁôÁËÒ»µãÊ±¼ä£¬ ÁôÒ»¸öÒÅÑÔ
+		//å½“çº¿ç¨‹å‡ºç°äº†æœªæ•è·çš„å¼‚å¸¸æ‰§è¡Œçš„æ–¹æ³•ã€‚
+		//ä¸èƒ½é˜»æ­¢javaè™šæ‹Ÿæœºé€€å‡ºï¼Œåªæ˜¯åœ¨jvmé€€å‡ºä¹‹å‰ï¼Œ ç•™äº†ä¸€ç‚¹æ—¶é—´ï¼Œ ç•™ä¸€ä¸ªé—è¨€
 		@Override
 		public void uncaughtException(Thread thread, Throwable ex) {
 			try {
 				StringWriter sw = new StringWriter();
 				PrintWriter pw = new PrintWriter(sw);
-				System.out.println("²úÉúÁËÒì³££¬µ«ÊÇ±»¸ç¸ø²¶»ñÁË¡£");
+				System.out.println("äº§ç”Ÿäº†å¼‚å¸¸ï¼Œä½†æ˜¯è¢«å“¥ç»™æ•è·äº†ã€‚");
 				Field[] fileds = Build.class.getDeclaredFields();
 				for(Field filed:fileds){
 					System.out.println(filed.getName()+"--"+filed.get(null));
@@ -86,9 +86,9 @@ public class MobileGuardApplication extends Application {
 				fos.close();	
 				pw.close();
 				sw.close();
-				//ÔçËÀÔç³¬Éú
+				//æ—©æ­»æ—©è¶…ç”Ÿ
 				android.os.Process.killProcess(android.os.Process.myPid());
-				//Ô­µØ¸´»î
+				//åŸåœ°å¤æ´»
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -100,7 +100,7 @@ public class MobileGuardApplication extends Application {
 	}
 
 	/**
-	 * ÄÚ´æ²»×ãÊ±µ÷ÓÃµÄ·½·¨
+	 * å†…å­˜ä¸è¶³æ—¶è°ƒç”¨çš„æ–¹æ³•
 	 */
 	@Override
 	public void onLowMemory() {
