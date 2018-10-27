@@ -31,6 +31,7 @@
 - [Google-chromium-webview-samples](https://github.com/GoogleChrome/chromium-webview-samples)
 - [Tencent-VasSonic](https://github.com/Tencent/VasSonic)
 - [VasSonic-让你的H5页面首屏秒开](https://segmentfault.com/a/1190000010711024)
+- [SuperWeb](https://github.com/Victory-Over/SuperWeb)
 
 ## 总结
 
