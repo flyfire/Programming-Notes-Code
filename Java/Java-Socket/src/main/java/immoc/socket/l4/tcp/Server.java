@@ -117,7 +117,7 @@ public class Server {
 
                 // String
                 int pos = byteBuffer.position();
-                String str = new String(buffer, pos, readCount - pos - 1);
+                String str = new String(buffer, pos, readCount - pos - 1);/*读取的总数-已读数，- 1 是因为 pos 从 0 开始*/
 
                 System.out.println("收到数量：" + readCount + " 数据："
                         + be + "\n"

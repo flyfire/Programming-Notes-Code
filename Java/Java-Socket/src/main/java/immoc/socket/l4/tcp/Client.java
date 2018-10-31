@@ -109,7 +109,7 @@ public class Client {
     private static void todo(Socket client) throws IOException {
         // 得到Socket输出流
         OutputStream outputStream = client.getOutputStream();
-
+        outputStream.write(255);//write方法只能接受 byte 范围的数值
 
         // 得到Socket输入流
         InputStream inputStream = client.getInputStream();
