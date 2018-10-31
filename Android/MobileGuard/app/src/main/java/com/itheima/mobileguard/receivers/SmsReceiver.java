@@ -7,84 +7,78 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.sax.StartElementListener;
 import android.telephony.SmsMessage;
-import android.telephony.TelephonyManager;
 
 import com.itheima.mobileguard.R;
 import com.itheima.mobileguard.activities.TackPictureActivity;
 
 /**
- * ¼àÌı½ÓÊÜµ½µÄ¶ÌĞÅ Èç¹ûÊÇÌØÊâÖ¸Áî¾ÍÖ´ĞĞ¶ÔÓ¦µÄ²Ù×÷
- * 
+ * ç›‘å¬æ¥å—åˆ°çš„çŸ­ä¿¡ å¦‚æœæ˜¯ç‰¹æ®ŠæŒ‡ä»¤å°±æ‰§è¡Œå¯¹åº”çš„æ“ä½œ
+ *
  * @author Administrator
- * 
  */
 public class SmsReceiver extends BroadcastReceiver {
-	private SharedPreferences sp;
-	private ComponentName cn;
+    private SharedPreferences sp;
+    private ComponentName cn;
 
-	public void onReceive(Context context, Intent intent) {
-		// ÅĞ¶ÏÓÃ»§ÊÇ·ñ¿ªÆôÁË·ÀµÁ¹¦ÄÜ
-		// »ñÈ¡Æ«ºÃÉèÖÃ
-		sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
-		// ¿´ÓÃ»§ÊÇ·ñ¿ªÆôÁËÊÖ»ú·ÀµÁ
-		boolean isOpen = sp.getBoolean("protecting", false);
-		if (isOpen) {
+    public void onReceive(Context context, Intent intent) {
 
-			cn = new ComponentName(context, MyDeviceAdmin.class);
-			// »ñÈ¡¶ÌĞÅÄÚÈİ
-			/**
-			 * ¹«¹²½Ó¿Ú£¬ÓÃÓÚ¹ÜÀíÇ¿ÖÆÖ´ĞĞµÄÉè±¸ÉÏµÄÕş²ß¡£´ËÀàµÄ´ó¶àÊı¿Í»§±ØĞë¹«²¼ÓÃ»§Ä¿Ç°ÒÑ¾­ÆôÓÃÁËDeviceAdminReceiver¡£
-			 * 
-			 * ¿ª·¢ÈËÔ±Ö¸ÄÏ ÓĞ¹Ø¹ÜÀíÕş²ß£¬ÒÔ»ñÈ¡Éè±¸adminstrationµÄ¸ü¶àĞÅÏ¢£¬ÇëÔÄ¶ÁÉè±¸¹ÜÀí¿ª·¢ÈËÔ±Ö¸ÄÏ¡£
-			 */
-			DevicePolicyManager dpm = (DevicePolicyManager) context
-					.getSystemService(Context.DEVICE_POLICY_SERVICE);
-			Object[] objs = (Object[]) intent.getExtras().get("pdus");
-			// ±éÀú¶ÌĞÅÊı×é
-			for (Object obj : objs) {
-				SmsMessage sm = SmsMessage.createFromPdu((byte[]) obj);
-				String smsBody = sm.getMessageBody();// »ñÈ¡¶ÌĞÅÄÚÈİ
-				// ÅĞ¶ÏÄÚÈİÊÇ·ñÊÇÌØÊâÖ¸Áî
-				if ("#*location*#".equals(smsBody)) {
-					// ·µ»ØÎ»ÖÃ ÓÉÓÚ»ñÈ¡Î»ÖÃ¿ÉÄÜÊÇÒ»¸ö±È½ÏºÄÊ±µÄ²Ù×÷ ²»ÄÜ·ÅÔÚ¹ã²¥½ÓÊÕÕßÀïÃæ
-					// ÒòÎª¹ã²¥½ÓÊÕÕßµÄÉúÃüÖÜÆÚºÜ¶Ì Ò²²»ÄÜ·½·¨ÔÚ×ÓÏß³ÌÀïÃæ ËùÒÔĞèÒª¿ªÆôÒ»¸ö·şÎñ
-					// È¥»ñÈ¡Î»ÖÃ ²¢·¢ËÍÕßÊÖ»úÖ÷ÈË
-					Intent i = new Intent(
-							context,
-							com.itheima.mobileguard.services.LoactionService.class);
-					context.startService(i);
-					System.out.println("lai le");
-					abortBroadcast();
-				} else if ("#*alarm*#".equals(smsBody)) {
-					// ²¥·Å±¨¾¯ÒôÀÖ
-					MediaPlayer play = MediaPlayer.create(context, R.raw.ylzs);
-					// ÉèÖÃÒôÁ¿
-					play.setVolume(1.0f, 1.0f);
-					play.start();
-					abortBroadcast();
-				} else if ("#*wipedata*#".equals(smsBody)) {
-					// TODOÔ¶³ÌÉ¾³ıÊÖ»úÊı¾İ ±¨´í´æ´¢¿¨µÄÊı¾İ
-					if (dpm.isAdminActive(cn)) {
-						dpm.wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);
-					}
-					abortBroadcast();
-				} else if ("#*lockscreen*#".equals(smsBody)) {
-					// TODO Ô¶³ÌËøÆÁ
-					if (dpm.isAdminActive(cn)) {
-						dpm.resetPassword("123", 0);// ÉèÖÃËøÆÁÃÜÂë
-						dpm.lockNow();// ËøÆÁ
-					}
-					abortBroadcast();// À¹½Ø¶ÌĞÅ
-				}else if("#*tackpicture*#".equals(smsBody)){
-					//Ô¶³ÌÅÄÕÕÉÏ´«
-					Intent i = new Intent(context,TackPictureActivity.class);
-					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					abortBroadcast();
-					context.startActivity(i);
-				}
-			}
-		}
-	}
+        // åˆ¤æ–­ç”¨æˆ·æ˜¯å¦å¼€å¯äº†é˜²ç›—åŠŸèƒ½
+        // è·å–åå¥½è®¾ç½®
+        sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        // çœ‹ç”¨æˆ·æ˜¯å¦å¼€å¯äº†æ‰‹æœºé˜²ç›—
+        boolean isOpen = sp.getBoolean("protecting", false);
+        if (isOpen) {
+
+            cn = new ComponentName(context, MyDeviceAdmin.class);
+            // è·å–çŸ­ä¿¡å†…å®¹
+            /**
+             * å…¬å…±æ¥å£ï¼Œç”¨äºç®¡ç†å¼ºåˆ¶æ‰§è¡Œçš„è®¾å¤‡ä¸Šçš„æ”¿ç­–ã€‚æ­¤ç±»çš„å¤§å¤šæ•°å®¢æˆ·å¿…é¡»å…¬å¸ƒç”¨æˆ·ç›®å‰å·²ç»å¯ç”¨äº†DeviceAdminReceiverã€‚
+             *
+             * å¼€å‘äººå‘˜æŒ‡å— æœ‰å…³ç®¡ç†æ”¿ç­–ï¼Œä»¥è·å–è®¾å¤‡adminstrationçš„æ›´å¤šä¿¡æ¯ï¼Œè¯·é˜…è¯»è®¾å¤‡ç®¡ç†å¼€å‘äººå‘˜æŒ‡å—ã€‚
+             */
+            DevicePolicyManager dpm = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+            Object[] objs = (Object[]) intent.getExtras().get("pdus");
+            // éå†çŸ­ä¿¡æ•°ç»„
+            for (Object obj : objs) {
+                SmsMessage sm = SmsMessage.createFromPdu((byte[]) obj);
+                String smsBody = sm.getMessageBody();// è·å–çŸ­ä¿¡å†…å®¹
+                // åˆ¤æ–­å†…å®¹æ˜¯å¦æ˜¯ç‰¹æ®ŠæŒ‡ä»¤
+                if ("#*location*#".equals(smsBody)) {
+                    // è¿”å›ä½ç½® ç”±äºè·å–ä½ç½®å¯èƒ½æ˜¯ä¸€ä¸ªæ¯”è¾ƒè€—æ—¶çš„æ“ä½œ ä¸èƒ½æ”¾åœ¨å¹¿æ’­æ¥æ”¶è€…é‡Œé¢
+                    // å› ä¸ºå¹¿æ’­æ¥æ”¶è€…çš„ç”Ÿå‘½å‘¨æœŸå¾ˆçŸ­ ä¹Ÿä¸èƒ½æ–¹æ³•åœ¨å­çº¿ç¨‹é‡Œé¢ æ‰€ä»¥éœ€è¦å¼€å¯ä¸€ä¸ªæœåŠ¡
+                    // å»è·å–ä½ç½® å¹¶å‘é€è€…æ‰‹æœºä¸»äºº
+                    Intent i = new Intent(context, com.itheima.mobileguard.services.LoactionService.class);
+                    context.startService(i);
+                    System.out.println("lai le");
+                    abortBroadcast();
+                } else if ("#*alarm*#".equals(smsBody)) {
+                    // æ’­æ”¾æŠ¥è­¦éŸ³ä¹
+                    MediaPlayer play = MediaPlayer.create(context, R.raw.ylzs);
+                    // è®¾ç½®éŸ³é‡
+                    play.setVolume(1.0f, 1.0f);
+                    play.start();
+                    abortBroadcast();
+                } else if ("#*wipedata*#".equals(smsBody)) {
+                    // TODOè¿œç¨‹åˆ é™¤æ‰‹æœºæ•°æ® æŠ¥é”™å­˜å‚¨å¡çš„æ•°æ®
+                    if (dpm.isAdminActive(cn)) {
+                        dpm.wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);
+                    }
+                    abortBroadcast();
+                } else if ("#*lockscreen*#".equals(smsBody)) {
+                    if (dpm.isAdminActive(cn)) {
+                        dpm.resetPassword("123", 0);// è®¾ç½®é”å±å¯†ç 
+                        dpm.lockNow();// é”å±
+                    }
+                    abortBroadcast();// æ‹¦æˆªçŸ­ä¿¡
+                } else if ("#*tackpicture*#".equals(smsBody)) {
+                    //è¿œç¨‹æ‹ç…§ä¸Šä¼ 
+                    Intent i = new Intent(context, TackPictureActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    abortBroadcast();
+                    context.startActivity(i);
+                }
+            }
+        }
+    }
 }

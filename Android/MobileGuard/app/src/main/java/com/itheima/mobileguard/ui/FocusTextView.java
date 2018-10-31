@@ -16,7 +16,7 @@ public class FocusTextView extends TextView {
 		super(context);
 	}
 	
-	@Override//·µ»Øtrue ÆÛÆ­ÏµÍ³ Ò»Ö±µÃµ½½¹µã
+	@Override//è¿”å›žtrue æ¬ºéª—ç³»ç»Ÿ ä¸€ç›´å¾—åˆ°ç„¦ç‚¹
 	public boolean isFocused() {
 		return true;
 	}

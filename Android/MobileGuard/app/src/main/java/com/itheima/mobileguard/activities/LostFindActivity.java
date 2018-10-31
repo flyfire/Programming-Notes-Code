@@ -23,150 +23,157 @@ import com.itheima.mobileguard.utils.MD5Utils;
 import com.itheima.mobileguard.utils.UiUtils;
 
 public class LostFindActivity extends Activity {
-		private SharedPreferences sp ;
-		private TextView tv_lostfind_safecontact;
-		private ImageView iv_lostfind_lock;
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-			setContentView(R.layout.activity_lostfind);
-			//ÕÒµ½×é¼ş
-			tv_lostfind_safecontact = (TextView) findViewById(R.id.tv_lostfind_safecontact);
-			iv_lostfind_lock = (ImageView) findViewById(R.id.iv_lostfind_lock);
-			//»ñÈ¡SharedPreference ÓÃÓÚ´æ´¢ÓÃ»§ÉèÖÃĞÅÏ¢µÄ
-			sp = getSharedPreferences("config", MODE_PRIVATE);
-			//¿´ÓÃ»§ÊÇ·ñÉèÖÃ¹ı·ÀµÁĞÅÏ¢
-			boolean isSetup = isFinishSetup();
-			//Èç¹ûÃ»ÓĞ¾Í½øÈëÉèÖÃÏòµ¼½çÃæ
-			if(isSetup){
-				//Ö±½ÓÏÔÊ¾lostfind½çÃæ »ñÈ¡ÓÃ»§ÉèÖÃµÄÊı¾İ
-				String safeContact = sp.getString("safeContact", "");
-				boolean isOpen = sp.getBoolean("protecting", false);
-				tv_lostfind_safecontact.setText(safeContact);
-				if(isOpen){
-					iv_lostfind_lock.setImageResource(R.drawable.lock);
-				}else{
-					iv_lostfind_lock.setImageResource(R.drawable.unlock);
-				}
-			}else{
-				//½øÈëÉèÖÃÏòµ¼½çÃæ
-				Intent intent = new Intent(this,LostSetup1Activity.class);
-				startActivity(intent);
-				finish();
-			}
-		}
-		
-		/**
-		 * °´Å¥µã»÷ ÖØĞÂ½øÈëÉèÖÃÏòµ¼
-		 * @param v
-		 */
-		public void reEntrySetup(View v){
-			Intent  intent = new Intent(this,LostSetup1Activity.class);
-			startActivity(intent);
-			finish();
-		}
-		/**
-		 * ÅĞ¶ÏÓÃ»§ÊÇ·ñÉèÖÃÁËÊÖ»ú·ÀµÁ
-		 * @return
-		 */
-		private boolean isFinishSetup(){
-			boolean b = sp.getBoolean("finishing", false);
-			return b;
-		}
-		/**
-		 * ¿ªÆô·ÀµÁ
-		 */
-		public void  open(View v){
-			boolean isOpen = sp.getBoolean("protecting", false);
-			if(isOpen){
-				Editor editor = sp.edit();
-				editor.putBoolean("protecting", false);
-				editor.commit();
-				iv_lostfind_lock.setImageResource(R.drawable.unlock);
-			}else{
-				Editor editor = sp.edit();
-				editor.putBoolean("protecting", true);
-				editor.commit();
-				iv_lostfind_lock.setImageResource(R.drawable.lock);
-			}
-		}
-		
-	
-		@Override
-		public boolean onCreateOptionsMenu(Menu menu) {
-			getMenuInflater().inflate(R.menu.menu_lostfind, menu);
-				return true;
-		}
-		
-		private AlertDialog dialog;
-		@Override
-		public boolean onMenuItemSelected(int featureId, MenuItem item) {
-			if(R.id.item_change_name == item.getItemId()){
-//				µ¯³ö¶Ô»°¿ò
-				AlertDialog.Builder builder = new Builder(this);
-				builder.setTitle("ĞŞ¸Ä·ÀµÁÃû³Æ");
-				final EditText et = new EditText(this);
-				builder.setView(et);
-				builder.setPositiveButton("È·ÈÏ", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						String newName = et.getText().toString();
-						Editor  editor = sp.edit();
-						editor.putString("newName",newName);
-						if(!TextUtils.isEmpty(newName) && newName.length()>5){
-							UiUtils.showToast(LostFindActivity.this, "³¤¶È²»ÄÜ³¬¹ı5¸ö");
-							return;
-						}
-						editor.commit();
-					}
-				});
-				dialog = builder.show();
-					
-			}else if(R.id.item_change_password == item.getItemId()){
-			
-				AlertDialog.Builder builder = new Builder(this);
-				View view = View.inflate(this, R.layout.dialog_lostfind_changepassword,null);
-				builder.setView(view);
-				dialog = builder.show();
-				final EditText	et_lostfind_newpassword = (EditText) view.findViewById(R.id.et_lostfind_newpassword);
-				final EditText   et_lostfind_oldpassword = (EditText) view.findViewById(R.id.et_lostfind_oldpassword);
-				Button	bt_lostfind_ok = (Button) view.findViewById(R.id.bt_lostfind_ok);
-				Button   bt_lostfind_cancel = (Button) view.findViewById(R.id.bt_lostfind_cancel);
-				
-				bt_lostfind_ok.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						//ÏÖ»ñÈ¡ÓÃ»§µÄÊäÈë
-						String setOldPassword = sp.getString("password", "");//ÉèÖÃµÄÃÜÂë
-						String oldPassword = et_lostfind_oldpassword.getText().toString();//ÊäÈëµÄoldÃÜÂë
-						String newPassword = et_lostfind_newpassword.getText().toString();//ĞÂÃÜÂë
-						if(MD5Utils.MD5Encode(oldPassword).equals(setOldPassword)){ 
-							Editor editor = sp.edit();
-							editor.putString("password", MD5Utils.MD5Encode(newPassword));
-							editor.commit();
-							dialog.dismiss();
-							UiUtils.showToast(LostFindActivity.this, "ÃÜÂëÉèÖÃ³É¹¦");
-						}else{
-							UiUtils.showToast(LostFindActivity.this, "ÃÜÂë²»Æ¥Åä");
-						}
-					}
-				});
-				bt_lostfind_cancel.setOnClickListener(new OnClickListener() {//È¡ÏûÁËÉèÖÃ
-					public void onClick(View v) {
-						dialog.dismiss();
-					}
-				});
-			}else if(R.id.item_howtouse == item.getItemId()){
-				AlertDialog.Builder builder = new Builder(this);
-				builder.setTitle("ÈçºÎÊ¹ÓÃ").setMessage("²¿·Ö¹¦ÄÜĞèÒªµ½ÉèÖÃ-->°²È«-->Éè±¸¹ÜÀí-->¼¤»îÊÖ»úĞ¡ÎÀÊ¿µÄÉè±¸¹ÜÀíÔ±¹¦ÄÜ£¬·ñÔòÎŞ·¨Ê¹ÓÃ£¬Èç¹ûĞèÒªĞ¶ÔØ´ËÓ¦ÓÃ£¬ĞèÒªÏÈÈ¡ÏûÊÖ»úĞ¡ÎÀÊ¿µÄÉè±¸¹ÜÀíÔ±¹¦ÄÜ")
-				.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}
-				});
-				dialog = builder.show();
-			}
-			return super.onMenuItemSelected(featureId, item);
-		}
-		
-		
+
+    private SharedPreferences sp;
+    private TextView tv_lostfind_safecontact;
+    private ImageView iv_lostfind_lock;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lostfind);
+        //æ‰¾åˆ°ç»„ä»¶
+        tv_lostfind_safecontact = (TextView) findViewById(R.id.tv_lostfind_safecontact);
+        iv_lostfind_lock = (ImageView) findViewById(R.id.iv_lostfind_lock);
+        //è·å–SharedPreference ç”¨äºå­˜å‚¨ç”¨æˆ·è®¾ç½®ä¿¡æ¯çš„
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        //çœ‹ç”¨æˆ·æ˜¯å¦è®¾ç½®è¿‡é˜²ç›—ä¿¡æ¯
+        boolean isSetup = isFinishSetup();
+        //å¦‚æœæ²¡æœ‰å°±è¿›å…¥è®¾ç½®å‘å¯¼ç•Œé¢
+        if (isSetup) {
+            //ç›´æ¥æ˜¾ç¤ºlostfindç•Œé¢ è·å–ç”¨æˆ·è®¾ç½®çš„æ•°æ®
+            String safeContact = sp.getString("safeContact", "");
+            boolean isOpen = sp.getBoolean("protecting", false);
+            tv_lostfind_safecontact.setText(safeContact);
+            if (isOpen) {
+                iv_lostfind_lock.setImageResource(R.drawable.lock);
+            } else {
+                iv_lostfind_lock.setImageResource(R.drawable.unlock);
+            }
+        } else {
+            //è¿›å…¥è®¾ç½®å‘å¯¼ç•Œé¢
+            Intent intent = new Intent(this, LostSetup1Activity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    /**
+     * æŒ‰é’®ç‚¹å‡» é‡æ–°è¿›å…¥è®¾ç½®å‘å¯¼
+     *
+     * @param v
+     */
+    public void reEntrySetup(View v) {
+        Intent intent = new Intent(this, LostSetup1Activity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * åˆ¤æ–­ç”¨æˆ·æ˜¯å¦è®¾ç½®äº†æ‰‹æœºé˜²ç›—
+     *
+     * @return
+     */
+    private boolean isFinishSetup() {
+        boolean b = sp.getBoolean("finishing", false);
+        return b;
+    }
+
+    /**
+     * å¼€å¯é˜²ç›—
+     */
+    public void open(View v) {
+        boolean isOpen = sp.getBoolean("protecting", false);
+        if (isOpen) {
+            Editor editor = sp.edit();
+            editor.putBoolean("protecting", false);
+            editor.commit();
+            iv_lostfind_lock.setImageResource(R.drawable.unlock);
+        } else {
+            Editor editor = sp.edit();
+            editor.putBoolean("protecting", true);
+            editor.commit();
+            iv_lostfind_lock.setImageResource(R.drawable.lock);
+        }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_lostfind, menu);
+        return true;
+    }
+
+    private AlertDialog dialog;
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        if (R.id.item_change_name == item.getItemId()) {
+//				å¼¹å‡ºå¯¹è¯æ¡†
+            AlertDialog.Builder builder = new Builder(this);
+            builder.setTitle("ä¿®æ”¹é˜²ç›—åç§°");
+            final EditText et = new EditText(this);
+            builder.setView(et);
+            builder.setPositiveButton("ç¡®è®¤", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    String newName = et.getText().toString();
+                    Editor editor = sp.edit();
+                    editor.putString("newName", newName);
+                    if (!TextUtils.isEmpty(newName) && newName.length() > 5) {
+                        UiUtils.showToast(LostFindActivity.this, "é•¿åº¦ä¸èƒ½è¶…è¿‡5ä¸ª");
+                        return;
+                    }
+                    editor.commit();
+                }
+            });
+            dialog = builder.show();
+
+        } else if (R.id.item_change_password == item.getItemId()) {
+
+            AlertDialog.Builder builder = new Builder(this);
+            View view = View.inflate(this, R.layout.dialog_lostfind_changepassword, null);
+            builder.setView(view);
+            dialog = builder.show();
+            final EditText et_lostfind_newpassword = (EditText) view.findViewById(R.id.et_lostfind_newpassword);
+            final EditText et_lostfind_oldpassword = (EditText) view.findViewById(R.id.et_lostfind_oldpassword);
+            Button bt_lostfind_ok = (Button) view.findViewById(R.id.bt_lostfind_ok);
+            Button bt_lostfind_cancel = (Button) view.findViewById(R.id.bt_lostfind_cancel);
+
+            bt_lostfind_ok.setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                    //ç°è·å–ç”¨æˆ·çš„è¾“å…¥
+                    String setOldPassword = sp.getString("password", "");//è®¾ç½®çš„å¯†ç 
+                    String oldPassword = et_lostfind_oldpassword.getText().toString();//è¾“å…¥çš„oldå¯†ç 
+                    String newPassword = et_lostfind_newpassword.getText().toString();//æ–°å¯†ç 
+                    if (MD5Utils.MD5Encode(oldPassword).equals(setOldPassword)) {
+                        Editor editor = sp.edit();
+                        editor.putString("password", MD5Utils.MD5Encode(newPassword));
+                        editor.commit();
+                        dialog.dismiss();
+                        UiUtils.showToast(LostFindActivity.this, "å¯†ç è®¾ç½®æˆåŠŸ");
+                    } else {
+                        UiUtils.showToast(LostFindActivity.this, "å¯†ç ä¸åŒ¹é…");
+                    }
+                }
+            });
+            bt_lostfind_cancel.setOnClickListener(new OnClickListener() {//å–æ¶ˆäº†è®¾ç½®
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+        } else if (R.id.item_howtouse == item.getItemId()) {
+            AlertDialog.Builder builder = new Builder(this);
+            builder.setTitle("å¦‚ä½•ä½¿ç”¨").setMessage("éƒ¨åˆ†åŠŸèƒ½éœ€è¦åˆ°è®¾ç½®-->å®‰å…¨-->è®¾å¤‡ç®¡ç†-->æ¿€æ´»æ‰‹æœºå°å«å£«çš„è®¾å¤‡ç®¡ç†å‘˜åŠŸèƒ½ï¼Œå¦åˆ™æ— æ³•ä½¿ç”¨ï¼Œå¦‚æœéœ€è¦å¸è½½æ­¤åº”ç”¨ï¼Œéœ€è¦å…ˆå–æ¶ˆæ‰‹æœºå°å«å£«çš„è®¾å¤‡ç®¡ç†å‘˜åŠŸèƒ½")
+                    .setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            dialog = builder.show();
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+
+
 }
 

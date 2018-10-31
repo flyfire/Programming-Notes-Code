@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 public class UiUtils {
 	/**
-	 * µ¯³öÍÁË¾µÄ¹¤¾ß·½·¨ ÎŞĞè¿¼ÂÇ×ÓÏß³Ì
+	 * å¼¹å‡ºåœŸå¸çš„å·¥å…·æ–¹æ³• æ— éœ€è€ƒè™‘å­çº¿ç¨‹
 	 * @param act
 	 * @param msg
 	 */

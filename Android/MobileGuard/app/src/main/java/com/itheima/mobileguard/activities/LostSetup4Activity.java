@@ -1,9 +1,5 @@
 package com.itheima.mobileguard.activities;
 
-import com.itheima.mobileguard.R;
-
-import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.widget.CheckBox;
@@ -11,59 +7,62 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
+import com.itheima.mobileguard.R;
+
 public class LostSetup4Activity extends BaseLostSetupActivity {
-	private CheckBox cb_setup4;
-	private TextView tv_setup4;
-	
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-			setContentView(R.layout.activity_lostfindsetup4);
-			
-			cb_setup4 = (CheckBox) findViewById(R.id.cb_setup4);
-			tv_setup4 = (TextView) findViewById(R.id.tv_setup4);
-			
-			boolean protecting = sp.getBoolean("protecting", false);
-			if(protecting){//ÉèÖÃÁË
-				tv_setup4.setText("ÊÖ»ú·ÀµÁÒÑ¾­¿ªÆô");
-				cb_setup4.setChecked(true);
-			}else{
-				tv_setup4.setText("ÊÖ»ú·ÀµÁÃ»ÓĞ¿ªÆô");
-				cb_setup4.setChecked(false);
-			}
-			
-			//×¢²á¸´Ñ¡¿ò¼àÌıÊÂ¼ş
-			cb_setup4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-						if(isChecked){
-							tv_setup4.setText("ÊÖ»ú·ÀµÁÒÑ¾­¿ªÆô");
-						}else{
-							tv_setup4.setText("ÊÖ»ú·ÀµÁÃ»ÓĞ¿ªÆô");
-						}
-						Editor editor = sp.edit();
-						editor.putBoolean("protecting", isChecked);
-						editor.commit();
-				}
-			});
-		}
 
-		/**
-		 * Íê³ÉÉèÖÃ½øÈëµ½½çÃæ
-		 */
-		public void showNext() {
-			//²»¹ÜÓÃ»§ÊÇ·ñÉèÖÃÁË¿ªÆô·ÀµÁ ¶¼ÏòÏµÍ³Ğ´Ò»¸öÅäÖÃĞÅÏ¢ ÓÃ»§ÉèÖÃÍê³ÉÁË ¿ÉÒÔ½øÈë·ÀµÁ½çÃæ
-			Editor editor = sp.edit();
-			editor.putBoolean("finishing", true);
-			editor.commit();
-			startActivityAndFinishSelf(LostFindActivity.class);
-		}
-		
+    private CheckBox cb_setup4;
+    private TextView tv_setup4;
 
-		/**
-		 * ·µ»ØÉÏÒ»¸öActivity
-		 */
-		@Override
-		public void showPrevious() {
-				startActivityAndFinishSelf(LostSetup3Activity.class);
-		}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lostfindsetup4);
+
+        cb_setup4 = (CheckBox) findViewById(R.id.cb_setup4);
+        tv_setup4 = (TextView) findViewById(R.id.tv_setup4);
+
+        boolean protecting = sp.getBoolean("protecting", false);
+        if (protecting) {//è®¾ç½®äº†
+            tv_setup4.setText("æ‰‹æœºé˜²ç›—å·²ç»å¼€å¯");
+            cb_setup4.setChecked(true);
+        } else {
+            tv_setup4.setText("æ‰‹æœºé˜²ç›—æ²¡æœ‰å¼€å¯");
+            cb_setup4.setChecked(false);
+        }
+
+        //æ³¨å†Œå¤é€‰æ¡†ç›‘å¬äº‹ä»¶
+        cb_setup4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    tv_setup4.setText("æ‰‹æœºé˜²ç›—å·²ç»å¼€å¯");
+                } else {
+                    tv_setup4.setText("æ‰‹æœºé˜²ç›—æ²¡æœ‰å¼€å¯");
+                }
+                Editor editor = sp.edit();
+                editor.putBoolean("protecting", isChecked);
+                editor.commit();
+            }
+        });
+    }
+
+    /**
+     * å®Œæˆè®¾ç½®è¿›å…¥åˆ°ç•Œé¢
+     */
+    public void showNext() {
+        //ä¸ç®¡ç”¨æˆ·æ˜¯å¦è®¾ç½®äº†å¼€å¯é˜²ç›— éƒ½å‘ç³»ç»Ÿå†™ä¸€ä¸ªé…ç½®ä¿¡æ¯ ç”¨æˆ·è®¾ç½®å®Œæˆäº† å¯ä»¥è¿›å…¥é˜²ç›—ç•Œé¢
+        Editor editor = sp.edit();
+        editor.putBoolean("finishing", true);
+        editor.commit();
+        startActivityAndFinishSelf(LostFindActivity.class);
+    }
+
+
+    /**
+     * è¿”å›ä¸Šä¸€ä¸ªActivity
+     */
+    @Override
+    public void showPrevious() {
+        startActivityAndFinishSelf(LostSetup3Activity.class);
+    }
 }

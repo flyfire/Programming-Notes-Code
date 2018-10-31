@@ -15,16 +15,16 @@ public class SettingView extends RelativeLayout {
 	private TextView tv_desc;
 	private TextView tv_title;
 	/**
-	 * ÌõÄ¿µÄÃèÊöĞÅÏ¢
+	 * æ¡ç›®çš„æè¿°ä¿¡æ¯
 	 */
 	private String[] descs;
 	/**
-	 * ±êÌâ
+	 * æ ‡é¢˜
 	 */
 	private String title;
 	public SettingView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		System.out.println("ÎÒÊÇ3");
+		System.out.println("æˆ‘æ˜¯3");
 		init(context);
 	}
 
@@ -37,7 +37,7 @@ public class SettingView extends RelativeLayout {
 
 	public SettingView(Context context) {
 		super(context);
-		System.out.println("ÎÒÊÇ 1");
+		System.out.println("æˆ‘æ˜¯ 1");
 
 		init(context);
 	}
@@ -54,7 +54,7 @@ public class SettingView extends RelativeLayout {
 	}
 
 	/**
-	 * ÉèÖÃ±êÌâ
+	 * è®¾ç½®æ ‡é¢˜
 	 * @param title
 	 */
 	public void setTitle(String title){
@@ -62,8 +62,8 @@ public class SettingView extends RelativeLayout {
 		tv_title.setText(title);
 	}
 	/**
-	 * ÉèÖÃÃèÊöÓĞÁ½ÖÖ×´Ì¬ Ó¦µ±ÊÇÒ»¸östringÊı×é£¬ÕâÀïÖ»ĞèÒª´«ÈëÊı×é£¬ÓÉ³ÉÔ±±äÁ¿¼Ç×¡£¬
-	 * ÔÚµã»÷itemsÊÇ½øĞĞÉèÖÃ
+	 * è®¾ç½®æè¿°æœ‰ä¸¤ç§çŠ¶æ€ åº”å½“æ˜¯ä¸€ä¸ªstringæ•°ç»„ï¼Œè¿™é‡Œåªéœ€è¦ä¼ å…¥æ•°ç»„ï¼Œç”±æˆå‘˜å˜é‡è®°ä½ï¼Œ
+	 * åœ¨ç‚¹å‡»itemsæ˜¯è¿›è¡Œè®¾ç½®
 	 * @param descs
 	 */
 	public void setDescrition(String[] descs,boolean checked){
@@ -72,14 +72,14 @@ public class SettingView extends RelativeLayout {
 	}
 	
 	/**
-	 * ÊÇ·ñ±»Ñ¡ÖĞ
+	 * æ˜¯å¦è¢«é€‰ä¸­
 	 * @return
 	 */
 	public boolean isChecked(){
 		return cb_setting.isChecked();
 	}
 	/**
-	 * ÉèÖÃÊÇ·ñ±»Ñ¡ÖĞ
+	 * è®¾ç½®æ˜¯å¦è¢«é€‰ä¸­
 	 * @param checked
 	 */
 	public void setChecked(boolean checked){

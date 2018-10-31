@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,76 +12,86 @@ import android.widget.Toast;
 import com.itheima.mobileguard.R;
 
 public abstract class BaseLostSetupActivity extends Activity {
-	/**
-	 * ÊÖÊÆÌ½²âÆ÷ 
-	 */
-	private GestureDetector gd;
-	protected SharedPreferences sp;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		sp = getSharedPreferences("config", MODE_PRIVATE);
-		gd = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener(){
-			public boolean onFling(MotionEvent e1, MotionEvent e2,
-					float velocityX, float velocityY) {
-				//Ë®Æ½·½ÏòÔÚÒ»¶¨Ê±¼äÄÚ±ä»¯ÁË ²ÅËãÕıÈ·µÄÊÖÊÆ
-				//e1  ´ú±íÊÖÖ¸µÚÒ»´Î´¥ÃşÆÁÄ»µÄÊÂ¼ş
-				//e2 ´ú±íÊÖÖ¸Àë¿ªÆÁÄ»Ò»Ë²¼äµÄÊÂ¼ş
-				//velocityX Ë®Æ½·½ÏòµÄËÙ¶È µ¥Î»  pix/s
-				//velocityY ÊúÖ±·½ÏòµÄËÙ¶È
-				if(Math.abs(velocityX)<200){//ËÙÂÊĞ¡ÓÚÁ½°Ù
-					Toast.makeText(BaseLostSetupActivity.this, "ÎŞĞ§µÄÊÖÊÆ,Ì«ÂıÁË", Toast.LENGTH_LONG).show();
-					return true;
-				}else if((e2.getRawX()-e1.getRawX())>200){//ÊÖÊÆÏòÓÒ ÆÁÄ»ÒªÏò×ó
-					showPrevious();
-					overridePendingTransition(R.anim.previous_in_translate, R.anim.previous_out_translate);
-					return true;
-				}else if((e1.getRawX()-e2.getRawX())>200){//ÊÖÊÆÏò×ó ÆÁÄ»ÏòÓÒ
-					showNext();
-					overridePendingTransition(R.anim.next_in_translate, R.anim.next_out_translate);
-					return true;//·µ»Øtrue ±íÊ¾ÊÂ¼ş´¦ÀíÍê±Ï
-				}
-				return super.onFling(e1, e2, velocityX, velocityY);
-			}
-		});
-	}
-	/**
-	 * 3.ÓÃÊÖÊÆÊ¶±ğÆ÷È¥Ê¶±ğÊÂ¼ş
-	 */
-		@Override
-		public boolean onTouchEvent(MotionEvent event) {
-			gd.onTouchEvent(event);//ÊÖÊÆÊ¶±ğÆ÷ ·ÖÎöÊÂ¼ş 
-			return super.onTouchEvent(event);
-		}
-	
-	/**
-	 * ·µ»ØÉÏÒ»¸öÉèÖÃ½çÃæ
-	 * @param v
-	 */
-	public void previous(View v){
-		showPrevious();
-		overridePendingTransition(R.anim.previous_in_translate, R.anim.previous_out_translate);
-	}
-	public abstract void showPrevious();
-	/**
-	 * µã»÷ÊÂ¼ş ½øÈëÏÂÒ»¸öÒ³Ãæ
-	 * @param view
-	 */
-	public void next(View view){
-		showNext();
-		overridePendingTransition(R.anim.next_in_translate, R.anim.next_out_translate);
-	}
-	/**
-	 * ÓÉ×ÓÀàÊµÏÖ¾ßÌåµ½ÄÄ¸öActivity
-	 */
-	public abstract void showNext();
-	/**
-	 * ¿ªÆôĞÂµÄActivity ²¢½áÊø×Ô¼º
-	 * @param clazz
-	 */
-	public void startActivityAndFinishSelf(Class<?> clazz){
-		Intent intent = new Intent(this,clazz);
-		startActivity(intent);
-		finish();
-	}
+
+    /**
+     * æ‰‹åŠ¿æ¢æµ‹å™¨
+     */
+    private GestureDetector gd;
+    protected SharedPreferences sp;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        gd = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            public boolean onFling(MotionEvent e1, MotionEvent e2,
+                                   float velocityX, float velocityY) {
+                //æ°´å¹³æ–¹å‘åœ¨ä¸€å®šæ—¶é—´å†…å˜åŒ–äº† æ‰ç®—æ­£ç¡®çš„æ‰‹åŠ¿
+                //e1  ä»£è¡¨æ‰‹æŒ‡ç¬¬ä¸€æ¬¡è§¦æ‘¸å±å¹•çš„äº‹ä»¶
+                //e2 ä»£è¡¨æ‰‹æŒ‡ç¦»å¼€å±å¹•ä¸€ç¬é—´çš„äº‹ä»¶
+                //velocityX æ°´å¹³æ–¹å‘çš„é€Ÿåº¦ å•ä½  pix/s
+                //velocityY ç«–ç›´æ–¹å‘çš„é€Ÿåº¦
+                if (Math.abs(velocityX) < 200) {//é€Ÿç‡å°äºä¸¤ç™¾
+                    Toast.makeText(BaseLostSetupActivity.this, "æ— æ•ˆçš„æ‰‹åŠ¿,å¤ªæ…¢äº†", Toast.LENGTH_LONG).show();
+                    return true;
+                } else if ((e2.getRawX() - e1.getRawX()) > 200) {//æ‰‹åŠ¿å‘å³ å±å¹•è¦å‘å·¦
+                    showPrevious();
+                    overridePendingTransition(R.anim.previous_in_translate, R.anim.previous_out_translate);
+                    return true;
+                } else if ((e1.getRawX() - e2.getRawX()) > 200) {//æ‰‹åŠ¿å‘å·¦ å±å¹•å‘å³
+                    showNext();
+                    overridePendingTransition(R.anim.next_in_translate, R.anim.next_out_translate);
+                    return true;//è¿”å›true è¡¨ç¤ºäº‹ä»¶å¤„ç†å®Œæ¯•
+                }
+                return super.onFling(e1, e2, velocityX, velocityY);
+            }
+        });
+    }
+
+    /**
+     * 3.ç”¨æ‰‹åŠ¿è¯†åˆ«å™¨å»è¯†åˆ«äº‹ä»¶
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        gd.onTouchEvent(event);//æ‰‹åŠ¿è¯†åˆ«å™¨ åˆ†æäº‹ä»¶
+        return super.onTouchEvent(event);
+    }
+
+    /**
+     * è¿”å›ä¸Šä¸€ä¸ªè®¾ç½®ç•Œé¢
+     *
+     * @param v
+     */
+    public void previous(View v) {
+        showPrevious();
+        overridePendingTransition(R.anim.previous_in_translate, R.anim.previous_out_translate);
+    }
+
+    public abstract void showPrevious();
+
+    /**
+     * ç‚¹å‡»äº‹ä»¶ è¿›å…¥ä¸‹ä¸€ä¸ªé¡µé¢
+     *
+     * @param view
+     */
+    public void next(View view) {
+        showNext();
+        overridePendingTransition(R.anim.next_in_translate, R.anim.next_out_translate);
+    }
+
+    /**
+     * ç”±å­ç±»å®ç°å…·ä½“åˆ°å“ªä¸ªActivity
+     */
+    public abstract void showNext();
+
+    /**
+     * å¼€å¯æ–°çš„Activity å¹¶ç»“æŸè‡ªå·±
+     *
+     * @param clazz
+     */
+    public void startActivityAndFinishSelf(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+        finish();
+    }
 }

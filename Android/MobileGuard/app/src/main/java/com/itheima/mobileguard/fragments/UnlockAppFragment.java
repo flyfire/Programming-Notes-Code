@@ -1,8 +1,5 @@
 package com.itheima.mobileguard.fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.ContentResolver;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,16 +21,19 @@ import com.itheima.mobileguard.db.dao.LockedAppDao;
 import com.itheima.mobileguard.domain.AppInfo;
 import com.itheima.mobileguard.engine.AppInfoParser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class UnlockAppFragment extends Fragment {
-	private ContentResolver resolver;//ÓÃÀ´Í¨Öª¿´ÃÅ¹· Êı¾İ·¢Éú±ä»¯
+	private ContentResolver resolver;//ç”¨æ¥é€šçŸ¥çœ‹é—¨ç‹— æ•°æ®å‘ç”Ÿå˜åŒ–
 	private Uri uri;
-	private ListView lv_lock_app;//ListView ÓÃÀ´´æ´¢Êı¾İ
-	private List<AppInfo> unLockApps;//´æ´¢ Ã»ÓĞ¼ÓËøAPP
-	private LockedAppDao dao;// ¼ÓÁËËøµÄapp £¬°üÃû´æÈëÊı¾İ¿â £¬ÓÃÕâ¸öÀà²éÑ¯ÊÇ·ñ¼ÓËø
+	private ListView lv_lock_app;//ListView ç”¨æ¥å­˜å‚¨æ•°æ®
+	private List<AppInfo> unLockApps;//å­˜å‚¨ æ²¡æœ‰åŠ é”APP
+	private LockedAppDao dao;// åŠ äº†é”çš„app ï¼ŒåŒ…åå­˜å…¥æ•°æ®åº“ ï¼Œç”¨è¿™ä¸ªç±»æŸ¥è¯¢æ˜¯å¦åŠ é”
 	private UnlockAppAdapter adapter;
-	private TextView tv_unlockedapp_count;//Ã»¼ÓËøµÄAPPÊı
-	private Animation a;//ÏòÓÒ»¬¶¯¶¯»­
+	private TextView tv_unlockedapp_count;//æ²¡åŠ é”çš„APPæ•°
+	private Animation a;//å‘å³æ»‘åŠ¨åŠ¨ç”»
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_unlock_app, null);
@@ -48,16 +48,16 @@ public class UnlockAppFragment extends Fragment {
 		return view;
 	}
 	/**
-	 * Ìî³äÊı¾İ·ÅÔÚonstartÖĞ,ÀûÓÃappInfoParser»ñÈ¡È«²¿µÄappInfo ÅĞ¶ÏÊÇ·ñ¼ÓËøÁË ¼ÓËøÁË¾Í²»ÏÔÊ¾£¬¼ÓËøµÄ³ÌĞò´æÈëdbÖĞ
+	 * å¡«å……æ•°æ®æ”¾åœ¨onstartä¸­,åˆ©ç”¨appInfoParserè·å–å…¨éƒ¨çš„appInfo åˆ¤æ–­æ˜¯å¦åŠ é”äº† åŠ é”äº†å°±ä¸æ˜¾ç¤ºï¼ŒåŠ é”çš„ç¨‹åºå­˜å…¥dbä¸­
 	 */
 	public void onStart() {
 		List<AppInfo> infos = AppInfoParser.getAllAppinfo(getActivity());
-		// ¹ıÂËµô¼ÓËø³ÌĞò
+		// è¿‡æ»¤æ‰åŠ é”ç¨‹åº
 		unLockApps.clear();
 		for (AppInfo info : infos) {
 			if (dao.isLocked(info.getPackageName())) {
 
-			} else {// Ö»È¡Ã»¼ÓËøµÄ
+			} else {// åªå–æ²¡åŠ é”çš„
 				unLockApps.add(info);
 			}
 		}
@@ -66,14 +66,14 @@ public class UnlockAppFragment extends Fragment {
 		} else {
 			adapter.notifyDataSetChanged();
 		}
-		// ¸üĞÂUI
+		// æ›´æ–°UI
 		lv_lock_app.setAdapter(adapter);
 		super.onStart();
 	}
 
 	private class UnlockAppAdapter extends BaseAdapter {
 		public int getCount() {
-			tv_unlockedapp_count.setText("Î´¼ÓËø³ÌĞò:" + unLockApps.size());
+			tv_unlockedapp_count.setText("æœªåŠ é”ç¨‹åº:" + unLockApps.size());
 			return unLockApps.size();
 		}
 		public Object getItem(int position) {
@@ -101,7 +101,7 @@ public class UnlockAppFragment extends Fragment {
 			}
 			holder.tv.setText(unLockApps.get(position).getAppName());
 			holder.iv.setImageDrawable(unLockApps.get(position).getAppIcon());
-			// ¸øËøÌí¼Óµã»÷¼àÌıÊÂ¼ş
+			// ç»™é”æ·»åŠ ç‚¹å‡»ç›‘å¬äº‹ä»¶
 			holder.iv_lock.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					TranslateAnimation ta = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1.0f,
@@ -119,9 +119,9 @@ public class UnlockAppFragment extends Fragment {
 								public void run() {
 									dao.add(unLockApps.get(position)
 											.getPackageName());
-									unLockApps.remove(position);// É¾³ıÌõÄ¿
+									unLockApps.remove(position);// åˆ é™¤æ¡ç›®
 									resolver.notifyChange(uri, null);
-									adapter.notifyDataSetChanged();// ¸üĞÂUI
+									adapter.notifyDataSetChanged();// æ›´æ–°UI
 								}
 							});
 						}
