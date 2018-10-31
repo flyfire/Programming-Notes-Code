@@ -1,15 +1,16 @@
 package com.itheima.mobileguard.ui;
 
-import java.io.IOException;
-
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.io.IOException;
+
 /** A basic Camera preview class */
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
+
     private static final String TAG = "CameraPreview";
 	private SurfaceHolder mHolder;
     private Camera mCamera;
@@ -23,12 +24,12 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         mHolder = getHolder();
         mHolder.addCallback(this);
         // deprecated setting, but required on Android versions prior to 3.0
-        //不自己维护缓冲区  等待空间推入
+        //涓嶈嚜宸辩淮鎶ょ紦鍐插尯  绛夊緟绌洪棿鎺ㄥ叆
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
     /**
-     * surfaceview的生命周期的回调
+     * surfaceview鐨勭敓鍛藉懆鏈熺殑鍥炶皟
      */
     public void surfaceCreated(SurfaceHolder holder) {
         // The Surface has been created, now tell the camera where to draw the preview.

@@ -1,15 +1,5 @@
 package com.itheima.mobileguard.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,71 +9,80 @@ import android.os.Environment;
 import android.os.SystemClock;
 import android.util.Xml;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class SmsUtils {
 	/**
-	 * ¶ÌĞÅ±¸·İµÄ»Øµ÷º¯Êı£¬µ±Ö´ĞĞ¶ÌĞÅ±¸·İÊ±µ÷ÓÃÆ÷ÆäÄÚ²¿·½·¨£¬
+	 * çŸ­ä¿¡å¤‡ä»½çš„å›è°ƒå‡½æ•°ï¼Œå½“æ‰§è¡ŒçŸ­ä¿¡å¤‡ä»½æ—¶è°ƒç”¨å™¨å…¶å†…éƒ¨æ–¹æ³•ï¼Œ
 	 * 
 	 * @author Administrator
 	 * 
 	 */
 	public interface SmsBackupCallBack {
 		/**
-		 * ¿ªÊ¼±¸·İÊ±µ÷ÓÃ Ìá¹©ĞèÒª±¸·İµÄ×ÜÌõÊı
+		 * å¼€å§‹å¤‡ä»½æ—¶è°ƒç”¨ æä¾›éœ€è¦å¤‡ä»½çš„æ€»æ¡æ•°
 		 * 
 		 * @param size
-		 *            ¶ÌĞÅµÄÌõÊı
+		 *            çŸ­ä¿¡çš„æ¡æ•°
 		 */
 		public void onStartBackup(int size);
 
 		/**
-		 * ±¸·İ¹ı³ÌÖĞµ÷ÓÃ Ìá¹©µ±Ç°½ø¶È
+		 * å¤‡ä»½è¿‡ç¨‹ä¸­è°ƒç”¨ æä¾›å½“å‰è¿›åº¦
 		 * 
 		 * @param process
-		 *            ÒÑ±¸·İµÄÌõÊı
+		 *            å·²å¤‡ä»½çš„æ¡æ•°
 		 */
 		public void onBackuping(int process);
 	}
 
 	/**
-	 * ¶ÌĞÅ±¸·İ¿ÉÄÜ±È½ÏºÄÊ±, ÄãÓ¦¸ÃÔÚ×ÓÏß³ÌÖĞµ÷ÓÃ ,ÄÚ²¿¶Ô¶ÌĞÅÄÚÈİ½øĞĞÁË¼ÓÃÜ£¬¿ÉÒÔ·ÅĞÄÊ¹ÓÃ
+	 * çŸ­ä¿¡å¤‡ä»½å¯èƒ½æ¯”è¾ƒè€—æ—¶, ä½ åº”è¯¥åœ¨å­çº¿ç¨‹ä¸­è°ƒç”¨ ,å†…éƒ¨å¯¹çŸ­ä¿¡å†…å®¹è¿›è¡Œäº†åŠ å¯†ï¼Œå¯ä»¥æ”¾å¿ƒä½¿ç”¨
 	 * 
 	 * @param context
-	 *            ÉÏÏÂÎÄ
+	 *            ä¸Šä¸‹æ–‡
 	 * @param callback
-	 *            ±¸·İ»Øµ÷
-	 * @return ³É¹¦Ôò·µ»Øtrue
+	 *            å¤‡ä»½å›è°ƒ
+	 * @return æˆåŠŸåˆ™è¿”å›true
 	 * @throws IllegalArgumentException
 	 * @throws IllegalStateException
 	 * @throws IOException
 	 */
 	public static boolean backupSms(Context context, SmsBackupCallBack callback)
 			throws IllegalArgumentException, IllegalStateException, IOException {
-		// ±¸·İÖ®Ç°ÏÈÅĞ¶Ïsd¿¨ÊÇ·ñ×¼±¸Íê±Ï£¬ºÍÅĞ¶Ïsd¿¨µÄ´óĞ¡
-		File sdCard = Environment.getExternalStorageDirectory();// sd¿¨µÄÂ·¾¶
+		// å¤‡ä»½ä¹‹å‰å…ˆåˆ¤æ–­sdå¡æ˜¯å¦å‡†å¤‡å®Œæ¯•ï¼Œå’Œåˆ¤æ–­sdå¡çš„å¤§å°
+		File sdCard = Environment.getExternalStorageDirectory();// sdå¡çš„è·¯å¾„
 		long usableSpace = sdCard.getFreeSpace();
-		// sd¿¨¿ÉÓÃ²¢ÇÒ¿Õ¼ä´óÓÚ1M ²Å¿É±¸·İ ·ñÕßÅÜ³öÒì³£
+		// sdå¡å¯ç”¨å¹¶ä¸”ç©ºé—´å¤§äº1M æ‰å¯å¤‡ä»½ å¦è€…è·‘å‡ºå¼‚å¸¸
 		if (Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)
 				&& usableSpace >= 1024l * 1024l) {
-			// ÀûÓÃÄÚÈİÌá¹©Õß»ñÈ¡¶ÌĞÅÄÚÈİ
+			// åˆ©ç”¨å†…å®¹æä¾›è€…è·å–çŸ­ä¿¡å†…å®¹
 			ContentResolver resolver = context.getContentResolver();
-			// ¶¨Òåuri
+			// å®šä¹‰uri
 			Uri uri = Uri.parse("content://sms/");
 			Cursor cursor = resolver.query(uri, new String[] { "address",
 					"body", "date", "type" }, null, null, null);
-			// »ñÈ¥¶ÌĞÅµÄÊıÁ¿
+			// è·å»çŸ­ä¿¡çš„æ•°é‡
 			int count = cursor.getCount();
 			callback.onStartBackup(count);
 
-			// ÀûÓÃxmlĞòÁĞ»¯Æ÷ °Ñ¶ÎĞË±¸·İµ½xmlÎÄ¼şÖĞÈ¥
+			// åˆ©ç”¨xmlåºåˆ—åŒ–å™¨ æŠŠæ®µå…´å¤‡ä»½åˆ°xmlæ–‡ä»¶ä¸­å»
 			XmlSerializer serializer = Xml.newSerializer();
 			FileOutputStream fos = new FileOutputStream(new File(sdCard,
 					"smsbackup.xml"));
 			serializer.setOutput(fos, "UTF-8");
 			serializer.startDocument("UTF-8", true);
 			serializer.startTag(null, "smss");
-			serializer.attribute(null, "size", String.valueOf(count));// Ìí¼ÓÊôĞÔ
-																		// ¶ÌĞÅµÄÊıÁ¿
+			serializer.attribute(null, "size", String.valueOf(count));// æ·»åŠ å±æ€§
+																		// çŸ­ä¿¡çš„æ•°é‡
 
 			int process = 0;
 			while (cursor.moveToNext()) {
@@ -93,7 +92,7 @@ public class SmsUtils {
 				serializer.text(cursor.getString(0));
 				serializer.endTag(null, "address");
 
-				// ¼ÓÃÜ¶ÌĞÅ
+				// åŠ å¯†çŸ­ä¿¡
 				serializer.startTag(null, "body");
 				try {
 					String cipherBody = Crypto.encrypt("zhantianyou12345",
@@ -101,7 +100,7 @@ public class SmsUtils {
 					serializer.text(cipherBody);
 				} catch (Exception e) {
 					e.printStackTrace();
-					serializer.text("¿Õ¶ÌĞÅ");
+					serializer.text("ç©ºçŸ­ä¿¡");
 				}
 				serializer.endTag(null, "body");
 
@@ -125,30 +124,30 @@ public class SmsUtils {
 			cursor.close();
 			return true;
 		} else {
-			throw new IllegalStateException("sd¿¨²»¿ÉÒÔ»òÕß¿Õ¼ä²»¹»");
+			throw new IllegalStateException("sdå¡ä¸å¯ä»¥æˆ–è€…ç©ºé—´ä¸å¤Ÿ");
 		}
 	}
 
 	/**
-	 * ¶ÌĞÅ±¸·İµÄ»Øµ÷º¯Êı£¬µ±Ö´ĞĞ¶ÌĞÅ±¸·İÊ±µ÷ÓÃÆ÷ÆäÄÚ²¿·½·¨£¬
+	 * çŸ­ä¿¡å¤‡ä»½çš„å›è°ƒå‡½æ•°ï¼Œå½“æ‰§è¡ŒçŸ­ä¿¡å¤‡ä»½æ—¶è°ƒç”¨å™¨å…¶å†…éƒ¨æ–¹æ³•ï¼Œ
 	 * 
 	 * @author Administrator
 	 * 
 	 */
 	public interface SmsRestoreCallBack {
 		/**
-		 * ¿ªÊ¼»¹Ô­Ê±µ÷ÓÃ Ìá¹©ĞèÒª»¹Ô­µÄ×ÜÌõÊı
+		 * å¼€å§‹è¿˜åŸæ—¶è°ƒç”¨ æä¾›éœ€è¦è¿˜åŸçš„æ€»æ¡æ•°
 		 * 
 		 * @param size
-		 *            ¶ÌĞÅµÄÌõÊı
+		 *            çŸ­ä¿¡çš„æ¡æ•°
 		 */
 		public void onStartRestore(int size);
 
 		/**
-		 * »¹Ô­¹ı³ÌÖĞµ÷ÓÃ Ìá¹©µ±Ç°½ø¶È
+		 * è¿˜åŸè¿‡ç¨‹ä¸­è°ƒç”¨ æä¾›å½“å‰è¿›åº¦
 		 * 
 		 * @param process
-		 *            ÒÑ»¹Ô­µÄÌõÊı
+		 *            å·²è¿˜åŸçš„æ¡æ•°
 		 */
 		public void onRestoreing(int process);
 	}
@@ -163,24 +162,24 @@ public class SmsUtils {
 	 */
 	public static boolean resotreSms(Context context,
 			SmsRestoreCallBack callback) throws XmlPullParserException, IOException,IllegalStateException{
-		// ÅĞ¶Ï ÊÇ·ñ±¸·İÎÄ¼ş´æÔÚ ¶ÁÈ¡sd¿¨µÄ ÎÄ¼ş
+		// åˆ¤æ–­ æ˜¯å¦å¤‡ä»½æ–‡ä»¶å­˜åœ¨ è¯»å–sdå¡çš„ æ–‡ä»¶
 			File smsFile = new File(Environment.getExternalStorageDirectory(),"smsbackup.xml");
 			if(smsFile.exists()){
-				// ½âÎöxmlÎÄ¼ş¡£
-				// 1. ´´½¨pull½âÎöÆ÷
+				// è§£æxmlæ–‡ä»¶ã€‚
+				// 1. åˆ›å»ºpullè§£æå™¨
 				XmlPullParser parser = Xml.newPullParser();
-				// 2.³õÊ¼»¯pull½âÎöÆ÷£¬ÉèÖÃ±àÂë inputstream
+				// 2.åˆå§‹åŒ–pullè§£æå™¨ï¼Œè®¾ç½®ç¼–ç  inputstream
 				FileInputStream fis =  new FileInputStream(smsFile);
 				parser.setInput(fis, "utf-8");
 				int eventType = parser.getEventType();
-				// 3.½âÎöxmlÎÄ¼ş while(ÎÄµµÄ©Î²£©
+				// 3.è§£æxmlæ–‡ä»¶ while(æ–‡æ¡£æœ«å°¾ï¼‰
 				// {
-				// ¶ÁÈ¡ÊôĞÔ size ×Ü¸öÊı¾İ. µ÷ÓÃ½Ó¿ÚµÄ·½·¨ beforeSmsRestore
-				// Ã¿¶ÁÈ¡µ½Ò»Ìõ¶ÌĞÅ ¾Í°ÑÕâ¸ö¶ÌĞÅ body£¨½âÃÜ£© address date type»ñÈ¡³öÀ´
-				// ÀûÓÃÄÚÈİÌá¹©Õß resolver.insert(Uri.parse("content://sms/"),contentValue);
-				// Ã¿»¹Ô­Ìõ count++ µ÷ÓÃonSmsRestore(count);
+				// è¯»å–å±æ€§ size æ€»ä¸ªæ•°æ®. è°ƒç”¨æ¥å£çš„æ–¹æ³• beforeSmsRestore
+				// æ¯è¯»å–åˆ°ä¸€æ¡çŸ­ä¿¡ å°±æŠŠè¿™ä¸ªçŸ­ä¿¡ bodyï¼ˆè§£å¯†ï¼‰ address date typeè·å–å‡ºæ¥
+				// åˆ©ç”¨å†…å®¹æä¾›è€… resolver.insert(Uri.parse("content://sms/"),contentValue);
+				// æ¯è¿˜åŸæ¡ count++ è°ƒç”¨onSmsRestore(count);
 				// }
-				//µÃµ½ÄÚÈİ½âÎöÆ÷
+				//å¾—åˆ°å†…å®¹è§£æå™¨
 				ContentResolver resolver = context.getContentResolver();
 				Uri uri = Uri.parse("content://sms/");
 				String address = null;
@@ -189,7 +188,7 @@ public class SmsUtils {
 				String type = null;
 				ContentValues values = null;
 				int count = 0;
-				while(eventType != XmlPullParser.END_DOCUMENT){//Ã»ÓĞ½âÎöµ½½áÎ²¾Í²»Í£Ö¹
+				while(eventType != XmlPullParser.END_DOCUMENT){//æ²¡æœ‰è§£æåˆ°ç»“å°¾å°±ä¸åœæ­¢
 					switch (eventType) {
 					case XmlPullParser.START_TAG:
 						if("smss".equals(parser.getName())){
@@ -213,7 +212,7 @@ public class SmsUtils {
 								 values = new ContentValues();
 								 values.put("address", address);
 								 
-								 if("¿Õ¶ÌĞÅ".equals(body)){
+								 if("ç©ºçŸ­ä¿¡".equals(body)){
 									 values.put("body", "");
 								 }else{
 									 try {
@@ -236,7 +235,7 @@ public class SmsUtils {
 				}
 				return true;
 			}else{
-				throw new IllegalStateException("ÎÄ¼şÃ»ÓĞÕÒµ½");
+				throw new IllegalStateException("æ–‡ä»¶æ²¡æœ‰æ‰¾åˆ°");
 			}
 	}
 	

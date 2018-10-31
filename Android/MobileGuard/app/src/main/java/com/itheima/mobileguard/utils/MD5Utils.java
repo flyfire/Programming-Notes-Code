@@ -2,13 +2,12 @@ package com.itheima.mobileguard.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MD5Utils {
 	/**
-	 * md5¼ÓÃÜ
+	 * md5åŠ å¯†
 	 * @param str
 	 * @return
 	 */
@@ -17,7 +16,7 @@ public class MD5Utils {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			
 			byte[]	 buf = md.digest(str.getBytes());
-			//±éÀú ¼ÓÃÜµÄÊı¾İ ½øĞĞ¼ÆËã
+			//éå† åŠ å¯†çš„æ•°æ® è¿›è¡Œè®¡ç®—
 			StringBuilder sb = new StringBuilder();
 			for(byte b:buf){
 				int temp =b & 0xFF;
@@ -30,13 +29,13 @@ public class MD5Utils {
 			System.out.println(sb.toString());
 			return sb.toString();
 		} catch (NoSuchAlgorithmException e) {
-			//²»»á·¢ËÍµÄÒì³£
+			//ä¸ä¼šå‘é€çš„å¼‚å¸¸
 			e.printStackTrace();
 		}
 		return null;
 	}
 	/**
-	 * »ñÈ¡ÎÄ¼şµÄmd5Öµ
+	 * è·å–æ–‡ä»¶çš„md5å€¼
 	 * @param path
 	 * @return
 	 */
@@ -48,9 +47,9 @@ public class MD5Utils {
 			byte[] buf = new byte[1024];
 			int len = 0;
 			while((len = fis.read(buf)) != -1){
-				digest.update(buf, 0, len);//¼ÓÃÜ
+				digest.update(buf, 0, len);//åŠ å¯†
 			}
-			byte[] result = digest.digest();//·µ»Ø
+			byte[] result = digest.digest();//è¿”å›
 			StringBuilder sb = new StringBuilder();
 			for(byte b : result){
 				int i = b & 0xff;

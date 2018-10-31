@@ -8,8 +8,8 @@ import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 
 /**
- * Ö»ÒªÊÖ»úµÄSIM±ä»¯ÁË ¾Í»áÖØÆô ÕâÊ±ÅĞ¶ÏÔ­ÓĞµÄsim¿¨µÄĞòÁĞºÅÊÇ·ñºÍ¿ª»úºóµÄsimÒ»Ñù£¬²»Ò»Ñù¾ÍËµÃ÷sim
- * ¿¨±ä¸üÁË £¬¾ÍÓ¦¸Ã·¢ËÍ¶ÌĞÅ¸øÓÃ»§ÉèÖÃµÄ°²È«ºÅÂë
+ * åªè¦æ‰‹æœºçš„SIMå˜åŒ–äº† å°±ä¼šé‡å¯ è¿™æ—¶åˆ¤æ–­åŸæœ‰çš„simå¡çš„åºåˆ—å·æ˜¯å¦å’Œå¼€æœºåçš„simä¸€æ ·ï¼Œä¸ä¸€æ ·å°±è¯´æ˜sim
+ * å¡å˜æ›´äº† ï¼Œå°±åº”è¯¥å‘é€çŸ­ä¿¡ç»™ç”¨æˆ·è®¾ç½®çš„å®‰å…¨å·ç 
  * @author Administrator
  *
  */
@@ -17,18 +17,18 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 	private SharedPreferences sp;
 	private TelephonyManager tm;
 	public void onReceive(Context context, Intent intent) {
-		//»ñÈ¡Æ«ºÃÉèÖÃ
+		//è·å–åå¥½è®¾ç½®
 			sp = context.getSharedPreferences("lostFindConfig", Context.MODE_PRIVATE);
 			tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-			//¿´ÓÃ»§ÊÇ·ñ¿ªÆôÁËÊÖ»ú·ÀµÁ
+			//çœ‹ç”¨æˆ·æ˜¯å¦å¼€å¯äº†æ‰‹æœºé˜²ç›—
 			boolean isOpen = sp.getBoolean("protecting", false);
 			if(isOpen){
-				//ËµÃ÷ÓÃ»§ÒÑ¾­¿ªÆôÁË·ÀµÁ 
-				//ÓÃ»§Ö®Ç°ÉèÖÃsim¿¨ĞòÁĞºÅ ºÍ ÏÖÔÚµÄĞòÁĞºÅ±È½Ï Èç¹û²»Ò»Ñù ¾Í·¢ËÍ¾¯¸æ
+				//è¯´æ˜ç”¨æˆ·å·²ç»å¼€å¯äº†é˜²ç›— 
+				//ç”¨æˆ·ä¹‹å‰è®¾ç½®simå¡åºåˆ—å· å’Œ ç°åœ¨çš„åºåˆ—å·æ¯”è¾ƒ å¦‚æœä¸ä¸€æ · å°±å‘é€è­¦å‘Š
 				
 				if(!sp.getString("sim", "").equals(tm.getSimSerialNumber()+"S")){
-					//·¢ËÍ¶ÌĞÅ
-					//»ñÈ¡Ö®Ç°ÉèÖÃµÄ°²È«ºÅÂë
+					//å‘é€çŸ­ä¿¡
+					//è·å–ä¹‹å‰è®¾ç½®çš„å®‰å…¨å·ç 
 					String number = sp.getString("safeContact", "");
 					SmsManager sm = SmsManager.getDefault();
 					sm.sendTextMessage(number, null, "SIM card is changed !!!", null, null);

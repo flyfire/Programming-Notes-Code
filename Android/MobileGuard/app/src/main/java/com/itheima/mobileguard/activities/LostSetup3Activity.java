@@ -26,7 +26,7 @@ public class LostSetup3Activity extends BaseLostSetupActivity {
 		public void showNext() {
 			String safeContact = et_setup3_contact.getText().toString();
 			if(TextUtils.isEmpty(safeContact)){
-				Toast.makeText(this, "ÇëÏÈÉèÖÃ°²È«ºÅÂë", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "è¯·å…ˆè®¾ç½®å®‰å…¨å·ç ", Toast.LENGTH_LONG).show();
 				return;
 			}
 			Editor editor = sp.edit();
@@ -36,7 +36,7 @@ public class LostSetup3Activity extends BaseLostSetupActivity {
 		}
 		
 		/**
-		 * °´Å¥µã»÷ Ñ¡ÔñÁªÏµÈË
+		 * æŒ‰é’®ç‚¹å‡» é€‰æ‹©è”ç³»äºº
 		 * @param v
 		 */
 		public void selectContact(View v){
@@ -44,7 +44,7 @@ public class LostSetup3Activity extends BaseLostSetupActivity {
 			startActivityForResult(intent, 0);
 		}
 		/**
-		 * µ±ÁªÏµÈË½çÃæ·µ»Ø½á¹û
+		 * å½“è”ç³»äººç•Œé¢è¿”å›ç»“æœ
 		 */
 		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -53,7 +53,7 @@ public class LostSetup3Activity extends BaseLostSetupActivity {
 		}
 
 		/**
-		 * ·µ»ØÉÏÒ»¸öActivity
+		 * è¿”å›ä¸Šä¸€ä¸ªActivity
 		 */
 		@Override
 		public void showPrevious() {
