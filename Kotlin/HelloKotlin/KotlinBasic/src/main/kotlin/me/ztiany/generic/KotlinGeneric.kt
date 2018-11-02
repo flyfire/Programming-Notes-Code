@@ -196,11 +196,12 @@ private class MyCollection2<out T> {
  * 6 泛型函数
  *      不仅类可以有类型参数。函数也可以有。类型参数要放在函数名称之前：
  */
-fun <T> singletonList(item: T): List<T> {
+
+private fun <T> singletonList(item: T): List<T> {
     return Collections.singletonList(item)
 }
 
-fun <T> T.basicToString(): String {  // 扩展函数
+private fun <E> E.basicToString(): String {  // 扩展函数
     println(this.toString())
     return "abc"
 }
@@ -240,17 +241,17 @@ private fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T> where T :
 
 8  Kotlin集合中的泛型
 
-    public interface Iterable<out T>
+public interface Iterable<out T>
 
-    public interface ListIterator<out T> : Iterator<T>
-    public interface Collection<out E> : Iterable<E>
-    public interface MutableIterable<out T> : Iterable<T>
+public interface ListIterator<out T> : Iterator<T>
+public interface Collection<out E> : Iterable<E>
+public interface MutableIterable<out T> : Iterable<T>
 
-    public interface List<out E> : Collection<E>
-    public interface Set<out E> : Collection<E>
-    public interface MutableCollection<E> : Collection<E>, MutableIterable<E>
+public interface List<out E> : Collection<E>
+public interface Set<out E> : Collection<E>
+public interface MutableCollection<E> : Collection<E>, MutableIterable<E>
 
-    public interface MutableList<E> : List<E>, MutableCollection<E>
-    public interface MutableSet<E> : Set<E>, MutableCollection<E>
+public interface MutableList<E> : List<E>, MutableCollection<E>
+public interface MutableSet<E> : Set<E>, MutableCollection<E>
 
  */

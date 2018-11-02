@@ -1,12 +1,23 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 group = "cn.kotliner.kotlin"
 version = "1.0-SNAPSHOT"
 
-apply {
-    plugin("java")
-    plugin("kotlin")
+plugins {
+    kotlin("jvm")
 }
 
-configure<JavaPluginConvention>{
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+
+configure<JavaPluginConvention> {
     setSourceCompatibility(1.5)
 }
 
@@ -15,7 +26,6 @@ repositories {
 }
 
 dependencies {
-    add("compile", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.30")
-    //testCompile("junit", "junit", "4.12")
-    //compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${rootProject.kotlin_version}"
+    compile(kotlin("stdlib-jdk8"))
 }
+

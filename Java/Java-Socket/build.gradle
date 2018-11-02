@@ -2,7 +2,7 @@ group 'com.ztany'
 version '1.0'
 
 buildscript {
-    ext.kotlin_version = '1.2.0'
+    ext.kotlin_version = '1.2.31'
 
     repositories {
         mavenCentral()
