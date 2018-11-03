@@ -6,7 +6,7 @@ class ServerInfo {
     private int port;
     private String address;
 
-    public ServerInfo(int port, String ip, String sn) {
+    ServerInfo(int port, String ip, String sn) {
         this.port = port;
         this.address = ip;
         this.sn = sn;

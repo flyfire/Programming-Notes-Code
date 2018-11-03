@@ -12,6 +12,8 @@ import immoc.socket.l5.constants.TCPConstants;
 import immoc.socket.l5.constants.UDPConstants;
 
 /**
+ * UDP（认为是服务端），监听网络上的UDP包，向按照协议发送包的另一端提供 TCP 连接信息。
+ *
  * @author Ztiany
  * Email ztiany3@gmail.com
  * Date 2018/11/1 21:17
@@ -96,7 +98,7 @@ class UDPProvider {
 
                         /*发送包*/
                         mDatagramSocket.send(new DatagramPacket(mBuffer, len, receivePack.getAddress(), responsePort));
-                        exit();
+                        //exit();
                         System.out.println("UDPProvider response to:" + clientIp + "\tport:" + responsePort + "\tdataLen:" + len);
                     } else {
                         System.out.println("UDPProvider receive cmd nonsupport; cmd:" + cmd + "\tport:" + clientPort);

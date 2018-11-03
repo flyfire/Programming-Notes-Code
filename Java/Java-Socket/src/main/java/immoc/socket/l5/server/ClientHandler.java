@@ -13,6 +13,8 @@ import java.util.concurrent.Executors;
 import immoc.socket.l5.clink.CloseUtils;
 
 /**
+ * 用于处理客户端连接，读取客户端信息，向客户端发送消息。
+ *
  * @author Ztiany
  * Email ztiany3@gmail.com
  * Date 2018/11/1 23:15
@@ -69,24 +71,26 @@ class ClientHandler {
         @Override
         public void run() {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(mInputStream));
+            System.out.println("TCPServer start to read");
+            String line;
             /*
              *一个死循环不断地读取
-             * 是try cache包裹while，还是 while包裹try cache？当发生异常后不需要再继续循环时，就使用 try cache 包裹while，
+             * 是try cache包裹while，还是 while包裹try cache？当发生异常后不需要再继续循环时，就使用 try cache 包裹while，，否则  while 中使用 try cache 包裹执行代码。
              * 这里发生异常就表示连接断开了或者读取超时了，没有继续循环的必要。
              */
             try {
 
-                do {
+                while (!mDone) {
                     //客户端拿到数据
-                    String line = bufferedReader.readLine();
-                    if (line == null) {//读取超时、socket异常时，str可能为null
+                    line = bufferedReader.readLine();
+                    if (line == null) {//读取超时、socket异常、EOF时，str可能为null
                         System.out.println("客户端已无法读取数据！");
                         // 退出当前客户端
                         ClientHandler.this.exitBySelf();
                         break;
                     }
-                    System.out.println(line);
-                } while (!mDone);
+                    System.out.println("收到客户端信息： " + line);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -105,7 +109,7 @@ class ClientHandler {
             mDone = true;
         }
 
-    }
+    }//ClientReadHandler end
 
     /*负责向客户端写数据，内部实现为一个 SingleThreadExecutor*/
     private class ClientWriteHandler {
@@ -143,14 +147,15 @@ class ClientHandler {
                     return;
                 }
                 try {
-                    mPrintStream.print(mMessage);
+                    mPrintStream.println(mMessage);
+                    mPrintStream.flush();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
-        }
+        }//SendRunnable end
 
-    }
+    }//ClientWriteHandler end
 
 }
