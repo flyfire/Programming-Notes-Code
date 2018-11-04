@@ -1,4 +1,4 @@
-package immoc.socket.l5.server;
+package immoc.socket.l6.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

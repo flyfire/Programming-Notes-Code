@@ -1,4 +1,4 @@
-package immoc.socket.l5.server;
+package immoc.socket.l6.server;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,10 +6,10 @@ import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 
-import immoc.socket.l5.clink.ByteUtils;
-import immoc.socket.l5.clink.CloseUtils;
-import immoc.socket.l5.constants.TCPConstants;
-import immoc.socket.l5.constants.UDPConstants;
+import immoc.socket.l6.clink.ByteUtils;
+import immoc.socket.l6.clink.CloseUtils;
+import immoc.socket.l6.foo.TCPConstants;
+import immoc.socket.l6.foo.UDPConstants;
 
 /**
  * UDP（认为是服务端），监听网络上的UDP包，向按照协议发送包的另一端提供 TCP 连接信息。
@@ -98,7 +98,7 @@ class UDPProvider {
 
                         /*发送包*/
                         mDatagramSocket.send(new DatagramPacket(mBuffer, len, receivePack.getAddress(), responsePort));
-                        //exit();
+                        exit();
                         System.out.println("UDPProvider response to:" + clientIp + "\tport:" + responsePort + "\tdataLen:" + len);
                     } else {
                         System.out.println("UDPProvider receive cmd nonsupport; cmd:" + cmd + "\tport:" + clientPort);
