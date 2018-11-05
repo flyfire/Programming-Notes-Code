@@ -1,36 +1,36 @@
 package com.itheima.mobileguard.receivers;
 
-import com.itheima.mobileguard.services.UpdataWidgetService;
-
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 
+import com.itheima.mobileguard.services.UpdataWidgetService;
+
 /**
- * ÌØÊâµÄ¹ã²¥½ÓÊÕÖĞ
- * @author Administrator
+ * ç‰¹æ®Šçš„å¹¿æ’­æ¥æ”¶ä¸­
  *
+ * @author Administrator
  */
 public class MyWidgetReceiver extends AppWidgetProvider {
-	
-	/**
-	 * µÈµ½¿ò¼ÜÀ´¸üĞÂÊı¾İºÜÂı ÇĞ²»¿É¿¿ ËùÒÔ¶¨ÒåÒ»¸ö·şÎñÀ´¶¨Ê±¸üĞÂ
-	 *Õâ¸ö·½·¨ÊÇµÚÒ»´Î´´½¨widgetÊÇµ÷ÓÃµÄ
-	 */
-	public void onEnabled(Context context) {
-		//¿ªÆô·şÎñ¶¨ÆÚ¸üĞÂ
-		Intent intent  = new Intent(context,UpdataWidgetService.class);
-		context.startService(intent);
-		super.onEnabled(context);
-	}
-	
-	/**
-	 * µ±×îºóÒ»¸öwidget±»ÒÆ³ıÊ±µ÷ÓÃ 
-	 * ×îºó¹Ø±Õ·şÎñ
-	 */
-	public void onDisabled(Context context) {
-		Intent intent  = new Intent(context,UpdataWidgetService.class);
-		context.stopService(intent);
-		super.onDisabled(context);
-	}
+
+    /**
+     * ç­‰åˆ°æ¡†æ¶æ¥æ›´æ–°æ•°æ®å¾ˆæ…¢ åˆ‡ä¸å¯é  æ‰€ä»¥å®šä¹‰ä¸€ä¸ªæœåŠ¡æ¥å®šæ—¶æ›´æ–°
+     * è¿™ä¸ªæ–¹æ³•æ˜¯ç¬¬ä¸€æ¬¡åˆ›å»ºwidgetæ˜¯è°ƒç”¨çš„
+     */
+    public void onEnabled(Context context) {
+        //å¼€å¯æœåŠ¡å®šæœŸæ›´æ–°
+        Intent intent = new Intent(context, UpdataWidgetService.class);
+        context.startService(intent);
+        super.onEnabled(context);
+    }
+
+    /**
+     * å½“æœ€åä¸€ä¸ªwidgetè¢«ç§»é™¤æ—¶è°ƒç”¨
+     * æœ€åå…³é—­æœåŠ¡
+     */
+    public void onDisabled(Context context) {
+        Intent intent = new Intent(context, UpdataWidgetService.class);
+        context.stopService(intent);
+        super.onDisabled(context);
+    }
 }

@@ -1,7 +1,5 @@
 package com.itheima.mobileguard.receivers;
 
-import java.util.List;
-
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.BroadcastReceiver;
@@ -9,21 +7,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class KillProcessReceiver extends BroadcastReceiver {
 
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		ActivityManager am = (ActivityManager)context. getSystemService(Context.ACTIVITY_SERVICE);
-		List<RunningAppProcessInfo> list = am.getRunningAppProcesses();
-		int count = list.size();
-		for (RunningAppProcessInfo info : list) {
-			am.killBackgroundProcesses(info.processName);
-		}
-		if(count == am.getRunningAppProcesses().size()){
-			Toast.makeText(context, "ÒÑ¾­ÊÇ×î¼Ñ×´Ì¬", Toast.LENGTH_LONG).show();
-		}else{
-			Toast.makeText(context, "ÇåÀíÍê±Ï", Toast.LENGTH_LONG).show();
-		}
-	}
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<RunningAppProcessInfo> list = am.getRunningAppProcesses();
+        int count = list.size();
+        for (RunningAppProcessInfo info : list) {
+            am.killBackgroundProcesses(info.processName);
+        }
+        if (count == am.getRunningAppProcesses().size()) {
+            Toast.makeText(context, "å·²ç»æ˜¯æœ€ä½³çŠ¶æ€", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "æ¸…ç†å®Œæ¯•", Toast.LENGTH_LONG).show();
+        }
+    }
 
 }

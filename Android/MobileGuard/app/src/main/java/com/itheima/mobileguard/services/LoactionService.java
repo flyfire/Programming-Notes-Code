@@ -10,93 +10,95 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.telephony.SmsManager;
-import android.telephony.SmsMessage;
 
 /**
- * »ñÈ¡Î»ÖÃÇÖ·¸µ½ÁËÓÃ»§µÄÒşË½ ĞèÒªÌí¼ÓÈ¨ÏŞ
- * @author Administrator
+ * è·å–ä½ç½®ä¾µçŠ¯åˆ°äº†ç”¨æˆ·çš„éšç§ éœ€è¦æ·»åŠ æƒé™
  *
+ * @author Administrator
  */
 public class LoactionService extends Service {
-	private LocationManager lm;
-	private SharedPreferences sp ;
-	private MyLocationListener listener;
-	@Override
-	public void onCreate() {
-		// »ñÈ¡ÏµÍ³Î»ÖÃ·şÎñ
-		lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-		sp = getSharedPreferences("config", MODE_PRIVATE);
-		// criteria ±ê×¼ true Ê¹ÓÃ¿ÉÓÃµÄÎ»ÖÃÌá¹©Õß
-		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_FINE);// ×î¾«È·µÄÎ»ÖÃ
-		criteria.setCostAllowed(true);// ÔÊĞíÏµÍ³¿ªÏú
-		String name = lm.getBestProvider(criteria, true);
-		System.out.println("×îºÃµÄÎ»ÖÃ·şÎñ:" + name);
-		// ¶¨Î»·şÎñÃû³Æ Ê±¼äºÍ¼ä¾à²ÉÓÃÏµÍ³Ä¬ÈÏ¼´¿É Î»ÖÃ¼àÌıÆ÷
-		listener = new MyLocationListener();
-		lm.requestLocationUpdates(name, 0, 0, listener);
-		super.onCreate();
-	}
 
-	
-	/**
-	 * Î»ÖÃ¼àÌıÆ÷
-	 * 
-	 * @author Administrator
-	 * 
-	 */
-	private class MyLocationListener implements LocationListener {
-		/**
-		 * Î»ÖÃ¸Ä±ä ±»µ÷ÓÃ
-		 */
-		public void onLocationChanged(Location location) {
-				float accuracy = location.getAccuracy();//»ñÈ¡¾«È·¶È
-				double latitute = location.getLatitude();//»ñÈ¡Î¬¶È
-				double longitude = location.getLongitude();//»ñÈ¡¾­¶È
-				float speed = location.getSpeed();//»ñÈ¡ËÙÂÊ
-				double altitude = location.getAltitude();//»ñÈ¡º£°Î
-//				×éÖ¯¶ÌĞÅ
-				StringBuilder  sb = new StringBuilder();
-				System.out.println(sb.toString());
-				sb.append("accuracy:"+accuracy+"\nlatitute:"+latitute
-						+"\nlongitude"+longitude+"\nspeed:"+speed);
-				//·¢ËÍ¶ÌĞÅ¸ø°²È«ºÅÂë
-				SmsManager sm = SmsManager.getDefault();
-				sm.sendTextMessage(sp.getString("safeContact", ""), null, sb.toString(), null, null);
-				//¶ÌĞÅÖ»·¢ËÍÒ»´Î ²»È»»á·¢±¬
-				//½áÊø×Ô¼º
-				stopSelf();
-		}
-		/**
-		 * Called when the provider status changes. This method is called when a
-		 * provider is unable to fetch a location or if the provider has
-		 * recently become available after a period of unavailability.
-		 * µ±providerµÄ×´Ì¬¸Ä±ä£¬Õâ¸ö·½·¨±»µôÓÃ£¬
-		 */
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-	
-		}
+    private LocationManager lm;
+    private SharedPreferences sp;
+    private MyLocationListener listener;
 
-		public void onProviderEnabled(String provider) {
+    @Override
+    public void onCreate() {
+        // è·å–ç³»ç»Ÿä½ç½®æœåŠ¡
+        lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        // criteria æ ‡å‡† true ä½¿ç”¨å¯ç”¨çš„ä½ç½®æä¾›è€…
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);// æœ€ç²¾ç¡®çš„ä½ç½®
+        criteria.setCostAllowed(true);// å…è®¸ç³»ç»Ÿå¼€é”€
+        String name = lm.getBestProvider(criteria, true);
+        System.out.println("æœ€å¥½çš„ä½ç½®æœåŠ¡:" + name);
+        // å®šä½æœåŠ¡åç§° æ—¶é—´å’Œé—´è·é‡‡ç”¨ç³»ç»Ÿé»˜è®¤å³å¯ ä½ç½®ç›‘å¬å™¨
+        listener = new MyLocationListener();
+        lm.requestLocationUpdates(name, 0, 0, listener);
+        super.onCreate();
+    }
 
-		}
 
-		public void onProviderDisabled(String provider) {
+    /**
+     * ä½ç½®ç›‘å¬å™¨
+     *
+     * @author Administrator
+     */
+    private class MyLocationListener implements LocationListener {
+        /**
+         * ä½ç½®æ”¹å˜ è¢«è°ƒç”¨
+         */
+        public void onLocationChanged(Location location) {
+            float accuracy = location.getAccuracy();//è·å–ç²¾ç¡®åº¦
+            double latitute = location.getLatitude();//è·å–ç»´åº¦
+            double longitude = location.getLongitude();//è·å–ç»åº¦
+            float speed = location.getSpeed();//è·å–é€Ÿç‡
+            double altitude = location.getAltitude();//è·å–æµ·æ‹”
+            //ç»„ç»‡çŸ­ä¿¡
+            StringBuilder sb = new StringBuilder();
+            System.out.println(sb.toString());
+            sb.append("accuracy:" + accuracy + "\nlatitute:" + latitute
+                    + "\nlongitude" + longitude + "\nspeed:" + speed);
+            //å‘é€çŸ­ä¿¡ç»™å®‰å…¨å·ç 
+            SmsManager sm = SmsManager.getDefault();
+            sm.sendTextMessage(sp.getString("safeContact", ""), null, sb.toString(), null, null);
+            //çŸ­ä¿¡åªå‘é€ä¸€æ¬¡ ä¸ç„¶ä¼šå‘çˆ†
+            //ç»“æŸè‡ªå·±
+            stopSelf();
+        }
 
-		}
-	}
-	/**
-	 * ÊÍ·Å×ÊÔ´
-	 */
-	@Override
-	public void onDestroy() {
-		lm.removeUpdates(listener);
-		listener = null;
-		super.onDestroy();
-	}
-	
-	public IBinder onBind(Intent intent) {
-		return null;
-	}
+        /**
+         * Called when the provider status changes. This method is called when a
+         * provider is unable to fetch a location or if the provider has
+         * recently become available after a period of unavailability.
+         * å½“providerçš„çŠ¶æ€æ”¹å˜ï¼Œè¿™ä¸ªæ–¹æ³•è¢«æ‰ç”¨ï¼Œ
+         */
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        public void onProviderDisabled(String provider) {
+
+        }
+    }
+
+    /**
+     * é‡Šæ”¾èµ„æº
+     */
+    @Override
+    public void onDestroy() {
+        lm.removeUpdates(listener);
+        listener = null;
+        super.onDestroy();
+    }
+
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 
 }

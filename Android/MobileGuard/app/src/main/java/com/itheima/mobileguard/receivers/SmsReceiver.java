@@ -23,13 +23,14 @@ public class SmsReceiver extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
 
+
         // 判断用户是否开启了防盗功能
         // 获取偏好设置
         sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
         // 看用户是否开启了手机防盗
         boolean isOpen = sp.getBoolean("protecting", false);
-        if (isOpen) {
 
+        if (isOpen) {
             cn = new ComponentName(context, MyDeviceAdmin.class);
             // 获取短信内容
             /**
@@ -39,6 +40,7 @@ public class SmsReceiver extends BroadcastReceiver {
              */
             DevicePolicyManager dpm = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
             Object[] objs = (Object[]) intent.getExtras().get("pdus");
+
             // 遍历短信数组
             for (Object obj : objs) {
                 SmsMessage sm = SmsMessage.createFromPdu((byte[]) obj);
@@ -80,5 +82,6 @@ public class SmsReceiver extends BroadcastReceiver {
                 }
             }
         }
+
     }
 }
