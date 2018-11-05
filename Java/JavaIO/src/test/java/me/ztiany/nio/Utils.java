@@ -8,9 +8,9 @@ import java.io.IOException;
  * Email ztiany3@gmail.com
  * Date 18.6.23 18:46
  */
-public class Utils {
+class Utils {
 
-    public static void close(Closeable fileInputStream) {
+    static void close(Closeable fileInputStream) {
         if (fileInputStream != null) {
             try {
                 fileInputStream.close();
@@ -19,4 +19,5 @@ public class Utils {
             }
         }
     }
+
 }

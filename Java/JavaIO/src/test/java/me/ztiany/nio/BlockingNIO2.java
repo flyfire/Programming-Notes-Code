@@ -27,7 +27,7 @@ public class BlockingNIO2 {
             buf.clear();
         }
 
-        sChannel.shutdownOutput();//关闭输出，Server的read就会认为Client没有更多数据了，Server的read将返回1
+        sChannel.shutdownOutput();//关闭输出，Server的read就会认为Client没有更多数据了，Server的read将返回 -1
 
         //接收服务端的反馈
         int len;
