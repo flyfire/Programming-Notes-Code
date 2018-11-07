@@ -98,7 +98,6 @@ class UDPProvider {
 
                         /*发送包*/
                         mDatagramSocket.send(new DatagramPacket(mBuffer, len, receivePack.getAddress(), responsePort));
-                        exit();
                         System.out.println("UDPProvider response to:" + clientIp + "\tport:" + responsePort + "\tdataLen:" + len);
                     } else {
                         System.out.println("UDPProvider receive cmd nonsupport; cmd:" + cmd + "\tport:" + clientPort);

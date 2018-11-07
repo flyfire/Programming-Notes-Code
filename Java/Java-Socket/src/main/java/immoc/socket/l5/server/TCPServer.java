@@ -9,7 +9,7 @@ import java.util.List;
 import immoc.socket.l5.clink.CloseUtils;
 
 /**
- * TCP 服务器，用于获取客户端连接，创建 ClientHandler 来处理客户端连接。
+ * TCP 服务器，用于获取客户端连接，创建 ClientHandler 来处理客户端连接。（没有处理线程安全）
  *
  * @author Ztiany
  * Email ztiany3@gmail.com

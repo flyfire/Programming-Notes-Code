@@ -1,4 +1,4 @@
-package immoc.socket.l5.server;
+package immoc.socket.l7.nio.server;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,10 +6,10 @@ import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 
-import immoc.socket.l5.clink.ByteUtils;
-import immoc.socket.l5.clink.CloseUtils;
-import immoc.socket.l5.constants.TCPConstants;
-import immoc.socket.l5.constants.UDPConstants;
+import immoc.socket.l7.nio.clink.ByteUtils;
+import immoc.socket.l7.nio.clink.CloseUtils;
+import immoc.socket.l7.nio.foo.TCPConstants;
+import immoc.socket.l7.nio.foo.UDPConstants;
 
 /**
  * UDP（认为是服务端），监听网络上的UDP包，向按照协议发送包的另一端提供 TCP 连接信息。
