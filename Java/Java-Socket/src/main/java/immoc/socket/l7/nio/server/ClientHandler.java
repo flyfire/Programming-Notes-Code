@@ -144,8 +144,9 @@ class ClientHandler {
         }
 
         private void exit() {
-            CloseUtils.close(mSelector);
             mDone = true;
+            mSelector.wakeup();//唤醒一个，让其退出
+            CloseUtils.close(mSelector);
         }
 
     }//ClientReadHandler end

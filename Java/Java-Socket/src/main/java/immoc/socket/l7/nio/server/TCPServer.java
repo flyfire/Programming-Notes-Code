@@ -172,6 +172,9 @@ class TCPServer implements ClientHandler.ClientHandlerCallback {
 
         private void exit() {
             mDone = true;
+            // 使尚未返回的第一个选择操作立即返回。
+            //如果另一个线程目前正阻塞在 select() 或 select(long) 方法的调用中，则该调用将立即返回。
+            mSelector.wakeup();
         }
 
     }
