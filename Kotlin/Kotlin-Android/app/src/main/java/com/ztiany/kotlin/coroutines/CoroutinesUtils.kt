@@ -24,4 +24,4 @@ fun <T> launchUI(block: suspend CoroutineScope.() -> T, uiBlock: suspend (T) -> 
 
 
 fun launchUI(start: CoroutineStart = CoroutineStart.DEFAULT, parent: Job? = null, block: suspend CoroutineScope.() -> Unit) =
-        launch(UI, start, parent, block)
+        launch(UI, true, block)

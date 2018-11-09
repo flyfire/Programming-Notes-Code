@@ -12,7 +12,7 @@ import com.ztiany.kotlin.coroutines.CoroutinesActivity
 import com.ztiany.kotlin.extension.ExtensionSampleActivity
 import org.jetbrains.anko.button
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.verticalLayout
 
 
