@@ -117,14 +117,6 @@ class TCPServer implements ClientHandler.ClientHandlerCallback {
                     client = mServerSocket.accept();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    if (!mDone) {
-                        continue;
-                    } else {
-                        break;
-                    }
-                }
-
-                if (client == null) {
                     continue;
                 }
 
@@ -132,7 +124,9 @@ class TCPServer implements ClientHandler.ClientHandlerCallback {
                     ClientHandler clientHandler = new ClientHandler(client, TCPServer.this);
                     // 读取数据并打印
                     clientHandler.readToPrint();
-                    mClientHandlers.add(clientHandler);
+                    synchronized ( TCPServer.this) {
+                        mClientHandlers.add(clientHandler);
+                    }
                 } catch (IOException e) {
                     System.out.println("客户端连接异常：" + e.getMessage());
                 }
