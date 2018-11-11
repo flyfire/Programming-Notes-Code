@@ -1,4 +1,4 @@
-package immoc.socket.l7.nio.server;
+package immoc.socket.l7_nio.server;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import immoc.socket.l7.nio.clink.CloseUtils;
+import immoc.socket.l7_nio.clink.CloseUtils;
 
 
 /**

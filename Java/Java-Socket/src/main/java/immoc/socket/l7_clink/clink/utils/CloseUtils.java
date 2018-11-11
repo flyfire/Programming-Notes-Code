@@ -1,4 +1,4 @@
-package immoc.socket.l7.nio.clink;
+package immoc.socket.l7_clink.clink.utils;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -11,9 +11,7 @@ public class CloseUtils {
         }
         for (Closeable closeable : closeables) {
             try {
-                if (closeable != null) {
-                    closeable.close();
-                }
+                closeable.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

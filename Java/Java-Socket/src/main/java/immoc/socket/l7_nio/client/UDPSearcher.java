@@ -1,4 +1,4 @@
-package immoc.socket.l7.nio.client;
+package immoc.socket.l7_nio.client;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import immoc.socket.l7.nio.clink.ByteUtils;
-import immoc.socket.l7.nio.clink.CloseUtils;
-import immoc.socket.l7.nio.foo.UDPConstants;
+import immoc.socket.l7_nio.clink.ByteUtils;
+import immoc.socket.l7_nio.clink.CloseUtils;
+import immoc.socket.l7_nio.foo.UDPConstants;
 
 
 /**

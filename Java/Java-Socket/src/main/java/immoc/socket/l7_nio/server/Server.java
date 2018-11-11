@@ -1,4 +1,4 @@
-package immoc.socket.l7.nio.server;
+package immoc.socket.l7_nio.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

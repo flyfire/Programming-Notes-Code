@@ -1,4 +1,4 @@
-package immoc.socket.l7.nio.client;
+package immoc.socket.l7_nio.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-import immoc.socket.l7.nio.clink.CloseUtils;
+import immoc.socket.l7_nio.clink.CloseUtils;
 
 
 /**

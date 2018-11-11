@@ -1,4 +1,4 @@
-package immoc.socket.l7.nio.foo;
+package immoc.socket.l7_nio.foo;
 
 public class UDPConstants {
 
