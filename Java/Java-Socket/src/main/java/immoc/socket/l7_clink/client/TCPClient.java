@@ -1,4 +1,4 @@
-package immoc.socket.l6.client;
+package immoc.socket.l7_clink.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-import immoc.socket.l6.clink.CloseUtils;
+import immoc.socket.l7_nio.clink.CloseUtils;
 
 
 /**
@@ -20,37 +20,16 @@ import immoc.socket.l6.clink.CloseUtils;
  * Email ztiany3@gmail.com
  * Date 2018/11/1 23:58
  */
-class TCPClientForTest {
+class TCPClient {
 
-    private final ReadHandler mReadHandler;
-    private final Socket mSocket;
-    private final PrintStream mPrintStream;
-
-    private TCPClientForTest(Socket socket, ReadHandler readHandler) throws IOException {
-        mReadHandler = readHandler;
-        mSocket = socket;
-        mPrintStream = new PrintStream(mSocket.getOutputStream());
-    }
-
-    void exit() {
-        mReadHandler.exit();
-        CloseUtils.close(mPrintStream);
-        CloseUtils.close(mSocket);
-    }
-
-    void send(String message) {
-        System.out.println("发送---> " + message);
-        mPrintStream.println(message);
-    }
-
-    static TCPClientForTest startWith(ServerInfo info) {
-        Socket socket = new Socket();
+    static void linkWith(ServerInfo info) throws IOException {
+        Socket socket = null;
         ReadHandler readHandler = null;
-
         try {
+            // 超时时间
+            socket = new Socket();
             socket.setSoTimeout(3000/*读取超时*/);
             socket.connect(new InetSocketAddress(Inet4Address.getByName(info.getAddress()), info.getPort()), 3000/*连接超时*/);
-
             System.out.println("已发起服务器连接，并进入后续流程～");
             System.out.println("客户端信息：" + socket.getLocalAddress() + " P:" + socket.getLocalPort());
             System.out.println("服务器信息：" + socket.getInetAddress() + " P:" + socket.getPort());
@@ -58,16 +37,30 @@ class TCPClientForTest {
             //启动读协程
             readHandler = new ReadHandler(socket);
             readHandler.start();
-            return new TCPClientForTest(socket, readHandler);
 
-        } catch (Exception e) {
-            CloseUtils.close(socket);
+            //阻塞式写
+            write(socket);
+
+        } finally {
+            //关闭
             if (readHandler != null) {
                 readHandler.exit();
             }
+            CloseUtils.close(socket);
         }
+    }
 
-        return null;
+
+    private static void write(Socket client) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try (PrintStream printStream = new PrintStream(client.getOutputStream())) {
+            String line;
+            while (!(line = bufferedReader.readLine()).equalsIgnoreCase("00bye00")) {
+                System.out.println("TCPClient send: " + line);
+                printStream.println(line);
+                printStream.flush();
+            }
+        }
     }
 
     static class ReadHandler extends Thread {

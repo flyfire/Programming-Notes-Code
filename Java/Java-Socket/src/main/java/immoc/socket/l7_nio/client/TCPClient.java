@@ -43,10 +43,10 @@ class TCPClient {
 
         } finally {
             //关闭
-            CloseUtils.close(socket);
             if (readHandler != null) {
                 readHandler.exit();
             }
+            CloseUtils.close(socket);
         }
     }
 
@@ -84,7 +84,6 @@ class TCPClient {
                     //如果是连接超时，则继续读取。
                     try {
                         line = bufferedReader.readLine();
-                        System.out.println(123);
                     } catch (SocketTimeoutException ignore) {
                         continue;
                     }

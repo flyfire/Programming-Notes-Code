@@ -1,11 +1,13 @@
-package immoc.socket.l7_nio.server;
+package immoc.socket.l7_clink.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import immoc.socket.l7_nio.foo.TCPConstants;
-import immoc.socket.l7_nio.foo.UDPConstants;
+import immoc.socket.l7_clink.clink.core.IoContext;
+import immoc.socket.l7_clink.clink.impl.IoSelectorProvider;
+import immoc.socket.l7_clink.foo.TCPConstants;
+import immoc.socket.l7_clink.foo.UDPConstants;
 
 
 /**
@@ -15,7 +17,12 @@ import immoc.socket.l7_nio.foo.UDPConstants;
  */
 class Server {
 
-    public static void main(String... args) {
+    public static void main(String... args) throws IOException {
+        //启动IoContext
+        IoContext.setup()
+                .ioProvider(new IoSelectorProvider())
+                .start();
+
         //启动 tcp 服务器
         TCPServer tcpServer = new TCPServer(TCPConstants.PORT_SERVER);
         boolean success = tcpServer.start();
@@ -44,6 +51,8 @@ class Server {
 
         UDPProvider.stop();
         tcpServer.stop();
+
+        IoContext.close();
     }
 
 }

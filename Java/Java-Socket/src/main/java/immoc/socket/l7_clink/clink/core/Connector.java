@@ -69,7 +69,7 @@ public class Connector implements Closeable, SocketChannelAdapter.OnChannelStatu
         }
     };
 
-    private void onReceiveNewMessage(String newMessage) {
+    protected void onReceiveNewMessage(String newMessage) {
         System.out.println("Connector onReceiveNewMessage: " + newMessage);
     }
 
