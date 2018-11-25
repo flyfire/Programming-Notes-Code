@@ -5,8 +5,8 @@ import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import clink.box.StringReceivePacket;
 import clink.core.IoArgs;
+import clink.core.Packet;
 import clink.core.ReceiveDispatcher;
 import clink.core.ReceivePacket;
 import clink.core.Receiver;
@@ -25,7 +25,7 @@ public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsE
     private ReceivePacketCallback mReceivePacketCallback;
 
     private IoArgs mIoArgs = new IoArgs();
-    private ReceivePacket<?> mPacketTemp;
+    private ReceivePacket<?, ?> mPacketTemp;
     private WritableByteChannel mWritableByteChannelTemp;
 
     private int mTotal;
@@ -60,9 +60,9 @@ public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsE
         //是不是是一条新的消息
         if (mPacketTemp == null) {
             int length = args.readLength();
-            System.out.println("new packet length = " + length);
+            byte type = length >= 200 ? Packet.TYPE_STREAM_FILE : Packet.TYPE_MEMORY_STRING;
             //根据包长度需求，创建一个StringReceivePacket
-            mPacketTemp = new StringReceivePacket(length);
+            mPacketTemp = mReceivePacketCallback.onArrivedNewPacket(type, length);
             //使用 packet 的流创建一个 Channel
             mWritableByteChannelTemp = Channels.newChannel(mPacketTemp.open());
             //初始化容器和位置标识

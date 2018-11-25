@@ -1,11 +1,13 @@
 package server;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import clink.core.IoContext;
 import clink.impl.IoSelectorProvider;
+import foo.Foo;
 import foo.TCPConstants;
 import foo.UDPConstants;
 
@@ -22,9 +24,11 @@ class Server {
         IoContext.setup()
                 .ioProvider(new IoSelectorProvider())
                 .start();
+        //文件缓存路径
+        File cachePath = Foo.getCacheDir("server");
 
         //启动 tcp 服务器
-        TCPServer tcpServer = new TCPServer(TCPConstants.PORT_SERVER);
+        TCPServer tcpServer = new TCPServer(TCPConstants.PORT_SERVER, cachePath);
         boolean success = tcpServer.start();
         if (!success) {
             System.out.println("start TCPServer failed");

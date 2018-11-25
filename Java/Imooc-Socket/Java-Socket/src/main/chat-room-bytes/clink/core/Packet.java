@@ -12,12 +12,12 @@ import java.io.Closeable;
 public abstract class Packet implements Closeable {
 
     /**
-     * 包所代表的数据类型
+     * 包的长度
      */
     protected int length;
 
     /**
-     * 包的长度
+     * 包所代表的数据类型
      */
     protected byte type;
 

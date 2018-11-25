@@ -1,9 +1,5 @@
 package clink.box;
 
-import java.io.ByteArrayInputStream;
-
-import clink.core.SendPacket;
-
 /**
  * 字符串包
  *
@@ -11,18 +7,20 @@ import clink.core.SendPacket;
  * Email ztiany3@gmail.com
  * Date 2018/11/18 16:50
  */
-public class StringSendPacket extends SendPacket<ByteArrayInputStream> {
+public class StringSendPacket extends BytesSendPacket {
 
-    private final byte[] bytes;
-
+    /**
+     * 字符串发送时就是Byte 数组，所以直接得到 Byte 数组，并按照Byte的发送方式发送即可
+     *
+     * @param send 字符串
+     */
     public StringSendPacket(String send) {
-        this.bytes = send.getBytes();
-        this.length = bytes.length;
+        super(send.getBytes());
     }
 
     @Override
-    protected ByteArrayInputStream createStream() {
-        return new ByteArrayInputStream(bytes);
+    public byte getType() {
+        return TYPE_MEMORY_STRING;
     }
 
 }

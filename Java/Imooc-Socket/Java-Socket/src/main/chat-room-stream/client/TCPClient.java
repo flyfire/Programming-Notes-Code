@@ -1,12 +1,16 @@
 package client;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
 import clink.core.Connector;
+import clink.core.Packet;
+import clink.core.ReceivePacket;
 import clink.utils.CloseUtils;
+import foo.Foo;
 
 
 /**
@@ -18,15 +22,18 @@ import clink.utils.CloseUtils;
  */
 class TCPClient extends Connector {
 
-    public TCPClient(SocketChannel socketChannel) throws IOException {
+    private final File mCachePath;
+
+    private TCPClient(SocketChannel socketChannel, File cachePath) throws IOException {
         setup(socketChannel);
+        mCachePath = cachePath;
     }
 
     public void exit() {
         CloseUtils.close(this);
     }
 
-    static TCPClient linkWith(ServerInfo info) {
+    static TCPClient linkWith(ServerInfo info, File cachePath) {
         SocketChannel socketChannel = null;
         try {
             socketChannel = SocketChannel.open();
@@ -35,12 +42,26 @@ class TCPClient extends Connector {
             System.out.println("客户端信息：" + socketChannel.getLocalAddress());
             System.out.println("服务器信息：" + socketChannel.getRemoteAddress());
 
-            return new TCPClient(socketChannel);
+            return new TCPClient(socketChannel, cachePath);
         } catch (IOException e) {
             System.out.println("连接异常");
             //关闭
             CloseUtils.close(socketChannel);
             return null;
+        }
+    }
+
+    @Override
+    protected File createNewReceiveFile() {
+        return Foo.createRandomTemp(mCachePath);
+    }
+
+    @Override
+    protected void onReceiveNewPacket(ReceivePacket packet) {
+        super.onReceiveNewPacket(packet);
+        if (packet.getType() == Packet.TYPE_MEMORY_STRING) {
+            String string = (String) packet.getEntity();
+            System.out.println(key.toString() + ":" + string);
         }
     }
 

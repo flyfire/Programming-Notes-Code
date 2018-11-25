@@ -9,7 +9,7 @@ import java.io.InputStream;
  * Email ztiany3@gmail.com
  * Date 2018/11/18 17:18
  */
-public abstract class SendPacket<T extends InputStream> extends Packet<T> {
+public abstract class SendPacket<Stream extends InputStream> extends Packet<Stream> {
 
     private boolean isCanceled = false;
 

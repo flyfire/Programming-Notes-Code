@@ -111,7 +111,7 @@ public class AsyncSendDispatcher implements SendDispatcher, IoArgs.IoArgsEventPr
     @Override
     public IoArgs provideIoArgs() {
         IoArgs ioArgs = mIoArgs;
-
+        //用 mSendingReadableByteChannel 是否为 null 判断是否为新的包
         if (mSendingReadableByteChannel == null) {//新的包开始写，写头部
             mSendingReadableByteChannel = Channels.newChannel(mSendingPacket.open());
             ioArgs.limit(4);

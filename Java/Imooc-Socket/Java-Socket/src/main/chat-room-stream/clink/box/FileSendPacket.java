@@ -17,7 +17,12 @@ public class FileSendPacket extends SendPacket<FileInputStream> {
 
     public FileSendPacket(File file) {
         mFile = file;
-        this.length = mFile.length();
+        this.mLength = mFile.length();
+    }
+
+    @Override
+    public byte getType() {
+        return TYPE_STREAM_FILE;
     }
 
     @Override

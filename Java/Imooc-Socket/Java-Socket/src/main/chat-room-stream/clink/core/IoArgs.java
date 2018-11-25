@@ -17,8 +17,8 @@ import java.nio.channels.WritableByteChannel;
 @SuppressWarnings("Duplicates")
 public class IoArgs {
 
-    private int limit = 5;
-    private byte[] byteBuffer = new byte[5];
+    private int limit = 256;
+    private byte[] byteBuffer = new byte[256];
     private ByteBuffer buffer = ByteBuffer.wrap(byteBuffer);
 
     /**
