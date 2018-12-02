@@ -22,6 +22,27 @@ public class IoArgs {
     private ByteBuffer buffer = ByteBuffer.wrap(byteBuffer);
 
     /**
+     * 从bytes数组进行消费
+     */
+    public int readFrom(byte[] bytes, int offset, int count) {
+        int size = Math.min(count, buffer.remaining());
+        if (size <= 0) {
+            return 0;
+        }
+        buffer.put(bytes, offset, size);
+        return size;
+    }
+
+    /**
+     * 写入数据到bytes中
+     */
+    public int writeTo(byte[] bytes, int offset) {
+        int size = Math.min(bytes.length - offset, buffer.remaining());
+        buffer.get(bytes, offset, size);
+        return size;
+    }
+
+    /**
      * 从SocketChannel读取数据
      */
     public int readFrom(SocketChannel socketChannel) throws IOException {
@@ -61,7 +82,7 @@ public class IoArgs {
      * 设置本次读取数据的大小
      */
     public void limit(int receiveSize) {
-        limit = receiveSize;
+        limit = Math.min(receiveSize, buffer.capacity());
     }
 
     /**
@@ -83,7 +104,6 @@ public class IoArgs {
      * 从 readableByteChannel 中读取数据
      */
     public int readFrom(ReadableByteChannel readableByteChannel) throws IOException {
-        startWriting();
         int bytesProduced = 0;
         while (buffer.hasRemaining()) {
             int writeLength = readableByteChannel.read(buffer);
@@ -92,14 +112,7 @@ public class IoArgs {
             }
             bytesProduced += writeLength;
         }
-        finishWriting();
         return bytesProduced;
-    }
-
-    public void writeLength(int length) {
-        startWriting();
-        buffer.putInt(length);
-        finishWriting();
     }
 
     public int readLength() {
@@ -118,6 +131,33 @@ public class IoArgs {
         buffer.flip();
     }
 
+    public boolean remained() {
+        return buffer.remaining() > 0;
+    }
+
+    /**
+     * 填充数据
+     *
+     * @param size 想要填充数据的长度
+     * @return 真实填充数据的长度
+     */
+    public int fillEmpty(int size) {
+        int fillSize = Math.min(size, buffer.remaining());
+        //直接修改position
+        buffer.position(buffer.position() + fillSize);
+        return fillSize;
+    }
+
+    /**
+     * 填充空数据
+     */
+    public int setEmpty(int size) {
+        int fillSize = Math.min(size, buffer.remaining());
+        //直接修改position
+        buffer.position(buffer.position() + fillSize);
+        return fillSize;
+    }
+
     /**
      * IoArgs 提供者、处理者；数据的生产或消费者。定义为这种形式，用于异步处理IO。
      */
@@ -133,7 +173,7 @@ public class IoArgs {
          * @param ioArgs IoArgs
          * @param e      异常信息
          */
-        void consumeFailed(IoArgs ioArgs, Exception e);
+        void onConsumeFailed(IoArgs ioArgs, Exception e);
 
 
         /**

@@ -23,6 +23,9 @@ public class ByteTest {
         System.out.println(Integer.toBinaryString(i >> 8));
         System.out.println(Integer.toBinaryString(i >> 8));
         System.out.println(Integer.toBinaryString(i >> 8));
+        int c = 128;
+        byte a = (byte) c;
+        System.out.println(a);
     }
 
 }

@@ -14,7 +14,7 @@ public class StringReceivePacket extends AbsByteArrayReceivePacket<String> {
     /**
      * @param bufferLength 存储这个字符串需要的字节长度
      */
-    public StringReceivePacket(int bufferLength) {
+    public StringReceivePacket(long bufferLength) {
         super(bufferLength);
     }
 

@@ -17,4 +17,8 @@ public abstract class SendPacket<Stream extends InputStream> extends Packet<Stre
         return isCanceled;
     }
 
+    public void cancel() {
+        isCanceled = true;
+    }
+
 }

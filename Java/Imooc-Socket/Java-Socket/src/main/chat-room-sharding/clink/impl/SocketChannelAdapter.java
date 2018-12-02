@@ -95,11 +95,13 @@ public class SocketChannelAdapter implements Sender, Receiver, Cloneable {
             IoArgs ioArgs = listener.provideIoArgs();
             //具体的读取操作
             try {
-                if (ioArgs.readFrom(mChannel) > 0) {
+                if (ioArgs == null) {//包是可以取消的，当取消一个包后，则提供的 ioArgs 为null。
+                    listener.onConsumeFailed(null, new IOException("ProvideIoArgs is null."));
+                } else if (ioArgs.readFrom(mChannel) > 0) {
                     // 读取完成回调
                     listener.onConsumeCompleted(ioArgs);
                 } else {//Selector 选择后却又读不到数据，说明连接出问题了
-                    listener.consumeFailed(ioArgs, new IOException("Cannot read any data!"));
+                    listener.onConsumeFailed(ioArgs, new IOException("Cannot read any data!"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -121,11 +123,13 @@ public class SocketChannelAdapter implements Sender, Receiver, Cloneable {
             IoArgs ioArgs = listener.provideIoArgs();
 
             try {
-                if (ioArgs.writeTo(mChannel) > 0) {//具体的写操作
+                if (ioArgs == null) {
+                    mSendIoEventListener.onConsumeFailed(null, new IOException("ProvideIoArgs is null."));
+                } else if (ioArgs.writeTo(mChannel) > 0) {//具体的写操作
                     //此次写完回调回去，继续下一步操作
                     mSendIoEventListener.onConsumeCompleted(ioArgs);
                 } else {//Selector 选择后却又写不出数据，说明连接出问题了
-                    mSendIoEventListener.consumeFailed(ioArgs, new IOException("Cannot write any data!"));
+                    mSendIoEventListener.onConsumeFailed(ioArgs, new IOException("Cannot write any data!"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();

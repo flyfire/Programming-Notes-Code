@@ -1,12 +1,9 @@
 package clink.impl.async;
 
 import java.io.IOException;
-import java.nio.channels.Channels;
-import java.nio.channels.WritableByteChannel;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import clink.core.IoArgs;
-import clink.core.Packet;
 import clink.core.ReceiveDispatcher;
 import clink.core.ReceivePacket;
 import clink.core.Receiver;
@@ -17,19 +14,13 @@ import clink.utils.CloseUtils;
  * Email ztiany3@gmail.com
  * Date 2018/11/18 17:00
  */
-public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsEventProcessor {
+public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsEventProcessor, AsyncPacketWriter.PacketProvider {
 
     private AtomicBoolean mIsClosed = new AtomicBoolean(false);
 
     private Receiver mReceiver;
     private ReceivePacketCallback mReceivePacketCallback;
-
-    private IoArgs mIoArgs = new IoArgs();
-    private ReceivePacket<?, ?> mPacketTemp;
-    private WritableByteChannel mWritableByteChannelTemp;
-
-    private int mTotal;
-    private long mPosition;
+    private AsyncPacketWriter mAsyncPacketWriter = new AsyncPacketWriter(this);
 
     public AsyncReceiveDispatcher(Receiver receiver, ReceivePacketCallback receivePacketCallback) {
         mReceiver = receiver;
@@ -55,77 +46,32 @@ public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsE
         }
     }
 
-    /*解析包*/
-    private void assemblePacket(IoArgs args) {
-        //是不是是一条新的消息
-        if (mPacketTemp == null) {
-            int length = args.readLength();
-            byte type = length >= 200 ? Packet.TYPE_STREAM_FILE : Packet.TYPE_MEMORY_STRING;
-            //根据包长度需求，创建一个StringReceivePacket
-            mPacketTemp = mReceivePacketCallback.onArrivedNewPacket(type, length);
-            //使用 packet 的流创建一个 Channel
-            mWritableByteChannelTemp = Channels.newChannel(mPacketTemp.open());
-            //初始化容器和位置标识
-            mTotal = length;
-            mPosition = 0;
-        }
-
-        try {
-            //写入到我们的 mWritableByteChannel 中
-            int readCount = args.writeTo(mWritableByteChannelTemp);
-            mPosition += readCount;
-            // 检查是否已完成一份Packet接收
-            if (mPosition == mTotal) {
-                completePacket(true);
-                mPacketTemp = null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
-     * 完成数据接收操作
+     * 网络接收就绪，此时可以读取数据，需要返回一个容器用于容纳数据
      *
-     * @param isSuccess 是否成功
+     * @return 用以容纳数据的IoArgs
      */
-    private void completePacket(boolean isSuccess) {
-        ReceivePacket receivePacket = mPacketTemp;
-        CloseUtils.close(mPacketTemp);
-        mPacketTemp = null;
-
-        CloseUtils.close(mWritableByteChannelTemp);
-        mWritableByteChannelTemp = null;
-
-        if (receivePacket != null) {
-            mReceivePacketCallback.onReceivePacketCompleted(receivePacket);
-        }
-    }
-
     @Override
     public IoArgs provideIoArgs() {
-        IoArgs args = mIoArgs;
-        int receiveSize;
-        if (mPacketTemp == null) {//说明是一个新的消息的读取，先获取长度
-            receiveSize = 4;//按照约定，用4个字节表示长度
-        } else {//说明还是读取之前没有读完的消息，则接收的长度应该是，总长度-以读取的长度，同时还要考虑 args 的容量
-            receiveSize = (int) Math.min(mTotal - mPosition, args.capacity());
-        }
-        //设置本次接收数据的长度
-        args.limit(receiveSize);
-        return args;
+        return mAsyncPacketWriter.takeIoArgs();
     }
 
     @Override
-    public void consumeFailed(IoArgs ioArgs, Exception e) {
+    public void onConsumeFailed(IoArgs ioArgs, Exception e) {
         e.printStackTrace();
     }
 
+    /**
+     * 数据接收成功
+     *
+     * @param args IoArgs
+     */
     @Override
     public void onConsumeCompleted(IoArgs args) {
-        //完成了单次（非阻塞）接收，则解析包
-        assemblePacket(args);
-        //然后继续接收下一个数据包
+        do {
+            mAsyncPacketWriter.consumeIoArgs(args);
+        } while (args.remained());
+        //再次注册
         registerReceive();
     }
 
@@ -136,8 +82,23 @@ public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsE
     @Override
     public void close() throws IOException {
         if (mIsClosed.compareAndSet(false, true)) {
-            completePacket(false);
+            mAsyncPacketWriter.close();
         }
     }
+
+    /**
+     * 构建Packet操作，根据类型、长度构建一份用于接收数据的Packet
+     */
+    @Override
+    public ReceivePacket takePacket(byte type, long length, byte[] headerInfo) {
+        return mReceivePacketCallback.onArrivedNewPacket(type, length);
+    }
+
+    @Override
+    public void completedPacket(ReceivePacket packet, boolean isSucceed) {
+        CloseUtils.close(packet);
+        mReceivePacketCallback.onReceivePacketCompleted(packet);
+    }
+
 
 }

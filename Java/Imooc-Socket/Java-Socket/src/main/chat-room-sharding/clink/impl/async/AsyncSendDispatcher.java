@@ -1,8 +1,6 @@
 package clink.impl.async;
 
 import java.io.IOException;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -18,21 +16,17 @@ import clink.utils.CloseUtils;
  * Email ztiany3@gmail.com
  * Date 2018/11/18 17:35
  */
-public class AsyncSendDispatcher implements SendDispatcher, IoArgs.IoArgsEventProcessor {
-
-    private Sender mSender;
+public class AsyncSendDispatcher implements SendDispatcher, IoArgs.IoArgsEventProcessor, AsyncPacketReader.PacketProvider {
 
     private AtomicBoolean mIsSending = new AtomicBoolean(false);
     private AtomicBoolean mIsClosed = new AtomicBoolean(false);
+
     private Queue<SendPacket> mSendPacketQueue = new ConcurrentLinkedQueue<>();
+    private final Object mQueueLock = new Object();
 
-    private SendPacket<?> mSendingPacket;
-    private ReadableByteChannel mSendingReadableByteChannel;
+    private AsyncPacketReader mAsyncPacketReader = new AsyncPacketReader(this);
 
-    private long mTotal;
-    private int mPosition;
-
-    private IoArgs mIoArgs = new IoArgs();
+    private Sender mSender;
 
     public AsyncSendDispatcher(Sender sender) {
         mSender = sender;
@@ -42,64 +36,18 @@ public class AsyncSendDispatcher implements SendDispatcher, IoArgs.IoArgsEventPr
     @Override
     public void send(SendPacket packet) {
         //加入到队列中
-        mSendPacketQueue.offer(packet);
-        if (mIsSending.compareAndSet(false, true)) {
-            sendNextMessage();
+        synchronized (mQueueLock) {
+            mSendPacketQueue.offer(packet);
+            //让AsyncPacketReader来请求一个包，如果返回true，则表示有数据需要发送
+            if (mAsyncPacketReader.requestTakePacket()) {
+                if (mIsSending.compareAndSet(false, true)) {
+                    requestSend();//请求发送
+                }
+            }
         }
     }
 
-    private SendPacket takePacket() {
-        SendPacket sendPacket = mSendPacketQueue.poll();
-        //已经取消的包就不发送了
-        if (sendPacket != null && sendPacket.isCanceled()) {
-            return takePacket();
-        }
-        return sendPacket;
-    }
-
-    /*选取需要发送的下一个数据包*/
-    private void sendNextMessage() {
-        SendPacket sendingPacket = mSendingPacket;
-        if (sendingPacket != null) {
-            CloseUtils.close(sendingPacket);
-        }
-
-        SendPacket packet = mSendingPacket = takePacket();
-
-        //队列为空，停止发送
-        if (packet == null) {
-            mIsSending.set(false);
-            return;
-        }
-
-        mTotal = packet.getLength();
-        mPosition = 0;
-        //开始发送
-        sendCurrentMessage();
-    }
-
-    private void closeAndNotify() {
-        CloseUtils.close(this);
-    }
-
-    @Override
-    public void cancel(SendPacket packet) {
-    }
-
-    @Override
-    public void close() throws IOException {
-        if (mIsClosed.compareAndSet(false, true)) {
-            mIsSending.set(false);
-            completePacket(false);
-        }
-    }
-
-    private void sendCurrentMessage() {
-        if (mPosition >= mTotal) {//写完了
-            completePacket(mPosition == mTotal);
-            sendNextMessage();
-            return;
-        }
+    private void requestSend() {
         try {
             mSender.postSendAsync();
         } catch (IOException e) {
@@ -109,37 +57,69 @@ public class AsyncSendDispatcher implements SendDispatcher, IoArgs.IoArgsEventPr
     }
 
     @Override
-    public IoArgs provideIoArgs() {
-        IoArgs ioArgs = mIoArgs;
-        //用 mSendingReadableByteChannel 是否为 null 判断是否为新的包
-        if (mSendingReadableByteChannel == null) {//新的包开始写，写头部
-            mSendingReadableByteChannel = Channels.newChannel(mSendingPacket.open());
-            ioArgs.limit(4);
-            ioArgs.writeLength((int) mSendingPacket.getLength());
-        } else {
-            //开始写数据
-            try {
-                mIoArgs.limit((int) Math.min(mTotal - mPosition, mIoArgs.capacity()));
-                //从 Channel 读取数据到 ioArgs 中
-                int readCount = mIoArgs.readFrom(mSendingReadableByteChannel);
-                mPosition += readCount;
-            } catch (IOException e) {
-                e.printStackTrace();
+    public SendPacket takePacket() {
+        SendPacket sendPacket;
+        synchronized (mQueueLock) {
+            sendPacket = mSendPacketQueue.poll();
+            if (sendPacket == null) {
+                mIsSending.set(false);
                 return null;
             }
         }
-        return ioArgs;
+
+        //已经取消的包就不发送了
+        if (sendPacket.isCanceled()) {
+            return takePacket();
+        }
+
+        return sendPacket;
+    }
+
+
+    private void closeAndNotify() {
+        CloseUtils.close(this);
     }
 
     @Override
-    public void consumeFailed(IoArgs ioArgs, Exception e) {
-        e.printStackTrace();
+    public void cancel(SendPacket packet) {
+        //完美取消
+        boolean removed = mSendPacketQueue.remove(packet);
+        if (removed) {
+            packet.cancel();
+            return;
+        }
+        //可能该包已经在发送了，调用包的发送者取消。
+        mAsyncPacketReader.cancel(packet);
+    }
+
+    @Override
+    public void close() throws IOException {
+        if (mIsClosed.compareAndSet(false, true)) {
+            mIsSending.set(false);
+            mAsyncPacketReader.close();
+        }
+    }
+
+    @Override
+    public IoArgs provideIoArgs() {
+        return mAsyncPacketReader.fillData();
+    }
+
+    @Override
+    public void onConsumeFailed(IoArgs ioArgs, Exception e) {
+        if (ioArgs == null) {
+            e.printStackTrace();
+        } else {
+            //todo
+        }
     }
 
     @Override
     public void onConsumeCompleted(IoArgs args) {
-        /*写完了一个IoArgs，再继续写*/
-        sendCurrentMessage();
+        /*写完了一个IoArgs，再继续写，重新注册*/
+        if (mAsyncPacketReader.requestTakePacket()) {
+            requestSend();
+        }
     }
 
     /**
@@ -147,20 +127,10 @@ public class AsyncSendDispatcher implements SendDispatcher, IoArgs.IoArgsEventPr
      *
      * @param isSucceed 是否成功
      */
-    private void completePacket(boolean isSucceed) {
-        SendPacket packet = this.mSendingPacket;
-        if (packet == null) {
-            return;
-        }
-
-        CloseUtils.close(packet);
-        CloseUtils.close(mSendingReadableByteChannel);
-
-        mSendingPacket = null;
-        mSendingReadableByteChannel = null;
-        mTotal = 0;
-        mPosition = 0;
+    @Override
+    public void completedPacket(SendPacket sendPacket, boolean isSucceed) {
+        System.out.println("AsyncSendDispatcher.completedPacket");
+        CloseUtils.close(sendPacket);
     }
-
 
 }

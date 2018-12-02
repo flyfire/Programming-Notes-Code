@@ -34,7 +34,7 @@ public interface ReceiveDispatcher extends Closeable {
         /**
          * 根据类型和长度创建第一的 Packet
          */
-        ReceivePacket<?, ?> onArrivedNewPacket(byte type, int length);
+        ReceivePacket<?, ?> onArrivedNewPacket(byte type, long length);
 
     }
 

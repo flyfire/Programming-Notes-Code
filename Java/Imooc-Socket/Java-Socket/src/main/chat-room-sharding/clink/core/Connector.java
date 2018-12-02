@@ -78,7 +78,7 @@ public abstract class Connector implements Closeable, SocketChannelAdapter.OnCha
         }
 
         @Override
-        public ReceivePacket<?, ?> onArrivedNewPacket(byte type, int length) {
+        public ReceivePacket<?, ?> onArrivedNewPacket(byte type, long length) {
             switch (type) {
                 case Packet.TYPE_MEMORY_BYTES:
                     return new BytesReceivePacket(length);
