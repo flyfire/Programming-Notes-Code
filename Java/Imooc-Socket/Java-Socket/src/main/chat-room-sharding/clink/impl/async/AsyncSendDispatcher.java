@@ -129,7 +129,6 @@ public class AsyncSendDispatcher implements SendDispatcher, IoArgs.IoArgsEventPr
      */
     @Override
     public void completedPacket(SendPacket sendPacket, boolean isSucceed) {
-        System.out.println("AsyncSendDispatcher.completedPacket");
         CloseUtils.close(sendPacket);
     }
 

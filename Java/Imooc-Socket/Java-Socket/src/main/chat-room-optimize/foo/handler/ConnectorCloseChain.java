@@ -1,4 +1,4 @@
-package server.handler;
+package foo.handler;
 
 import clink.core.Connector;
 

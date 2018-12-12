@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import clink.utils.ByteUtils;
 import clink.utils.CloseUtils;
-import foo.UDPConstants;
+import foo.constants.UDPConstants;
 
 
 /**

@@ -21,4 +21,9 @@ public interface Sender extends Closeable {
      */
     void setSendListener(IoArgs.IoArgsEventProcessor ioArgsEventProcessor);
 
+    /**
+     * 获取最后一次发送数据的时间
+     */
+    long getLastWriteTime();
+
 }

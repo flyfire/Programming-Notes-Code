@@ -1,4 +1,4 @@
-package foo;
+package foo.constants;
 
 public class UDPConstants {
 

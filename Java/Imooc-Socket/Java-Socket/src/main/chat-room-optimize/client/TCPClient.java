@@ -6,11 +6,12 @@ import java.net.Inet4Address;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
-import clink.core.Connector;
+import clink.box.StringReceivePacket;
 import clink.core.Packet;
 import clink.core.ReceivePacket;
 import clink.utils.CloseUtils;
-import foo.Foo;
+import foo.handler.ConnectorHandler;
+import foo.handler.ConnectorStringPacketChain;
 
 
 /**
@@ -20,17 +21,20 @@ import foo.Foo;
  * Email ztiany3@gmail.com
  * Date 2018/11/1 23:58
  */
-class TCPClient extends Connector {
+class TCPClient extends ConnectorHandler {
 
-    private final File mCachePath;
-
-    private TCPClient(SocketChannel socketChannel, File cachePath) throws IOException {
-        setup(socketChannel);
-        mCachePath = cachePath;
+    private TCPClient(SocketChannel client, File cachePath) throws IOException {
+        super(client, cachePath);
+        getStringPacketChain().appendLast(new PrintStringPacketChain());
     }
 
-    public void exit() {
-        CloseUtils.close(this);
+    private class PrintStringPacketChain extends ConnectorStringPacketChain {
+        @Override
+        protected boolean consume(ConnectorHandler handler, StringReceivePacket stringReceivePacket) {
+            String str = stringReceivePacket.getEntity();
+            System.out.println(str);
+            return true;
+        }
     }
 
     static TCPClient linkWith(ServerInfo info, File cachePath) {
@@ -52,16 +56,10 @@ class TCPClient extends Connector {
     }
 
     @Override
-    protected File createNewReceiveFile() {
-        return Foo.createRandomTemp(mCachePath);
-    }
-
-    @Override
     protected void onReceiveNewPacket(ReceivePacket packet) {
         super.onReceiveNewPacket(packet);
         if (packet.getType() == Packet.TYPE_MEMORY_STRING) {
-            String string = (String) packet.getEntity();
-            System.out.println(key.toString() + ":" + string);
+            System.out.println("receive: " + packet.getEntity());
         }
     }
 

@@ -36,6 +36,11 @@ public interface ReceiveDispatcher extends Closeable {
          */
         ReceivePacket<?, ?> onArrivedNewPacket(byte type, long length);
 
+        /**
+         * 当收到一个心跳包时触发
+         */
+        void onReceivedHeartbeat();
+
     }
 
 

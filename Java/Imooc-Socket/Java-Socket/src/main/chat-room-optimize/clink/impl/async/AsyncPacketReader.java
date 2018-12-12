@@ -10,6 +10,7 @@ import clink.core.SendPacket;
 import clink.core.ds.BytePriorityNode;
 import clink.frame.AbsSendPacketFrame;
 import clink.frame.CancelSendFrame;
+import clink.frame.HeartbeatSendFrame;
 import clink.frame.SendEntityFrame;
 import clink.frame.SendHeaderFrame;
 
@@ -20,7 +21,7 @@ import clink.frame.SendHeaderFrame;
  * Email ztiany3@gmail.com
  * Date 2018/11/27 22:53
  */
-public class AsyncPacketReader implements Closeable {
+class AsyncPacketReader implements Closeable {
 
     private final PacketProvider mPacketProvider;
 
@@ -42,7 +43,7 @@ public class AsyncPacketReader implements Closeable {
      *
      * @param packet 待取消的packet
      */
-    public synchronized void cancel(SendPacket packet) {
+    synchronized void cancel(SendPacket packet) {
         if (mNodeSize == 0) {
             return;
         }
@@ -68,7 +69,7 @@ public class AsyncPacketReader implements Closeable {
 
                     //没有完美取消，或者完美取消的不是头帧，则需要发送一个取消帧告知接收方该包被取消了
                     CancelSendFrame cancelSendFrame = new CancelSendFrame(sendPacketFrame.getBodyIdentifier());
-                    appendNewNode(cancelSendFrame);
+                    appendNewFrame(cancelSendFrame);
                     // 取消则认为是意外终止，返回失败
                     mPacketProvider.completedPacket(packet, false);
                     break;
@@ -109,7 +110,7 @@ public class AsyncPacketReader implements Closeable {
             short identifier = generateIdentifier();
             //根据新的包，构建一个头帧添加到节点中
             SendHeaderFrame sendHeaderFrame = new SendHeaderFrame(identifier, sendPacket);
-            appendNewNode(sendHeaderFrame);
+            appendNewFrame(sendHeaderFrame);
         }
 
         synchronized (this) {
@@ -117,8 +118,22 @@ public class AsyncPacketReader implements Closeable {
         }
     }
 
+    boolean requestSendHeartbeatFrame() {
+        synchronized (this) {
+            for (BytePriorityNode<Frame> x = mNode; x != null; x = x.next) {
+                Frame frame = x.item;
+                if (frame.getBodyType() == Frame.TYPE_COMMAND_HEARTBEAT) {
+                    return false;
+                }
+            }
+            // 添加心跳帧
+            appendNewFrame(new HeartbeatSendFrame());
+            return true;
+        }
+    }
+
     /*添加一个新的帧都队列中*/
-    private synchronized void appendNewNode(Frame frame) {
+    private synchronized void appendNewFrame(Frame frame) {
         BytePriorityNode<Frame> newNode = new BytePriorityNode<>(frame);
         if (mNode != null) {
             mNode.appendWithPriority(newNode);
@@ -179,7 +194,7 @@ public class AsyncPacketReader implements Closeable {
                 Frame nextFrame = currentFrame.nextFrame(); //nextFrame 方法是同步的
 
                 if (nextFrame != null) {
-                    appendNewNode(nextFrame);
+                    appendNewFrame(nextFrame);
                 } else if (currentFrame instanceof SendEntityFrame) {//是实体帧，且它的nextFrame 为 null，则说明其对应的包发送完了。
                     mPacketProvider.completedPacket(((SendEntityFrame) currentFrame).getPacket(), true);
                 }

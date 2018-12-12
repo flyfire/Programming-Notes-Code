@@ -4,16 +4,25 @@ import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
+import clink.box.StringReceivePacket;
+import clink.core.Connector;
+import clink.core.ScheduleJob;
+import clink.core.schedule.IdleTimeoutScheduleJob;
 import clink.utils.CloseUtils;
+import foo.Foo;
+import foo.handler.ConnectorHandler;
+import foo.handler.ConnectorCloseChain;
+import foo.handler.ConnectorStringPacketChain;
 
 
 /**
@@ -23,38 +32,50 @@ import clink.utils.CloseUtils;
  * Email ztiany3@gmail.com
  * Date 2018/11/1 21:17
  */
-class TCPServer implements ClientHandler.ClientHandlerCallback {
+class TCPServer implements ServerAcceptor.AcceptListener, Group.GroupMessageAdapter {
 
     private final int mPortServer;
-    private final List<ClientHandler> mClientHandlers;
-    private final ExecutorService mForwardingThreadPoolExecutor;
+    private final List<ConnectorHandler> mConnectorHandlers = new ArrayList<>();
+    private final ExecutorService mDeliveryPool;
     private final File mCachePath;//文件缓存路径
-    private ClientListener mClientListener;
-    private Selector mSelector;
+    private ServerAcceptor mAcceptor;//用于处理客户端连接
     private ServerSocketChannel mServerSocketChannel;
+    private final Map<String, Group> groups = new HashMap<>();
+
+    private final ServerStatistics mStatistics = new ServerStatistics();
 
     TCPServer(int portServer, File cachePath) {
         mPortServer = portServer;
-        mClientHandlers = new ArrayList<>();
         mCachePath = cachePath;
-        mForwardingThreadPoolExecutor = Executors.newSingleThreadExecutor();
+        mDeliveryPool = Executors.newSingleThreadExecutor();
+        //创建一个群
+        this.groups.put(Foo.DEFAULT_GROUP_NAME, new Group(Foo.DEFAULT_GROUP_NAME, this));
     }
 
     /*启动服务器*/
     boolean start() {
         try {
-            mSelector = Selector.open();
+            ServerAcceptor clientListener = new ServerAcceptor(this);
+
             mServerSocketChannel = ServerSocketChannel.open();
             mServerSocketChannel.configureBlocking(false);//配置非阻塞
             mServerSocketChannel.bind(new InetSocketAddress(mPortServer));
-            mServerSocketChannel.register(mSelector, SelectionKey.OP_ACCEPT);
+            mServerSocketChannel.register(clientListener.getSelector(), SelectionKey.OP_ACCEPT);
 
             System.out.println("服务器信息：" + mServerSocketChannel.getLocalAddress());
 
-            ClientListener clientListener = new ClientListener();
             clientListener.start();
-            mClientListener = clientListener;
-            return true;
+            mAcceptor = clientListener;
+
+            if (mAcceptor.awaitRunning()) {
+                System.out.println("服务器准备就绪～");
+                System.out.println("服务器信息：" + mServerSocketChannel.getLocalAddress().toString());
+                return true;
+            } else {
+                System.out.println("启动异常！");
+                return false;
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -63,119 +84,130 @@ class TCPServer implements ClientHandler.ClientHandlerCallback {
 
     /*给所有客户端发送消息*/
     void broadcast(String line) {
-        synchronized (this) {
-            System.out.println("TCPServer send: " + line + " to clients: " + mClientHandlers.size());
-            for (ClientHandler clientHandler : mClientHandlers) {
-                clientHandler.send(line);
-            }
+        line = "系统通知：" + line;
+        ConnectorHandler[] connectorHandlers;
+        synchronized (mConnectorHandlers) {
+            connectorHandlers = mConnectorHandlers.toArray(new ConnectorHandler[0]);
+        }
+        for (ConnectorHandler connectorHandler : connectorHandlers) {
+            connectorHandler.send(line);
         }
     }
 
     /*停止服务器*/
     void stop() {
-
-        synchronized (this) {
-            for (ClientHandler clientHandler : mClientHandlers) {
-                clientHandler.exit();
-            }
+        if (mAcceptor != null) {
+            mAcceptor.exit();
         }
-        mClientHandlers.clear();
-        mClientListener.exit();
 
-        mForwardingThreadPoolExecutor.shutdownNow();
+        ConnectorHandler[] connectorHandlers;
+        synchronized (mConnectorHandlers) {
+            connectorHandlers = mConnectorHandlers.toArray(new ConnectorHandler[0]);
+            mConnectorHandlers.clear();
+        }
+
+        for (ConnectorHandler connectorHandler : connectorHandlers) {
+            connectorHandler.exit();
+        }
+
+        mDeliveryPool.shutdownNow();
 
         CloseUtils.close(mServerSocketChannel);
-        CloseUtils.close(mSelector);
-    }
-
-    @Override
-    public synchronized void onSelfClosed(ClientHandler clientHandler) {
-        mClientHandlers.remove(clientHandler);
-    }
-
-    @Override
-    public synchronized void onNewMessageArrived(ClientHandler clientHandler, String message) {
-        mForwardingThreadPoolExecutor.execute(() -> {
-            synchronized (TCPServer.this) {
-                for (ClientHandler handler : mClientHandlers) {
-                    if (handler.equals(clientHandler)) {
-                        continue;
-                    }
-                    handler.send(message);
-                }
-            }
-        });
     }
 
     /**
-     * TCP监听
+     * 获取当前的状态信息
      */
-    private class ClientListener extends Thread {
+    Object[] getStatusString() {
+        return new String[]{
+                "客户端数量：" + mConnectorHandlers.size(),
+                "发送数量：" + mStatistics.sendSize,
+                "接收数量：" + mStatistics.receiveSize
+        };
+    }
 
-        private volatile boolean mDone;
+    @Override
+    public void onNewSocketArrived(SocketChannel channel) {
+        try {
+            ConnectorHandler connectorHandler = new ConnectorHandler(channel, mCachePath);
+            System.out.println(connectorHandler.getClientInfo() + ":Connected!");
 
-        ClientListener() {
+            // 添加收到消息的处理责任链
+            connectorHandler.getStringPacketChain()
+                    .appendLast(mStatistics.statisticsChain())
+                    .appendLast(new ParseCommandConnectorStringPacketChain());
+
+            // 添加关闭链接时的责任链
+            connectorHandler.getCloseChain()
+                    .appendLast(new RemoveQueueOnConnectorClosedChain());
+
+            /*客户端和服务器，谁的超时时间短谁就能发送心跳*/
+            ScheduleJob scheduleJob = new IdleTimeoutScheduleJob(10, TimeUnit.SECONDS, connectorHandler);
+            connectorHandler.schedule(scheduleJob);
+
+            synchronized (mConnectorHandlers) {
+                mConnectorHandlers.add(connectorHandler);
+                System.out.println("当前客户端数量：" + mConnectorHandlers.size());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("客户端链接异常：" + e.getMessage());
+        }
+    }
+
+    @Override
+    public void sendMessageToClient(ConnectorHandler handler, String msg) {
+        handler.send(msg);
+        mStatistics.sendSize++;
+    }
+
+    /*用于处理连接关闭*/
+    private class RemoveQueueOnConnectorClosedChain extends ConnectorCloseChain {
+
+        @Override
+        protected boolean consume(ConnectorHandler handler, Connector connector) {
+            synchronized (mConnectorHandlers) {
+                mConnectorHandlers.remove(handler);
+            }
+            // 移除群聊的客户端
+            Group group = groups.get(Foo.DEFAULT_GROUP_NAME);
+            group.removeMember(handler);
+            return true;
+        }
+
+    }
+
+    /*用于处理通过String发送的命令*/
+    private class ParseCommandConnectorStringPacketChain extends ConnectorStringPacketChain {
+
+        @Override
+        protected boolean consume(ConnectorHandler handler, StringReceivePacket stringReceivePacket) {
+            String entity = stringReceivePacket.getEntity();
+            switch (entity) {
+                case Foo.COMMAND_GROUP_JOIN: {
+                    Group group = groups.get(Foo.DEFAULT_GROUP_NAME);
+                    if (group.addMember(handler)) {
+                        sendMessageToClient(handler, "Join Group:" + group.getName());
+                    }
+                    return true;
+                }
+                case Foo.COMMAND_GROUP_LEAVE: {
+                    Group group = groups.get(Foo.DEFAULT_GROUP_NAME);
+                    if (group.removeMember(handler)) {
+                        sendMessageToClient(handler, "Leave Group:" + group.getName());
+                    }
+                    return true;
+                }
+            }
+            return false;
         }
 
         @Override
-        public void run() {
-            System.out.println("服务器准备就绪～");
-            Selector selector = mSelector;
-
-            do {
-
-                try {
-
-                    //阻塞等待连接
-                    if (selector.select() == 0) {
-                        if (mDone) {
-                            break;
-                        }
-                        continue;
-                    }
-
-                    //处理已经准备好的连接
-                    Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
-                    while (iterator.hasNext()) {
-                        if (mDone) {
-                            //可以提前退出
-                            break;
-                        }
-                        SelectionKey selectionKey = iterator.next();
-                        if (selectionKey.isAcceptable()) {
-                            //这个Channel就是上面注册 ACCEPT 的 ServerSocketChannel
-                            ServerSocketChannel serverSocketChannel = (ServerSocketChannel) selectionKey.channel();
-                            // 非阻塞状态拿到客户端连接
-                            SocketChannel socketChannel = serverSocketChannel.accept();
-                            //创建 ClientHandler 处理客户端读写
-                            try {
-                                ClientHandler clientHandler = new ClientHandler(socketChannel, TCPServer.this, mCachePath);
-                                synchronized (TCPServer.this) {
-                                    mClientHandlers.add(clientHandler);
-                                }
-                            } catch (IOException e) {
-                                //抓住异常，继续处理下一个。
-                                System.out.println("客户端连接异常：" + e.getMessage());
-                            }
-                        }
-                        //处理完一个key就要移除它
-                        iterator.remove();
-                    }
-
-                } catch (IOException ignore/*这个用来处理 Selector.select()*/) {
-
-                }
-
-            } while (!mDone);
-
-            System.out.println("服务器已关闭！");
-        }
-
-        private void exit() {
-            mDone = true;
-            // 使尚未返回的第一个选择操作立即返回。
-            //如果另一个线程目前正阻塞在 select() 或 select(long) 方法的调用中，则该调用将立即返回。
-            mSelector.wakeup();
+        protected boolean consumeAgain(ConnectorHandler handler, StringReceivePacket stringReceivePacket) {
+            // 捡漏的模式，当我们第一遍未消费，然后又没有加入到群，自然没有后续的节点消费
+            // 此时我们进行二次消费，返回发送过来的消息
+            sendMessageToClient(handler, stringReceivePacket.getEntity());
+            return true;
         }
 
     }

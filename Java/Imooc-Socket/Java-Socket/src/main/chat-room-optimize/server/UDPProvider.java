@@ -8,8 +8,8 @@ import java.util.UUID;
 
 import clink.utils.ByteUtils;
 import clink.utils.CloseUtils;
-import foo.TCPConstants;
-import foo.UDPConstants;
+import foo.constants.TCPConstants;
+import foo.constants.UDPConstants;
 
 
 /**
@@ -46,6 +46,7 @@ class UDPProvider {
         private DatagramSocket mDatagramSocket;
 
         Provider(String sn, int portServer) {
+            super("Server-UDPProvider-Thread");
             this.mSn = sn.getBytes();
             this.mPort = portServer;
             mBuffer = new byte[128];
@@ -107,8 +108,8 @@ class UDPProvider {
                 }
 
 
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException ignore) {
+                System.out.println("UDP exited");
             } finally {
                 close();
             }

@@ -7,9 +7,11 @@ import java.io.InputStreamReader;
 
 import clink.core.IoContext;
 import clink.impl.IoSelectorProvider;
+import clink.impl.SchedulerImpl;
 import foo.Foo;
-import foo.TCPConstants;
-import foo.UDPConstants;
+import foo.FooGui;
+import foo.constants.TCPConstants;
+import foo.constants.UDPConstants;
 
 
 /**
@@ -23,7 +25,9 @@ class Server {
         //启动IoContext
         IoContext.setup()
                 .ioProvider(new IoSelectorProvider())
+                .scheduler(new SchedulerImpl(1))
                 .start();
+
         //文件缓存路径
         File cachePath = Foo.getCacheDir("server");
 
@@ -38,25 +42,34 @@ class Server {
         //启动 UDP 接受，让 TCP 服务可以通过 UDP 广播被搜索到
         UDPProvider.start(UDPConstants.PORT_SERVER);
 
+        // 启动Gui界面
+        FooGui gui = new FooGui("Clink-Server", tcpServer::getStatusString);
+        gui.doShow();
+
+
         //读取键盘输入，发送给已连接的 tcp 客户端
         InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        String line = null;
+        String line;
         do {
-            try {
-                line = bufferedReader.readLine();
-                if (!line.isEmpty()) {
-                    tcpServer.broadcast(line);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            line = bufferedReader.readLine();
+            if (line == null || Foo.COMMAND_EXIT.equalsIgnoreCase(line)) {
+                break;
             }
-        } while (!"00bye00".equalsIgnoreCase(line));
+            if (line.length() == 0) {
+                continue;
+            }
+            // 发送字符串
+            tcpServer.broadcast(line);
+
+        } while (true);
 
         UDPProvider.stop();
         tcpServer.stop();
         //关闭IoContext
         IoContext.close();
+        gui.doDismiss();
     }
 
 }

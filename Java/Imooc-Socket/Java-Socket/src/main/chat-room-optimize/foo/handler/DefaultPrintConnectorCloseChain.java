@@ -1,4 +1,4 @@
-package server.handler;
+package foo.handler;
 
 import clink.core.Connector;
 
@@ -8,7 +8,7 @@ import clink.core.Connector;
 class DefaultPrintConnectorCloseChain extends ConnectorCloseChain {
 
     @Override
-    protected boolean consume(ClientHandler handler, Connector connector) {
+    protected boolean consume(ConnectorHandler handler, Connector connector) {
         System.out.println(handler.getClientInfo() + ":Exit!!, Key:" + handler.getKey().toString());
         return false;
     }

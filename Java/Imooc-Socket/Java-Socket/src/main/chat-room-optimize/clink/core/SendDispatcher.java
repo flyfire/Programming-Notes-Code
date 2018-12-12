@@ -9,7 +9,7 @@ import java.io.Closeable;
  * Email ztiany3@gmail.com
  * Date 2018/11/18 16:39
  */
-public interface SendDispatcher   extends Closeable {
+public interface SendDispatcher extends Closeable {
 
     /**
      * 发送一份数据
@@ -24,5 +24,10 @@ public interface SendDispatcher   extends Closeable {
      * @param packet 数据
      */
     void cancel(SendPacket packet);
+
+    /**
+     * 发送一个心跳包
+     */
+    void sendHeartbeat();
 
 }

@@ -6,5 +6,6 @@
 - Chapter4：面向对象
 - Chapter5：高阶函数
 - Chapter6：DSL
-- Chapter7：与 Java 互操作
+- Chapter7：协程
+- Chapter8：与 Java 互操作
 

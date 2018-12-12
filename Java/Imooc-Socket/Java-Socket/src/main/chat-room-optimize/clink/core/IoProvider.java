@@ -15,44 +15,47 @@ public interface IoProvider extends Closeable {
     /**
      * 注册一个关心input的channel，当channel可读时，将会回调 callback
      */
-    boolean registerInput(SocketChannel channel, HandleInputCallback callback);
+    boolean registerInput(SocketChannel channel, HandleProviderCallback callback);
 
     /**
      * 注册一个关心output的channel，当channel可写时，将会回调 callback
      */
-    boolean registerOutput(SocketChannel channel, HandleOutputCallback callback);
+    boolean registerOutput(SocketChannel channel, HandleProviderCallback callback);
 
     void unRegisterInput(SocketChannel channel);
 
     void unRegisterOutput(SocketChannel channel);
 
     /**
-     * 与关心可读的SocketChannel对应
+     * 与关心可读/写的SocketChannel对应
      */
-    abstract class HandleInputCallback implements Runnable {
-        @Override
-        public final void run() {
-            canProviderInput();
-        }
-
-        protected abstract void canProviderInput();
-    }
-
-    /**
-     * 与关心可写的SocketChannel对应
-     */
-    abstract class HandleOutputCallback implements Runnable {
+    abstract class HandleProviderCallback implements Runnable {
+        /**
+         * 附加本次未完全消费完成的IoArgs，然后进行自循环。
+         */
+        protected volatile IoArgs attach;
 
         @Override
         public final void run() {
-            canProviderOutput();
+            onProviderIo(attach);
         }
 
         /**
-         * 当对应的 SocketChannel 可写时，此方法会被调用
+         * 当对应的 SocketChannel 可读/写时，此方法会被调用。
          */
-        protected abstract void canProviderOutput();
+        protected abstract void onProviderIo(IoArgs attach);
+
+        /**
+         * 检查当前的附加值是否未null，如果处于自循环时当前附加值不为null，
+         * 此时如果外层有调度注册异步发送或者接收是错误的。
+         */
+        public void checkAttachNull() {
+            if (attach != null) {
+                throw new IllegalStateException("Current attach is not empty!");
+            }
+        }
 
     }
+
 
 }

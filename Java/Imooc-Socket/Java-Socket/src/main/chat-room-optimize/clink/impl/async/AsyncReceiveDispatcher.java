@@ -53,12 +53,10 @@ public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsE
      */
     @Override
     public IoArgs provideIoArgs() {
-        return mAsyncPacketWriter.takeIoArgs();
-    }
-
-    @Override
-    public void onConsumeFailed(IoArgs ioArgs, Exception e) {
-        e.printStackTrace();
+        IoArgs args = mAsyncPacketWriter.takeIoArgs();
+        // 一份新的IoArgs需要调用一次开始写入数据的操作
+        args.startWriting();
+        return args;
     }
 
     /**
@@ -68,11 +66,23 @@ public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsE
      */
     @Override
     public void onConsumeCompleted(IoArgs args) {
+        if (mIsClosed.get()) {
+            return;
+        }
+
+        // 消费数据之前标示args数据填充完成，改变为可读取数据状态。
+        args.finishWriting();
+
         do {
             mAsyncPacketWriter.consumeIoArgs(args);
-        } while (args.remained());
+        } while (args.remained() && !mIsClosed.get());
         //再次注册
         registerReceive();
+    }
+
+    @Override
+    public void onConsumeFailed(IoArgs ioArgs, Exception e) {
+        e.printStackTrace();
     }
 
     private void closeAndNotify() {
@@ -80,7 +90,7 @@ public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsE
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         if (mIsClosed.compareAndSet(false, true)) {
             mAsyncPacketWriter.close();
         }
@@ -98,6 +108,11 @@ public class AsyncReceiveDispatcher implements ReceiveDispatcher, IoArgs.IoArgsE
     public void completedPacket(ReceivePacket packet, boolean isSucceed) {
         CloseUtils.close(packet);
         mReceivePacketCallback.onReceivePacketCompleted(packet);
+    }
+
+    @Override
+    public void onReceivedHeartbeat() {
+        mReceivePacketCallback.onReceivedHeartbeat();
     }
 
 

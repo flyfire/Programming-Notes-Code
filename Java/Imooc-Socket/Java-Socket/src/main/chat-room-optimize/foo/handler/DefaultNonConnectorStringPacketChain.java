@@ -1,4 +1,4 @@
-package server.handler;
+package foo.handler;
 
 import clink.box.StringReceivePacket;
 
@@ -8,7 +8,7 @@ import clink.box.StringReceivePacket;
 class DefaultNonConnectorStringPacketChain extends ConnectorStringPacketChain {
 
     @Override
-    protected boolean consume(ClientHandler handler, StringReceivePacket packet) {
+    protected boolean consume(ConnectorHandler handler, StringReceivePacket packet) {
         return false;
     }
 

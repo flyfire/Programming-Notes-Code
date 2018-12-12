@@ -4,6 +4,8 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import clink.box.BytesReceivePacket;
@@ -13,6 +15,7 @@ import clink.box.StringSendPacket;
 import clink.impl.SocketChannelAdapter;
 import clink.impl.async.AsyncReceiveDispatcher;
 import clink.impl.async.AsyncSendDispatcher;
+import clink.utils.CloseUtils;
 
 /**
  * 代表一个 SocketChannel 连接，用于调用 Sender 和  Receiver 执行读写操作。
@@ -31,6 +34,7 @@ public abstract class Connector implements Closeable, SocketChannelAdapter.OnCha
 
     private SendDispatcher sendDispatcher;
     private ReceiveDispatcher receiveDispatcher;
+    private final List<ScheduleJob> mScheduleJobs = new ArrayList<>(4);
 
     public void setup(SocketChannel socketChannel) throws IOException {
         this.channel = socketChannel;
@@ -48,13 +52,15 @@ public abstract class Connector implements Closeable, SocketChannelAdapter.OnCha
         receiveDispatcher.start();
     }
 
-
     @Override
     public void onChannelClosed(SocketChannel channel) {
-        //no op
+        CloseUtils.close(this);
     }
 
     public void send(String message) {
+        if (message == null) {
+            return;
+        }
         sendDispatcher.send(new StringSendPacket(message));
     }
 
@@ -62,8 +68,50 @@ public abstract class Connector implements Closeable, SocketChannelAdapter.OnCha
         sendDispatcher.send(packet);
     }
 
+    public void schedule(ScheduleJob scheduleJob) {
+        synchronized (mScheduleJobs) {
+            if (mScheduleJobs.contains(scheduleJob)) {
+                return;
+            }
+            Scheduler scheduler = IoContext.get().scheduler();
+            scheduleJob.schedule(scheduler);
+            mScheduleJobs.add(scheduleJob);
+        }
+    }
+
+    /**
+     * 发射一份空闲超时事件
+     */
+    public void fireIdleTimeoutEvent() {
+        sendDispatcher.sendHeartbeat();
+    }
+
+    /**
+     * 发射一份异常事件，子类需要关注
+     *
+     * @param throwable 异常
+     */
+    public void fireExceptionCaught(Throwable throwable) {
+    }
+
+    /**
+     * 获取最后的活跃时间点
+     *
+     * @return 发送、接收的最后活跃时间
+     */
+    public long getLastActiveTime() {
+        return Math.max(sender.getLastWriteTime(), receiver.getLastReadTime());
+    }
+
     @Override
     public void close() throws IOException {
+        synchronized (mScheduleJobs) {
+            // 全部取消调度
+            for (ScheduleJob scheduleJob : mScheduleJobs) {
+                scheduleJob.unSchedule();
+            }
+            mScheduleJobs.clear();
+        }
         receiveDispatcher.close();
         sendDispatcher.close();
         sender.close();
@@ -92,12 +140,21 @@ public abstract class Connector implements Closeable, SocketChannelAdapter.OnCha
                     throw new UnsupportedOperationException("Unsupported packet type:" + type);
             }
         }
+
+        @Override
+        public void onReceivedHeartbeat() {
+            System.out.println(key + ": [Heartbeat]");
+        }
     };
 
     protected abstract File createNewReceiveFile();
 
     protected void onReceiveNewPacket(ReceivePacket packet) {
         System.out.println(key.toString() + " : [New Packet]-Type : " + packet.getType() + ", Length:" + packet.getLength());
+    }
+
+    public UUID getKey() {
+        return key;
     }
 
 }

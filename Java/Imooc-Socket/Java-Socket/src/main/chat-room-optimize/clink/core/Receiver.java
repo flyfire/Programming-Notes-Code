@@ -21,5 +21,10 @@ public interface Receiver extends Closeable {
      */
     void setReceiveListener(IoArgs.IoArgsEventProcessor ioArgsEventProcessor);
 
+    /**
+     * 获取最后一次接收数据的时间
+     */
+    long getLastReadTime();
+
 }
 

@@ -13,13 +13,19 @@ public class IoContext {
 
     private static IoContext INSTANCE;
     private final IoProvider ioProvider;
+    private final Scheduler scheduler;
 
-    private IoContext(IoProvider ioProvider) {
+    private IoContext(IoProvider ioProvider, Scheduler scheduler) {
         this.ioProvider = ioProvider;
+        this.scheduler = scheduler;
     }
 
     public IoProvider getIoProvider() {
         return ioProvider;
+    }
+
+    public Scheduler scheduler() {
+        return scheduler;
     }
 
     public static IoContext get() {
@@ -41,11 +47,15 @@ public class IoContext {
 
     private void callClose() throws IOException {
         ioProvider.close();
+        if (scheduler != null) {
+            scheduler.close();
+        }
     }
 
     public static class StartedBoot {
 
         private IoProvider ioProvider;
+        private Scheduler scheduler;
 
         private StartedBoot() {
         }
@@ -58,12 +68,18 @@ public class IoContext {
             return this;
         }
 
+        public StartedBoot scheduler(Scheduler scheduler) {
+            this.scheduler = scheduler;
+            return this;
+        }
+
         /**
          * 启动 IoContext
          */
         public IoContext start() {
-            INSTANCE = new IoContext(ioProvider);
+            INSTANCE = new IoContext(ioProvider, scheduler);
             return INSTANCE;
         }
     }
+
 }

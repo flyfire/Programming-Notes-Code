@@ -12,6 +12,7 @@ import clink.core.IoArgs;
 import clink.core.ReceivePacket;
 import clink.frame.AbsReceiveFrame;
 import clink.frame.CancelReceiveFrame;
+import clink.frame.HeartbeatReceiveFrame;
 import clink.frame.ReceiveEntityFrame;
 import clink.frame.ReceiveFrameFactory;
 import clink.frame.ReceiveHeaderFrame;
@@ -30,7 +31,6 @@ class AsyncPacketWriter implements Closeable {
      * 用于存储当前正在接收的包，key为包的唯一标识，value记录了正在接受包的必须信息。
      */
     private final HashMap<Short, PacketModel> mPacketMap = new HashMap<>();
-
 
     /**
      * 同一个时刻，只能接受一个帧的数据
@@ -129,6 +129,11 @@ class AsyncPacketWriter implements Closeable {
             short identifier = frame.getBodyIdentifier();
             int length = frame.getBodyLength();
             PacketModel model = mPacketMap.get(identifier);
+
+            if (model == null) {
+                return;
+            }
+
             model.unreceivedLength -= length;
 
             //如果包对应的 model 中未消费的长度为0了，则说明该包已经接收完毕了
@@ -165,6 +170,9 @@ class AsyncPacketWriter implements Closeable {
         if (frame instanceof CancelReceiveFrame) {
             //取消则直接返回null
             cancelReceivePacket(frame.getBodyIdentifier());
+            return null;
+        } else if (frame instanceof HeartbeatReceiveFrame) {
+            mPacketProvider.onReceivedHeartbeat();
             return null;
         } else if (frame instanceof ReceiveEntityFrame) {
             //如果是实体帧，则应该为其创建Channel
@@ -238,6 +246,12 @@ class AsyncPacketWriter implements Closeable {
          * @param isSucceed 是否成功接收完成
          */
         void completedPacket(ReceivePacket packet, boolean isSucceed);
+
+        /**
+         * 当收到一个心跳包时触发
+         */
+        void onReceivedHeartbeat();
+
     }
 
     /*针对接收包信息的封装*/
