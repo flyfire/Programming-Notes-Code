@@ -13,4 +13,4 @@ package net.println.kotlin.chapter4.SealedClass
 //
 //object Stop: PlayerCmd()
 
-//class Whatever : PlayerCmd()
+class Whatever : PlayerCmd()
