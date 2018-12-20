@@ -20,6 +20,7 @@ class AnkoLayoutsActivity : AppCompatActivity() {
                 setOnClickListener {
                     startActivity(intentFor<LayoutsSample1Activity>())
                 }
+                id
             }
             button("sample2") {
                 setOnClickListener {
