@@ -1,6 +1,7 @@
 package understanding
 
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.Unconfined
 
 /** 理解Suspend函数 */
 fun main(args: Array<String>) {
@@ -32,7 +33,7 @@ private fun coroutinesSwitch() {
     println("${Thread.currentThread().name}: 1")
 
     // 2. 启动一个协程, 并立即启动，Unconfined意思是在当前线程(主线程)运行协程
-    launch(Unconfined) {
+    GlobalScope.launch(Unconfined) {
 
         // 3. 本协程在主线程上直接开始执行了第一步
         println("${Thread.currentThread().name}: 2")
@@ -69,7 +70,7 @@ fun asyncReturnSample1() = runBlocking {
     println("1 主线程开启协程")
     println("2 在主线程协程中开启新的协程异步查询数据")
     //2 开启异步协程去查询数据
-    val deferred = async(CommonPool) { queryDatabase() }
+    val deferred = GlobalScope.async (Dispatchers.Default){ queryDatabase() }
     println("3 主携程继续执行......")
     //3 获取数据
     val data = deferred.await()
@@ -81,7 +82,7 @@ private fun asyncReturnSample2() = runBlocking {
     println("1 主线程开启协程")
     println("2 在主线程协程中开启新的协程异步查询数据")
     //2 开启异步协程去查询数据
-    val deferred = async(CommonPool) { queryDatabase() }
+    val deferred = GlobalScope.async { queryDatabase() }
     println("3 主携程继续执行.....1.")
     //3 获取数据
     launch(coroutineContext) {

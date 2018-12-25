@@ -8,11 +8,11 @@ package me.ztiany.dsl
  *
  *      DSL 构建用到的关键特性：
  *
- *          - 带接收者的函数字面
- *          - 中缀表达
- *          - 函数扩
- *          - invoke 约
- *          - gradle + kotlin
+ *          -  带接收者的函数字面
+ *          -  中缀表达
+ *          -  函数扩展
+ *          -  invoke 约定
+ *          -  gradle + kotlin
  *
  * */
 
@@ -59,5 +59,6 @@ fun createAnotherTable() = table {
 }
 
 fun main(args: Array<String>) {
+    println(createTable())
     println(createAnotherTable())
 }
