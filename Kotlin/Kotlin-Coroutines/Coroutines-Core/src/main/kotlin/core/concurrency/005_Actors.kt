@@ -1,5 +1,6 @@
 package core.concurrency
 
+import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.channels.SendChannel
 import kotlinx.coroutines.experimental.channels.actor

@@ -1,12 +1,12 @@
 package me.ztiany.operators
 
 
-class Person1(val firstName: String, val lastName: String) : Comparable<Person1> {
+class Person1(private val firstName: String, private val lastName: String) : Comparable<Person1> {
 
     override fun compareTo(other: Person1): Int {
-        return compareValuesBy(this, other,
-                Person1::lastName, Person1::firstName)
+        return compareValuesBy(this, other, Person1::lastName, Person1::firstName)
     }
+
 }
 
 fun main(args: Array<String>) {

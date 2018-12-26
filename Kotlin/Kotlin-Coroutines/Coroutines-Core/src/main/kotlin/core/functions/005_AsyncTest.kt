@@ -1,6 +1,8 @@
 package core.functions
 
+import kotlinx.coroutines.async
 import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.runBlocking
 
 /**
  *测试async方法

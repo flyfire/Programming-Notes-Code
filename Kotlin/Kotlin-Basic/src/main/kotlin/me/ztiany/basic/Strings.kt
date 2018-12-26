@@ -26,7 +26,7 @@ private fun strLiteral() {
                 print(c)
         """
 
-    //trimMargin    函数去除前导空格,默认 | 用作边界前缀
+    //trimMargin    函数去除前导空格，默认 | 用作边界前缀
     val table = """
     |Tell me and I forget.
     |Teach me and I remember.
@@ -34,15 +34,17 @@ private fun strLiteral() {
     |(Benjamin Franklin)
     """
     println()
+    println("table---------------------------------")
     println(table.trimMargin())
 
     val table1 = """
-    |Tell me and I forget.
-    |Teach me and I remember.
-    |Involve me and I learn.
-    |(Benjamin Franklin)
+    >Tell me and I forget.
+    >Teach me and I remember.
+    >Involve me and I learn.
+    >(Benjamin Franklin)
     """
-    println(table1.trimMargin(">"))//>
+    println("table1---------------------------------")
+    println(table1.trimMargin(">"))
 }
 
 /**

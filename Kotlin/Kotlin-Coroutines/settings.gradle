@@ -1,4 +1,3 @@
-rootProject.name = 'KotlinCoroutines'
+rootProject.name = 'Kotlin-Coroutines'
 include "Coroutines-Core"
-include "BennyKotlinCoroutines"
 
