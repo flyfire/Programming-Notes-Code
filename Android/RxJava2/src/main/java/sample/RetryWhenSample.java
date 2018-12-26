@@ -6,6 +6,7 @@ import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
+import utils.Utils;
 
 /**
  * @author Ztiany
@@ -58,12 +59,7 @@ public class RetryWhenSample {
                 }
         );
 
-
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Utils.sleep(10000);
     }
 
 }
