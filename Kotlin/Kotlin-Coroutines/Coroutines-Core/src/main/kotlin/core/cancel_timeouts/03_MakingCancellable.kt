@@ -3,7 +3,7 @@ package core.cancel_timeouts
 
 /*
 有两种方法可以让计算代码变得可以被取消。
-1. 定期调用一个挂定函数，yield是一个不错的选择
+1. 定期调用挂起函数来检查取消，yield是一个不错的选择
 2. 在协程内明确地检查自己的取消状态
  */
 import kotlinx.coroutines.*

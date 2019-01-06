@@ -9,8 +9,6 @@ import kotlinx.coroutines.runBlocking
 协程构建器有两种风格：自动的传播异常（launch 以及 actor） 或者将它们暴露给用户（async 以及 produce）。
     前者对待异常是不处理的，类似于 Java 的 Thread.uncaughtExceptionHandler。
     后者依赖用户来最终消耗异常，比如说，通过 await 或 receive 。
-
-
  */
 fun main() = runBlocking {
     val job = GlobalScope.launch {

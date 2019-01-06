@@ -9,7 +9,7 @@ import kotlinx.coroutines.*
 
 这也是为什么，在这个例子中，CoroutineExceptionHandler 总是被设置在由 GlobalScope 启动的协程中。
 将异常处理者设置在 runBlocking 主作用域内启动的协程中是没有意义的，尽管子协程已经设置了异常处理者，
-但是主协程也总是会被取消的（因为到除 CancellationException 以外的异常）。
+但是主协程也总是会被取消的（因为遇到除 CancellationException 以外的异常）。
  */
 fun main() = runBlocking {
     //sampleStart

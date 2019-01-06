@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.selects.select
 
 /*
-select 表达式可以同时等待多个挂起函数，并 选择 第一个可用的。（这个有点类似于 NIO 中的 Selector）
+select 表达式可以同时等待多个挂起函数，并选择 第一个可用的。（这个有点类似于 NIO 中的 Selector）
 
 在通道中 select，使用 receive 挂起函数，我们可以从两个通道接收 其中一个 的数据。 但是 select 表达式允许我们使用其 onReceive 子句 同时 从两者接收
  */

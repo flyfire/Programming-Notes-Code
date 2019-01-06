@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 /*
 通过 GlobalScope 的 launch 启动协程：
 
-    从本质上讲，协同程序是轻量级的线程，它们被在一些 CoroutineScope 的 context 中 launch 协程构建器启动。在这里，我们在 GlobalScope 中启动一个新的协同程序，
+    本质上，协程是轻量级的线程。 它们在某些 CoroutineScope 上下文中与 launch 协程构建器 一起启动。在这里，我们在 GlobalScope 中启动一个新的协同程序，
     这意味着新协程的生命周期仅受整个应用程序的生命周期的限制。
 
     您可以使用 `Thread.sleep（...`）替换 `GlobalScope.launch {...} ` 和`thread{...}`以及`delay(...）`。试试吧。

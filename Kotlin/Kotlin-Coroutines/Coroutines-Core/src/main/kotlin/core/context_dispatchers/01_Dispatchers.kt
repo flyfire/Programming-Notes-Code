@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 
 /*
 Dispatchers(调度器) and threads：Coroutine context 包含一个Dispatchers，它确定对应协程用于执行的线程或线程池。
-Dispatchers可以将协程执行限制在一个特定的线程上，将其调度到线程池，或者让其无限制地运行。
+Dispatchers 可以将协程执行限制在一个特定的线程上，将其调度到线程池，或者让其无限制地运行。
 
 协程上下文包括了一个 协程调度器 （请参见 CoroutineDispatcher），它确定了相应的协程在执行时使用一个或多个线程。
 协程调度器可以将协程的执行局限在指定的线程中，调度它运行在线程池中或让它不受限的运行。

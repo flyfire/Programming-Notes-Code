@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 
 /*
 当一个协程被其它协程在 CoroutineScope 中启动的时候， 它将通过 CoroutineScope.coroutineContext 来承袭上下文，
-并且这个新协程的 Job 将会成为父协程任务的 子 任务。当一个父协程被取消的时候，所有它的子协程也会被递归的取消。
+并且这个新协程的 Job 将会成为父协程任务的 子任务。当一个父协程被取消的时候，所有它的子协程也会被递归的取消。
 
 当 GlobalScope 被用来启动一个协程时，它与作用域无关且是独立被启动的。
  */

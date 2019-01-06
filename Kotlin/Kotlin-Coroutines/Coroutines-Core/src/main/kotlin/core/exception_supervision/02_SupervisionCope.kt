@@ -8,6 +8,7 @@ import kotlinx.coroutines.*
 它也会在所有的子任务执行结束前等待， 就像 coroutineScope 所做的那样。
  */
 fun main() = runBlocking {
+
     try {
         supervisorScope {
 
@@ -28,4 +29,7 @@ fun main() = runBlocking {
     } catch (e: AssertionError) {
         println("Caught assertion error")
     }
+
+    println("end...")
+
 }

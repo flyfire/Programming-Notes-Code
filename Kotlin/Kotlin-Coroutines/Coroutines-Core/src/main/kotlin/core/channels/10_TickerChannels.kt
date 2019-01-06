@@ -1,5 +1,6 @@
 package core.channels
 
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.ticker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -15,6 +16,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 请注意，ticker 知道可能的消费者暂停，并且默认情况下会调整下一个生成的元素如果发生暂停则延迟，试图保持固定的生成元素率。
 给可选的 mode 参数传入 TickerMode.FIXED_DELAY 可以保持固定元素之间的延迟。
  */
+@ObsoleteCoroutinesApi
 fun main() = runBlocking<Unit> {
 
     val tickerChannel = ticker(delayMillis = 100, initialDelayMillis = 0) // create ticker channel
