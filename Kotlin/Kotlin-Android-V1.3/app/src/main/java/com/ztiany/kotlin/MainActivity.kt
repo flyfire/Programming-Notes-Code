@@ -9,6 +9,7 @@ import com.ztiany.kotlin.anko.common.intents.RawActivity
 import com.ztiany.kotlin.anko.coroutines.AnkoCoroutinesActivity
 import com.ztiany.kotlin.anko.layouts.AnkoLayoutsActivity
 import com.ztiany.kotlin.coroutines.CoroutinesActivity
+import com.ztiany.kotlin.coroutines.CoroutineUIGuideActivity
 import com.ztiany.kotlin.extension.ExtensionSampleActivity
 import com.ztiany.kotlin.ktx.KtxActivity
 import org.jetbrains.anko.button
@@ -78,6 +79,13 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intentFor<KtxActivity>())
                     }
                 }
+
+                button("Coroutine official UI GuideActivity") {
+                    setOnClickListener {
+                        startActivity(intentFor<CoroutineUIGuideActivity>())
+                    }
+                }
+
             }
         }
 

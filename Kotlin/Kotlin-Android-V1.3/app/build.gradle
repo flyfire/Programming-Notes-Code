@@ -51,8 +51,9 @@ dependencies {
     // coroutines
     implementation kotlinLibraries.kotlinCoroutines
     implementation kotlinLibraries.kotlinAndroidCoroutines
+    implementation kotlinLibraries.kotlinxCoroutinesRx2
     //anko
-   implementation kotlinLibraries.ankoCommons
+    implementation kotlinLibraries.ankoCommons
     implementation kotlinLibraries.ankoCommonsV4
     implementation kotlinLibraries.ankoCommonsV7
     implementation kotlinLibraries.ankoLayoutSDK
