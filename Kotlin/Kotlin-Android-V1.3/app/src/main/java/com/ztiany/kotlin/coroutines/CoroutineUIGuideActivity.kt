@@ -28,7 +28,8 @@ class CoroutineUIGuideActivity : AppCompatActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coroutine_guide)
         setSupportActionBar(toolbarCoroutineGuide)
-        setupViews()
+        setupActorViews()
+        setupAdvanceViews()
     }
 
     override fun onDestroy() {
@@ -62,7 +63,7 @@ class CoroutineUIGuideActivity : AppCompatActivity(), AnkoLogger {
 
     //2---------------------------------------------------------
 
-    private fun setupViews() {
+    private fun setupActorViews() {
         btnCoroutineGuideActor1.onClick {
             for (i in 10 downTo 1) { // 从 10 到 1 的倒计时
                 tvCoroutineGuideValue.text = "Countdown $i ..." // 更新文本
@@ -157,6 +158,45 @@ class CoroutineUIGuideActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
+    //4---------------------------------------------------------高级主题：没有调度器时在 UI 事件处理器中启动协程
+    @ExperimentalCoroutinesApi
+    private fun setupAdvanceViews() {
+        //当我们运行这段代码，下面的信息将会在控制台中打印：
+        /*
+        Before launch
+        After launch
+        Inside coroutine
+        After delay
+         */
+        btnCoroutineGuideActor6.setOnClickListener {
+            println("Before launch")
+            GlobalScope.launch(Dispatchers.Main) {
+                println("Inside coroutine")
+                delay(100)
+                println("After delay")
+            }
+            println("After launch")
+        }
 
+        //在当协程从事件处理程序启动时周围没有其它代码这种特殊案例中， 这个额外的调度确实增加了额外的开销，而没有带来任何额外的价值。
+        // 在这个案例中一个可选的 CoroutineStart 参数可赋值给 launch、async 以及 actor 协程构建器 来进行性能优化。
+        // 将它的值设置为 CoroutineStart.UNDISPATCHED 可以更有效率的开始立即执行协程并直到第一个挂起点，如同下面的例子所示：
+        /*
+        Before launch
+        Inside coroutine
+        After launch
+        After delay
+         */
+        btnCoroutineGuideActor7.setOnClickListener {
+            println("Before launch")
+            GlobalScope.launch(Dispatchers.Main, CoroutineStart.UNDISPATCHED) {
+                // <--- 通知这次改变
+                println("Inside coroutine")
+                delay(100) // <--- 这里是协程挂起的地方
+                println("After delay")
+            }
+            println("After launch")
+        }
+    }
 
 }

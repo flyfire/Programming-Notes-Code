@@ -1,4 +1,4 @@
-package rx2
+package reactvice
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 import kotlin.coroutines.CoroutineContext
 
 //----------------------------------------------------------------------------------------------------------
-//05-08：像 Rx 之类的 reactive stream 库都会有一大批的操作符用于创建、转换、关联或者处理相应的流。如果要自己实现一个操作符实现背压，众所周知是非常困难的。
+//05-08：操作符，像 Rx 之类的 reactive stream 库都会有一大批的操作符用于创建、转换、关联或者处理相应的流。如果要自己实现一个操作符实现背压，众所周知是非常困难的。
 //协程和 channel 致力于提供一种截然不同的体验。这儿没有内置的操作符，但是处理元素流非常简单，而且自动支持背压，无需你操心。
 //这一部分就讲了基于协程实现 reactive stream 操作符。
 //----------------------------------------------------------------------------------------------------------

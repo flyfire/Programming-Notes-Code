@@ -85,4 +85,22 @@
         android:layout_height="wrap_content"
         android:text="UI 冻结的问题解决方法"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="5dp"
+        android:background="@color/colorPrimary"/>
+
+    <Button
+        android:id="@+id/btnCoroutineGuideActor6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="没有调度器时在 UI 事件处理器中启动协程"/>
+
+    <Button
+        android:id="@+id/btnCoroutineGuideActor7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" CoroutineStart.UNDISPATCHED"/>
+
 </LinearLayout>

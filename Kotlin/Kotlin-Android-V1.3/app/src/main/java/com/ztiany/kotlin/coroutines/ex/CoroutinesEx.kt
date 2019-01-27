@@ -1,4 +1,4 @@
-package com.ztiany.kotlin.coroutines
+package com.ztiany.kotlin.coroutines.ex
 
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
@@ -39,5 +39,5 @@ private val rxComputationExecutor = Executor { command ->
     }
 }
 
-val RxIo = rxIoExecutor.asCoroutineDispatcher()
-val RxComputation = rxComputationExecutor.asCoroutineDispatcher()
+val Io = rxIoExecutor.asCoroutineDispatcher()
+val Computation = rxComputationExecutor.asCoroutineDispatcher()

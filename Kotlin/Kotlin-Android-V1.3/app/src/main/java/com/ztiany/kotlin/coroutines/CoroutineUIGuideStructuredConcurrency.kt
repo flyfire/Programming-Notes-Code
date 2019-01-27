@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import kotlinx.coroutines.*
 
-/*
-结构化并发，生命周期以及协程父子层级结构
+/**
+ * [使用协程进行 UI 编程指南](https://github.com/hltj/kotlinx.coroutines-cn/blob/master/ui/coroutines-guide-ui.md)
+ *
+ * 结构化并发，生命周期以及协程父子层级结构
  */
 @ExperimentalCoroutinesApi
 abstract class ScopedAppActivity : AppCompatActivity(), CoroutineScope by MainScope() {

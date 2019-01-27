@@ -1,4 +1,4 @@
-package rx2
+package reactvice
 
 import io.reactivex.Flowable
 import kotlinx.coroutines.ObsoleteCoroutinesApi

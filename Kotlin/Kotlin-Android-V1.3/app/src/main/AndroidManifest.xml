@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,7 +25,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Anko Common Intents -->
+        <!-- Anko -->
         <activity
             android:name=".anko.common.intents.TargetActivity"
             android:label="Target"/>
@@ -58,21 +59,28 @@
         <activity
             android:name=".anko.coroutines.AnkoCoroutinesActivity"
             android:label="Coroutines"/>
+
+        <!--ExtensionSample-->
         <activity
             android:name=".extension.ExtensionSampleActivity"
             android:label="ExtensionSample"/>
-        <activity
-            android:name=".coroutines.CoroutinesActivity"
-            android:label="Coroutines Sample"/>
+
+        <!--Ktx-->
         <activity
             android:name=".ktx.KtxActivity"
             android:label="Ktx"/>
 
+        <!--Coroutines-->
+        <activity
+            android:name=".coroutines.CoroutinesActivity"
+            android:label="Coroutines Sample"/>
         <activity
             android:name=".coroutines.CoroutineUIGuideActivity"
-            android:label="@string/title_activity_guide"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:label="CoroutineUIGuideActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".coroutines.LifecycleCoroutineExSampleActivity"
+            android:label="LifecycleCoroutineExSample"/>
 
     </application>
 

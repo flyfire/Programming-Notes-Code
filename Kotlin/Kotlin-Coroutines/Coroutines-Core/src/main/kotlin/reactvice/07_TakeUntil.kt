@@ -1,4 +1,4 @@
-package rx2
+package reactvice
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.consume

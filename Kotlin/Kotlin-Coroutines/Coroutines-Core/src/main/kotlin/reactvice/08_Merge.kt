@@ -1,4 +1,4 @@
-package rx2
+package reactvice
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.reactive.consumeEach
@@ -21,7 +21,6 @@ fun <T> Publisher<Publisher<T>>.merge(context: CoroutineContext) = GlobalScope.p
         }
     }
 }
-
 
 @ExperimentalCoroutinesApi
 fun CoroutineScope.testPub() = publish<Publisher<Int>> {

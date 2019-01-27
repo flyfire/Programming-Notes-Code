@@ -1,4 +1,4 @@
-package com.ztiany.kotlin.ex
+package com.ztiany.kotlin
 
 /**
  *@author Ztiany

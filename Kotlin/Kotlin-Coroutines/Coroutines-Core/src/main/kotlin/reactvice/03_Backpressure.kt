@@ -1,4 +1,4 @@
-package rx2
+package reactvice
 
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

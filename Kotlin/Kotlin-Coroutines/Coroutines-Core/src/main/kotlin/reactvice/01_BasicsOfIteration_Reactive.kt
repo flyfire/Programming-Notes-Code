@@ -1,4 +1,4 @@
-package rx2
+package reactvice
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay

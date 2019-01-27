@@ -1,4 +1,4 @@
-package rx2
+package reactvice
 
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.*
