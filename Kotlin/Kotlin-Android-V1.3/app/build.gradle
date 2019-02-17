@@ -47,6 +47,8 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'androidx.core:core-ktx:0.3'
     implementation "android.arch.lifecycle:common-java8:1.1.1"
+    implementation 'android.arch.lifecycle:runtime:1.1.1'
+    implementation "android.arch.lifecycle:extensions:1.1.1"
     //kotlin
     implementation kotlinLibraries.kotlinStdlib
     implementation kotlinLibraries.kotlinReflect
