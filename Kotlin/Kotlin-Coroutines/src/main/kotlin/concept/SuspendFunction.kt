@@ -1,10 +1,11 @@
-package understanding
+package concept
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Unconfined
 
 /** 理解Suspend函数 */
-fun main(args: Array<String>) {
+@ExperimentalCoroutinesApi
+fun main() {
     //asyncCallbackSample() //传统异步回调方式
     //asyncReturnSample1() // 协程异步返回方式1
     //asyncReturnSample2() // 协程异步返回方式2
@@ -28,6 +29,7 @@ private fun queryDatabase(): String {
  *      kotlinx.coroutines.DefaultExecutor: 4
  *      main: 5
  */
+@ExperimentalCoroutinesApi
 private fun coroutinesSwitch() {
     // 1. 程序开始
     println("${Thread.currentThread().name}: 1")
@@ -70,7 +72,7 @@ fun asyncReturnSample1() = runBlocking {
     println("1 主线程开启协程")
     println("2 在主线程协程中开启新的协程异步查询数据")
     //2 开启异步协程去查询数据
-    val deferred = GlobalScope.async (Dispatchers.Default){ queryDatabase() }
+    val deferred = GlobalScope.async(Dispatchers.Default) { queryDatabase() }
     println("3 主携程继续执行......")
     //3 获取数据
     val data = deferred.await()

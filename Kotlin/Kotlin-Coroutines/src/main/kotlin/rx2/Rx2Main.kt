@@ -2,6 +2,7 @@ package rx2
 
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -12,7 +13,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import java.util.concurrent.TimeUnit
 
 /* https://github.com/Kotlin/kotlinx.coroutines/blob/master/reactive/kotlinx-coroutines-rx-example/src/main.kt */
 
@@ -42,19 +42,24 @@ fun main() = runBlocking {
 
     val github = retrofit.create(GitHub::class.java)
 
-
     val launch = launch {
 
+        //订阅与取消都在同一个线程中，订阅后发射数据会阻塞取消动作
         val contributors = github.contributors("JetBrains", "Kotlin")
-                .delay(60, TimeUnit.MILLISECONDS)
+                .doOnSubscribe {
+                    println("up stream doOnSubscribe")
+                }
                 .doOnNext {
-                    println(it)
+                    println("do on next ------> $it")
                 }
                 .doOnDispose {
                     println("doOnDispose")
                 }
                 .doAfterTerminate {
                     println("doAfterTerminate")
+                }
+                .doOnSubscribe {
+                    println("down stream doOnSubscribe")
                 }
                 .awaitFirst()
                 .take(10)
@@ -72,5 +77,47 @@ fun main() = runBlocking {
     println("end...")
     delay(50)
     launch.cancel()
-    delay(3000)
+
+}
+
+private fun rx() = runBlocking {
+    println("Making GitHub API request")
+
+    val retrofit = Retrofit.Builder().apply {
+        baseUrl("https://api.github.com")
+        addConverterFactory(GsonConverterFactory.create())
+        addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+    }.build()
+
+    val github = retrofit.create(GitHub::class.java)
+    //订阅与取消都在不同一个线程中，订阅后发射数据不会阻塞取消动作
+    val contributors = github.contributors("JetBrains", "Kotlin")
+            .subscribeOn(Schedulers.io())
+            .doOnSubscribe {
+                println("up stream doOnSubscribe")
+            }
+            .doOnNext {
+                println("do on next ------> $it")
+            }
+            .doOnDispose {
+                println("doOnDispose")
+            }
+            .doAfterTerminate {
+                println("doAfterTerminate")
+            }
+            .doOnSubscribe {
+                println("down stream doOnSubscribe")
+            }
+            .subscribe(
+                    {
+                        println("success --> $it")
+                    },
+                    {
+                        println("error --> $it")
+                    }
+            )
+
+    delay(1000)
+    println("end...")
+    contributors.dispose()
 }

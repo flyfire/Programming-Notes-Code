@@ -1,14 +1,7 @@
-package understanding
+package concept
 
-import kotlin.coroutines.experimental.buildSequence
 
-/**
- *斐波那契数列
- *
- * @author Ztiany
- *          Email ztiany3@gmail.com
- *          Date 17.7.17 23:03
- */
+/**斐波那契数列*/
 interface Sequence<out T> {
     operator fun iterator(): Iterator<T>
 }
@@ -21,11 +14,10 @@ F1=1
 Fn=F(n-1)+F(n-2);(n>=2)
 ```
  */
-fun main(args: Array<String>) {
-
+fun main() {
     //Builds a [Sequence] lazily yielding values one by one.
     //使用协程，可以实现懒计算和缓存之前的计算结果
-    val fibonacci = buildSequence {
+    val fibonacci = sequence {
         println("------1")
         yield(1) // first Fibonacci number，转让执行权
         println("------2")
