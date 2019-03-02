@@ -11,17 +11,18 @@
             padding: 0;
         }
 
+        /*1 加上clear 属性*/
+        .cl {
+            clear: both;
+        }
+
         li {
             float: left;
             width: 120px;
             height: 40px;
-            background-color: orange;
+            list-style: none;
+            background-color: red;
             text-align: center;
-        }
-
-        /*1 加上clear 属性*/
-        .cl {
-            clear: both;
         }
 
         /*2 加上高度属性用于margin*/
@@ -30,8 +31,9 @@
             _font-size: 0;
         }
 
-        /*box1的margin只有left、right和top是有效的*/
+        /*box1 的 margin只有left、right和top是有效的*/
         .box1 {
+            border: black dashed 3px;
             background-color: gold;
             margin-top: 10px;
             margin-bottom: 10px;
@@ -43,7 +45,6 @@
             width: 100px;
             margin-top: 100px;
         }
-
 
     </style>
 
@@ -69,7 +70,6 @@
         <li>面试技巧</li>
     </ul>
 </div>
-
 
 </body>
 </html>
