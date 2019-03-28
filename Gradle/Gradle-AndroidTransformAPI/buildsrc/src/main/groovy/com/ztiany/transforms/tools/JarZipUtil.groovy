@@ -6,7 +6,7 @@ import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
 
 
-public class JarZipUtil {
+class JarZipUtil {
 
     /**
      * 将该jar包解压到指定目录
@@ -14,7 +14,7 @@ public class JarZipUtil {
      * @param destDirPath jar包解压后的保存路径
      * @return 返回该jar包中包含的所有class的完整类名类名集合，其中一条数据如：com.aitski.hotpatch.Xxxx.class
      */
-    public static List unzipJar(String jarPath, String destDirPath) {
+    static List unzipJar(String jarPath, String destDirPath) {
         List list = new ArrayList()
         if (jarPath.endsWith('.jar')) {
             JarFile jarFile = new JarFile(jarPath)
@@ -48,8 +48,7 @@ public class JarZipUtil {
      * @param packagePath 将这个目录下的所有文件打包成jar
      * @param destPath 打包好的jar包的绝对路径
      */
-    public static void zipJar(String packagePath, String destPath) {
-
+    static void zipJar(String packagePath, String destPath) {
         File file = new File(packagePath)
         JarOutputStream outputStream = new JarOutputStream(new FileOutputStream(destPath))
         file.eachFileRecurse { File f ->
@@ -63,4 +62,5 @@ public class JarZipUtil {
         }
         outputStream.close()
     }
+
 }

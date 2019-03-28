@@ -9,7 +9,7 @@ import org.apache.commons.codec.digest.DigestUtils
 
 class PrintTransform extends Transform {
 
-    Project project;
+    Project project
 
     PrintTransform(Project project) {
         this.project = project
@@ -23,24 +23,33 @@ class PrintTransform extends Transform {
 
     @Override
     Set<QualifiedContent.ContentType> getInputTypes() {
-        //指定输入的类型，通过这里的设定，可以指定我们要处理的文件类型
-        //这样确保其他类型的文件不会传入
+        println("-------------------------------------------------------------------getInputTypes-------------------------------------------------------------------> CONTENT_CLASS")
+        //指定输入的类型，通过这里的设定，可以指定我们要处理的文件类型，这样确保其他类型的文件不会传入
         return TransformManager.CONTENT_CLASS
     }
 
     @Override
     Set<? super QualifiedContent.Scope> getScopes() {
+        println("-------------------------------------------------------------------getScopes-------------------------------------------------------------------> SCOPE_FULL_PROJECT")
         //指定Transform的作用范围
         return TransformManager.SCOPE_FULL_PROJECT
     }
 
     @Override
     boolean isIncremental() {
+        println("-------------------------------------------------------------------isIncremental-------------------------------------------------------------------> false")
         return false
     }
 
     @Override
     void transform(Context context, Collection<TransformInput> inputs, Collection<TransformInput> referencedInputs, TransformOutputProvider outputProvider, boolean isIncremental) throws IOException, TransformException, InterruptedException {
+        if (!isIncremental) {
+            try {
+                outputProvider.deleteAll()
+            } catch (e) {
+                e.printStackTrace()
+            }
+        }
         // Transform的inputs有两种类型，一种是目录，一种是jar包，要分开遍历
         inputs.each {
             TransformInput input ->
@@ -53,15 +62,17 @@ class PrintTransform extends Transform {
 
     private
     static ArrayList<DirectoryInput> dirProcess(TransformInput input, TransformOutputProvider outputProvider) {
+        println("-------------------------------------------------------------------directoryInputs-------------------------------------------------------------------")
         input.directoryInputs.each {
             DirectoryInput directoryInput ->
                 //E:\code\studio\my_github\Repository\Gradle\TransformAPI\app\build\intermediates\classes\release
                 //E:\code\studio\my_github\Repository\Gradle\TransformAPI\app\build\intermediates\classes\debug
-                println "-----------------" + directoryInput.file
+                println directoryInput.file
                 //文件夹里面包含的是我们手写的类以及R.class、BuildConfig.class以及R$XXX.class等
                 // 获取output目录
                 Inject.injectDir(directoryInput.file.canonicalPath, "com\\ztiany\\transform")
                 def dest = outputProvider.getContentLocation(directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
+                println("dest --> $dest")
                 // 将input的目录复制到output指定目录
                 FileUtils.copyDirectory(directoryInput.file, dest)
         }
@@ -69,6 +80,7 @@ class PrintTransform extends Transform {
 
     private
     static ArrayList<JarInput> jarProcess(TransformInput input, TransformOutputProvider outputProvider) {
+        println("-------------------------------------------------------------------jarInputs-------------------------------------------------------------------")
         input.jarInputs.each {
             JarInput jarInput ->
                 //jar文件一般是第三方依赖库jar文件
@@ -88,9 +100,9 @@ class PrintTransform extends Transform {
                 C:\Users\Administrator\.android\build-cache\566e3d6a4bf505dd71b7dc354684b0fa956a985b\output\jars\classes.jar
                 C:\Users\Administrator\.android\build-cache\09752267c8148847da9262a70bcc1f19de1aec05\output\jars\classes.jar
                 C:\Users\Administrator\.android\build-cache\84a2403fa5cce0acddf4b96dc74d9137fe884a17\output\jars\classes.jar
-
                  */
-                println "-----------------" + jarInput.file
+
+                println jarInput.file
                 def jarName = jarInput.name
                 def md5Name = DigestUtils.md5Hex(jarInput.file.getAbsolutePath())
                 if (jarName.endsWith(".jar")) {
@@ -98,10 +110,10 @@ class PrintTransform extends Transform {
                 }
                 //生成输出路径
                 def dest = outputProvider.getContentLocation(jarName + md5Name, jarInput.contentTypes, jarInput.scopes, Format.JAR)
+                println("dest --> $dest")
                 //将输入内容复制到输出
                 FileUtils.copyFile(jarInput.file, dest)
         }
     }
-
 
 }

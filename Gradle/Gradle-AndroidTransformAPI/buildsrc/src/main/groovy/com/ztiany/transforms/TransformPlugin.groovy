@@ -1,5 +1,6 @@
+package com.ztiany.transforms
+
 import com.android.build.gradle.AppExtension
-import com.ztiany.transforms.PrintTransform
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
