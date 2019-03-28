@@ -20,11 +20,12 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <!-- Anko Common Intents -->
+        <!-- Anko -->
         <activity
             android:name=".anko.common.intents.TargetActivity"
             android:label="Target"/>
@@ -58,15 +59,28 @@
         <activity
             android:name=".anko.coroutines.AnkoCoroutinesActivity"
             android:label="Coroutines"/>
+
+        <!--ExtensionSample-->
         <activity
             android:name=".extension.ExtensionSampleActivity"
             android:label="ExtensionSample"/>
+
+        <!--Ktx-->
+        <activity
+            android:name=".ktx.KtxActivity"
+            android:label="Ktx"/>
+
+        <!--Coroutines-->
         <activity
             android:name=".coroutines.CoroutinesActivity"
             android:label="Coroutines Sample"/>
         <activity
-            android:name=".ktx.KtxActivity"
-            android:label="Ktx"/>
+            android:name=".coroutines.CoroutineUIGuideActivity"
+            android:label="CoroutineUIGuideActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".coroutines.LifecycleCoroutineExSampleActivity"
+            android:label="LifecycleCoroutineExSample"/>
 
     </application>
 

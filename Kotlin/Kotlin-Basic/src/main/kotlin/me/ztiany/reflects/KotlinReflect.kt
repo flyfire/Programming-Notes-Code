@@ -2,7 +2,6 @@ package me.ztiany.reflects
 
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
-import java.util.*
 import kotlin.reflect.KClass
 import kotlin.reflect.jvm.javaField
 import kotlin.reflect.jvm.javaGetter
@@ -29,6 +28,8 @@ import kotlin.reflect.jvm.javaGetter
  *      4， 构造函数引用
  *      5，与Java平台的互操作
  *      6，绑定对象的函数和属性引用
+ *
+ * 另外可以参考：重新审视 Kotlin 反射，我觉得可以合理使用，https://mp.weixin.qq.com/s/ScufhaG8Pu5gk_fF3rW90g
  */
 
 

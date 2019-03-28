@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.0'
+    ext.kotlin_version = '1.3.11'
     repositories {
         jcenter()
         google()
@@ -17,6 +17,7 @@ allprojects {
         jcenter()
         google()
         mavenCentral()
+        maven { url "https://kotlin.bintray.com/kotlinx/" }
     }
 
     configurations.all {
@@ -47,9 +48,11 @@ ext {
             //Kotlin
             kotlinStdlib               : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             kotlinReflect              : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
-            kotlinCoroutines           : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0',//协程库
-            kotlinAndroidCoroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0",
-
+            //https://github.com/JetBrains/kotlin/tree/master/libraries/kotlinx-metadata/jvm
+            kotlinxMetadata              : "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.0.5",
+            kotlinCoroutines           : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0',//协程库
+            kotlinAndroidCoroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.0",
+            kotlinxCoroutinesRx2 :'org.jetbrains.kotlinx:kotlinx-coroutines-rx2:1.1.0',
             // Anko https://github.com/Kotlin/anko
             ankoAll                    : "org.jetbrains.anko:anko:${anko_version}",
 
@@ -74,6 +77,18 @@ ext {
             ankoLayoutCompatV7Coroutine: "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version",
             ankoDesignCoroutine        : "org.jetbrains.anko:anko-design-coroutines:$anko_version",
             ankoRecyclerViewCoroutines : "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version",
-            rxKotlin2                  : 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+            rxKotlin2                  : 'io.reactivex.rxjava2:rxkotlin:2.2.0' ,
+
+            //ext
+            //https://github.com/enbandari/KotlinTuples
+            tuples                     : "com.bennyhuo.kotlin:kotlin-tuples:1.0",
+            //https://github.com/enbandari/ObjectPropertyDelegate
+            opd                        : "com.bennyhuo.kotlin:opd:1.0-rc-2",
+            //https://github.com/enbandari/KotlinDeepCopy
+            deepCopyReflect            : "com.bennyhuo.kotlin:deepcopy-reflect:1.0",
+            deepCopy                   : "com.bennyhuo.kotlin:deepcopy-annotations:1.1.0",
+            deepCopyApt                : "com.bennyhuo.kotlin:deepcopy-compiler:1.1.0",
+            //https://github.com/enbandari/ReleasableVar
+            releasableVar                : "com.bennyhuo.kotlin:releasable-nonnull-vars:1.1.0",
     ]
 }

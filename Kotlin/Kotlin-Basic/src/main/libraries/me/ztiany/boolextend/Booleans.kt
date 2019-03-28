@@ -1,6 +1,6 @@
 package me.ztiany.boolextend
 
-/**
+/*
  *Boolean扩展：https://blog.kotliner.cn/2017/06/19/interesting-booleanext/
  */
 

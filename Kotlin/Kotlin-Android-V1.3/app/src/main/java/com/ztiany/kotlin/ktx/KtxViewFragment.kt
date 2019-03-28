@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.view.toBitmap
-import com.ztiany.kotlin.coroutines.launchUI
+import com.ztiany.kotlin.coroutines.ex.launchUI
 import kotlinx.coroutines.async
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI

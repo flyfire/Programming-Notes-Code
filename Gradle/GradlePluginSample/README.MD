@@ -1,6 +1,5 @@
 # 自定义Gradle插件
 
-
 ## 发布到本地仓库
 
 ```groovy
@@ -17,7 +16,25 @@ uploadArchives {
     }
 }
 ```
-此时classpath为：'com.ztiany:hello-plugin:1.0'
+
+## 此时配置根目录脚本如下
+
+```
+buildscript {
+
+    repositories {
+        jcenter()
+        maven { url uri('repo') }
+        google()
+    }
+    dependencies {
+        //android
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.ztiany:hello-plugin:1.0'
+    }
+}
+
+```
 
 ## META-INF
 
