@@ -37,12 +37,13 @@ class PrintTransform extends Transform {
 
     @Override
     boolean isIncremental() {
-        println("-------------------------------------------------------------------isIncremental-------------------------------------------------------------------> false")
-        return false
+        println("-------------------------------------------------------------------isIncremental-------------------------------------------------------------------> true")
+        return true
     }
 
     @Override
     void transform(Context context, Collection<TransformInput> inputs, Collection<TransformInput> referencedInputs, TransformOutputProvider outputProvider, boolean isIncremental) throws IOException, TransformException, InterruptedException {
+        println("transform is isIncremental = $isIncremental")
         if (!isIncremental) {
             try {
                 outputProvider.deleteAll()
@@ -85,7 +86,6 @@ class PrintTransform extends Transform {
             JarInput jarInput ->
                 //jar文件一般是第三方依赖库jar文件
                 // 重命名输出文件（同目录copyFile会冲突）
-
                 /*
                 E:\code\studio\my_github\Repository\Gradle\TransformAPI\app\libs\rxjava-2.1.4.jar
                 C:\Users\Administrator\.android\build-cache\ebec13d62a453a46d257c64a1c87cd28ed5d23a2\output\jars\classes.jar
@@ -102,7 +102,7 @@ class PrintTransform extends Transform {
                 C:\Users\Administrator\.android\build-cache\84a2403fa5cce0acddf4b96dc74d9137fe884a17\output\jars\classes.jar
                  */
 
-                println jarInput.file
+                println (jarInput.file.getAbsolutePath() + " status = ${jarInput.status}")
                 def jarName = jarInput.name
                 def md5Name = DigestUtils.md5Hex(jarInput.file.getAbsolutePath())
                 if (jarName.endsWith(".jar")) {
