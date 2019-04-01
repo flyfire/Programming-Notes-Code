@@ -1,1 +1,1 @@
-# 前端 Html、css、DOM、BOM基础
+# 前端 html、css、dom、bom 基础

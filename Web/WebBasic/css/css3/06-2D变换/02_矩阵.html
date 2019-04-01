@@ -28,20 +28,21 @@
             background: pink;
             text-align: center;
             font: 30px/200px "微软雅黑";
-
+            /*居中*/
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
             top: 0;
             margin: auto;
-
+            /*变换*/
             transition: 2s;
-            transform-origin: 100% 100%;
         }
 
+        /* 角度转弧度：deg*PI/180  */
         body:hover #test {
-            transform: translateX(300px);
+            /*transform: matrix(0.7071067811865476, 0.7071067811865475, -0.7071067811865475, 0.7071067811865476, 0, 0);*/
+            transform: rotate(45deg);
         }
 
     </style>

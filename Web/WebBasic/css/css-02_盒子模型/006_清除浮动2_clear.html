@@ -5,6 +5,9 @@
     <title>浮动清除现象</title>
 </head>
 
+<!--
+     此方法不能让浮动的子元素能撑出父元素的高度
+ -->
 <style type="text/css">
 
     * {
@@ -20,7 +23,7 @@
         background-color: orange;
     }
 
-    .top{
+    .top {
         height: 40px;
         background-color: #ff3341;
     }
@@ -51,7 +54,7 @@
 
     <div class="top"></div>
 
-    <div class="parent">
+    <div class="parent" style="border: 2px deeppink dashed">
         <ul>
             <li>我是列表1</li>
             <li>我是列表1</li>
@@ -62,7 +65,7 @@
         </ul>
     </div>
 
-    <div class="parent">
+    <div class="parent" style="border: 2px pink dashed">
         <ul>
             <li>我是列表2</li>
             <li>我是列表2</li>
