@@ -8,4 +8,10 @@ import android.support.multidex.MultiDexApplication;
  * Date : 2019-03-28 16:42
  */
 public class App extends MultiDexApplication {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
 }

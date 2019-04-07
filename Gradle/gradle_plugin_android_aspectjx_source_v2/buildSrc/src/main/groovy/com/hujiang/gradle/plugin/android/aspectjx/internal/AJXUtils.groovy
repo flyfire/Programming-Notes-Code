@@ -181,7 +181,9 @@ class AJXUtils {
                         FileUtils.copyFile(jarInput.file, target)
                         break
                     case Status.ADDED:
-                        FileUtils.copyFile(jarInput, target)
+                        //FileUtils.copyFile(jarInput, target)
+                        /*modify by ztiany*/
+                        FileUtils.copyFile(jarInput.file, target)
                         break
                     default:
                         break

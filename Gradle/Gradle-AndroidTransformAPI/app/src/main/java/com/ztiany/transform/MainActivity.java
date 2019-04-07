@@ -10,8 +10,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new A();
-        new B();
+        new ClassA();
+        new ClassB();
 
         findViewById(R.id.click1).setOnClickListener(v -> {
             Toast.makeText(this, "click1", Toast.LENGTH_SHORT).show();
