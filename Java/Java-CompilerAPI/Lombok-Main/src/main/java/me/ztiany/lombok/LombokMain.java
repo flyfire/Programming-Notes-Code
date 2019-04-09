@@ -1,6 +1,7 @@
 package me.ztiany.lombok;
 
 /**
+ * 运行前安装 Lombok 插件
  *
  * @author ztiany
  * Email: ztiany3@gmail.com
