@@ -10,7 +10,6 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-
     // https://mvnrepository.com/artifact/edu.washington.cs.types.jsr308/jsr308-compiler
     compile group: 'edu.washington.cs.types.jsr308', name: 'jsr308-compiler', version: '1.7.5'
 }

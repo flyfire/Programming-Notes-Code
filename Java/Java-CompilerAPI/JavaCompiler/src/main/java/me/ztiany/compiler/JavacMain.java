@@ -3,30 +3,36 @@ package me.ztiany.compiler;
 
 import com.sun.tools.javac.main.Main;
 
-import javax.tools.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.tools.Diagnostic;
+import javax.tools.DiagnosticCollector;
+import javax.tools.JavaCompiler;
+import javax.tools.JavaFileObject;
+import javax.tools.StandardJavaFileManager;
+import javax.tools.ToolProvider;
+
 /**
  * @author ztiany
  * Email: ztiany3@gmail.com
  */
+@SuppressWarnings("all")
 public class JavacMain {
 
     private static final String APP_SOURCE_DIR = "JavaCompiler/src/main/java/me/ztiany/compiler/App.java";
     private static final String TARGET_OPTION = "-d";
-    private static final String TARGET_DIR = "JavaCompiler/build/manual";
-
+    private static final String TARGET_DIR = "JavaCompiler/build/manual/";
 
     public static void main(String... args) {
         //javaToolsInternalApi();
         //jsr199_2();
         //jsr269();
         //jsr269_TreeScanner();
-        //javacInternalAPI();
-        assertToIfThrow();
+        javacInternalAPI();
+        //assertToIfThrow();
     }
 
     /**
@@ -36,6 +42,7 @@ public class JavacMain {
     private static void javaToolsInternalApi() {
         Main compiler = new Main("javac");
         System.out.println(new File(".").getAbsolutePath());
+        new File(TARGET_DIR).mkdirs();
         compiler.compile(new String[]{APP_SOURCE_DIR, TARGET_OPTION, TARGET_DIR});
     }
 
@@ -97,7 +104,7 @@ public class JavacMain {
     }
 
     /**
-     * 填充符号表前一步是构造语法树。对语法树的扫描，com.sun.source.* 提供了扫描器TreeScanner。
+     * 填充符号表前一步是构造语法树。对语法树的扫描，com.sun.source.* 提供了扫描器 TreeScanner。
      * 获取语法树是通过工具类 Trees 的 getTree 方法完成的。 com.sun.source.* 包下暴露的 API 对语法树只能做只读操作，
      * 功能有限，要想修改语法树必须使用 javac 的内部 API。
      */

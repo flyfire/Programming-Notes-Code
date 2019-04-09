@@ -1,6 +1,7 @@
 package me.ztiany.lombok;
 
 /**
+ *
  * @author ztiany
  * Email: ztiany3@gmail.com
  */
@@ -11,6 +12,5 @@ public class LombokMain {
         person.setName("haha");
         System.out.println(person.getName());
     }
-
 
 }

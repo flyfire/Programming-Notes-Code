@@ -2,7 +2,7 @@ package com.ztiany;
 
 import com.ztiany.runtimeannotation.ClassInfo;
 import com.ztiany.runtimeannotation.User;
-import com.ztiany.compilerannotation.UseCodeAutogenerate;
+import  com.ztiany.compilerannotation.UseCodeAutogenerate;
 
 public class Main {
 
