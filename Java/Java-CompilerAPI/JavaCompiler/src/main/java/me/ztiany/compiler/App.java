@@ -1,5 +1,7 @@
 package me.ztiany.compiler;
 
+import me.ztiany.compiler.annotation.HelloTag;
+
 /**
  * @author ztiany
  * Email: ztiany3@gmail.com

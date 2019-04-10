@@ -1,4 +1,4 @@
-package me.ztiany.compiler;
+package me.ztiany.compiler.sun;
 
 import com.sun.source.tree.ClassTree;
 import com.sun.source.tree.MethodTree;
@@ -8,12 +8,18 @@ import com.sun.source.util.TreePath;
 import com.sun.source.util.TreePathScanner;
 import com.sun.source.util.Trees;
 
-import javax.annotation.processing.*;
+import java.util.Set;
+
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
-import java.util.Set;
 
+/* com.sun.source.* 包下暴露的 API 对语法树只能做只读操作，这里打印抽象语法树中的各个节点 */
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
 @SupportedAnnotationTypes("*")
 public class VisitTreeProcessor extends AbstractProcessor {
@@ -38,6 +44,7 @@ public class VisitTreeProcessor extends AbstractProcessor {
     }
 
     public class Scanner extends TreePathScanner<Tree, Void> {
+
         public Tree visitClass(ClassTree node, Void p) {
             System.out.println("类 " + node.getKind() + ": " + node.getSimpleName());
             return super.visitClass(node, p);
@@ -55,4 +62,5 @@ public class VisitTreeProcessor extends AbstractProcessor {
             return super.visitVariable(node, p);
         }
     }
+
 }
